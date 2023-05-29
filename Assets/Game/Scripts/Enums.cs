@@ -63,4 +63,17 @@ namespace Enums
         Moving,
         None
     }
+
+    //EnemyState
+    public enum EnemyState
+    {
+        Idle,
+        Cautious,
+        Attacking,
+        Moving,
+        Flying,
+        Landing,
+        Dodging,
+        Blocking
+    }
 }

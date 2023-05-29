@@ -27,11 +27,12 @@ public class Characters : MonoBehaviour
         {
             return damageReceived * weaknessModifier;
         }
-        else if(weaknesses.Contains(elementHit))
+        else if (weaknesses.Contains(elementHit))
         {
             return damageReceived * affinityResistanceModifier;
         }
-        else{
+        else
+        {
             return damageReceived;
         }
     }

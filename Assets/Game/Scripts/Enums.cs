@@ -1,7 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
 //Use those enums by include "using Enums" in file
 namespace Enums
 {

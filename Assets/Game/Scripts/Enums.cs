@@ -51,7 +51,9 @@ namespace Enums
     public enum TypeOfAbility
     {
         Movement,
-        Combat
+        melee,
+        ranged
+
     }
 
     //FightingState

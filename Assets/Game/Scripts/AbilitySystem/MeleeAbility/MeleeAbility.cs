@@ -9,12 +9,13 @@ public class MeleeAbility : Ability
     public Collider attackCollider;
     public Ability nextAttack;
     public string animationTrigger;
-    private int hashNextAction;
-
+    public MeleeWeapon weapon;
 
     public override void Initialize()
     {
-        hashNextAction = Animator.StringToHash(animationTrigger);
+        weapon.damage = baseDamage;
+        weapon.initiator = initiator;
+        weapon.attackElement = attackElement;
     }
 
     public override void TriggerAbility()
@@ -22,6 +23,7 @@ public class MeleeAbility : Ability
         if (CheckState())
         {
             isActive = true;
+            weapon.isActive = true;
             animate();
         }
     }
@@ -30,10 +32,10 @@ public class MeleeAbility : Ability
     {
         if (nextAttack != null)
         {
-            animator.SetTrigger(hashNextAction);
+            animator.SetTrigger(animationTrigger);
         }
     }
-
+    //TODO : Verify if this is used
     public void triggerNextAttack()
     {
         nextAttack.TriggerAbility();
@@ -50,6 +52,5 @@ public class MeleeAbility : Ability
             hit.DamageTaken(Enums.Elements.Air, baseDamage);
         }
     }
-
 
 }

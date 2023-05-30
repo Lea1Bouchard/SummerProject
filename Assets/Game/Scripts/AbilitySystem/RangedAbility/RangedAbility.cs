@@ -21,6 +21,7 @@ public class RangedAbility : Ability
         projectileScript.Range = range;
         projectileScript.Speed = speed;
         projectileScript.Initiator = Initiator;
+        projectileScript.attackElement = attackElement;
         abilityType = Enums.TypeOfAbility.ranged;
 
         //MABE :: Set material here?

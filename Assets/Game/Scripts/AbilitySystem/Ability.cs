@@ -16,6 +16,7 @@ public abstract class Ability : ScriptableObject
     public float abilityCooldown;
     public Sprite abilityUiSprite;
     public string animationStateName;
+    public Elements attackElement;
 
     //TODO : Check how animations will be handled
     protected Animator animator;
@@ -80,7 +81,7 @@ public abstract class Ability : ScriptableObject
 
     protected void animate()
     {
-        animator.SetBool(animationStateName, true);
+        animator.SetTrigger(animationStateName);
     }
 
 }

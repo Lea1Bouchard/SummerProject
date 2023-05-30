@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Enums;
 
 public class Projectile : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class Projectile : MonoBehaviour
     private float range;
     private Characters initiator;
     private Rigidbody rigidb;
+    [HideInInspector] public Elements attackElement;
 
     public int Damage { get => damage; set => damage = value; }
     public float Speed { get => speed; set => speed = value; }
@@ -28,5 +30,16 @@ public class Projectile : MonoBehaviour
         Destroy(gameObject, range);
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        Characters hit = other.gameObject.GetComponent<Characters>();
+        if (hit != initiator)
+        {
+            hit.DamageTaken(attackElement, damage);
+        }
+
+        Destroy(gameObject);
+
+    }
 
 }

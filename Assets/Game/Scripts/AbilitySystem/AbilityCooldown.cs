@@ -17,13 +17,14 @@ public class AbilityCooldown : MonoBehaviour
     private float cooldownDuration;
     private float nextReadyTime;
     private float cooldownTimeLeft;
+    private bool abilityReady;
 
     void Start()
     {
-        Initialize(ability, weaponHolder);  
+        Initialize(ability, weaponHolder);
     }
 
-    public void Initialize (Ability selectedAbility, GameObject weaponHolder)
+    public void Initialize(Ability selectedAbility, GameObject weaponHolder)
     {
         ability = selectedAbility;
         myButtonImage = GetComponent<Image>();
@@ -51,9 +52,11 @@ public class AbilityCooldown : MonoBehaviour
     {
         cooldownTextDisplay.enabled = false;
         darkMask.enabled = false;
+
+        abilityReady = true;
     }
 
-    private void Cooldown ()
+    private void Cooldown()
     {
         cooldownTimeLeft -= Time.deltaTime;
         float roundedCd = Mathf.Round(cooldownTimeLeft);
@@ -72,6 +75,12 @@ public class AbilityCooldown : MonoBehaviour
         abilitySource.clip = ability.abilitySound;
         abilitySource.Play();
         ability.TriggerAbility();
+        abilityReady = false;
         StartCoroutine(CooldownTrigger());
+    }
+
+    public void checkAbilityCooldown()
+    {
+        if (abilityReady) ButtonTriggered();
     }
 }

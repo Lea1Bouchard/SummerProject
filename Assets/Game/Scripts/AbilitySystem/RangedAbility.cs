@@ -2,25 +2,27 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu (menuName = "Abilities/RangedAbility")]
+[CreateAssetMenu(menuName = "Abilities/RangedAbility")]
 public class RangedAbility : Ability
 {
-    public float range = 50f;
-    public float speed = 10f;
+    public float range = 5f;
+    public float speed = 1f;
     public GameObject projectile;
+    public GameObject startPosition;
+    private Projectile projectileScript;
 
     public override void Initialize()
     {
-        //Instantiate the projectile
+        projectileScript = projectile.GetComponent<Projectile>();
 
-        //Set projectile damage to ability damage
-        //Set projectile range to ability range
-        //Set projectile speed to ability speed
+        Instantiate(projectile);
 
-        //Set projectile owner to initiator
+        projectileScript.Damage = baseDamage;
+        projectileScript.Range = range;
+        projectileScript.Speed = speed;
+        projectileScript.Initiator = Initiator;
 
         //MABE :: Set material here?
-        throw new System.NotImplementedException();
     }
 
     public override void TriggerAbility()

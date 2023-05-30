@@ -32,7 +32,6 @@ public class RangedAbility : Ability
         {
             projectileScript.Shoot();
             isActive = true;
-            isUsable = false;
         }
 
     }

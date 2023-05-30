@@ -15,16 +15,14 @@ public abstract class Ability : ScriptableObject
     public AudioClip abilitySound;
     public float abilityCooldown;
     public Sprite abilityUiSprite;
+    public string animationStateName;
 
     //TODO : Check how animations will be handled
-    protected Animation abilityAnimation;
+    protected Animator animator;
     //TODO : Chack if particle system in the best choice
     protected ParticleSystem effect;
 
-    //TODO : Verify the utility of this one
-    protected bool isUsable;
-
-    protected bool isActive;
+    protected bool isActive = false;
 
     public int baseDamage;
 
@@ -45,7 +43,7 @@ public abstract class Ability : ScriptableObject
     // Start is called before the first frame update
     protected bool CheckState()
     {
-        if (!isUsable)
+        if (!isActive)
         {
             return false;
         }
@@ -78,7 +76,11 @@ public abstract class Ability : ScriptableObject
     protected void OnEnd()
     {
         isActive = false;
-        isUsable = true;
+    }
+
+    protected void animate()
+    {
+        animator.SetBool(animationStateName, true);
     }
 
 }

@@ -21,14 +21,20 @@ public class RangedAbility : Ability
         projectileScript.Range = range;
         projectileScript.Speed = speed;
         projectileScript.Initiator = Initiator;
+        abilityType = Enums.TypeOfAbility.ranged;
 
         //MABE :: Set material here?
     }
 
     public override void TriggerAbility()
     {
-        //TODO : shoot the projectile
-        throw new System.NotImplementedException();
+        if (CheckState())
+        {
+            projectileScript.Shoot();
+            isActive = true;
+            isUsable = false;
+        }
+
     }
 
 

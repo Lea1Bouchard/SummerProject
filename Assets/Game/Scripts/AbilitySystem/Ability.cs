@@ -17,20 +17,20 @@ public abstract class Ability : ScriptableObject
     public Sprite abilityUiSprite;
 
     //TODO : Check how animations will be handled
-    private Animation abilityAnimation;
+    protected Animation abilityAnimation;
     //TODO : Chack if particle system in the best choice
-    private ParticleSystem effect;
+    protected ParticleSystem effect;
 
     //TODO : Verify the utility of this one
-    private bool isUsable;
+    protected bool isUsable;
 
-    private bool isActive;
+    protected bool isActive;
 
     public int baseDamage;
 
-    private Characters initiator;
+    protected Characters initiator;
 
-    private TypeOfAbility abilityType;
+    protected TypeOfAbility abilityType;
 
     public List<GameState> GameStateBlocked { get => gameStateBlocked; set => gameStateBlocked = value; }
     public List<MovementState> MovementStateBlocked { get => movementStateBlocked; set => movementStateBlocked = value; }
@@ -43,12 +43,18 @@ public abstract class Ability : ScriptableObject
 
 
     // Start is called before the first frame update
-    void CheckState()
+    protected bool CheckState()
     {
-        //TODO : Make this into an actual function
+        if (!isUsable)
+        {
+            return false;
+        }
+
         foreach (GameState state in gameStateBlocked)
         {
             //Add check to game state
+
+
         }
 
         foreach (MovementState state in movementStateBlocked)
@@ -60,11 +66,19 @@ public abstract class Ability : ScriptableObject
         {
             //Add check to Fighting state
         }
+
+        return true;
     }
 
-    private void OnCancel()
+    protected void OnCancel()
     {
         Destroy(this);
+    }
+
+    protected void OnEnd()
+    {
+        isActive = false;
+        isUsable = true;
     }
 
 }

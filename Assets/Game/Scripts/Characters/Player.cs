@@ -5,6 +5,8 @@ using Enums;
 
 public class Player : Characters
 {
+    private static Player _instance;
+
     private MovementState movementState;
     private FightingState fightingState;
 
@@ -23,6 +25,16 @@ public class Player : Characters
     private RaycastHit raycastHit;
 
     Dictionary<Elements, Elements> opposingElements;
+
+    public static Player Instance
+    {
+        get
+        {
+            if (_instance is null)
+                Debug.LogError("Player is NULL");
+            return _instance;
+        }
+    }
 
     public Player()
     {
@@ -48,8 +60,14 @@ public class Player : Characters
         lineOfSightRadius = 100f;
     }
 
+    private void Awake()
+    {
+        _instance = this;
+    }
+
     private void Start()
     {
+        opposingElements = new Dictionary<Elements, Elements>();
         opposingElements.Add(Elements.Fire, Elements.Water);
         opposingElements.Add(Elements.Water, Elements.Fire);
 
@@ -61,9 +79,11 @@ public class Player : Characters
 
         opposingElements.Add(Elements.Light, Elements.Darkness);
         opposingElements.Add(Elements.Darkness, Elements.Light);
+
+        opposingElements.Add(Elements.Null, Elements.Null);
     }
 
-    private void ChangeWeaponElement(Elements newElement)
+    public void ChangeWeaponElement(Elements newElement)
     {
         //Empty Affinities and Weaknesses lists
         Affinities.Clear();
@@ -72,6 +92,15 @@ public class Player : Characters
         //Change to new Affinities and Weaknesses
         Affinities.Add(newElement);
         Weaknesses.Add(opposingElements[newElement]);
+
+        foreach (var x in Affinities)
+        {
+            Debug.Log("Aff: " + x.ToString());
+        }
+        foreach (var x in Weaknesses)
+        {
+            Debug.Log("Weak: "+ x.ToString());
+        }
     }
 
     private void DetectEnemiesInLineOfSight()

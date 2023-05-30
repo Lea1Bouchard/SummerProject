@@ -51,76 +51,22 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "SelectElement1",
-                    "type": "Button",
+                    "name": "SelectElementNormal",
+                    "type": "Value",
                     "id": "ddce3e78-339e-4616-94c1-f96f8ecde5bc",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "Dpad",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": false
+                    "initialStateCheck": true
                 },
                 {
-                    "name": "SelectElement2",
-                    "type": "Button",
+                    "name": "SelectElementShift",
+                    "type": "Value",
                     "id": "49cc2f7b-b97e-4a02-8d0b-fdcd27279d15",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "Dpad",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "SelectElement3",
-                    "type": "Button",
-                    "id": "475fcaee-77fe-4bf0-b48b-4428359d2cfe",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "SelectElement4",
-                    "type": "Button",
-                    "id": "82142d64-610f-4156-9149-ff731fafb7af",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "SelectElement5",
-                    "type": "Button",
-                    "id": "96914534-a349-4128-8141-2292e11fe411",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "SelectElement6",
-                    "type": "Button",
-                    "id": "5c225618-3958-4084-be08-d761f4c29227",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "SelectElement7",
-                    "type": "Button",
-                    "id": "426b7890-1cf6-403d-bd0c-3c72f33a0713",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "SelectElement8",
-                    "type": "Button",
-                    "id": "a33e6696-ba42-41d6-a4cc-d41ffdceaeff",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
+                    "initialStateCheck": true
                 }
             ],
             "bindings": [
@@ -324,177 +270,45 @@
                 },
                 {
                     "name": "",
-                    "id": "7cee1498-f00e-4d1e-9060-65f89b308a58",
-                    "path": "<Gamepad>/dpad/up",
+                    "id": "d75adcf3-6604-4237-b106-46fc05c080f2",
+                    "path": "<Gamepad>/dpad",
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
-                    "action": "SelectElement1",
+                    "action": "SelectElementNormal",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "",
-                    "id": "e4d3ab28-8cc7-4b77-91a9-f344274424ce",
-                    "path": "<Gamepad>/dpad/right",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Gamepad",
-                    "action": "SelectElement2",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "648751e3-cb73-4afa-aff9-aee6b273e665",
-                    "path": "<Gamepad>/dpad/down",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Gamepad",
-                    "action": "SelectElement3",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "40c05a77-774d-4f06-8093-b408d59bb1e7",
-                    "path": "<Gamepad>/dpad/left",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Gamepad",
-                    "action": "SelectElement4",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "Modifier",
-                    "id": "9e1ada42-3750-4287-81d0-291b279eb7c1",
+                    "name": "DPad",
+                    "id": "cf900602-95ce-48a3-b8d7-fff7131c1de9",
                     "path": "OneModifier",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "SelectElement5",
+                    "action": "SelectElementShift",
                     "isComposite": true,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "modifier",
-                    "id": "29a2749a-e854-4286-b5ed-e4bfeeec724d",
-                    "path": "<Gamepad>/leftShoulder",
+                    "id": "54acdfed-9e9d-4c87-87e2-7954b51aa1f6",
+                    "path": "<Gamepad>/rightTrigger",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "SelectElement5",
+                    "action": "SelectElementShift",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
                 {
                     "name": "binding",
-                    "id": "26b0c009-b2a4-407b-a97b-a270f53dcb16",
-                    "path": "<Gamepad>/dpad/up",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Gamepad",
-                    "action": "SelectElement5",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "Modifier",
-                    "id": "71c4ea17-b680-4887-b131-148f6ccee285",
-                    "path": "OneModifier",
+                    "id": "f8537ac8-96a0-4465-a505-ce5bcba83eaf",
+                    "path": "<Gamepad>/dpad",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "SelectElement6",
-                    "isComposite": true,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "modifier",
-                    "id": "f90a92e0-ddc2-476d-a50c-5f7162f05599",
-                    "path": "<Gamepad>/leftShoulder",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "SelectElement6",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "binding",
-                    "id": "2cc0ff2e-47b2-4878-97d1-36766b27176e",
-                    "path": "<Gamepad>/dpad/right",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "SelectElement6",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "Modifier",
-                    "id": "56baf540-129e-4cea-9581-ef60bb7dd09b",
-                    "path": "OneModifier",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "SelectElement7",
-                    "isComposite": true,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "modifier",
-                    "id": "739414fd-8a7b-4fd2-9b0b-f7e174e4af8b",
-                    "path": "<Gamepad>/leftShoulder",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "SelectElement7",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "binding",
-                    "id": "88ecbd02-ef93-4507-a085-9a4b65e40340",
-                    "path": "<Gamepad>/dpad/down",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Gamepad",
-                    "action": "SelectElement7",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "Modifier",
-                    "id": "0a992e9f-4def-4a6c-97d9-9e0b3032f69a",
-                    "path": "OneModifier",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "SelectElement8",
-                    "isComposite": true,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "modifier",
-                    "id": "2e2b5fff-6de2-47e1-9f73-fc4b65587dbb",
-                    "path": "<Gamepad>/leftShoulder",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "SelectElement8",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "binding",
-                    "id": "ab259bf5-71a3-4e7d-9992-b008789318ef",
-                    "path": "<Gamepad>/dpad/left",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Gamepad",
-                    "action": "SelectElement8",
+                    "action": "SelectElementShift",
                     "isComposite": false,
                     "isPartOfComposite": true
                 }

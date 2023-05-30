@@ -11,7 +11,8 @@ namespace Enums
         Lightning,
         Ice,
         Light,
-        Darkness
+        Darkness,
+        Null
     }
 
     //EnemyTypes

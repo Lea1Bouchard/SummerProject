@@ -3,10 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using Enums;
 using UnityEngine.InputSystem;
+using System;
 
 public class GameManager : MonoBehaviour
 {
     private static GameManager _instance;
+    private static GameState gameState;
+    public static event Action<GameState> OnGameStateChanged;
 
     [Header("Inputs")]
     public InputActionAsset inputActions;
@@ -39,6 +42,8 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        UpdateGameState(GameState.InGame);
+
         //Wait mode
         waitModeAction = inputActions.FindActionMap("Player").FindAction("WaitMode");
         elementNormalAction = inputActions.FindActionMap("Player").FindAction("SelectElementNormal");
@@ -47,17 +52,81 @@ public class GameManager : MonoBehaviour
         waitModeUI.gameObject.SetActive(false);
     }
 
+    public void UpdateGameState(GameState newState)
+    {
+        EndState(gameState);
+        gameState = newState;
+
+        switch (newState)
+        {
+            case GameState.InMenu:
+                HandleInMenu();
+                break;
+            case GameState.InGame:
+                HandleInGame();
+                break;
+            case GameState.InWaitMode:
+                HandleInWaitMode();
+                break;
+            case GameState.InFight:
+                HandleInFight();
+                break;
+            default:
+                break;
+        }
+
+        OnGameStateChanged?.Invoke(newState);
+    }
+
+    private void EndState(GameState gameState)
+    {
+        switch (gameState)
+        {
+            case GameState.InMenu:
+                Time.timeScale = 1;
+                break;
+            case GameState.InGame:
+                
+                break;
+            case GameState.InWaitMode:
+                Time.timeScale = 1;
+                waitModeUI.gameObject.SetActive(false);
+                break;
+            case GameState.InFight:
+                break;
+        }
+    }
+
+    private void HandleInFight()
+    {
+    }
+
+    private void HandleInWaitMode()
+    {
+        Time.timeScale = 0;
+        waitModeUI.gameObject.SetActive(true);
+    }
+
+    private void HandleInGame()
+    {
+    }
+
+    private void HandleInMenu()
+    {
+        Time.timeScale = 0;
+    }
+
     public void InWaitMode(InputAction.CallbackContext context)
     {
         if (!isInWaitMode)//Enter Wait Mode
         {
+            UpdateGameState(GameState.InWaitMode);
             isInWaitMode = true;
-            waitModeUI.gameObject.SetActive(true);
         }
         else
         {
+            UpdateGameState(GameState.InGame);
             isInWaitMode = false;
-            waitModeUI.gameObject.SetActive(false);
         }
     }
 
@@ -134,7 +203,7 @@ public class GameManager : MonoBehaviour
                     break;
             }
         }
-        if(newElement != Elements.Null)
+        if (newElement != Elements.Null)
         {
             Player.Instance.ChangeWeaponElement(newElement);
         }

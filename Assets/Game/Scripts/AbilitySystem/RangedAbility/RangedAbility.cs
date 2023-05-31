@@ -31,8 +31,11 @@ public class RangedAbility : Ability
     {
         if (CheckState())
         {
-            projectileScript.Shoot();
+            projectileScript.Shoot(this);
             isActive = true;
+        } else
+        {
+            Destroy(projectileScript.gameObject);
         }
 
     }

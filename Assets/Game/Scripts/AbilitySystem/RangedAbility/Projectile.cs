@@ -10,6 +10,7 @@ public class Projectile : MonoBehaviour
     private float speed;
     private float range;
     private Characters initiator;
+    private RangedAbility abilityIninitator;
     private Rigidbody rigidb;
     [HideInInspector] public Elements attackElement;
 
@@ -24,9 +25,10 @@ public class Projectile : MonoBehaviour
         rigidb = this.gameObject.GetComponent<Rigidbody>();
     }
 
-    public void Shoot()
+    public void Shoot(RangedAbility ability)
     {
         rigidb.velocity = transform.forward * speed;
+        abilityIninitator = ability;
         Destroy(gameObject, range);
     }
 
@@ -40,6 +42,11 @@ public class Projectile : MonoBehaviour
 
         Destroy(gameObject);
 
+    }
+
+    private void OnDestroy()
+    {
+        abilityIninitator.IsActive = false;
     }
 
 }

@@ -13,9 +13,7 @@ public class MeleeAbility : Ability
 
     public override void Initialize()
     {
-        weapon.damage = baseDamage;
-        weapon.initiator = initiator;
-        weapon.attackElement = attackElement;
+        LoadWeaponAttribute();
     }
 
     public override void TriggerAbility()
@@ -28,7 +26,7 @@ public class MeleeAbility : Ability
         }
     }
 
-    public void nextAction()
+    public void NextAction()
     {
         if (nextAttack != null)
         {
@@ -51,6 +49,13 @@ public class MeleeAbility : Ability
             //TODO : Change element to match initiator's element
             hit.DamageTaken(Enums.Elements.Air, baseDamage);
         }
+    }
+
+    private void LoadWeaponAttribute()
+    {
+        weapon.damage = baseDamage;
+        weapon.initiator = initiator;
+        weapon.attackElement = attackElement;
     }
 
 }

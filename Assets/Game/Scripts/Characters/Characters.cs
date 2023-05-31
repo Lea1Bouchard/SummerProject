@@ -5,7 +5,8 @@ using Enums;
 
 public class Characters : MonoBehaviour
 {
-    private int healthPoints;
+    private float maxhealthPoints;
+    private float currenthealthPoints;
     private int level;
     private List<Elements> affinities;
     private List<Elements> weaknesses;
@@ -21,29 +22,37 @@ public class Characters : MonoBehaviour
         //TODO : Create UseAbility method
     }
 
-    public float DamageTaken(Elements elementHit, float damageReceived)
+    public void ReceiveDamage(Elements elementHit, float damageReceived)
+    {
+        float removeHp = DamageTaken(elementHit, damageReceived);
+        currenthealthPoints -= removeHp;
+    }
+
+    private float DamageTaken(Elements elementHit, float damageReceived)
     {
         if (affinities.Contains(elementHit))
         {
             return damageReceived * weaknessModifier;
         }
-        else if(weaknesses.Contains(elementHit))
+        else if (weaknesses.Contains(elementHit))
         {
             return damageReceived * affinityResistanceModifier;
         }
-        else{
+        else
+        {
             return damageReceived;
         }
     }
 
     /* Getters / Setters */
     #region getter/setter
-    public int HealthPoints { get => healthPoints; set => healthPoints = value; }
     public int Level { get => level; set => level = value; }
     public float WeaknessModifier { get => weaknessModifier; set => weaknessModifier = value; }
     public List<Elements> Affinities { get => affinities; set => affinities = value; }
     public List<Elements> Weaknesses { get => weaknesses; set => weaknesses = value; }
     public float AffinityResistanceModifier { get => affinityResistanceModifier; set => affinityResistanceModifier = value; }
+    public float MaxhealthPoints { get => maxhealthPoints; set => maxhealthPoints = value; }
+    public float CurrenthealthPoints { get => currenthealthPoints; set => currenthealthPoints = value; }
 
     #endregion
 }

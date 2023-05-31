@@ -1,7 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
 //Use those enums by include "using Enums" in file
 namespace Enums
 {
@@ -15,7 +11,8 @@ namespace Enums
         Lightning,
         Ice,
         Light,
-        Darkness
+        Darkness,
+        Null
     }
 
     //EnemyTypes
@@ -64,5 +61,18 @@ namespace Enums
         Dodging,
         Moving,
         None
+    }
+
+    //EnemyState
+    public enum EnemyState
+    {
+        Idle,
+        Cautious,
+        Attacking,
+        Moving,
+        Flying,
+        Landing,
+        Dodging,
+        Blocking
     }
 }

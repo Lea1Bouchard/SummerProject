@@ -46,7 +46,7 @@ public class Projectile : MonoBehaviour
 
     private void OnDestroy()
     {
-        abilityIninitator.IsActive = false;
+        abilityIninitator.ProjectileDestroyed();
     }
 
 }

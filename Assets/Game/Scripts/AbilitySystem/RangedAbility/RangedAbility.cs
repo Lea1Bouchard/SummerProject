@@ -40,5 +40,9 @@ public class RangedAbility : Ability
 
     }
 
+    public void ProjectileDestroyed()
+    {
+        isActive = false;
+    }
 
 }

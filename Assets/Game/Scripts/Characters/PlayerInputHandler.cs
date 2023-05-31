@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 #endif
 
-public class InputAssets : MonoBehaviour
+public class PlayerInputHandler : MonoBehaviour
 {
     [Header("Character Input Values")]
     public Vector2 move;

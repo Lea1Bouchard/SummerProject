@@ -26,6 +26,7 @@ public class Characters : MonoBehaviour
     {
         float removeHp = DamageTaken(elementHit, damageReceived);
         currenthealthPoints -= removeHp;
+        Debug.Log(currenthealthPoints);
     }
 
     private float DamageTaken(Elements elementHit, float damageReceived)

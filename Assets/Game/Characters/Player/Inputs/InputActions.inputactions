@@ -67,6 +67,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "Range",
+                    "type": "Button",
+                    "id": "ea306f2a-dfea-47bf-be95-42d123150790",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -311,6 +320,17 @@
                     "action": "SelectElementShift",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "9fc4d57f-fdec-490d-bcae-5d0ff3558c54",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Range",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         }

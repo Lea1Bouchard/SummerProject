@@ -36,13 +36,13 @@ public abstract class Ability : ScriptableObject
     public List<FightingState> FightingStateBlocked { get => fightingStateBlocked; set => fightingStateBlocked = value; }
     public Characters Initiator { get => initiator; set => initiator = value; }
 
-    public abstract void Initialize();
+    public abstract void Initialize(Characters ini);
     public abstract void TriggerAbility();
 
     // Start is called before the first frame update
     protected bool CheckState()
     {
-        if (!isActive)
+        if (isActive)
         {
             return false;
         }
@@ -64,12 +64,13 @@ public abstract class Ability : ScriptableObject
             //Add check to Fighting state
         }
 
+        Debug.Log("Returned true");
         return true;
     }
 
     protected void OnCancel()
     {
-        Destroy(this);
+        //Destroy(this);
     }
 
     protected void OnEnd()

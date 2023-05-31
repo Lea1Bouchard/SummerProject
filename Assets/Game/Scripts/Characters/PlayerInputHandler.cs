@@ -10,6 +10,7 @@ public class PlayerInputHandler : MonoBehaviour
     public Vector2 look;
     public bool jump;
     public bool sprint;
+    public bool ranged;
 
     [Header("Movement Settings")]
     public bool analogMovement;
@@ -42,6 +43,11 @@ public class PlayerInputHandler : MonoBehaviour
     {
         SprintInput(value.performed);
     }
+
+    public void OnRangedAbility(InputAction.CallbackContext value)
+    {
+        RangedInput(value.performed);
+    }
 #endif
 
 
@@ -63,6 +69,11 @@ public class PlayerInputHandler : MonoBehaviour
     public void SprintInput(bool newSprintState)
     {
         sprint = newSprintState;
+    }
+
+    public void RangedInput(bool newSprintState)
+    {
+        ranged = newSprintState;
     }
 
     private void OnApplicationFocus(bool hasFocus)

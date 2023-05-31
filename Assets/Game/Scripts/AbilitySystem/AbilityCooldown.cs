@@ -32,7 +32,7 @@ public class AbilityCooldown : MonoBehaviour
         myButtonImage.sprite = ability.abilityUiSprite;
         darkMask.sprite = ability.abilityUiSprite;
         cooldownDuration = ability.abilityCooldown;
-        ability.Initialize();
+        ability.Initialize(weaponHolder.GetComponent<Characters>());
 
         AbilityReady();
     }

@@ -11,7 +11,7 @@ public class Projectile : MonoBehaviour
     private float range;
     private Characters initiator;
     private RangedAbility abilityIninitator;
-    private Rigidbody rigidb;
+    public Rigidbody rigidb;
     [HideInInspector] public Elements attackElement;
 
     public int Damage { get => damage; set => damage = value; }
@@ -29,24 +29,28 @@ public class Projectile : MonoBehaviour
     {
         rigidb.velocity = transform.forward * speed;
         abilityIninitator = ability;
-        Destroy(gameObject, range);
+        StartCoroutine(rangeTimer());
+    }
+
+    IEnumerator rangeTimer()
+    {
+        yield return new WaitForSecondsRealtime(range);
+        abilityIninitator.ProjectileDestroyed();
+        
     }
 
     private void OnTriggerEnter(Collider other)
     {
         Characters hit = other.gameObject.GetComponent<Characters>();
-        if (hit != initiator)
+        if(hit != initiator)
         {
-            hit.ReceiveDamage(attackElement, damage);
+            if (hit != null)
+            {
+                hit.ReceiveDamage(attackElement, damage);
+            }
+            abilityIninitator.ProjectileDestroyed();
         }
 
-        Destroy(gameObject);
-
-    }
-
-    private void OnDestroy()
-    {
-        abilityIninitator.ProjectileDestroyed();
     }
 
 }

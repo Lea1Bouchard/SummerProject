@@ -11,8 +11,9 @@ public class MeleeAbility : Ability
     public string animationTrigger;
     public MeleeWeapon weapon;
 
-    public override void Initialize()
+    public override void Initialize(Characters ini)
     {
+        initiator = ini;
         LoadWeaponAttribute();
     }
 

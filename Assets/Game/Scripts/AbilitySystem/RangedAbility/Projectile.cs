@@ -37,7 +37,7 @@ public class Projectile : MonoBehaviour
         Characters hit = other.gameObject.GetComponent<Characters>();
         if (hit != initiator)
         {
-            hit.DamageTaken(attackElement, damage);
+            hit.ReceiveDamage(attackElement, damage);
         }
 
         Destroy(gameObject);

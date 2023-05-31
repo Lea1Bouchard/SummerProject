@@ -24,7 +24,7 @@ public class MeleeWeapon : MonoBehaviour
 
         if (isActive && hit != initiator)
         {
-            hit.DamageTaken(attackElement, damage);
+            hit.ReceiveDamage(attackElement, damage);
         }
     }
 }

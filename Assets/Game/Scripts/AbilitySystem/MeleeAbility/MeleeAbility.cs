@@ -39,18 +39,6 @@ public class MeleeAbility : Ability
         nextAttack.TriggerAbility();
     }
 
-    //TODO : Might need to make weapon script
-    private void OnTriggerEnter(Collider other)
-    {
-        Characters hit = other.gameObject.GetComponent<Characters>();
-
-        if (isActive && hit != initiator)
-        {
-            //TODO : Change element to match initiator's element
-            hit.DamageTaken(Enums.Elements.Air, baseDamage);
-        }
-    }
-
     private void LoadWeaponAttribute()
     {
         weapon.damage = baseDamage;

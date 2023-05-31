@@ -6,7 +6,6 @@ using Enums;
 public class Enemy : Characters
 {
     private EnemyState enemyState; 
-
     public Enemy()
     {
 

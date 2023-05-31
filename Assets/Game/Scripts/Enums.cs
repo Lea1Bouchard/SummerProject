@@ -58,6 +58,7 @@ namespace Enums
         Teleporting,
         Dodging,
         Moving,
+        Dead,
         None
     }
 
@@ -71,6 +72,7 @@ namespace Enums
         Flying,
         Landing,
         Dodging,
-        Blocking
+        Blocking,
+        Dead
     }
 }

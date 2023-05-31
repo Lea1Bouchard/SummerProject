@@ -8,8 +8,8 @@ public class Characters : MonoBehaviour
     private float maxhealthPoints;
     private float currenthealthPoints;
     private int level;
-    private List<Elements> affinities;
-    private List<Elements> weaknesses;
+    [SerializeField] private List<Elements> affinities;
+    [SerializeField] private List<Elements> weaknesses;
     private float affinityResistanceModifier;
     private float weaknessModifier;
 

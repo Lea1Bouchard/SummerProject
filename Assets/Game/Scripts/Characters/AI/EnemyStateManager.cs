@@ -41,8 +41,6 @@ public class EnemyStateManager : MonoBehaviour
 
         if (Mathf.Abs(angle) > 90 && Mathf.Abs(angle) < 270)
         {
-            Debug.DrawLine(transform.position, playerPosition.position, Color.red);
-
             return true;
         }
 
@@ -56,17 +54,12 @@ public class EnemyStateManager : MonoBehaviour
         directionOfPlayer *= -1f;
         directionOfPlayer = directionOfPlayer.normalized;
 
-        Debug.DrawRay(transform.position, directionOfPlayer, Color.blue);
         int layer_mask = LayerMask.GetMask("Character");
-        Ray ray = new(transform.position, directionOfPlayer);
 
-        if (Physics.Raycast(ray, out hit, float.PositiveInfinity, layer_mask))
+        if (Physics.Raycast(transform.position, directionOfPlayer, out hit, float.PositiveInfinity, layer_mask))
         {
-            Debug.Log(hit.transform.name);
             if (hit.transform.gameObject.tag == "Player")
             {
-                Debug.Log("Player in LoS");
-                Debug.DrawLine(transform.position, playerPosition.position, Color.green);
                 return true;
             }
         }

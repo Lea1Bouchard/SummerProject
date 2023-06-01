@@ -14,6 +14,7 @@ public class MeleeAbility : Ability
     public override void Initialize(Characters ini)
     {
         initiator = ini;
+        isActive = false;
         LoadWeaponAttribute();
     }
 

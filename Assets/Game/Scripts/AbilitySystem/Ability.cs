@@ -9,11 +9,12 @@ public abstract class Ability : ScriptableObject
     private List<GameState> gameStateBlocked;
     private List<MovementState> movementStateBlocked;
     private List<FightingState> fightingStateBlocked;
+    
 
     public string abilityName;
     public int abilityCost;
     public AudioClip abilitySound;
-    public float abilityCooldown;
+    public float abilityCooldownTime;
     public Sprite abilityUiSprite;
     public string animationStateName;
     public Elements attackElement;
@@ -24,6 +25,7 @@ public abstract class Ability : ScriptableObject
     protected ParticleSystem effect;
 
     protected bool isActive = false;
+    protected AbilityCooldown abilityCooldownClass;
 
     public int baseDamage;
 
@@ -73,7 +75,7 @@ public abstract class Ability : ScriptableObject
         //Destroy(this);
     }
 
-    protected void OnEnd()
+    public void OnEnd()
     {
         isActive = false;
     }

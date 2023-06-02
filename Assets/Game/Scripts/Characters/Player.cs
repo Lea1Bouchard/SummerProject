@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Enums;
+using System.Collections;
 
 public class Player : Characters
 {
@@ -112,6 +113,19 @@ public class Player : Characters
                 hasEnemyInLineOfSight = true;
             }
         }
+    }
+
+    public void NextAction() // called by animation event
+    {
+        animator.SetTrigger("NextAction");
+        StartCoroutine(ActionReset());
+    }
+
+    IEnumerator ActionReset()
+    {
+        yield return new WaitForSeconds(0.5f);
+        animator.ResetTrigger("NextAction");
+        animator.ResetTrigger("MeleeAttack");
     }
 
     /* Getters / Setters */

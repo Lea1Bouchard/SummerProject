@@ -2201,7 +2201,7 @@ PrefabInstance:
         type: 3}
       propertyPath: ability
       value: 
-      objectReference: {fileID: 11400000, guid: 9dcfa0f5c7df8b841aa307aea8092e7b,
+      objectReference: {fileID: 11400000, guid: cb8527b12092b6643958d2b1681893e2,
         type: 2}
     - target: {fileID: 4416926081852918493, guid: 64dce48905ffd9b4293e595fa6941544,
         type: 3}
@@ -2584,6 +2584,11 @@ PrefabInstance:
       propertyPath: m_ActionEvents.Array.data[7].m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 6982812146204527121, guid: 64dce48905ffd9b4293e595fa6941544,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 2ce304f0700b00d4ba13de7411b2403b, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 64dce48905ffd9b4293e595fa6941544, type: 3}
 --- !u!114 &1762682259 stripped
@@ -3141,6 +3146,7 @@ MonoBehaviour:
   abilities: []
   animator: {fileID: 2027077785}
   target: {fileID: 0}
+  weapon: {fileID: 6692848061742060889}
 --- !u!4 &2027077791 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3893294197879345259, guid: 64dce48905ffd9b4293e595fa6941544,
@@ -3376,6 +3382,7 @@ GameObject:
   - component: {fileID: 137367714080486782}
   - component: {fileID: 6692848061742060887}
   - component: {fileID: 6692848061742060888}
+  - component: {fileID: 6692848061742060889}
   m_Layer: 0
   m_Name: Sphere
   m_TagString: Untagged
@@ -3413,6 +3420,22 @@ CapsuleCollider:
   m_Height: 1.0000002
   m_Direction: 1
   m_Center: {x: 0.0000009536743, y: -0.000000029802322, z: 0.0000019073486}
+--- !u!114 &6692848061742060889
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5348052858389077119}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2de0d299e3101c4996a0c407252d1b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isActive: 0
+  damage: 0
+  initiator: {fileID: 0}
+  attackElement: 0
 --- !u!1001 &8345070700268369567
 PrefabInstance:
   m_ObjectHideFlags: 0

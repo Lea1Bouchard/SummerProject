@@ -14,9 +14,10 @@ public class Characters : MonoBehaviour
     private float weaknessModifier;
     [SerializeField] private List<Ability> abilities;
 
-    [SerializeField] private Animator animator;
+    [SerializeField] protected Animator animator;
 
     public Characters target;
+    public MeleeWeapon weapon;
 
     /* Methods */
     //Add Ability and Target in function parameter when created

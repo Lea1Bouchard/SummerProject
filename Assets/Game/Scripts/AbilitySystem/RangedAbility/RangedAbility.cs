@@ -29,7 +29,6 @@ public class RangedAbility : Ability
             projectileClone.GetComponent<Projectile>().Shoot(this, initiator.target);
             isActive = true;
         }
-
     }
 
     public void ProjectileDestroyed()

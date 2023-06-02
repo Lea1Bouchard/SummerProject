@@ -9,10 +9,11 @@ public class MeleeAbility : Ability
     public Collider attackCollider;
     public Ability nextAttack;
     public string animationTrigger;
-    public MeleeWeapon weapon;
+    private MeleeWeapon weapon;
 
     public override void Initialize(Characters ini)
     {
+        animator = ini.GetComponent<Animator>();
         initiator = ini;
         isActive = false;
         LoadWeaponAttribute();
@@ -25,16 +26,10 @@ public class MeleeAbility : Ability
             isActive = true;
             weapon.isActive = true;
             animate();
+            isActive = false;
         }
     }
 
-    public void NextAction()
-    {
-        if (nextAttack != null)
-        {
-            animator.SetTrigger(animationTrigger);
-        }
-    }
     //TODO : Verify if this is used
     public void triggerNextAttack()
     {
@@ -43,6 +38,7 @@ public class MeleeAbility : Ability
 
     private void LoadWeaponAttribute()
     {
+        weapon = initiator.weapon;
         weapon.damage = baseDamage;
         weapon.initiator = initiator;
         weapon.attackElement = attackElement;

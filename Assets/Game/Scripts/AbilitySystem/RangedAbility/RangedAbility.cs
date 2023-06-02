@@ -7,9 +7,9 @@ public class RangedAbility : Ability
 {
     public float range = 5f;
     public float speed = 1f;
+    public float force = 1f;
     public GameObject projectile;
     public GameObject projectileClone;
-    public Vector3 startPositionOffset;
     private Projectile projectileScript;
 
     public override void Initialize(Characters ini)
@@ -26,7 +26,7 @@ public class RangedAbility : Ability
         {
             projectileClone = Instantiate(projectile, initiator.transform.Find("ProjectileSpawn").position, initiator.transform.rotation);
             SetProjectileValues();
-            projectileClone.GetComponent<Projectile>().Shoot(this);
+            projectileClone.GetComponent<Projectile>().Shoot(this, initiator.target);
             isActive = true;
         }
 
@@ -35,7 +35,7 @@ public class RangedAbility : Ability
     public void ProjectileDestroyed()
     {
         Destroy(projectileClone);
-        isActive = false;
+        OnEnd();
     }
 
     private void SetProjectileValues()
@@ -45,6 +45,7 @@ public class RangedAbility : Ability
         projectileScript.Damage = baseDamage;
         projectileScript.Range = range;
         projectileScript.Speed = speed;
+        projectileScript.Force = force;
         projectileScript.Initiator = Initiator;
         projectileScript.attackElement = attackElement;
         

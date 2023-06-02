@@ -401,7 +401,6 @@ namespace StarterAssets
         {
             if (_input.ranged)
             {
-                
                 ability.TriggerAbility();
             }
         }

@@ -42,8 +42,6 @@ public class MovementAbility : Ability
         if (target != null)
         {
 
-            Debug.Log("Target!!");
-
             controller.enabled = false;
 
             initiator.transform.position = target.transform.position;
@@ -54,7 +52,6 @@ public class MovementAbility : Ability
         else
         {
             controller.Move(initiator.transform.forward * (speed * Time.deltaTime));
-            Debug.Log("No target");
         }
 
         abilityCooldownClass.Initialize(this);

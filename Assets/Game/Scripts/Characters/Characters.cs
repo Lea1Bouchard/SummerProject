@@ -17,7 +17,7 @@ public class Characters : MonoBehaviour
 
     /* Methods */
     //Add Ability and Target in function parameter when created
-    private void UseAbility()
+    public void UseAbility()
     {
         //TODO : Create UseAbility method
     }

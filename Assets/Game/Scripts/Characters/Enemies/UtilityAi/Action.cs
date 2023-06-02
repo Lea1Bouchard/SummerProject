@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace UtilityAI.Core
-{    public abstract class Consideration : ScriptableObject
+{
+    public abstract class Action : ScriptableObject
     {
         public string Name;
-
         private float _score;
+
         public float score
         {
             get { return _score; }
@@ -17,12 +18,13 @@ namespace UtilityAI.Core
             }
         }
 
+        public Consideration[] considerations;
+
         public virtual void Awake()
         {
             score = 0;
         }
 
-        public abstract float ScoreConsideration();
+        public abstract void Execute(EnemyController enemy);
     }
 }
-

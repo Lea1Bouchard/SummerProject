@@ -1,18 +1,16 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UtilityAI.Core;
 
-public class CallHelp : MonoBehaviour
+namespace UtilityAI.Actions
 {
-    // Start is called before the first frame update
-    void Start()
+    [CreateAssetMenu(fileName = "CallHelp", menuName = "UtilityAI/Actions/Call Help")]
+    public class CallHelp : Action
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        public override void Execute(EnemyController enemy)
+        {
+            //enemy.UseAbility();
+            Debug.Log("Calling for help");
+            enemy.OnFinishedAction();
+        }
     }
 }

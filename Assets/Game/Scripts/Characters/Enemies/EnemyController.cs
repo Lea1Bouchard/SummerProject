@@ -7,18 +7,19 @@ namespace UtilityAI.Core
 {
     public class EnemyController : Characters
     {
+        public float maxRange;
         public MoveController moveController { get; set; }
         public AIBrain aIBrain { get; set; }
         public Action[] actionsAvailable;
 
         private EnemyState enemyState;
         private Player player;
-
-        [SerializeField] public float maxRange { get; set; }
-
+        
         public EnemyController()
         {
-
+            MaxhealthPoints = 100f;
+            CurrenthealthPoints = 100f;
+            
         }
 
         private void Start()

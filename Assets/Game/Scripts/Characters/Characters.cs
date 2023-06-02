@@ -53,6 +53,7 @@ public class Characters : MonoBehaviour
     public float AffinityResistanceModifier { get => affinityResistanceModifier; set => affinityResistanceModifier = value; }
     public float MaxhealthPoints { get => maxhealthPoints; set => maxhealthPoints = value; }
     public float CurrenthealthPoints { get => currenthealthPoints; set => currenthealthPoints = value; }
+    public Animator Animator { get => animator; set => animator = value; }
 
     #endregion
 }

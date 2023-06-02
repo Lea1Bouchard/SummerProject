@@ -1,12 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UtilityAI.Core;
-using UtilityAI;
 
 namespace UtilityAI.Considerations
 {
-    [CreateAssetMenu(fileName = "PlayerDistance", menuName = "UtilityAI/Considerations/PlayerDistance")]
+    [CreateAssetMenu(fileName = "PlayerDistance", menuName = "UtilityAI/Considerations/Player Distance")]
     public class Cons_PlayerDistance : Consideration
     {
         [SerializeField] private AnimationCurve responseCurve;

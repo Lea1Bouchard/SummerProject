@@ -1,18 +1,17 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UtilityAI.Core;
 
-public class Cons_Health : MonoBehaviour
+namespace UtilityAI.Considerations
 {
-    // Start is called before the first frame update
-    void Start()
+    [CreateAssetMenu(fileName = "Health", menuName = "UtilityAI/Considerations/Health")]
+    public class Cons_Health : Consideration
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        [SerializeField] private AnimationCurve responseCurve;
+        public override float ScoreConsideration(EnemyController enemy)
+        {
+            score = responseCurve.Evaluate(Mathf.Clamp01(enemy.CurrenthealthPoints / enemy.MaxhealthPoints));
+            return score;
+        }
     }
 }
+

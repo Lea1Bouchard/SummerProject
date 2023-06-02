@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace UtilityAI.Core
@@ -8,7 +6,6 @@ namespace UtilityAI.Core
     {
         public string Name;
         private float _score;
-
         public float score
         {
             get { return _score; }

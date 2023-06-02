@@ -1,18 +1,18 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UtilityAI.Core;
 
-public class MeleeAttack : MonoBehaviour
+namespace UtilityAI.Actions
 {
-    // Start is called before the first frame update
-    void Start()
+    [CreateAssetMenu(fileName = "MeleeAttack", menuName = "UtilityAI/Actions/Melee Attack")]
+    public class MeleeAttack : Action
     {
-        
-    }
+        public override void Execute(EnemyController enemy)
+        {
+            //enemy.UseAbility();
+            Debug.Log("Using Melee Attack");
+            enemy.OnFinishedAction();
+            enemy.Animator.SetTrigger("MeleeAttack");
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        }
     }
 }

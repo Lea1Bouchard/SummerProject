@@ -33,7 +33,8 @@ public class Projectile : MonoBehaviour
         {
             transform.LookAt(target.gameObject.transform);
             rigidb.velocity = transform.forward * speed;
-        } else
+        }
+        else
         {
             rigidb.useGravity = true;
             Vector3 direction = transform.forward + new Vector3(0, 1f, 0);
@@ -43,20 +44,20 @@ public class Projectile : MonoBehaviour
         abilityIninitator = ability;
 
         if (range > 0)
-        StartCoroutine(rangeTimer());
+            StartCoroutine(rangeTimer());
     }
 
     IEnumerator rangeTimer()
     {
         yield return new WaitForSecondsRealtime(range);
         abilityIninitator.ProjectileDestroyed();
-        
+
     }
 
     private void OnTriggerEnter(Collider other)
     {
         Characters hit = other.gameObject.GetComponent<Characters>();
-        if(hit != initiator)
+        if (hit != initiator)
         {
             if (hit != null)
             {
@@ -65,8 +66,8 @@ public class Projectile : MonoBehaviour
                 transform.parent = hit.transform;
             }
 
-            if(range > 0)
-            abilityIninitator.ProjectileDestroyed();
+            if (range > 0)
+                abilityIninitator.ProjectileDestroyed();
         }
 
     }

@@ -30,12 +30,6 @@ public class MeleeAbility : Ability
         }
     }
 
-    //TODO : Verify if this is used
-    public void triggerNextAttack()
-    {
-        nextAttack.TriggerAbility();
-    }
-
     private void LoadWeaponAttribute()
     {
         weapon = initiator.weapon;

@@ -104,7 +104,7 @@ public class Player : Characters
         }
         foreach (var x in Weaknesses)
         {
-            Debug.Log("Weak: "+ x.ToString());
+            Debug.Log("Weak: " + x.ToString());
         }
     }
 
@@ -113,7 +113,7 @@ public class Player : Characters
         bool detectedSomething = Physics.SphereCast(transform.position, lineOfSightRadius, transform.forward, out raycastHit, lineOfSightDistance);
         if (detectedSomething)
         {
-            if(raycastHit.transform.GetType().ToString() == "Enemy")
+            if (raycastHit.transform.GetType().ToString() == "Enemy")
             {
                 hasEnemyInLineOfSight = true;
             }
@@ -122,6 +122,7 @@ public class Player : Characters
 
     public void NextAction() // called by animation event
     {
+        animator.ResetTrigger("MeleeAttack");
         animator.SetTrigger("NextAction");
         StartCoroutine(ActionReset());
     }

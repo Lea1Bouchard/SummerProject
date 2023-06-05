@@ -9,7 +9,7 @@ public abstract class Ability : ScriptableObject
     private List<GameState> gameStateBlocked;
     private List<MovementState> movementStateBlocked;
     private List<FightingState> fightingStateBlocked;
-    
+
 
     public string abilityName;
     public int abilityCost;

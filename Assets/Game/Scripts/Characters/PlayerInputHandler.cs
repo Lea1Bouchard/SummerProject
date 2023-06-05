@@ -10,6 +10,8 @@ public class PlayerInputHandler : MonoBehaviour
     public Vector2 look;
     public bool jump;
     public bool sprint;
+    public bool ranged;
+    public bool dodge;
 
     [Header("Movement Settings")]
     public bool analogMovement;
@@ -42,6 +44,16 @@ public class PlayerInputHandler : MonoBehaviour
     {
         SprintInput(value.performed);
     }
+
+    public void OnRangedAbility(InputAction.CallbackContext value)
+    {
+        RangedInput(value.performed);
+    }
+
+    public void OnDodge(InputAction.CallbackContext value)
+    {
+        DodgeInput(value.performed);
+    }
 #endif
 
 
@@ -63,6 +75,16 @@ public class PlayerInputHandler : MonoBehaviour
     public void SprintInput(bool newSprintState)
     {
         sprint = newSprintState;
+    }
+
+    public void RangedInput(bool newRangedState)
+    {
+        ranged = newRangedState;
+    }
+
+    public void DodgeInput(bool newDodgeState)
+    {
+        dodge = newDodgeState;
     }
 
     private void OnApplicationFocus(bool hasFocus)

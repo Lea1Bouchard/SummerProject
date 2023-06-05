@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Game/Scripts/AbilitySystem/MeleeAbility.meta
+guid: 23e76c67aec27ca4ab1144e04e4f6f34
+========
 guid: 6a6fbbeb70b63bb479acbaa8443f6592
+>>>>>>>> 2-add-character-class:Assets/Controller Icons Pack (by NullSave).meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}

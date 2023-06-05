@@ -13,14 +13,18 @@ public class Characters : MonoBehaviour
     [SerializeField] private List<Elements> weaknesses;
     [SerializeField] private float affinityResistanceModifier;
     [SerializeField] private float weaknessModifier;
+    [SerializeField] private List<Ability> abilities;
 
-    [SerializeField] private Animator animator;
+    [SerializeField] protected Animator animator;
+
+    public Characters target;
+    public MeleeWeapon weapon;
 
     /* Methods */
     //Add Ability and Target in function parameter when created
-    public void UseAbility()
+    public void UseAbility(Ability ability)
     {
-        //TODO : Create UseAbility method
+        ability.TriggerAbility();
     }
 
     public void ReceiveDamage(Elements elementHit, float damageReceived)

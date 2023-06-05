@@ -20,6 +20,4 @@ MonoBehaviour:
   animationStateName: MeleeAttack
   attackElement: 0
   baseDamage: 5
-  attackCollider: {fileID: 0}
-  nextAttack: {fileID: 0}
   animationTrigger: NextAction

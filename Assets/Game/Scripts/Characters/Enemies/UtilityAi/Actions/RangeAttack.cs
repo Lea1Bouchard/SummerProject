@@ -9,9 +9,7 @@ namespace UtilityAI.Actions
         public override void Execute(EnemyController enemy)
         {
             enemy.UseAbility(ability);
-           // Debug.Log("Using Ranged Attack");
             enemy.OnFinishedAction();
-            enemy.Animator.SetTrigger("RangeAttack");
         }
     }
 }

@@ -299,12 +299,9 @@ MonoBehaviour:
   affinityResistanceModifier: 0.75
   weaknessModifier: 1.25
   abilities: []
-  abilities: []
   animator: {fileID: 96287982}
   target: {fileID: 0}
   weapon: {fileID: 1717260611}
-  target: {fileID: 0}
-  weapon: {fileID: 0}
   maxRange: 20
   fightingActionsAvailable:
   - {fileID: 11400000, guid: a09c20c309ae54b498098faaff60e00f, type: 2}
@@ -312,6 +309,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: d67fd56966df60842bb13bfa6a54c82c, type: 2}
   normalActionsAvailable:
   - {fileID: 11400000, guid: 6da3ad60d9b9bfb4fb1c89cab32a0a8e, type: 2}
+  meleesAbilities:
+  - {fileID: 11400000, guid: 05c0e46ca4e4e2f4893780f3be4a1e31, type: 2}
+  rangeAbility: {fileID: 11400000, guid: ca51d6104815bc94abb3c61bdd5afde4, type: 2}
   enemyState: 0
 --- !u!4 &96287987 stripped
 Transform:
@@ -1520,7 +1520,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.20000005
-      value: 0.20000005
       objectReference: {fileID: 0}
     - target: {fileID: 8944336655422409503, guid: f6d148d888ffbf54b9afe9936dfaec1f,
         type: 3}
@@ -1776,12 +1775,10 @@ PrefabInstance:
         type: 3}
       propertyPath: m_RootOrder
       value: 5
-      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 2070925441746177912, guid: a1a802ecaf6775746bb2a929fb554ad8,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.20000005
       value: 0.20000005
       objectReference: {fileID: 0}
     - target: {fileID: 2070925441746177912, guid: a1a802ecaf6775746bb2a929fb554ad8,

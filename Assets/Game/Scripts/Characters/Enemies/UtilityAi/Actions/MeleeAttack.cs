@@ -8,10 +8,8 @@ namespace UtilityAI.Actions
     {
         public override void Execute(EnemyController enemy)
         {
-            //enemy.UseAbility();
-            //Debug.Log("Using Melee Attack");
+            enemy.UseAbility(ability);
             enemy.OnFinishedAction();
-            enemy.Animator.SetTrigger("MeleeAttack");
 
         }
     }

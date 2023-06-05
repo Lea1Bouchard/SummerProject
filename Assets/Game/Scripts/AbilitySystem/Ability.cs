@@ -47,7 +47,7 @@ public abstract class Ability : ScriptableObject
         {
             return false;
         }
-
+        /*
         foreach (GameState state in gameStateBlocked)
         {
             //Add check to game state
@@ -64,7 +64,7 @@ public abstract class Ability : ScriptableObject
         {
             //Add check to Fighting state
         }
-
+        */
         return true;
     }
 
@@ -80,7 +80,6 @@ public abstract class Ability : ScriptableObject
 
     protected void Animate()
     {
-        Debug.Log("Anim");
         animator.SetTrigger(animationStateName);
     }
 

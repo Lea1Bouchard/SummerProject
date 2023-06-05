@@ -19,9 +19,9 @@ MonoBehaviour:
   animationStateName: RangeAttack
   attackElement: 3
   baseDamage: 5
-  range: 5
-  speed: 1
-  force: 1
-  projectile: {fileID: 6546911763033475788, guid: b7bd814c0a24f5243afa531cbc0f7df0,
+  range: 20
+  speed: 5
+  force: 5
+  projectile: {fileID: 5348052858440426451, guid: 2cc00cceb7275f048b37ad58029d2bd5,
     type: 3}
   projectileClone: {fileID: 0}

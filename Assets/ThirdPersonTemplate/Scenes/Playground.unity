@@ -311,7 +311,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 6da3ad60d9b9bfb4fb1c89cab32a0a8e, type: 2}
   meleesAbilities:
   - {fileID: 11400000, guid: 05c0e46ca4e4e2f4893780f3be4a1e31, type: 2}
-  rangeAbility: {fileID: 11400000, guid: ca51d6104815bc94abb3c61bdd5afde4, type: 2}
+  rangeAbility: {fileID: 11400000, guid: 59fa888e48f7ec94599df89fd937c2d2, type: 2}
   enemyState: 0
 --- !u!4 &96287987 stripped
 Transform:
@@ -3021,6 +3021,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerArmature
       objectReference: {fileID: 0}
+    - target: {fileID: 5890432325753879786, guid: 3cf36580647170d4dbd79afb10ad24a6,
+        type: 3}
+      propertyPath: ability
+      value: 
+      objectReference: {fileID: 11400000, guid: cb8527b12092b6643958d2b1681893e2,
+        type: 2}
     - target: {fileID: 5890432325753879786, guid: 3cf36580647170d4dbd79afb10ad24a6,
         type: 3}
       propertyPath: m_Enabled

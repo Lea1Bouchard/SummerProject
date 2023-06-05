@@ -14,15 +14,15 @@ public class RangedAbility : Ability
 
     public override void Initialize(Characters ini)
     {
+        isActive = false;
         initiator = ini;
-
+        animator = ini.GetComponent<Animator>();
         abilityType = Enums.TypeOfAbility.ranged;
         abilityCooldownClass = initiator.gameObject.AddComponent<AbilityCooldown>();
     }
 
     public override void TriggerAbility()
     {
-        Debug.Log("IsActive: " + isActive);
         if (CheckState())
         {
             projectileClone = Instantiate(projectile, initiator.transform.Find("ProjectileSpawn").position, initiator.transform.rotation);
@@ -31,7 +31,6 @@ public class RangedAbility : Ability
             isActive = true;
             abilityCooldownClass.Initialize(this);
             Animate();
-            Debug.Log("RangeTriggerAbility");
         }
     }
     

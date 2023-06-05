@@ -12,6 +12,7 @@ namespace UtilityAI.Actions
             {
                 enemy.enemyState = Enums.EnemyState.Attacking;
                 GameManager.Instance.UpdateGameState(Enums.GameState.InFight);
+                enemy.target = Player.Instance;
             }
             enemy.OnFinishedAction();
         }

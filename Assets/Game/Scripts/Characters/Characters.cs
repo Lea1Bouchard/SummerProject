@@ -58,7 +58,7 @@ public class Characters : MonoBehaviour
     private void Death()
     {
         animator.SetTrigger("Death");
-        Destroy(this, 3);
+        Destroy(this.gameObject, 3);
     }
 
     /* Getters / Setters */

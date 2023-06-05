@@ -14,7 +14,6 @@ public class RangedAbility : Ability
 
     public override void Initialize(Characters ini)
     {
-        isActive = false;
         initiator = ini;
 
         abilityType = Enums.TypeOfAbility.ranged;

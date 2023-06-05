@@ -12,5 +12,10 @@ namespace UtilityAI.Actions
             Debug.Log("Calling for help");
             enemy.OnFinishedAction();
         }
+
+        public override void Initialize(EnemyController enemy)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

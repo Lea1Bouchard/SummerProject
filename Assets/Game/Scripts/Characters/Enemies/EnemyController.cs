@@ -40,6 +40,7 @@ namespace UtilityAI.Core
             {
                 aIBrain.finishedDeciding = false;
                 aIBrain.bestAction.Execute(this);
+                aIBrain.bestAction.Initialize(this);
             }
         }
 

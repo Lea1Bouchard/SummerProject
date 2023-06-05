@@ -25,7 +25,7 @@ public class MeleeAbility : Ability
         {
             isActive = true;
             weapon.isActive = true;
-            animate();
+            Animate();
             isActive = false;
         }
     }

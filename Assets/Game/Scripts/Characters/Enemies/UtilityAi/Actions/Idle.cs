@@ -10,9 +10,13 @@ namespace UtilityAI.Actions
         {
             //enemy.UseAbility();
 
-            Debug.Log("Using Idle");
+            //Debug.Log("Using Idle");
             enemy.OnFinishedAction();
             enemy.Animator.SetTrigger("Idle");
+        }
+
+        public override void Initialize(EnemyController enemy)
+        {
         }
     }
 }

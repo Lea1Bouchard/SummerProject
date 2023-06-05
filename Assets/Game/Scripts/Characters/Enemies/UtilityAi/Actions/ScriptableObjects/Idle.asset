@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: Idle
   m_EditorClassIdentifier: 
   Name: Idle
+  ability: {fileID: 0}
   considerations:
   - {fileID: 11400000, guid: 1b66b36064f03384f8b24bebb80cae01, type: 2}

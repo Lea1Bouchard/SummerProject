@@ -66,7 +66,6 @@ public abstract class Ability : ScriptableObject
             //Add check to Fighting state
         }
 
-        Debug.Log("Returned true");
         return true;
     }
 
@@ -80,7 +79,7 @@ public abstract class Ability : ScriptableObject
         isActive = false;
     }
 
-    protected void animate()
+    protected void Animate()
     {
         animator.SetTrigger(animationStateName);
     }

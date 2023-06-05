@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: RangeAttack
   m_EditorClassIdentifier: 
   Name: Range attack
+  ability: {fileID: 11400000, guid: ca51d6104815bc94abb3c61bdd5afde4, type: 2}
   considerations:
   - {fileID: 11400000, guid: 4e960ccb5ef1d3b478c3c1ff97f8c0c1, type: 2}

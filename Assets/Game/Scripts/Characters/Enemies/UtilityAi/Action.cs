@@ -5,6 +5,7 @@ namespace UtilityAI.Core
     public abstract class Action : ScriptableObject
     {
         public string Name;
+        [SerializeField] protected Ability ability;
         private float _score;
         public float score
         {
@@ -23,5 +24,7 @@ namespace UtilityAI.Core
         }
 
         public abstract void Execute(EnemyController enemy);
+
+        public abstract void Initialize(EnemyController enemy);
     }
 }

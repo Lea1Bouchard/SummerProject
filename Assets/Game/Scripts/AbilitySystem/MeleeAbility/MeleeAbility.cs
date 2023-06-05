@@ -14,7 +14,9 @@ public class MeleeAbility : Ability
         animator = ini.GetComponent<Animator>();
         initiator = ini;
         LoadWeaponAttribute();
+        abilityCooldownClass = initiator.gameObject.AddComponent<AbilityCooldown>();
     }
+
 
     public override void TriggerAbility()
     {
@@ -24,6 +26,7 @@ public class MeleeAbility : Ability
             weapon.isActive = true;
             Animate();
             isActive = false;
+            abilityCooldownClass.Initialize(this);
         }
     }
 

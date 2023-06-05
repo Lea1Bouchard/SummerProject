@@ -12,7 +12,6 @@ namespace UtilityAI.Actions
             //Debug.Log("Using Melee Attack");
             enemy.OnFinishedAction();
             enemy.Animator.SetTrigger("MeleeAttack");
-
         }
 
         public override void Initialize(EnemyController enemy)

@@ -14,9 +14,5 @@ namespace UtilityAI.Actions
             enemy.OnFinishedAction();
             enemy.Animator.SetTrigger("Idle");
         }
-
-        public override void Initialize(EnemyController enemy)
-        {
-        }
     }
 }

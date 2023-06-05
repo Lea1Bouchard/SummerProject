@@ -13,6 +13,9 @@ namespace UtilityAI.Core
         public AIBrain aIBrain { get; set; }
         public Action[] fightingActionsAvailable;
         public Action[] normalActionsAvailable;
+        public Ability[] meleesAbilities;
+        public Ability rangeAbility;
+
 
         [SerializeField] private EnemyState enemyState;
         private Player player;
@@ -32,6 +35,13 @@ namespace UtilityAI.Core
             aIBrain = GetComponent<AIBrain>();
 
             player = Player.Instance;
+
+            //Initialize abilities
+            for (int i = 0; i < meleesAbilities.Length ; i++)
+            {
+                meleesAbilities[i].Initialize(this);
+            }
+            rangeAbility.Initialize(this);
         }
 
         private void Update()
@@ -40,7 +50,6 @@ namespace UtilityAI.Core
             {
                 aIBrain.finishedDeciding = false;
                 aIBrain.bestAction.Execute(this);
-                aIBrain.bestAction.Initialize(this);
             }
         }
 

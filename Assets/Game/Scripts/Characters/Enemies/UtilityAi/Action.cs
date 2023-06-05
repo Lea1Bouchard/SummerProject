@@ -24,7 +24,5 @@ namespace UtilityAI.Core
         }
 
         public abstract void Execute(EnemyController enemy);
-
-        public abstract void Initialize(EnemyController enemy);
     }
 }

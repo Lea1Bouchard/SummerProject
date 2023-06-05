@@ -75,6 +75,11 @@ namespace StarterAssets
         [Tooltip("For locking the camera position on all axis")]
         public bool LockCameraPosition = false;
 
+
+        [Tooltip("tested ability")]
+        public Ability ability;
+
+
         // cinemachine
         private float _cinemachineTargetYaw;
         private float _cinemachineTargetPitch;
@@ -103,7 +108,7 @@ namespace StarterAssets
 #endif
         private Animator _animator;
         private CharacterController _controller;
-        private StarterAssetsInputs _input;
+        private PlayerInputHandler _input;
         private GameObject _mainCamera;
 
         private const float _threshold = 0.01f;
@@ -135,10 +140,10 @@ namespace StarterAssets
         private void Start()
         {
             _cinemachineTargetYaw = CinemachineCameraTarget.transform.rotation.eulerAngles.y;
-            
+
             _hasAnimator = TryGetComponent(out _animator);
             _controller = GetComponent<CharacterController>();
-            _input = GetComponent<StarterAssetsInputs>();
+            _input = GetComponent<PlayerInputHandler>();
 #if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
             _playerInput = GetComponent<PlayerInput>();
 #else
@@ -150,6 +155,8 @@ namespace StarterAssets
             // reset our timeouts on start
             _jumpTimeoutDelta = JumpTimeout;
             _fallTimeoutDelta = FallTimeout;
+
+            ability.Initialize(this.gameObject.GetComponent<Characters>());
         }
 
         private void Update()
@@ -158,6 +165,7 @@ namespace StarterAssets
 
             JumpAndGravity();
             GroundedCheck();
+            RangedSpell();
             Move();
         }
 
@@ -388,5 +396,15 @@ namespace StarterAssets
                 AudioSource.PlayClipAtPoint(LandingAudioClip, transform.TransformPoint(_controller.center), FootstepAudioVolume);
             }
         }
+
+        private void RangedSpell()
+        {
+            if (_input.ranged)
+            {
+                ability.TriggerAbility();
+            }
+        }
+
+
     }
 }

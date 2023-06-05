@@ -1,7 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
 //Use those enums by include "using Enums" in file
 namespace Enums
 {
@@ -15,16 +11,23 @@ namespace Enums
         Lightning,
         Ice,
         Light,
-        Darkness
+        Darkness,
+        Null
     }
 
     //EnemyTypes
     public enum EnemyType
     {
-        Golem,
+        Tree_Leaf,
+        Tree_Spike,
+        Tree_Mushroom,
+        Tree_Coral,
         Scarab,
-        Slime,
-        NightmareDragon
+        Golem,
+        Dragon_NoWings,
+        Dragon_Chunky,
+        Dragon_Normal,
+        Dragon_Long
     }
 
     //GameState
@@ -51,7 +54,9 @@ namespace Enums
     public enum TypeOfAbility
     {
         Movement,
-        Combat
+        melee,
+        ranged
+
     }
 
     //FightingState
@@ -61,6 +66,20 @@ namespace Enums
         Teleporting,
         Dodging,
         Moving,
+        Dead,
         None
+    }
+
+    //EnemyState
+    public enum EnemyState
+    {
+        Idle,
+        Cautious,
+        Attacking,
+        Moving,
+        Flying,
+        Landing,
+        Blocking,
+        Dead
     }
 }

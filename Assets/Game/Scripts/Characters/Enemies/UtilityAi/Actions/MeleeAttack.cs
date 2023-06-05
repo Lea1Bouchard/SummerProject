@@ -9,7 +9,7 @@ namespace UtilityAI.Actions
         public override void Execute(EnemyController enemy)
         {
             //enemy.UseAbility();
-            Debug.Log("Using Melee Attack");
+            //Debug.Log("Using Melee Attack");
             enemy.OnFinishedAction();
             enemy.Animator.SetTrigger("MeleeAttack");
 

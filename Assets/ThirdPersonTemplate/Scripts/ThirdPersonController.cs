@@ -402,7 +402,7 @@ namespace StarterAssets
             if (_input.ranged)
             {
                 ability.TriggerAbility();
-                Debug.Log("Triggered");
+                //Debug.Log("Triggered");
             }
         }
 

@@ -17,7 +17,7 @@ namespace UtilityAI.Core
         public Ability rangeAbility;
 
 
-        [SerializeField] private EnemyState enemyState;
+        public EnemyState enemyState;
         private Player player;
 
         public EnemyController()
@@ -33,6 +33,7 @@ namespace UtilityAI.Core
         {
             moveController = GetComponent<MoveController>();
             aIBrain = GetComponent<AIBrain>();
+            enemyState = EnemyState.Idle;
 
             player = Player.Instance;
 
@@ -53,7 +54,7 @@ namespace UtilityAI.Core
             }
         }
 
-
+        //Called at the end of the animation
         public void OnFinishedAction()
         {
             if (GameManager.Instance.currentGameState == GameState.InFight)

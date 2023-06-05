@@ -22,6 +22,7 @@ public class RangedAbility : Ability
 
     public override void TriggerAbility()
     {
+        Debug.Log("IsActive: " + isActive);
         if (CheckState())
         {
             projectileClone = Instantiate(projectile, initiator.transform.Find("ProjectileSpawn").position, initiator.transform.rotation);
@@ -29,6 +30,8 @@ public class RangedAbility : Ability
             projectileClone.GetComponent<Projectile>().Shoot(this, initiator.target);
             isActive = true;
             abilityCooldownClass.Initialize(this);
+            Animate();
+            Debug.Log("RangeTriggerAbility");
         }
     }
     

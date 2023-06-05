@@ -15,7 +15,6 @@ public abstract class Ability : ScriptableObject
     public int abilityCost;
     public AudioClip abilitySound;
     public float abilityCooldownTime;
-    public Sprite abilityUiSprite;
     public string animationStateName;
     public Elements attackElement;
 
@@ -81,6 +80,7 @@ public abstract class Ability : ScriptableObject
 
     protected void Animate()
     {
+        Debug.Log("Anim");
         animator.SetTrigger(animationStateName);
     }
 

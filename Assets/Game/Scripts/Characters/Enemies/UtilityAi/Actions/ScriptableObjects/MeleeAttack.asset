@@ -13,6 +13,5 @@ MonoBehaviour:
   m_Name: MeleeAttack
   m_EditorClassIdentifier: 
   Name: Melee Attack
-  ability: {fileID: 11400000, guid: 3e84fde4825706249be548e05550ac41, type: 2}
   considerations:
   - {fileID: 11400000, guid: be5273f71b44b724c9001876113493da, type: 2}

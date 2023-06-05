@@ -5,7 +5,6 @@ namespace UtilityAI.Core
     public abstract class Action : ScriptableObject
     {
         public string Name;
-        [SerializeField] protected Ability ability;
         private float _score;
         public float score
         {

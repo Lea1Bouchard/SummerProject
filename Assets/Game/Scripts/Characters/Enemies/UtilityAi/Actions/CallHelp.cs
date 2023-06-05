@@ -10,7 +10,6 @@ namespace UtilityAI.Actions
         {
             //enemy.UseAbility();
             Debug.Log("Calling for help");
-            enemy.OnFinishedAction();
         }
     }
 }

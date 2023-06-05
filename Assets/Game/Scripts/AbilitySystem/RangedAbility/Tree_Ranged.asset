@@ -10,19 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 459a0bbee2e66c84ca6c12ca60fff8e2, type: 3}
-  m_Name: Tree_RangedAttack
+  m_Name: Tree_Ranged
   m_EditorClassIdentifier: 
   abilityName: 
   abilityCost: 0
   abilitySound: {fileID: 0}
   abilityCooldownTime: 0
-  abilityUiSprite: {fileID: 0}
   animationStateName: RangeAttack
   attackElement: 3
   baseDamage: 5
-  range: 10
-  speed: 5
-  force: 5
-  projectile: {fileID: 5348052858440426451, guid: 6d6ec581446013947bb375a817a980f2,
+  range: 5
+  speed: 1
+  force: 1
+  projectile: {fileID: 6546911763033475788, guid: b7bd814c0a24f5243afa531cbc0f7df0,
     type: 3}
   projectileClone: {fileID: 0}

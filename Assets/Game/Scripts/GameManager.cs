@@ -42,7 +42,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        UpdateGameState(GameState.InFight);
+        UpdateGameState(GameState.InGame);
 
         //Wait mode
         waitModeAction = inputActions.FindActionMap("Player").FindAction("WaitMode");

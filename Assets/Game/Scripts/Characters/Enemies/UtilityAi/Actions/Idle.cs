@@ -8,11 +8,12 @@ namespace UtilityAI.Actions
     {
         public override void Execute(EnemyController enemy)
         {
-            //enemy.UseAbility();
-
-            //Debug.Log("Using Idle");
+            if (enemy.CurrenthealthPoints != enemy.MaxhealthPoints)
+            {
+                enemy.enemyState = Enums.EnemyState.Attacking;
+                GameManager.Instance.UpdateGameState(Enums.GameState.InFight);
+            }
             enemy.OnFinishedAction();
-            enemy.Animator.SetTrigger("Idle");
         }
     }
 }

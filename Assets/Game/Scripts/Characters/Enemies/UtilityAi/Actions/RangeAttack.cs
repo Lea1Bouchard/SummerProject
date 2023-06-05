@@ -13,10 +13,5 @@ namespace UtilityAI.Actions
             enemy.OnFinishedAction();
             enemy.Animator.SetTrigger("RangeAttack");
         }
-
-        public override void Initialize(EnemyController enemy)
-        {
-            ability.Initialize(enemy);
-        }
     }
 }

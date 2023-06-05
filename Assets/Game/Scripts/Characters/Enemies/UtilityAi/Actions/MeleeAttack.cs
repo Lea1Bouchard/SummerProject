@@ -14,10 +14,5 @@ namespace UtilityAI.Actions
             enemy.Animator.SetTrigger("MeleeAttack");
 
         }
-
-        public override void Initialize(EnemyController enemy)
-        {
-            ability.Initialize(enemy);
-        }
     }
 }

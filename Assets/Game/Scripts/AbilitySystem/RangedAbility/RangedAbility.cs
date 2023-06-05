@@ -17,7 +17,7 @@ public class RangedAbility : Ability
         initiator = ini;
 
         abilityType = Enums.TypeOfAbility.ranged;
-        abilityCooldownClass = new AbilityCooldown();
+        abilityCooldownClass = initiator.gameObject.AddComponent<AbilityCooldown>();
     }
 
     public override void TriggerAbility()
@@ -31,6 +31,7 @@ public class RangedAbility : Ability
             abilityCooldownClass.Initialize(this);
         }
     }
+    
 
     public void ProjectileDestroyed()
     {

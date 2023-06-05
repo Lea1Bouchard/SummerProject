@@ -5,15 +5,15 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Abilities/RangedAbility")]
 public class RangedAbility : Ability
 {
-    public float range = 5f;
+    public float timeToLive = 5f;
     public float speed = 1f;
     public float force = 1f;
     public GameObject projectile;
-    public GameObject projectileClone;
+    private GameObject projectileClone;
     private Projectile projectileScript;
 
     public override void Initialize(Characters ini)
-    {
+    { 
         isActive = false;
         initiator = ini;
 
@@ -42,7 +42,7 @@ public class RangedAbility : Ability
         projectileScript = projectileClone.GetComponent<Projectile>();
 
         projectileScript.Damage = baseDamage;
-        projectileScript.Range = range;
+        projectileScript.Range = timeToLive;
         projectileScript.Speed = speed;
         projectileScript.Force = force;
         projectileScript.Initiator = Initiator;

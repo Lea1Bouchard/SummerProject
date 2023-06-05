@@ -7,19 +7,23 @@ namespace UtilityAI.Core
 {
     public class EnemyController : Characters
     {
+        [Header("Enemy's Stats")]
         public float maxRange;
         public MoveController moveController { get; set; }
         public AIBrain aIBrain { get; set; }
-        public Action[] actionsAvailable;
+        public Action[] fightingActionsAvailable;
+        public Action[] normalActionsAvailable;
 
-        private EnemyState enemyState;
+        [SerializeField] private EnemyState enemyState;
         private Player player;
-        
+
         public EnemyController()
         {
             MaxhealthPoints = 100f;
             CurrenthealthPoints = 100f;
-            
+
+            AffinityResistanceModifier = 0.75f;
+            WeaknessModifier = 1.25f;
         }
 
         private void Start()
@@ -38,9 +42,18 @@ namespace UtilityAI.Core
                 aIBrain.bestAction.Execute(this);
             }
         }
+
+
         public void OnFinishedAction()
         {
-            aIBrain.DecideBestAction(actionsAvailable);
+            if (GameManager.Instance.currentGameState == GameState.InFight)
+            {
+                aIBrain.DecideBestAction(fightingActionsAvailable);
+            }
+            else
+            {
+                aIBrain.DecideBestAction(normalActionsAvailable);
+            }
         }
 
         public float GetDistanceWithPlayer()

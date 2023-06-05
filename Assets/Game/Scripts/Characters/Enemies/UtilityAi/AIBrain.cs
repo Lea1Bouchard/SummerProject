@@ -17,7 +17,7 @@ namespace UtilityAI.Core
         {
             if(bestAction is null)
             {
-                DecideBestAction(enemy.actionsAvailable);
+                DecideBestAction(enemy.normalActionsAvailable);
             }
         }
 

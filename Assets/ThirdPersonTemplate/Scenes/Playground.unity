@@ -292,14 +292,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8b8c47b768f83b4aa7c09657e1de94f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxhealthPoints: 100
+  level: 1
   affinities: 
   weaknesses: 
+  affinityResistanceModifier: 0.75
+  weaknessModifier: 1.25
   animator: {fileID: 96287982}
   maxRange: 20
-  actionsAvailable:
-  - {fileID: 11400000, guid: d67fd56966df60842bb13bfa6a54c82c, type: 2}
-  - {fileID: 11400000, guid: f11b1b6503461f7448162e748929ec33, type: 2}
+  fightingActionsAvailable:
   - {fileID: 11400000, guid: a09c20c309ae54b498098faaff60e00f, type: 2}
+  - {fileID: 11400000, guid: f11b1b6503461f7448162e748929ec33, type: 2}
+  - {fileID: 11400000, guid: d67fd56966df60842bb13bfa6a54c82c, type: 2}
+  normalActionsAvailable:
+  - {fileID: 11400000, guid: 6da3ad60d9b9bfb4fb1c89cab32a0a8e, type: 2}
 --- !u!1 &361993411
 GameObject:
   m_ObjectHideFlags: 0
@@ -998,6 +1004,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b4909360a038814ca51098092701081, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentGameState: 0
   inputActions: {fileID: -944628639613478452, guid: abd46d5a078b5614fac4a9aca1cd24d3,
     type: 3}
   elementList: 0200000001000000030000000000000005000000070000000400000006000000
@@ -3200,8 +3207,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 123572b8565efc74f889d9a3db1bd9e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxhealthPoints: 100
+  level: 1
   affinities: 
   weaknesses: 
+  affinityResistanceModifier: 0.75
+  weaknessModifier: 1.25
   animator: {fileID: 2027077785}
 --- !u!136 &2027077788
 CapsuleCollider:

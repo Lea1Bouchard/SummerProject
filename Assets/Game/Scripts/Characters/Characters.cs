@@ -5,13 +5,14 @@ using Enums;
 
 public class Characters : MonoBehaviour
 {
-    private float maxhealthPoints;
+    [Header("Character's Stats")]
+    [SerializeField] private float maxhealthPoints;
     private float currenthealthPoints;
-    private int level;
+    [SerializeField] private int level;
     [SerializeField] private List<Elements> affinities;
     [SerializeField] private List<Elements> weaknesses;
-    private float affinityResistanceModifier;
-    private float weaknessModifier;
+    [SerializeField] private float affinityResistanceModifier;
+    [SerializeField] private float weaknessModifier;
 
     [SerializeField] private Animator animator;
 
@@ -25,7 +26,13 @@ public class Characters : MonoBehaviour
     public void ReceiveDamage(Elements elementHit, float damageReceived)
     {
         float removeHp = DamageTaken(elementHit, damageReceived);
-        currenthealthPoints -= removeHp;
+        if (currenthealthPoints - removeHp > 0)
+            currenthealthPoints -= removeHp;
+        else
+        {
+            currenthealthPoints = 0;
+            Death();
+        }
     }
 
     private float DamageTaken(Elements elementHit, float damageReceived)
@@ -42,6 +49,12 @@ public class Characters : MonoBehaviour
         {
             return damageReceived;
         }
+    }
+
+    private void Death()
+    {
+        animator.SetTrigger("Death");
+        Destroy(this, 3);
     }
 
     /* Getters / Setters */

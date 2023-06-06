@@ -13,7 +13,6 @@ public class Characters : MonoBehaviour
     [SerializeField] private List<Elements> weaknesses;
     [SerializeField] private float affinityResistanceModifier;
     [SerializeField] private float weaknessModifier;
-    [SerializeField] private List<Ability> abilities;
 
     [SerializeField] protected Animator animator;
 

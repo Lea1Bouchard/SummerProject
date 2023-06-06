@@ -12,21 +12,11 @@ public class GameManager : MonoBehaviour
     public static event Action<GameState> OnGameStateChanged;
     public GameState currentGameState;
 
-    [Header("Inputs")]
-    public InputActionAsset inputActions;
-    //Wait Mode
-    private InputAction waitModeAction;
-    private bool isInWaitMode;
-    //Elements
-    private InputAction elementNormalAction;
-    private InputAction elementShiftAction;
-    private enum DpadDirection { UP, DOWN, LEFT, RIGHT, NONE }
-    [SerializeField] private List<Elements> elementList;
-
     [Header("UIs")]
     [SerializeField] private Canvas waitModeUI;
 
     [Header("Fighting Manager")]
+    public bool isInWaitMode;
     public List<EnemyController> enemiesInFight;
 
     public static GameManager Instance
@@ -49,9 +39,6 @@ public class GameManager : MonoBehaviour
         UpdateGameState(GameState.InGame);
 
         //Wait mode
-        waitModeAction = inputActions.FindActionMap("Player").FindAction("WaitMode");
-        elementNormalAction = inputActions.FindActionMap("Player").FindAction("SelectElementNormal");
-        elementShiftAction = inputActions.FindActionMap("Player").FindAction("SelectElementShift");
         isInWaitMode = false;
         waitModeUI.gameObject.SetActive(false);
     }
@@ -155,93 +142,4 @@ public class GameManager : MonoBehaviour
         }
     }
     #endregion
-
-    public void SelectElementInputNormal(InputAction.CallbackContext context)
-    {
-        Vector2 vector = context.ReadValue<Vector2>();
-        DpadDirection inputDirection;
-        if (vector.x == 1)
-            inputDirection = DpadDirection.RIGHT;
-        else if (vector.x == -1)
-            inputDirection = DpadDirection.LEFT;
-        else if (vector.y == 1)
-            inputDirection = DpadDirection.UP;
-        else if (vector.y == -1)
-            inputDirection = DpadDirection.DOWN;
-        else
-            inputDirection = DpadDirection.NONE;
-        ChangeElement(false, inputDirection);
-    }
-
-    public void SelectElementInputShift(InputAction.CallbackContext context)
-    {
-        Vector2 vector = context.ReadValue<Vector2>();
-        DpadDirection inputDirection;
-        if (vector.x == 1)
-            inputDirection = DpadDirection.RIGHT;
-        else if (vector.x == -1)
-            inputDirection = DpadDirection.LEFT;
-        else if (vector.y == 1)
-            inputDirection = DpadDirection.UP;
-        else if (vector.y == -1)
-            inputDirection = DpadDirection.DOWN;
-        else
-            inputDirection = DpadDirection.NONE;
-        ChangeElement(true, inputDirection);
-    }
-
-    private void ChangeElement(bool isShiftPressed, DpadDirection dpadDirection)
-    {
-        Elements newElement = Elements.Null;
-        if (!isShiftPressed)
-        {
-            switch (dpadDirection)
-            {
-                case DpadDirection.UP:
-                    newElement = elementList[0];
-                    break;
-                case DpadDirection.RIGHT:
-                    newElement = elementList[1];
-                    break;
-                case DpadDirection.DOWN:
-                    newElement = elementList[2];
-                    break;
-                case DpadDirection.LEFT:
-                    newElement = elementList[3];
-                    break;
-            }
-        }
-        else
-        {
-            switch (dpadDirection)
-            {
-                case DpadDirection.UP:
-                    newElement = elementList[4];
-                    break;
-                case DpadDirection.RIGHT:
-                    newElement = elementList[5];
-                    break;
-                case DpadDirection.DOWN:
-                    newElement = elementList[6];
-                    break;
-                case DpadDirection.LEFT:
-                    newElement = elementList[7];
-                    break;
-            }
-        }
-        if (newElement != Elements.Null)
-        {
-            Player.Instance.ChangeWeaponElement(newElement);
-        }
-    }
-
-    private void OnEnable()
-    {
-        inputActions.FindActionMap("Player").Enable();
-    }
-
-    private void OnDisable()
-    {
-        inputActions.FindActionMap("Player").Disable();
-    }
 }

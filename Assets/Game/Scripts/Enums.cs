@@ -79,7 +79,6 @@ namespace Enums
         Moving,
         Flying,
         Landing,
-        Blocking,
-        Dead
+        Blocking
     }
 }

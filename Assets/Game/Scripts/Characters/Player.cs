@@ -26,6 +26,8 @@ public class Player : Characters
 
     Dictionary<Elements, Elements> opposingElements;
 
+    [SerializeField] private List<Ability> abilities;
+
     public static Player Instance
     {
         get
@@ -97,15 +99,6 @@ public class Player : Characters
         //Change to new Affinities and Weaknesses
         Affinities.Add(newElement);
         Weaknesses.Add(opposingElements[newElement]);
-
-        foreach (var x in Affinities)
-        {
-            Debug.Log("Aff: " + x.ToString());
-        }
-        foreach (var x in Weaknesses)
-        {
-            Debug.Log("Weak: " + x.ToString());
-        }
     }
 
     private void DetectEnemiesInLineOfSight()

@@ -1,3 +1,5 @@
+using Enums;
+using System.Collections.Generic;
 using UnityEngine;
 #if ENABLE_INPUT_SYSTEM
 using UnityEngine.InputSystem;
@@ -20,6 +22,15 @@ public class PlayerInputHandler : MonoBehaviour
     public bool cursorLocked = true;
     public bool cursorInputForLook = true;
 
+    [Header("Elements Changes")]
+    //Wait Mode
+    private InputAction waitModeAction;
+    //Elements
+    private InputAction elementNormalAction;
+    private InputAction elementShiftAction;
+    private enum DpadDirection { UP, DOWN, LEFT, RIGHT, NONE }
+    [SerializeField] private List<Elements> elementList;
+  
 #if ENABLE_INPUT_SYSTEM
     public void OnMove(InputAction.CallbackContext value)
     {
@@ -54,6 +65,86 @@ public class PlayerInputHandler : MonoBehaviour
     {
         DodgeInput(value.performed);
     }
+
+    public void SelectElementInputNormal(InputAction.CallbackContext context)
+    {
+        Vector2 vector = context.ReadValue<Vector2>();
+        DpadDirection inputDirection;
+        if (vector.x == 1)
+            inputDirection = DpadDirection.RIGHT;
+        else if (vector.x == -1)
+            inputDirection = DpadDirection.LEFT;
+        else if (vector.y == 1)
+            inputDirection = DpadDirection.UP;
+        else if (vector.y == -1)
+            inputDirection = DpadDirection.DOWN;
+        else
+            inputDirection = DpadDirection.NONE;
+        ChangeElement(false, inputDirection);
+    }
+
+    public void SelectElementInputShift(InputAction.CallbackContext context)
+    {
+        Vector2 vector = context.ReadValue<Vector2>();
+        DpadDirection inputDirection;
+        if (vector.x == 1)
+            inputDirection = DpadDirection.RIGHT;
+        else if (vector.x == -1)
+            inputDirection = DpadDirection.LEFT;
+        else if (vector.y == 1)
+            inputDirection = DpadDirection.UP;
+        else if (vector.y == -1)
+            inputDirection = DpadDirection.DOWN;
+        else
+            inputDirection = DpadDirection.NONE;
+        ChangeElement(true, inputDirection);
+    }
+
+    private void ChangeElement(bool isShiftPressed, DpadDirection dpadDirection)
+    {
+        Elements newElement = Elements.Null;
+        if (!isShiftPressed)
+        {
+            switch (dpadDirection)
+            {
+                case DpadDirection.UP:
+                    newElement = elementList[0];
+                    break;
+                case DpadDirection.RIGHT:
+                    newElement = elementList[1];
+                    break;
+                case DpadDirection.DOWN:
+                    newElement = elementList[2];
+                    break;
+                case DpadDirection.LEFT:
+                    newElement = elementList[3];
+                    break;
+            }
+        }
+        else
+        {
+            switch (dpadDirection)
+            {
+                case DpadDirection.UP:
+                    newElement = elementList[4];
+                    break;
+                case DpadDirection.RIGHT:
+                    newElement = elementList[5];
+                    break;
+                case DpadDirection.DOWN:
+                    newElement = elementList[6];
+                    break;
+                case DpadDirection.LEFT:
+                    newElement = elementList[7];
+                    break;
+            }
+        }
+        if (newElement != Elements.Null)
+        {
+            Player.Instance.ChangeWeaponElement(newElement);
+        }
+    }
+
 #endif
 
 

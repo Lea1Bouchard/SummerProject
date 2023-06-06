@@ -9,17 +9,20 @@ namespace UtilityAI.Core
     {
         [Header("Enemy's Stats")]
         public float maxRange;
-        public MoveController moveController { get; set; }
-        public AIBrain aIBrain { get; set; }
+
+        [Header("Enemy's States")]
+        [SerializeField] private EnemyType enemyType;
+        public EnemyState enemyState;
+        [HideInInspector] public bool isInFight;
+        private Player player;
+
+        [Header("AI and Actions")]
         public Action[] fightingActionsAvailable;
         public Action[] normalActionsAvailable;
         public Ability[] meleesAbilities;
         public Ability rangeAbility;
-
-
-        public EnemyState enemyState;
-        public bool isInFight;
-        private Player player;
+        public MoveController moveController { get; set; }
+        public AIBrain aIBrain { get; set; }
 
         public EnemyController()
         {
@@ -40,7 +43,7 @@ namespace UtilityAI.Core
             player = Player.Instance;
 
             //Initialize abilities
-            for (int i = 0; i < meleesAbilities.Length ; i++)
+            for (int i = 0; i < meleesAbilities.Length; i++)
             {
                 meleesAbilities[i] = Instantiate(meleesAbilities[i]);
 
@@ -59,6 +62,14 @@ namespace UtilityAI.Core
                 aIBrain.finishedDeciding = false;
                 aIBrain.bestAction.Execute(this);
             }
+        }
+
+        public void TriggerInFight()
+        {
+            enemyState = EnemyState.Attacking;
+            isInFight = true;
+            GameManager.Instance.AddEnemyToFight(this);
+            target = Player.Instance;
         }
 
         //Called at the end of the animation

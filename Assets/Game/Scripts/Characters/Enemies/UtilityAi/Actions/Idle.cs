@@ -8,12 +8,9 @@ namespace UtilityAI.Actions
     {
         public override void Execute(EnemyController enemy)
         {
-            if (enemy.CurrenthealthPoints != enemy.MaxhealthPoints)
+            if (enemy.CurrenthealthPoints != enemy.MaxhealthPoints && enemy.GetDistanceWithPlayer() <= enemy.maxRange)
             {
-                enemy.enemyState = Enums.EnemyState.Attacking;
-                enemy.isInFight = true;
-                GameManager.Instance.UpdateGameState(Enums.GameState.InFight);
-                enemy.target = Player.Instance;
+                enemy.TriggerInFight();
             }
             enemy.OnFinishedAction();
         }

@@ -9,14 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6dea8b0b67d61d04db7de8bf01332994, type: 3}
-  m_Name: Tree_Melee
+  m_Script: {fileID: 11500000, guid: 60eb8ca7a0eee4249896c010db372bb4, type: 3}
+  m_Name: OutOfRange
   m_EditorClassIdentifier: 
-  abilityName: 
-  abilityCost: 0
-  abilitySound: {fileID: 0}
-  abilityCooldownTime: 0.5
-  animationStateName: MeleeAttack
-  attackElement: 0
-  baseDamage: 10
-  animationTrigger: 
+  Name: 
+  considerations:
+  - {fileID: 11400000, guid: b5960c8d862ee1a46a8baadcb2f6fa5c, type: 2}

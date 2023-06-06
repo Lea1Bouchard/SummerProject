@@ -40,8 +40,13 @@ namespace UtilityAI.Core
             //Initialize abilities
             for (int i = 0; i < meleesAbilities.Length ; i++)
             {
+                meleesAbilities[i] = Instantiate(meleesAbilities[i]);
+
                 meleesAbilities[i].Initialize(this);
             }
+
+            rangeAbility = Instantiate(rangeAbility);
+
             rangeAbility.Initialize(this);
         }
 

@@ -15,8 +15,7 @@ MonoBehaviour:
   abilityName: 
   abilityCost: 0
   abilitySound: {fileID: 0}
-  abilityCooldownTime: 0
-  abilityUiSprite: {fileID: 0}
+  abilityCooldownTime: 2
   animationStateName: MeleeAttack
   attackElement: 0
   baseDamage: 10

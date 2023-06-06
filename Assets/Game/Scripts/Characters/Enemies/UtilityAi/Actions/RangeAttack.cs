@@ -9,7 +9,6 @@ namespace UtilityAI.Actions
         public override void Execute(EnemyController enemy)
         {
             enemy.UseAbility(enemy.rangeAbility);
-            Debug.Log("Range");
         }
     }
 }

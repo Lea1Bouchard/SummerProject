@@ -25,7 +25,6 @@ public class MeleeAbility : Ability
             isActive = true;
             weapon.isActive = true;
             Animate();
-            isActive = false;
             abilityCooldownClass.Initialize(this);
         }
     }

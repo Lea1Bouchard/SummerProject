@@ -57,7 +57,7 @@ public class Projectile : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         Characters hit = other.gameObject.GetComponent<Characters>();
-        if (hit != initiator)
+        if (hit != initiator && other.GetComponent<NotifyZone>() == null)
         {
             if (hit != null)
             {

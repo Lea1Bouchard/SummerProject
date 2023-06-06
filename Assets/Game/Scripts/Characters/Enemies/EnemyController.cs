@@ -21,6 +21,7 @@ namespace UtilityAI.Core
         public Action[] normalActionsAvailable;
         public Ability[] meleesAbilities;
         public Ability rangeAbility;
+        public Ability spellAbility;
         public MoveController moveController { get; set; }
         public AIBrain aIBrain { get; set; }
 
@@ -53,6 +54,10 @@ namespace UtilityAI.Core
             rangeAbility = Instantiate(rangeAbility);
 
             rangeAbility.Initialize(this);
+
+            spellAbility = Instantiate(spellAbility);
+
+            spellAbility.Initialize(this);
         }
 
         private void Update()

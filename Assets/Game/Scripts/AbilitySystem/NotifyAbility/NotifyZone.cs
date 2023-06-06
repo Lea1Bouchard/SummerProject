@@ -24,21 +24,24 @@ public class NotifyZone : MonoBehaviour
                 notified.Add(hit);
             }
         }
-        
 
+        Debug.Log(other.gameObject);
     }
 
     private void NotifyAllies()
     {
         foreach (EnemyController ally in notified)
         {
-            //ally.TriggerInFight();
+            ally.TriggerInFight();
         }
+
+        Destroy(this.gameObject);
+
     }
 
     IEnumerator DetectionTime()
     {
-        yield return new WaitForEndOfFrame();
+        yield return new WaitForSeconds(0.5f);
 
         NotifyAllies();
     }

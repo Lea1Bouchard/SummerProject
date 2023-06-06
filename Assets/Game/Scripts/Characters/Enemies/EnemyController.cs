@@ -21,7 +21,6 @@ namespace UtilityAI.Core
         public List<Action> normalActionsAvailable;
         public List<Ability> meleesAbilities;
         public Ability rangeAbility;
-        public MoveController moveController { get; set; }
         public AIBrain aIBrain { get; set; }
 
         public EnemyController()
@@ -35,7 +34,6 @@ namespace UtilityAI.Core
 
         private void Start()
         {
-            moveController = GetComponent<MoveController>();
             aIBrain = GetComponent<AIBrain>();
             enemyState = EnemyState.Idle;
             isInFight = false;

@@ -170,7 +170,6 @@ GameObject:
   - component: {fileID: 4033117738360405976}
   - component: {fileID: 4033117737563070653}
   - component: {fileID: 4033117737563070648}
-  - component: {fileID: 4033117737563070651}
   - component: {fileID: 4033117737563070650}
   m_Layer: 0
   m_Name: EnemyPlant_Leaf
@@ -260,24 +259,12 @@ MonoBehaviour:
   - {fileID: 11400000, guid: f11b1b6503461f7448162e748929ec33, type: 2}
   - {fileID: 11400000, guid: d67fd56966df60842bb13bfa6a54c82c, type: 2}
   - {fileID: 11400000, guid: ae3169c79d5834746b248cc3a0b7118a, type: 2}
-  - {fileID: 11400000, guid: 1809855b1215b9248b2f3329740614f9, type: 2}
+  - {fileID: 0}
   normalActionsAvailable:
   - {fileID: 11400000, guid: 6da3ad60d9b9bfb4fb1c89cab32a0a8e, type: 2}
   meleesAbilities:
   - {fileID: 11400000, guid: 05c0e46ca4e4e2f4893780f3be4a1e31, type: 2}
   rangeAbility: {fileID: 11400000, guid: 59fa888e48f7ec94599df89fd937c2d2, type: 2}
---- !u!114 &4033117737563070651
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4033117738369879048}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e6c1f366d3aae4147ab037b5c37ee034, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &4033117737563070650
 MonoBehaviour:
   m_ObjectHideFlags: 0

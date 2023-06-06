@@ -15,6 +15,7 @@ public class Characters : MonoBehaviour
     [SerializeField] private float weaknessModifier;
 
     [SerializeField] protected Animator animator;
+    private bool isDead = false;
 
     public Characters target;
     public MeleeWeapon weapon;
@@ -28,13 +29,17 @@ public class Characters : MonoBehaviour
 
     public void ReceiveDamage(Elements elementHit, float damageReceived)
     {
-        float removeHp = DamageTaken(elementHit, damageReceived);
-        if (currenthealthPoints - removeHp > 0)
-            currenthealthPoints -= removeHp;
-        else
+        if (!isDead)
         {
-            currenthealthPoints = 0;
-            Death();
+            float removeHp = DamageTaken(elementHit, damageReceived);
+            if (currenthealthPoints - removeHp > 0)
+                currenthealthPoints -= removeHp;
+            else
+            {
+                currenthealthPoints = 0;
+                Death();
+            }
+
         }
     }
 
@@ -56,8 +61,9 @@ public class Characters : MonoBehaviour
 
     private void Death()
     {
-        animator.SetTrigger("Death");
-        Destroy(this.gameObject, 3);
+        isDead = true;
+        Animator.SetTrigger("Death");
+        Destroy(this.gameObject, 1.5f);
     }
 
     /* Getters / Setters */

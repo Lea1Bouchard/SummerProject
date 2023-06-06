@@ -2767,6 +2767,12 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4033117737563070648, guid: 5853b18e559fb234b8559603d8a5be28,
         type: 3}
+      propertyPath: deathAbility
+      value: 
+      objectReference: {fileID: 11400000, guid: 8e5e619a0b59a994a890901808269c82,
+        type: 2}
+    - target: {fileID: 4033117737563070648, guid: 5853b18e559fb234b8559603d8a5be28,
+        type: 3}
       propertyPath: weaknesses.Array.data[0]
       value: 2
       objectReference: {fileID: 0}

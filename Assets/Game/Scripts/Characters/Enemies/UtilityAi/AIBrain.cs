@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace UtilityAI.Core
@@ -23,11 +24,11 @@ namespace UtilityAI.Core
 
         //Loop through all the available actions
         //Give the highest scoring action
-        public void DecideBestAction(Action[] actionsAvailable)
+        public void DecideBestAction(List<Action> actionsAvailable)
         {
             float highestScore = 0f;
             int bestActionIndex = 0;
-            for (int i = 0; i < actionsAvailable.Length; i++)
+            for (int i = 0; i < actionsAvailable.Count; i++)
             {
                 if(ScoreAction(actionsAvailable[i]) > highestScore)
                 {

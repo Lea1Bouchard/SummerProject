@@ -248,7 +248,6 @@ MonoBehaviour:
   weaknesses: 01000000
   affinityResistanceModifier: 0.75
   weaknessModifier: 1.25
-  abilities: []
   animator: {fileID: 4033117738360405976}
   target: {fileID: 0}
   weapon: {fileID: 4033117738507708441}
@@ -261,6 +260,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: f11b1b6503461f7448162e748929ec33, type: 2}
   - {fileID: 11400000, guid: d67fd56966df60842bb13bfa6a54c82c, type: 2}
   - {fileID: 11400000, guid: ae3169c79d5834746b248cc3a0b7118a, type: 2}
+  - {fileID: 11400000, guid: 1809855b1215b9248b2f3329740614f9, type: 2}
   normalActionsAvailable:
   - {fileID: 11400000, guid: 6da3ad60d9b9bfb4fb1c89cab32a0a8e, type: 2}
   meleesAbilities:

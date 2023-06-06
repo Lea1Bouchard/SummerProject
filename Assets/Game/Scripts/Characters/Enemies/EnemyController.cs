@@ -17,9 +17,9 @@ namespace UtilityAI.Core
         private Player player;
 
         [Header("AI and Actions")]
-        public Action[] fightingActionsAvailable;
-        public Action[] normalActionsAvailable;
-        public Ability[] meleesAbilities;
+        public List<Action> fightingActionsAvailable;
+        public List<Action> normalActionsAvailable;
+        public List<Ability> meleesAbilities;
         public Ability rangeAbility;
         public MoveController moveController { get; set; }
         public AIBrain aIBrain { get; set; }
@@ -43,7 +43,7 @@ namespace UtilityAI.Core
             player = Player.Instance;
 
             //Initialize abilities
-            for (int i = 0; i < meleesAbilities.Length; i++)
+            for (int i = 0; i < meleesAbilities.Count; i++)
             {
                 meleesAbilities[i] = Instantiate(meleesAbilities[i]);
 
@@ -83,6 +83,7 @@ namespace UtilityAI.Core
             {
                 aIBrain.DecideBestAction(normalActionsAvailable);
             }
+            
         }
 
         public float GetDistanceWithPlayer()

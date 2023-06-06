@@ -9,9 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 60eb8ca7a0eee4249896c010db372bb4, type: 3}
-  m_Name: OutOfRange
+  m_Script: {fileID: 11500000, guid: 0d62fd34e9f95e84594e6e297ad0429d, type: 3}
+  m_Name: Death
   m_EditorClassIdentifier: 
-  Name: Out of Range
+  Name: Death
   considerations:
-  - {fileID: 11400000, guid: b5960c8d862ee1a46a8baadcb2f6fa5c, type: 2}
+  - {fileID: 11400000, guid: 240266a71ad563748900ffb5a63b60dc, type: 2}

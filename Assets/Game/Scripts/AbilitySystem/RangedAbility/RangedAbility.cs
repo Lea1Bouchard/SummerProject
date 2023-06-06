@@ -16,8 +16,9 @@ public class RangedAbility : Ability
     { 
         isActive = false;
         initiator = ini;
-
+        animator = ini.GetComponent<Animator>();
         abilityType = Enums.TypeOfAbility.ranged;
+        abilityCooldownClass = initiator.gameObject.AddComponent<AbilityCooldown>();
     }
 
     public override void TriggerAbility()
@@ -28,13 +29,15 @@ public class RangedAbility : Ability
             SetProjectileValues();
             projectileClone.GetComponent<Projectile>().Shoot(this, initiator.target);
             isActive = true;
+            abilityCooldownClass.Initialize(this);
+            Animate();
         }
     }
+    
 
     public void ProjectileDestroyed()
     {
         Destroy(projectileClone);
-        OnEnd();
     }
 
     private void SetProjectileValues()

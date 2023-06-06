@@ -19,7 +19,5 @@ MonoBehaviour:
   abilityUiSprite: {fileID: 0}
   animationStateName: MeleeAttack
   attackElement: 0
-  baseDamage: 0
-  attackCollider: {fileID: 0}
-  nextAttack: {fileID: 0}
+  baseDamage: 5
   animationTrigger: NextAction

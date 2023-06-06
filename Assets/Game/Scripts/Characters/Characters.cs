@@ -5,13 +5,14 @@ using Enums;
 
 public class Characters : MonoBehaviour
 {
-    private float maxhealthPoints;
+    [Header("Character's Stats")]
+    [SerializeField] private float maxhealthPoints;
     private float currenthealthPoints;
-    private int level;
+    [SerializeField] private int level;
     [SerializeField] private List<Elements> affinities;
     [SerializeField] private List<Elements> weaknesses;
-    private float affinityResistanceModifier;
-    private float weaknessModifier;
+    [SerializeField] private float affinityResistanceModifier;
+    [SerializeField] private float weaknessModifier;
     [SerializeField] private List<Ability> abilities;
 
     [SerializeField] protected Animator animator;
@@ -29,8 +30,13 @@ public class Characters : MonoBehaviour
     public void ReceiveDamage(Elements elementHit, float damageReceived)
     {
         float removeHp = DamageTaken(elementHit, damageReceived);
-        currenthealthPoints -= removeHp;
-        Debug.Log(currenthealthPoints);
+        if (currenthealthPoints - removeHp > 0)
+            currenthealthPoints -= removeHp;
+        else
+        {
+            currenthealthPoints = 0;
+            Death();
+        }
     }
 
     private float DamageTaken(Elements elementHit, float damageReceived)
@@ -49,6 +55,12 @@ public class Characters : MonoBehaviour
         }
     }
 
+    private void Death()
+    {
+        animator.SetTrigger("Death");
+        Destroy(this.gameObject, 3);
+    }
+
     /* Getters / Setters */
     #region getter/setter
     public int Level { get => level; set => level = value; }
@@ -58,6 +70,7 @@ public class Characters : MonoBehaviour
     public float AffinityResistanceModifier { get => affinityResistanceModifier; set => affinityResistanceModifier = value; }
     public float MaxhealthPoints { get => maxhealthPoints; set => maxhealthPoints = value; }
     public float CurrenthealthPoints { get => currenthealthPoints; set => currenthealthPoints = value; }
+    public Animator Animator { get => animator; set => animator = value; }
 
     #endregion
 }

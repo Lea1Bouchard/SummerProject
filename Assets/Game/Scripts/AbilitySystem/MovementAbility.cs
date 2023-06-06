@@ -17,7 +17,7 @@ public class MovementAbility : Ability
         initiator = ini;
         isActive = false;
         controller = initiator.GetComponent<CharacterController>();
-        abilityCooldownClass = initiator.GetComponent<AbilityCooldown>();
+        abilityCooldownClass = initiator.gameObject.AddComponent<AbilityCooldown>();
     }
 
     public override void TriggerAbility()

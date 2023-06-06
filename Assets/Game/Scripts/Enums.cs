@@ -18,10 +18,16 @@ namespace Enums
     //EnemyTypes
     public enum EnemyType
     {
-        Golem,
+        Tree_Leaf,
+        Tree_Spike,
+        Tree_Mushroom,
+        Tree_Coral,
         Scarab,
-        Slime,
-        NightmareDragon
+        Golem,
+        Dragon_NoWings,
+        Dragon_Chunky,
+        Dragon_Normal,
+        Dragon_Long
     }
 
     //GameState
@@ -60,6 +66,7 @@ namespace Enums
         Teleporting,
         Dodging,
         Moving,
+        Dead,
         None
     }
 
@@ -72,7 +79,7 @@ namespace Enums
         Moving,
         Flying,
         Landing,
-        Dodging,
-        Blocking
+        Blocking,
+        Dead
     }
 }

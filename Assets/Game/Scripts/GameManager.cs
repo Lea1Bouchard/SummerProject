@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
     private static GameManager _instance;
     private static GameState gameState;
     public static event Action<GameState> OnGameStateChanged;
+    public GameState currentGameState;
 
     [Header("Inputs")]
     public InputActionAsset inputActions;
@@ -98,20 +99,24 @@ public class GameManager : MonoBehaviour
 
     private void HandleInFight()
     {
+        currentGameState = GameState.InFight;
     }
 
     private void HandleInWaitMode()
     {
+        currentGameState = GameState.InWaitMode;
         Time.timeScale = 0;
         waitModeUI.gameObject.SetActive(true);
     }
 
     private void HandleInGame()
     {
+        currentGameState = GameState.InGame;
     }
 
     private void HandleInMenu()
     {
+        currentGameState = GameState.InMenu;
         Time.timeScale = 0;
     }
 

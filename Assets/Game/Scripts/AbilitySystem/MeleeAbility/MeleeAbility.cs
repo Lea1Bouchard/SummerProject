@@ -6,8 +6,6 @@ using UnityEngine;
 public class MeleeAbility : Ability
 {
 
-    public Collider attackCollider;
-    public Ability nextAttack;
     public string animationTrigger;
     private MeleeWeapon weapon;
 
@@ -15,9 +13,10 @@ public class MeleeAbility : Ability
     {
         animator = ini.GetComponent<Animator>();
         initiator = ini;
-        isActive = false;
         LoadWeaponAttribute();
+        abilityCooldownClass = initiator.gameObject.AddComponent<AbilityCooldown>();
     }
+
 
     public override void TriggerAbility()
     {
@@ -25,8 +24,9 @@ public class MeleeAbility : Ability
         {
             isActive = true;
             weapon.isActive = true;
-            animate();
+            Animate();
             isActive = false;
+            abilityCooldownClass.Initialize(this);
         }
     }
 

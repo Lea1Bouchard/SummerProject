@@ -56,8 +56,8 @@ public class Player : Characters
         movementSpeed = 2f;
 
         hasEnemyInLineOfSight = false;
-        lineOfSightDistance = 100f;
-        lineOfSightRadius = 100f;
+        lineOfSightDistance = 15f;
+        lineOfSightRadius = 15f;
     }
 
     private void Awake()
@@ -81,6 +81,11 @@ public class Player : Characters
         opposingElements.Add(Elements.Darkness, Elements.Light);
 
         opposingElements.Add(Elements.Null, Elements.Null);
+    }
+
+    private void Update()
+    {
+        DetectEnemiesInLineOfSight();
     }
 
     public void ChangeWeaponElement(Elements newElement)

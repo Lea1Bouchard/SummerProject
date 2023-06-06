@@ -376,6 +376,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: a09c20c309ae54b498098faaff60e00f, type: 2}
   - {fileID: 11400000, guid: f11b1b6503461f7448162e748929ec33, type: 2}
   - {fileID: 11400000, guid: d67fd56966df60842bb13bfa6a54c82c, type: 2}
+  - {fileID: 11400000, guid: ae3169c79d5834746b248cc3a0b7118a, type: 2}
   normalActionsAvailable:
   - {fileID: 11400000, guid: 6da3ad60d9b9bfb4fb1c89cab32a0a8e, type: 2}
   meleesAbilities:
@@ -1183,6 +1184,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: a09c20c309ae54b498098faaff60e00f, type: 2}
   - {fileID: 11400000, guid: f11b1b6503461f7448162e748929ec33, type: 2}
   - {fileID: 11400000, guid: d67fd56966df60842bb13bfa6a54c82c, type: 2}
+  - {fileID: 11400000, guid: ae3169c79d5834746b248cc3a0b7118a, type: 2}
   normalActionsAvailable:
   - {fileID: 11400000, guid: 6da3ad60d9b9bfb4fb1c89cab32a0a8e, type: 2}
   meleesAbilities:
@@ -1273,6 +1275,7 @@ MonoBehaviour:
     type: 3}
   elementList: 0200000001000000030000000000000005000000070000000400000006000000
   waitModeUI: {fileID: 19994141}
+  enemiesInFight: []
 --- !u!4 &847968050
 Transform:
   m_ObjectHideFlags: 0

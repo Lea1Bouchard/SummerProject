@@ -3,6 +3,7 @@ using UnityEngine;
 using Enums;
 using UnityEngine.InputSystem;
 using System;
+using UtilityAI.Core;
 
 public class GameManager : MonoBehaviour
 {
@@ -24,6 +25,9 @@ public class GameManager : MonoBehaviour
 
     [Header("UIs")]
     [SerializeField] private Canvas waitModeUI;
+
+    [Header("Fighting Manager")]
+    public List<EnemyController> enemiesInFight;
 
     public static GameManager Instance
     {
@@ -52,6 +56,23 @@ public class GameManager : MonoBehaviour
         waitModeUI.gameObject.SetActive(false);
     }
 
+    public void AddEnemyToFight(EnemyController enemy)
+    {
+        enemiesInFight.Add(enemy);
+        if (enemiesInFight.Count > 0)
+            UpdateGameState(GameState.InFight);
+    }
+
+    public void RemoveEnemyToFight(EnemyController enemy)
+    {
+        if (enemiesInFight.Contains(enemy))
+            enemiesInFight.Remove(enemy);
+
+        if (enemiesInFight.Count <= 0)
+            UpdateGameState(GameState.InGame);
+    }
+
+    #region GameStates
     public void UpdateGameState(GameState newState)
     {
         EndState(gameState);
@@ -86,7 +107,7 @@ public class GameManager : MonoBehaviour
                 Time.timeScale = 1;
                 break;
             case GameState.InGame:
-                
+
                 break;
             case GameState.InWaitMode:
                 Time.timeScale = 1;
@@ -133,6 +154,7 @@ public class GameManager : MonoBehaviour
             isInWaitMode = false;
         }
     }
+    #endregion
 
     public void SelectElementInputNormal(InputAction.CallbackContext context)
     {

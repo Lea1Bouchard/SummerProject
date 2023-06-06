@@ -8,7 +8,7 @@ public class MeleeWeapon : MonoBehaviour
     public bool isActive;
     public int damage;
     [HideInInspector] public Characters initiator;
-    public Elements attackElement;
+    [HideInInspector] public Elements attackElement;
 
     private void OnTriggerEnter(Collider other)
     {

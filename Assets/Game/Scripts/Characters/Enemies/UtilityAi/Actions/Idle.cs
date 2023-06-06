@@ -11,6 +11,7 @@ namespace UtilityAI.Actions
             if (enemy.CurrenthealthPoints != enemy.MaxhealthPoints)
             {
                 enemy.enemyState = Enums.EnemyState.Attacking;
+                enemy.isInFight = true;
                 GameManager.Instance.UpdateGameState(Enums.GameState.InFight);
                 enemy.target = Player.Instance;
             }

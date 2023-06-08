@@ -9,10 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 60eb8ca7a0eee4249896c010db372bb4, type: 3}
-  m_Name: OutOfRange
+  m_Script: {fileID: 11500000, guid: 574b08b0c2d698b40b1aa7d2196f19a9, type: 3}
+  m_Name: Wandering
   m_EditorClassIdentifier: 
-  Name: Out of Range
-  Importance: 1
+  Name: Wandering
   considerations:
-  - {fileID: 11400000, guid: b5960c8d862ee1a46a8baadcb2f6fa5c, type: 2}
+  - {fileID: 11400000, guid: 1b66b36064f03384f8b24bebb80cae01, type: 2}
+  destination: {fileID: 3701420294376490695, guid: a53eb3ac03b5373429ee208faf9cef14,
+    type: 3}

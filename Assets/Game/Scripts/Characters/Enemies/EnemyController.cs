@@ -1,6 +1,6 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 using Enums;
 
 namespace UtilityAI.Core
@@ -22,6 +22,13 @@ namespace UtilityAI.Core
         public List<Ability> meleesAbilities;
         public Ability rangeAbility;
         public AIBrain aIBrain { get; set; }
+
+        [Header("Movement")]
+        public NavMeshAgent navAgent;
+        private Vector3 currentDestination;
+        private NavMeshHit navHit;
+        [SerializeField] private float maxWalkDistance = 50f;
+
 
         public EnemyController()
         {
@@ -51,6 +58,13 @@ namespace UtilityAI.Core
             rangeAbility = Instantiate(rangeAbility);
 
             rangeAbility.Initialize(this);
+
+            //Initialize movement components
+            navAgent = GetComponent<NavMeshAgent>();
+            if (navAgent != null)
+            {
+                SetNewDestination();
+            }
         }
 
         private void Update()
@@ -81,7 +95,7 @@ namespace UtilityAI.Core
             {
                 aIBrain.DecideBestAction(normalActionsAvailable);
             }
-            
+
         }
 
         public float GetDistanceWithPlayer()
@@ -89,38 +103,29 @@ namespace UtilityAI.Core
             return Vector3.Distance(transform.position, player.transform.position);
         }
 
-        public bool isPlayerInFront()
+        public void SetNewDestination()
         {
-            Transform playerPosition = player.transform;
-            Vector3 directionOfPlayer = transform.position - playerPosition.position;
-            float angle = Vector3.Angle(transform.forward, directionOfPlayer);
+            NavMesh.SamplePosition(((Random.insideUnitSphere * maxWalkDistance) + transform.position), out navHit, maxWalkDistance, -1);
 
-            if (Mathf.Abs(angle) > 90 && Mathf.Abs(angle) < 270)
+            if (currentDestination != navHit.position)
             {
-                return true;
+                currentDestination = navHit.position;
+                navAgent.SetDestination(currentDestination);
             }
-
-            return false;
         }
 
-        public bool isPlayerInLineOfSight()
+        public void CheckIfAgentReachedDestination()
         {
-            Transform playerPosition = player.transform;
-            RaycastHit hit;
-            Vector3 directionOfPlayer = transform.position - playerPosition.position;
-            directionOfPlayer *= -1f;
-            directionOfPlayer = directionOfPlayer.normalized;
-
-            int layer_mask = LayerMask.GetMask("Character");
-
-            if (Physics.Raycast(transform.position, directionOfPlayer, out hit, float.PositiveInfinity, layer_mask))
+            if (!navAgent.pathPending)
             {
-                if (hit.transform.gameObject.tag == "Player")
+                if (navAgent.remainingDistance <= navAgent.stoppingDistance)
                 {
-                    return true;
+                    if (!navAgent.hasPath || navAgent.velocity.sqrMagnitude == 0f)
+                    {
+                        SetNewDestination();
+                    }
                 }
             }
-            return false;
         }
     }
 }

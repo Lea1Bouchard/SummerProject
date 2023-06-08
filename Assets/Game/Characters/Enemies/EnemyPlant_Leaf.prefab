@@ -256,15 +256,16 @@ MonoBehaviour:
   isInFight: 0
   fightingActionsAvailable:
   - {fileID: 11400000, guid: a09c20c309ae54b498098faaff60e00f, type: 2}
-  - {fileID: 11400000, guid: f11b1b6503461f7448162e748929ec33, type: 2}
+  - {fileID: 11400000, guid: 1cd59666fb2eab945993fcc06fddc262, type: 2}
   - {fileID: 11400000, guid: d67fd56966df60842bb13bfa6a54c82c, type: 2}
   - {fileID: 11400000, guid: ae3169c79d5834746b248cc3a0b7118a, type: 2}
-  - {fileID: 0}
   normalActionsAvailable:
   - {fileID: 11400000, guid: 6da3ad60d9b9bfb4fb1c89cab32a0a8e, type: 2}
   meleesAbilities:
   - {fileID: 11400000, guid: 05c0e46ca4e4e2f4893780f3be4a1e31, type: 2}
   rangeAbility: {fileID: 11400000, guid: 59fa888e48f7ec94599df89fd937c2d2, type: 2}
+  navAgent: {fileID: 0}
+  maxWalkDistance: 50
 --- !u!114 &4033117737563070650
 MonoBehaviour:
   m_ObjectHideFlags: 0

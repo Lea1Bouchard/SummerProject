@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 916cdb4d7688f614bb9714a9b184cf61
+guid: 5c58933387b06c046a5f6eb866055790
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
@@ -99,7 +99,7 @@ ModelImporter:
     400092: RigTail5Gizmo
     2100000: 'Material #2'
     4300000: Polygonal Metalon
-    7400000: Run Backward W Root
+    7400000: Run Forward In Place
     9500000: //RootNode
     13700000: Polygonal Metalon
   externalObjects: {}
@@ -131,7 +131,7 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Run Backward W Root
+      name: Run Forward In Place
       takeName: Take 001
       firstFrame: 0
       lastFrame: 20

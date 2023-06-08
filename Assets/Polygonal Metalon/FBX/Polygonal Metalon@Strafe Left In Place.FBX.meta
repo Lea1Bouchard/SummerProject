@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: d5a310ef9b4546a48a9af98fc33e1fbe
+guid: 93d17616636e4344ba731f98af433285
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
@@ -99,7 +99,7 @@ ModelImporter:
     400092: RigTail5Gizmo
     2100000: 'Material #2'
     4300000: Polygonal Metalon
-    7400000: Strafe Left W Root
+    7400000: Strafe Left In Place
     9500000: //RootNode
     13700000: Polygonal Metalon
   externalObjects: {}
@@ -131,7 +131,7 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Strafe Left W Root
+      name: Strafe Left In Place
       takeName: Take 001
       firstFrame: 0
       lastFrame: 30

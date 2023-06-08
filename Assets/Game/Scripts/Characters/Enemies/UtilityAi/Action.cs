@@ -6,6 +6,8 @@ namespace UtilityAI.Core
     {
         public string Name;
         private float _score;
+        public int Importance;
+
         public float score
         {
             get { return _score; }

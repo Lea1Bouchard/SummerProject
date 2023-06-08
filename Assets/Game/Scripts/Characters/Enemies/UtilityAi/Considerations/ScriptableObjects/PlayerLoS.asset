@@ -9,9 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0d62fd34e9f95e84594e6e297ad0429d, type: 3}
-  m_Name: Death
+  m_Script: {fileID: 11500000, guid: 1f2af6a925463c34399310272b3615f1, type: 3}
+  m_Name: PlayerLoS
   m_EditorClassIdentifier: 
-  Name: Death
-  considerations:
-  - {fileID: 11400000, guid: 240266a71ad563748900ffb5a63b60dc, type: 2}
+  Name: Player in Line of Sight

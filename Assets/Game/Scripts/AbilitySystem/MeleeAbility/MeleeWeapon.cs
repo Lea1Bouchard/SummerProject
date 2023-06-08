@@ -7,6 +7,7 @@ public class MeleeWeapon : MonoBehaviour
 {
     public bool isActive;
     public int damage;
+    public Vector3 range;
     [HideInInspector] public Characters initiator;
     [HideInInspector] public Elements attackElement;
 
@@ -17,5 +18,26 @@ public class MeleeWeapon : MonoBehaviour
         {
             hit.ReceiveDamage(attackElement, damage);
         }
+
+    }
+
+    public void Activate()
+    {
+        isActive = true;
+    }
+
+    public void Deactivate()
+    {
+        isActive = false;
+    }
+
+    public void HideWeapon()
+    {
+        gameObject.SetActive(false);
+    }
+
+    public void ShowWeapon()
+    {
+        gameObject.SetActive(true);
     }
 }

@@ -15,8 +15,9 @@ MonoBehaviour:
   abilityName: 
   abilityCost: 0
   abilitySound: {fileID: 0}
-  abilityCooldownTime: 0
+  abilityCooldownTime: 10
   animationStateName: 
   attackElement: 0
   baseDamage: 0
-  NotifyPrefab: {fileID: 0}
+  NotifyPrefab: {fileID: 811174387969266211, guid: 3fa99d72233339548b592b5c18f8b3f8,
+    type: 3}

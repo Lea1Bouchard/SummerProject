@@ -58,12 +58,12 @@ public class PlayerInputHandler : MonoBehaviour
 
     public void OnRangedAbility(InputAction.CallbackContext value)
     {
-        RangedInput(value.performed);
+        Player.Instance.RangedSpell();
     }
 
     public void OnDodge(InputAction.CallbackContext value)
     {
-        DodgeInput(value.performed);
+        Player.Instance.TeleportSpell();
     }
 
     public void SelectElementInputNormal(InputAction.CallbackContext context)
@@ -166,16 +166,6 @@ public class PlayerInputHandler : MonoBehaviour
     public void SprintInput(bool newSprintState)
     {
         sprint = newSprintState;
-    }
-
-    public void RangedInput(bool newRangedState)
-    {
-        ranged = newRangedState;
-    }
-
-    public void DodgeInput(bool newDodgeState)
-    {
-        dodge = newDodgeState;
     }
 
     private void OnApplicationFocus(bool hasFocus)

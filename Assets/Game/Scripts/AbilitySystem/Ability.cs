@@ -30,7 +30,7 @@ public abstract class Ability : ScriptableObject
 
     protected Characters initiator;
 
-    protected TypeOfAbility abilityType;
+    public TypeOfAbility abilityType;
 
     public List<GameState> GameStateBlocked { get => gameStateBlocked; set => gameStateBlocked = value; }
     public List<MovementState> MovementStateBlocked { get => movementStateBlocked; set => movementStateBlocked = value; }

@@ -22,6 +22,10 @@ public class Player : Characters
     private float lineOfSightDistance;
     private float lineOfSightRadius;
 
+    private bool weaponTrown;
+
+    private PlayerInputHandler _input;
+
     private RaycastHit raycastHit;
 
     Dictionary<Elements, Elements> opposingElements;
@@ -60,6 +64,8 @@ public class Player : Characters
         hasEnemyInLineOfSight = false;
         lineOfSightDistance = 15f;
         lineOfSightRadius = 15f;
+
+        weaponTrown = false;
     }
 
     private void Awake()
@@ -125,6 +131,24 @@ public class Player : Characters
         yield return new WaitForSeconds(0.5f);
         animator.ResetTrigger("NextAction");
         animator.ResetTrigger("MeleeAttack");
+    }
+
+    public void RangedSpell()
+    {
+        //TODO : Verify if this is the best way to do it
+        abilities.Find((x) => x.abilityType == TypeOfAbility.Ranged).TriggerAbility();
+    }
+
+    public void TeleportSpell()
+    {
+        //TODO : Verify if this is the best way to do it
+        abilities.Find((x) => x.abilityType == TypeOfAbility.Movement).TriggerAbility();
+    }
+
+    public void MeleeSpell()
+    {
+        //TODO : Verify if this is the best way to do it
+        abilities.Find((x) => x.abilityType == TypeOfAbility.Melee).TriggerAbility();
     }
 
     /* Getters / Setters */

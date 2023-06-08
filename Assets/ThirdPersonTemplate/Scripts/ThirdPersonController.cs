@@ -165,7 +165,6 @@ namespace StarterAssets
 
             JumpAndGravity();
             GroundedCheck();
-            RangedSpell();
             Move();
         }
 
@@ -394,14 +393,6 @@ namespace StarterAssets
             if (animationEvent.animatorClipInfo.weight > 0.5f)
             {
                 AudioSource.PlayClipAtPoint(LandingAudioClip, transform.TransformPoint(_controller.center), FootstepAudioVolume);
-            }
-        }
-
-        private void RangedSpell()
-        {
-            if (_input.ranged)
-            {
-                ability.TriggerAbility();
             }
         }
 

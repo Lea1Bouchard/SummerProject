@@ -10,7 +10,7 @@ namespace UtilityAI.Actions
         public override void Execute(EnemyController enemy)
         {
             enemy.enemyState = Enums.EnemyState.Moving;
-
+            enemy.navAgent.isStopped = false;
             enemy.CheckIfAgentReachedDestination();
             Animate(enemy);
             enemy.OnFinishedAction();
@@ -26,13 +26,12 @@ namespace UtilityAI.Actions
             Vector3 normalizedMovement = enemy.navAgent.desiredVelocity.normalized;
 
             Vector3 forwardVector = Vector3.Project(normalizedMovement, enemy.transform.forward);
-
             Vector3 rightVector = Vector3.Project(normalizedMovement, enemy.transform.right);
 
             // Dot(direction1, direction2) = 1 if they are in the same direction, -1 if they are opposite
             float forwardVelocity = forwardVector.magnitude * Vector3.Dot(forwardVector, enemy.transform.forward);
-
             float rightVelocity = rightVector.magnitude * Vector3.Dot(rightVector, enemy.transform.right);
+
             enemy.Animator.SetFloat("Enemy Z", Mathf.InverseLerp(-1f, 1f, forwardVelocity));
             enemy.Animator.SetFloat("Enemy X", Mathf.InverseLerp(-1f, 1f, rightVelocity));
         }

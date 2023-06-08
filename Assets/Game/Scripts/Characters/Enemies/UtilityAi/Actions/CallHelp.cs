@@ -9,7 +9,6 @@ namespace UtilityAI.Actions
         public override void Execute(EnemyController enemy)
         {
             //enemy.UseAbility();
-            Debug.Log("Calling for help");
             enemy.fightingActionsAvailable.Remove(this);
         }
     }

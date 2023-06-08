@@ -22,9 +22,7 @@ namespace UtilityAI.Considerations
             float angle = Vector3.Angle(enemy.transform.forward, directionOfPlayer);
 
             if (Mathf.Abs(angle) > 90 && Mathf.Abs(angle) < 270)
-            {
                 return true;
-            }
 
             return false;
         }
@@ -38,14 +36,11 @@ namespace UtilityAI.Considerations
             directionOfPlayer *= -1f;
             directionOfPlayer = directionOfPlayer.normalized;
 
-            Debug.DrawRay(enemy.transform.position, directionOfPlayer * float.PositiveInfinity);
+            Debug.DrawRay(enemy.transform.position, directionOfPlayer * float.PositiveInfinity, Color.green);
             if (Physics.Raycast(enemy.transform.position, directionOfPlayer, out hit, float.PositiveInfinity))
             {
                 if (hit.transform.gameObject.tag == "Player")
-                {
-                    Debug.Log("In LoS");
                     return true;
-                }
             }
             return false;
         }

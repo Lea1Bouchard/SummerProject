@@ -13,6 +13,11 @@ namespace UtilityAI.Actions
             enemy.navAgent.isStopped = true;
             enemy.transform.LookAt(Player.Instance.transform);
 
+            if (enemy.CurrenthealthPoints != enemy.MaxhealthPoints || enemy.GetDistanceWithPlayer() <= enemy.maxRange / 2)
+            {
+                enemy.TriggerInFight();
+            }
+
             enemy.OnFinishedAction();
         }
     }

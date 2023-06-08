@@ -276,7 +276,7 @@ MonoBehaviour:
   animator: {fileID: 9297415}
   target: {fileID: 0}
   weapon: {fileID: 2106978194}
-  maxRange: 0
+  maxRange: 10
   enemyType: 4
   enemyState: 0
   isInFight: 0
@@ -284,7 +284,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: d67fd56966df60842bb13bfa6a54c82c, type: 2}
   normalActionsAvailable:
   - {fileID: 11400000, guid: 164d822ddb4db3847902ce62754cbc61, type: 2}
-  - {fileID: 11400000, guid: 6b42da3e5d9652e469a69142804e50de, type: 2}
+  - {fileID: 11400000, guid: fe7bc1fce030a82428f9d52f5c292225, type: 2}
   meleesAbilities:
   - {fileID: 11400000, guid: 9dcfa0f5c7df8b841aa307aea8092e7b, type: 2}
   rangeAbility: {fileID: 11400000, guid: 59fa888e48f7ec94599df89fd937c2d2, type: 2}
@@ -296,6 +296,22 @@ Animator:
     type: 3}
   m_PrefabInstance: {fileID: 9297408}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &9297417
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9297409}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 769cf4e3dc88195468210756250562ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  distance: 15
+  angle: 30
+  height: 1
+  meshColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!1 &19994138
 GameObject:
   m_ObjectHideFlags: 0

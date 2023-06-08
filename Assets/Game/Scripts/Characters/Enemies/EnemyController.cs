@@ -27,7 +27,7 @@ namespace UtilityAI.Core
         public NavMeshAgent navAgent;
         private Vector3 currentDestination;
         private NavMeshHit navHit;
-        [SerializeField] private float maxWalkDistance = 50f;
+        [SerializeField] private float maxWalkDistance = 10f;
 
 
         public EnemyController()

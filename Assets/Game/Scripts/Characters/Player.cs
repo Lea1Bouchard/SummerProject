@@ -120,16 +120,6 @@ public class Player : Characters
         StartCoroutine(ActionReset());
     }
 
-    public void ActivateWeapon()
-    {
-        weapon.Activate();
-    }
-
-    public void DeactivateWeapon()
-    {
-        weapon.Deactivate();
-    }
-
     IEnumerator ActionReset()
     {
         yield return new WaitForSeconds(0.5f);

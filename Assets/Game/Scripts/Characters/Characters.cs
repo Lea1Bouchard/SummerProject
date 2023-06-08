@@ -60,6 +60,16 @@ public class Characters : MonoBehaviour
         Destroy(this.gameObject, 3);
     }
 
+    public void ActivateWeapon()
+    {
+        weapon.Activate();
+    }
+
+    public void DeactivateWeapon()
+    {
+        weapon.Deactivate();
+    }
+
     /* Getters / Setters */
     #region getter/setter
     public int Level { get => level; set => level = value; }

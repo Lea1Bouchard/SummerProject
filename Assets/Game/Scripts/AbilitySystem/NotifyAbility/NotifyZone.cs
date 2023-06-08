@@ -24,8 +24,6 @@ public class NotifyZone : MonoBehaviour
                 notified.Add(hit);
             }
         }
-
-        Debug.Log(other.gameObject);
     }
 
     private void NotifyAllies()

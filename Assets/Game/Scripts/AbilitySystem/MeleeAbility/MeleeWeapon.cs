@@ -5,7 +5,6 @@ using Enums;
 
 public class MeleeWeapon : MonoBehaviour
 {
-    public bool isActive;
     public int damage;
     public Vector3 range;
     [HideInInspector] public Characters initiator;
@@ -14,21 +13,25 @@ public class MeleeWeapon : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         Characters hit = other.gameObject.GetComponent<Characters>();
-        if (isActive && hit != initiator && hit != null)
+        if (hit != initiator && hit != null)
         {
             hit.ReceiveDamage(attackElement, damage);
         }
 
+
+        Debug.Log(other.gameObject);
     }
 
+    //This is call in the animator
+    //Easy way to tell when the weapon should and shouldn't deal damage
     public void Activate()
     {
-        isActive = true;
+        gameObject.GetComponent<Collider>().enabled = true;
     }
-
+    //This is call in the animator
     public void Deactivate()
     {
-        isActive = false;
+        gameObject.GetComponent<Collider>().enabled = false;
     }
 
     public void HideWeapon()

@@ -24,7 +24,6 @@ public class MeleeAbility : Ability
         if (CheckState())
         {
             isActive = true;
-            weapon.isActive = true;
             Animate();
             abilityCooldownClass.Initialize(this);
         }
@@ -36,6 +35,7 @@ public class MeleeAbility : Ability
         weapon.damage = baseDamage;
         weapon.initiator = initiator;
         weapon.attackElement = attackElement;
+        weapon.Deactivate();
     }
 
 }

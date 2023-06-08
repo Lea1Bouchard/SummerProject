@@ -16,7 +16,7 @@ public abstract class Ability : ScriptableObject
     public AudioClip abilitySound;
     public float abilityCooldownTime;
     public string animationStateName;
-    public Elements attackElement;
+    protected Elements attackElement;
 
     //TODO : Check how animations will be handled
     protected Animator animator;
@@ -30,7 +30,7 @@ public abstract class Ability : ScriptableObject
 
     protected Characters initiator;
 
-    public TypeOfAbility abilityType;
+    [HideInInspector] public TypeOfAbility abilityType;
 
     public List<GameState> GameStateBlocked { get => gameStateBlocked; set => gameStateBlocked = value; }
     public List<MovementState> MovementStateBlocked { get => movementStateBlocked; set => movementStateBlocked = value; }

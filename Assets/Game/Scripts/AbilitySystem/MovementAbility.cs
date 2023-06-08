@@ -11,6 +11,9 @@ public class MovementAbility : Ability
     public float timeImmortal;
     public GameObject target;
     private CharacterController controller;
+    public bool isTeleport;
+
+    //TODO : Render player immortal **MIGHT PUT THIS IN PLAYER SCRIPT
 
     public override void Initialize(Characters ini)
     {
@@ -25,41 +28,28 @@ public class MovementAbility : Ability
         if (CheckState())
         {
             isActive = true;
-            //animate();
-            Move();
+            if (!isTeleport)
+                Move();
+            else
+                Teleport();
+
+            Animate();
         }
     }
 
     private void Move()
     {
-        if (rendersImmortal)
-        {
-            //TODO : Render player immortal
-        }
-
-        SetTarget(GameObject.FindGameObjectWithTag("TeleportTarget"));
-
-        if (target != null)
-        {
-
-            controller.enabled = false;
-
-            initiator.transform.position = target.transform.position;
-
-            controller.enabled = true;
-
-        }
-        else
-        {
-            controller.Move(initiator.transform.forward * (speed * Time.deltaTime));
-        }
+        controller.Move(initiator.transform.forward * (speed * Time.deltaTime));
 
         abilityCooldownClass.Initialize(this);
     }
 
-    public void SetTarget(GameObject obj)
+    private void Teleport()
     {
-        target = obj;
+        initiator.SetTarget(GameObject.FindGameObjectWithTag("TeleportTarget"));
+
+        abilityCooldownClass.Initialize(this);
     }
+
 
 }

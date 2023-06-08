@@ -31,6 +31,7 @@ public class Player : Characters
     Dictionary<Elements, Elements> opposingElements;
 
     [SerializeField] private List<Ability> abilities;
+    [SerializeField] private MovementAbility teleportAbility;
 
     public static Player Instance
     {
@@ -89,11 +90,24 @@ public class Player : Characters
         opposingElements.Add(Elements.Darkness, Elements.Light);
 
         opposingElements.Add(Elements.Null, Elements.Null);
+
+        InitializeAbilities();
     }
 
     private void Update()
     {
         DetectEnemiesInLineOfSight();
+    }
+
+    private void InitializeAbilities()
+    {
+        foreach(Ability ability in abilities)
+        {
+            Debug.Log("Initializing : " + ability.abilityName);
+            ability.Initialize(this);
+        }
+
+        teleportAbility.Initialize(this);
     }
 
     public void ChangeWeaponElement(Elements newElement)
@@ -133,23 +147,37 @@ public class Player : Characters
         animator.ResetTrigger("MeleeAttack");
     }
 
-    public void RangedSpell()
+    public void RangedAbility()
     {
         //TODO : Verify if this is the best way to do it
-        abilities.Find((x) => x.abilityType == TypeOfAbility.Ranged).TriggerAbility();
+
+        if (!weaponTrown)
+            abilities.Find((x) => x.abilityType == TypeOfAbility.Ranged).TriggerAbility();
+        else
+            teleportAbility.TriggerAbility();
     }
 
-    public void TeleportSpell()
+    public void DodgeAbility()
     {
         //TODO : Verify if this is the best way to do it
         abilities.Find((x) => x.abilityType == TypeOfAbility.Movement).TriggerAbility();
     }
 
-    public void MeleeSpell()
+    public void MeleeAbility()
     {
         //TODO : Verify if this is the best way to do it
         abilities.Find((x) => x.abilityType == TypeOfAbility.Melee).TriggerAbility();
     }
+
+    //Called in animation
+    public void TeleportToTarget()
+    {
+        CharacterController controller = gameObject.GetComponent<CharacterController>();
+        controller.enabled = false;
+        gameObject.transform.position = target.transform.position;
+        controller.enabled = true;
+    }
+
 
     /* Getters / Setters */
     #region getter/setter

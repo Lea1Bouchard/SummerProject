@@ -17,7 +17,7 @@ public class RangedAbility : Ability
         isActive = false;
         initiator = ini;
         animator = ini.GetComponent<Animator>();
-        abilityType = Enums.TypeOfAbility.ranged;
+        abilityType = Enums.TypeOfAbility.Ranged;
         abilityCooldownClass = initiator.gameObject.AddComponent<AbilityCooldown>();
     }
 

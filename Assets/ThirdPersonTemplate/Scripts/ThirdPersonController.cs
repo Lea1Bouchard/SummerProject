@@ -75,11 +75,6 @@ namespace StarterAssets
         [Tooltip("For locking the camera position on all axis")]
         public bool LockCameraPosition = false;
 
-
-        [Tooltip("tested ability")]
-        public Ability ability;
-
-
         // cinemachine
         private float _cinemachineTargetYaw;
         private float _cinemachineTargetPitch;
@@ -155,8 +150,6 @@ namespace StarterAssets
             // reset our timeouts on start
             _jumpTimeoutDelta = JumpTimeout;
             _fallTimeoutDelta = FallTimeout;
-
-            ability.Initialize(this.gameObject.GetComponent<Characters>());
         }
 
         private void Update()

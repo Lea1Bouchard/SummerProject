@@ -58,12 +58,17 @@ public class PlayerInputHandler : MonoBehaviour
 
     public void OnRangedAbility(InputAction.CallbackContext value)
     {
-        Player.Instance.RangedSpell();
+        Player.Instance.RangedAbility();
     }
 
     public void OnDodge(InputAction.CallbackContext value)
     {
-        Player.Instance.TeleportSpell();
+        Player.Instance.DodgeAbility();
+    }
+
+    public void OnMelee(InputAction.CallbackContext value)
+    {
+        Player.Instance.DodgeAbility();
     }
 
     public void SelectElementInputNormal(InputAction.CallbackContext context)

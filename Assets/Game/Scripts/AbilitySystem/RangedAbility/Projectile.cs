@@ -63,7 +63,11 @@ public class Projectile : MonoBehaviour
             {
                 hit.ReceiveDamage(attackElement, damage);
                 transform.LookAt(hit.transform);
+                transform.position = hit.transform.position + new Vector3 (0, 1, 0);
                 transform.parent = hit.transform;
+
+                gameObject.GetComponent<Collider>().enabled = false;
+                Destroy(rigidb);
             }
 
             if (range > 0)

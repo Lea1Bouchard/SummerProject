@@ -17,6 +17,7 @@ public class Characters : MonoBehaviour
     [SerializeField] protected Animator animator;
 
     public Characters target;
+    public GameObject teleportTarget;
     public MeleeWeapon weapon;
 
     /* Methods */
@@ -68,6 +69,11 @@ public class Characters : MonoBehaviour
     public void DeactivateWeapon()
     {
         weapon.Deactivate();
+    }
+    //Called in teleport ability
+    public void SetTarget(GameObject obj)
+    {
+        teleportTarget = obj;
     }
 
     /* Getters / Setters */

@@ -71,7 +71,7 @@ public class PlayerInputHandler : MonoBehaviour
     public void OnMelee(InputAction.CallbackContext value)
     {
         if (value.performed)
-            Player.Instance.DodgeAbility();
+            Player.Instance.MeleeAbility();
     }
 
     public void SelectElementInputNormal(InputAction.CallbackContext context)

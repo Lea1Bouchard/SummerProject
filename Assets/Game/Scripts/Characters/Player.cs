@@ -156,6 +156,8 @@ public class Player : Characters
             Ability currAbility = abilities.Find((x) => x.abilityType == TypeOfAbility.Ranged);
             currAbility.TriggerAbility();
 
+            Debug.Log(currAbility.abilityName);
+
             ThrowWeapon();
         }
         else
@@ -163,6 +165,8 @@ public class Player : Characters
             teleportAbility.TriggerAbility();
             RetrieveWeapon();
         }
+
+        
 
     }
 
@@ -172,6 +176,9 @@ public class Player : Characters
 
         Ability currAbility = abilities.Find((x) => x.abilityType == TypeOfAbility.Movement);
         currAbility.TriggerAbility();
+
+        Debug.Log(currAbility.abilityName);
+        Debug.Log("Dodge");
     }
 
     public void MeleeAbility()
@@ -183,6 +190,8 @@ public class Player : Characters
             Ability currAbility = abilities.Find((x) => x.abilityType == TypeOfAbility.Melee);
             currAbility.TriggerAbility();
 
+            Debug.Log(currAbility.abilityName);
+
         }
         else
         {
@@ -190,7 +199,9 @@ public class Player : Characters
             //teleportAbility.TriggerAbility();
             RetrieveWeapon();
         }
-        
+
+        Debug.Log("Melee");
+
     }
 
     //Called in animation

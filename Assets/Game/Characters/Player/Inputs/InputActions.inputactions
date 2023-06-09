@@ -92,7 +92,7 @@
                     "id": "0506cb11-36fb-460c-a543-1f09785ebb21",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "",
+                    "interactions": "Press",
                     "initialStateCheck": false
                 }
             ],
@@ -353,7 +353,7 @@
                 {
                     "name": "",
                     "id": "eaf026aa-e3f0-4e8e-9a31-2b9875c2c7a2",
-                    "path": "<Keyboard>/leftAlt",
+                    "path": "<Keyboard>/r",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -375,7 +375,7 @@
                 {
                     "name": "",
                     "id": "f3610970-225c-49a3-b185-0291c6708e72",
-                    "path": "<Mouse>/press",
+                    "path": "<Keyboard>/q",
                     "interactions": "",
                     "processors": "",
                     "groups": "",

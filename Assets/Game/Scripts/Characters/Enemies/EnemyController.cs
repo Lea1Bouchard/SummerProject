@@ -22,6 +22,7 @@ namespace UtilityAI.Core
         public List<Ability> meleesAbilities;
         public Ability rangeAbility;
         public AIBrain aIBrain { get; set; }
+        public AISensor sensor { get; set; }
 
         [Header("Movement")]
         public NavMeshAgent navAgent;
@@ -42,6 +43,7 @@ namespace UtilityAI.Core
         private void Start()
         {
             aIBrain = GetComponent<AIBrain>();
+            sensor = GetComponent<AISensor>();
             enemyState = EnemyState.Idle;
             isInFight = false;
 

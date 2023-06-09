@@ -20,6 +20,9 @@ public class Characters : MonoBehaviour
     public GameObject teleportTarget;
     public MeleeWeapon weapon;
 
+    [Header("Weapon Nodes")]
+    public Transform[] weaponNodes;
+
     /* Methods */
     //Add Ability and Target in function parameter when created
     public void UseAbility(Ability ability)

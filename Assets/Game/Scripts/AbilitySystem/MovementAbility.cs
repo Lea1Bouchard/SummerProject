@@ -40,7 +40,37 @@ public class MovementAbility : Ability
 
     private void Move()
     {
-        controller.Move(initiator.transform.forward * (speed * Time.deltaTime));
+
+
+        RaycastHit solid;
+        RaycastHit exit;
+        Vector3 destination = initiator.transform.position + initiator.transform.forward * distance;
+
+
+        Debug.DrawRay(initiator.transform.position + new Vector3(0, 1, 0), destination, Color.green, 100);
+        if (Physics.Linecast(initiator.transform.position, destination, out solid))
+        {
+            Characters hitCharacter = solid.collider.gameObject.GetComponent<Characters>();
+            if (hitCharacter != null)
+            {
+                if (Physics.Linecast(solid.point, destination + Vector3.one * 10, out exit))
+                {
+
+                    Debug.Log("Enter point : " + solid.point);
+                    Debug.Log("Exit point : " + exit.point);
+
+                    Vector3 blinkExit;
+
+                    blinkExit = exit.point + (initiator.transform.forward * 2);
+
+                    controller.enabled = false;
+                    initiator.gameObject.transform.position = blinkExit;
+                    controller.enabled = true;
+
+
+                }
+            }
+        }
 
         abilityCooldownClass.Initialize(this);
     }

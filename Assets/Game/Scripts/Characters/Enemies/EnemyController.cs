@@ -9,9 +9,10 @@ namespace UtilityAI.Core
     {
         [Header("Enemy's Stats")]
         public float maxRange;
+        public float meleeRange;
 
         [Header("Enemy's States")]
-        [SerializeField] private EnemyType enemyType;
+        public EnemyType enemyType;
         public EnemyState enemyState;
         [HideInInspector] public bool isInFight;
         private Player player;
@@ -46,6 +47,8 @@ namespace UtilityAI.Core
             sensor = GetComponent<AISensor>();
             enemyState = EnemyState.Idle;
             isInFight = false;
+
+            meleeRange = 2f;
 
             player = Player.Instance;
 
@@ -128,6 +131,34 @@ namespace UtilityAI.Core
                     }
                 }
             }
+        }
+        public void AnimateMovement()
+        {
+            enemyState = EnemyState.Moving;
+            navAgent.isStopped = false;
+
+            if (navAgent.velocity.magnitude > 0)
+                Animator.SetBool("Walk", true);
+            else
+                Animator.SetBool("Walk", false);
+
+            Vector3 normalizedMovement = navAgent.desiredVelocity.normalized;
+
+            Vector3 forwardVector = Vector3.Project(normalizedMovement, transform.forward);
+            Vector3 rightVector = Vector3.Project(normalizedMovement, transform.right);
+
+            // Dot(direction1, direction2) = 1 if they are in the same direction, -1 if they are opposite
+            float forwardVelocity = forwardVector.magnitude * Vector3.Dot(forwardVector, transform.forward);
+            float rightVelocity = rightVector.magnitude * Vector3.Dot(rightVector, transform.right);
+
+            Animator.SetFloat("Enemy Z", Mathf.InverseLerp(-1f, 1f, forwardVelocity));
+            Animator.SetFloat("Enemy X", Mathf.InverseLerp(-1f, 1f, rightVelocity));
+        }
+
+        public void StopMovement()
+        {
+            navAgent.isStopped = true;
+            Animator.SetBool("Walk", false);
         }
     }
 }

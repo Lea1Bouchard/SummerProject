@@ -18,6 +18,7 @@ public class MovementAbility : Ability
     public override void Initialize(Characters ini)
     {
         initiator = ini;
+        animator = ini.GetComponent<Animator>();
         isActive = false;
         controller = initiator.GetComponent<CharacterController>();
         abilityCooldownClass = initiator.gameObject.AddComponent<AbilityCooldown>();

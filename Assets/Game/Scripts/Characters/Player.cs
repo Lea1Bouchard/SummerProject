@@ -101,7 +101,7 @@ public class Player : Characters
 
     private void InitializeAbilities()
     {
-        foreach(Ability ability in abilities)
+        foreach (Ability ability in abilities)
         {
             Debug.Log("Initializing : " + ability.abilityName);
             ability.Initialize(this);
@@ -152,21 +152,45 @@ public class Player : Characters
         //TODO : Verify if this is the best way to do it
 
         if (!weaponTrown)
-            abilities.Find((x) => x.abilityType == TypeOfAbility.Ranged).TriggerAbility();
+        {
+            Ability currAbility = abilities.Find((x) => x.abilityType == TypeOfAbility.Ranged);
+            currAbility.TriggerAbility();
+
+            ThrowWeapon();
+        }
         else
+        {
             teleportAbility.TriggerAbility();
+            RetrieveWeapon();
+        }
+
     }
 
     public void DodgeAbility()
     {
         //TODO : Verify if this is the best way to do it
-        abilities.Find((x) => x.abilityType == TypeOfAbility.Movement).TriggerAbility();
+
+        Ability currAbility = abilities.Find((x) => x.abilityType == TypeOfAbility.Movement);
+        currAbility.TriggerAbility();
     }
 
     public void MeleeAbility()
     {
         //TODO : Verify if this is the best way to do it
-        abilities.Find((x) => x.abilityType == TypeOfAbility.Melee).TriggerAbility();
+        if (!weaponTrown)
+        {
+
+            Ability currAbility = abilities.Find((x) => x.abilityType == TypeOfAbility.Melee);
+            currAbility.TriggerAbility();
+
+        }
+        else
+        {
+            //TODO : Get the weapon back
+            //teleportAbility.TriggerAbility();
+            RetrieveWeapon();
+        }
+        
     }
 
     //Called in animation
@@ -174,8 +198,24 @@ public class Player : Characters
     {
         CharacterController controller = gameObject.GetComponent<CharacterController>();
         controller.enabled = false;
-        gameObject.transform.position = target.transform.position;
+        gameObject.transform.position = teleportTarget.transform.position;
         controller.enabled = true;
+    }
+
+    private void ThrowWeapon()
+    {
+        weaponTrown = true;
+
+        weapon.gameObject.SetActive(false);
+    }
+
+    private void RetrieveWeapon()
+    {
+        weaponTrown = false;
+
+        weapon.gameObject.SetActive(true);
+
+        Destroy(teleportTarget);
     }
 
 

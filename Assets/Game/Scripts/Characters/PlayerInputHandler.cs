@@ -30,7 +30,7 @@ public class PlayerInputHandler : MonoBehaviour
     private InputAction elementShiftAction;
     private enum DpadDirection { UP, DOWN, LEFT, RIGHT, NONE }
     [SerializeField] private List<Elements> elementList;
-  
+
 #if ENABLE_INPUT_SYSTEM
     public void OnMove(InputAction.CallbackContext value)
     {
@@ -58,17 +58,20 @@ public class PlayerInputHandler : MonoBehaviour
 
     public void OnRangedAbility(InputAction.CallbackContext value)
     {
-        Player.Instance.RangedAbility();
+        if (value.performed)
+            Player.Instance.RangedAbility();
     }
 
     public void OnDodge(InputAction.CallbackContext value)
     {
-        Player.Instance.DodgeAbility();
+        if (value.performed)
+            Player.Instance.DodgeAbility();
     }
 
     public void OnMelee(InputAction.CallbackContext value)
     {
-        Player.Instance.DodgeAbility();
+        if (value.performed)
+            Player.Instance.DodgeAbility();
     }
 
     public void SelectElementInputNormal(InputAction.CallbackContext context)

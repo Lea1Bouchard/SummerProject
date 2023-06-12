@@ -50,7 +50,7 @@ public class MovementAbility : Ability
         }
         else
         {
-            controller.Move(initiator.transform.forward * (speed * Time.deltaTime));
+            controller.Move(initiator.transform.forward * speed/2);
         }
 
         abilityCooldownClass.Initialize(this);

@@ -1,47 +1,61 @@
-void MainLight_float(float3 WorldPos, 
-	out float3 Direction, out float3 Color, out float DistanceAtten, out float ShadowAtten) 
+#ifndef CUSTOM_LIGHTING_INCLUDED
+#define CUSTOM_LIGHTING_INCLUDED
+
+void MainLight_half(float3 WorldPos, out half3 Direction, out half3 Color, out half DistanceAtten, out half ShadowAtten)
 {
 #if SHADERGRAPH_PREVIEW
-	Direction = float3(0.5, 0.5, 0);
-	Color = 1;
-	DistanceAtten = 1;
-	ShadowAtten = 1;
+    Direction = half3(0.5, 0.5, 0);
+    Color = 1;
+    DistanceAtten = 1;
+    ShadowAtten = 1;
 #else
-	Light mainLight = GetMainLight();
-	Direction = mainLight.direction;
-	Color = mainLight.color;
-	DistanceAtten = mainLight.distanceAttenuation;
-
-	float4 shadowCoord = TransformWorldToShadowCoord(WorldPos);
-	ShadowSamplingData shadowSamplingData = GetMainLightShadowSamplingData();
-	half shadowStrength = GetMainLightShadowStrength();
-	ShadowAtten = SampleShadowmap(shadowCoord, TEXTURE2D_ARGS(_MainLightShadowmapTexture,
-		sampler_MainLightShadowmapTexture), shadowSamplingData, shadowStrength, false);
+#if SHADOWS_SCREEN
+    half4 clipPos = TransformWorldToHClip(WorldPos);
+    half4 shadowCoord = ComputeScreenPos(clipPos);
+#else
+    half4 shadowCoord = TransformWorldToShadowCoord(WorldPos);
+#endif
+    Light mainLight = GetMainLight(shadowCoord);
+    Direction = mainLight.direction;
+    Color = mainLight.color;
+    DistanceAtten = mainLight.distanceAttenuation;
+    ShadowAtten = mainLight.shadowAttenuation;
 #endif
 }
 
-void AddAdditionalLights_float(float Smoothness, float3 WorldPosition, float3 WorldNormal, float3 WorldView,
-    float MainDiffuse, float MainSpecular, float3 MainColor,
-    out float Diffuse, out float Specular, out float3 Color) {
-    Diffuse = MainDiffuse;
-    Specular = MainSpecular;
-    Color = MainColor * (MainDiffuse + MainSpecular);
+void DirectSpecular_half(half3 Specular, half Smoothness, half3 Direction, half3 Color, half3 WorldNormal, half3 WorldView, out half3 Out)
+{
+#if SHADERGRAPH_PREVIEW
+    Out = 0;
+#else
+    Smoothness = exp2(10 * Smoothness + 1);
+    WorldNormal = normalize(WorldNormal);
+    WorldView = SafeNormalize(WorldView);
+    Out = LightingSpecular(Color, Direction, WorldNormal, WorldView, half4(Specular, 0), Smoothness);
+#endif
+}
+
+void AdditionalLights_half(half3 SpecColor, half Smoothness, half3 WorldPosition, half3 WorldNormal, half3 WorldView, out half3 Diffuse, out half3 Specular)
+{
+    half3 diffuseColor = 0;
+    half3 specularColor = 0;
 
 #ifndef SHADERGRAPH_PREVIEW
+    Smoothness = exp2(10 * Smoothness + 1);
+    WorldNormal = normalize(WorldNormal);
+    WorldView = SafeNormalize(WorldView);
     int pixelLightCount = GetAdditionalLightsCount();
-    for (int i = 0; i < pixelLightCount; ++i) {
+    for (int i = 0; i < pixelLightCount; ++i)
+    {
         Light light = GetAdditionalLight(i, WorldPosition);
-        half NdotL = saturate(dot(WorldNormal, light.direction));
-        half atten = light.distanceAttenuation * light.shadowAttenuation;
-        half thisDiffuse = atten * NdotL;
-        half thisSpecular = LightingSpecular(thisDiffuse, light.direction, WorldNormal, WorldView, 1, Smoothness);
-        Diffuse += thisDiffuse;
-        Specular += thisSpecular;
-        Color += light.color * (thisDiffuse + thisSpecular);
+        half3 attenuatedLightColor = light.color * (light.distanceAttenuation * light.shadowAttenuation);
+        diffuseColor += LightingLambert(attenuatedLightColor, light.direction, WorldNormal);
+        specularColor += LightingSpecular(attenuatedLightColor, light.direction, WorldNormal, WorldView, half4(SpecColor, 0), Smoothness);
     }
 #endif
 
-    half total = Diffuse + Specular;
-    // If no light touches this pixel, set the color to the main light's color
-    Color = total <= 0 ? MainColor : Color / total;
+    Diffuse = diffuseColor;
+    Specular = specularColor;
 }
+
+#endif

@@ -44,13 +44,11 @@ public class MovementAbility : Ability
 
         if (EnemyStep())
         {
-            controller.enabled = false;
-            initiator.gameObject.transform.position = blinkExit;
-            controller.enabled = true;
+            GoTo();
         }
         else
         {
-            controller.Move(initiator.transform.forward * speed/2);
+            controller.Move(initiator.transform.forward * speed / 2);
         }
 
         abilityCooldownClass.Initialize(this);
@@ -59,6 +57,12 @@ public class MovementAbility : Ability
     private void Teleport()
     {
         initiator.SetTarget(GameObject.FindGameObjectWithTag("TeleportTarget"));
+
+        if (TeleportLocation() != Vector3.zero)
+        {
+            GoTo();
+        }
+
 
         abilityCooldownClass.Initialize(this);
     }
@@ -110,4 +114,62 @@ public class MovementAbility : Ability
         return false;
     }
 
+    private Vector3 TeleportLocation()
+    {
+
+        RaycastHit solid = new RaycastHit();
+        RaycastHit exit = new RaycastHit();
+        RaycastHit safeDistance = new RaycastHit();
+        bool foundExit = false;
+        Vector3 direction = initiator.teleportTarget.transform.position - initiator.transform.position;
+
+        //Check if an enemy is in range
+        if (Physics.Raycast(initiator.transform.position, direction, hitInfo: out solid))
+        {
+            Characters hitCharacter = solid.collider.gameObject.GetComponent<Characters>();
+            if (hitCharacter != null)
+            {
+
+                //Check the exit point of the previous raycast
+                if (Physics.Raycast(solid.point + direction * 5, -direction, hitInfo: out exit))
+                    for (int x = 0; x <= 5; x++)
+                    {
+                        //Check if the exitpoint correspond to the character 
+                        if (exit.collider.gameObject.GetComponent<Characters>() != null)
+                        {
+                            if (exit.collider.gameObject.GetComponent<Characters>() == hitCharacter && exit.point.y >= initiator.transform.position.y)
+                            {
+                                foundExit = true;
+                                break;
+                            }
+                        }
+                        Physics.Raycast(exit.point, solid.point, maxDistance: 20, hitInfo: out exit);
+                    }
+                
+                if (!foundExit)//Trying to teleport to the front
+                    blinkExit = solid.point - direction;
+                else
+                    blinkExit = exit.point + direction;
+
+
+                //Checking if the point where the character teleports is occupied
+
+
+                Physics.Raycast(exit.point, blinkExit - exit.point, out safeDistance, maxDistance: 2);
+
+                if (safeDistance.point == Vector3.zero)
+                {
+                    return safeDistance.point;
+                }
+            }
+        }
+        return Vector3.zero;
+    }
+
+    private void GoTo()
+    {
+        controller.enabled = false;
+        initiator.gameObject.transform.position = blinkExit;
+        controller.enabled = true;
+    }
 }

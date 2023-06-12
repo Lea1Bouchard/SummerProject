@@ -182,6 +182,20 @@
                 },
                 "m_SlotId": 0
             }
+        },
+        {
+            "m_OutputSlot": {
+                "m_Node": {
+                    "m_Id": "eef0d1989aaf4e65b2b8d80f86b0e48a"
+                },
+                "m_SlotId": 3
+            },
+            "m_InputSlot": {
+                "m_Node": {
+                    "m_Id": "2ae837b29d184a99a61b24c23f1b2533"
+                },
+                "m_SlotId": 3
+            }
         }
     ],
     "m_VertexContext": {
@@ -383,6 +397,9 @@
         },
         {
             "m_Id": "b58d664de9694791b9b46ddfa94ddd3d"
+        },
+        {
+            "m_Id": "3f0a8932ebc94ce5a2597834521ebddd"
         }
     ],
     "synonyms": [],
@@ -495,6 +512,21 @@
     ],
     "m_Dropdowns": [],
     "m_DropdownSelectedEntries": []
+}
+
+{
+    "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.Vector1MaterialSlot",
+    "m_ObjectId": "3f0a8932ebc94ce5a2597834521ebddd",
+    "m_Id": 3,
+    "m_DisplayName": "SpecularDot",
+    "m_SlotType": 0,
+    "m_Hidden": false,
+    "m_ShaderOutputName": "SpecularDot",
+    "m_StageCapability": 3,
+    "m_Value": 0.0,
+    "m_DefaultValue": 0.0,
+    "m_Labels": []
 }
 
 {
@@ -713,6 +745,21 @@
 
 {
     "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.Vector1MaterialSlot",
+    "m_ObjectId": "aee77772a5ea40a28a52636dec3b2fa3",
+    "m_Id": 3,
+    "m_DisplayName": "SpecularDot",
+    "m_SlotType": 1,
+    "m_Hidden": false,
+    "m_ShaderOutputName": "SpecularDot",
+    "m_StageCapability": 3,
+    "m_Value": 0.0,
+    "m_DefaultValue": 0.0,
+    "m_Labels": []
+}
+
+{
+    "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.Vector3MaterialSlot",
     "m_ObjectId": "b58d664de9694791b9b46ddfa94ddd3d",
     "m_Id": 2,
@@ -908,6 +955,9 @@
         },
         {
             "m_Id": "e1d264c7019e4bca8de0ca4b7adc3193"
+        },
+        {
+            "m_Id": "aee77772a5ea40a28a52636dec3b2fa3"
         }
     ],
     "synonyms": [],

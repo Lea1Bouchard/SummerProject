@@ -21,7 +21,7 @@ MonoBehaviour:
   abilityType: 0
   distance: 5
   rendersImmortal: 0
-  speed: 5
+  speed: 20
   timeImmortal: 2
   target: {fileID: 0}
   isTeleport: 0

@@ -352,6 +352,17 @@
                 },
                 {
                     "name": "",
+                    "id": "e8ab634d-5039-4bc4-8d2a-00845797fe85",
+                    "path": "<Gamepad>/buttonNorth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Range",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "eaf026aa-e3f0-4e8e-9a31-2b9875c2c7a2",
                     "path": "<Keyboard>/alt",
                     "interactions": "",
@@ -386,7 +397,7 @@
                 {
                     "name": "",
                     "id": "f698fda8-3e32-41cc-a9bc-08fd6b9fce52",
-                    "path": "*/{SecondaryTrigger}",
+                    "path": "<Gamepad>/buttonWest",
                     "interactions": "",
                     "processors": "",
                     "groups": "",

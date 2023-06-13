@@ -195,8 +195,6 @@ public class Player : Characters
         }
         else
         {
-            //TODO : Get the weapon back
-            //teleportAbility.TriggerAbility();
             RetrieveWeapon();
         }
 

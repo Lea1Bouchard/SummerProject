@@ -56,6 +56,8 @@ public class MovementAbility : Ability
 
     private void Teleport()
     {
+        Debug.Log("Teleport Start");
+
         initiator.SetTarget(GameObject.FindGameObjectWithTag("TeleportTarget"));
 
         if (TeleportLocation() != Vector3.zero)
@@ -121,7 +123,7 @@ public class MovementAbility : Ability
         RaycastHit exit = new RaycastHit();
         RaycastHit safeDistance = new RaycastHit();
         bool foundExit = false;
-        Vector3 direction = initiator.teleportTarget.transform.position - initiator.transform.position;
+        Vector3 direction = (initiator.teleportTarget.transform.position - initiator.transform.position).normalized;
 
         //Check if an enemy is in range
         if (Physics.Raycast(initiator.transform.position, direction, hitInfo: out solid))
@@ -129,11 +131,16 @@ public class MovementAbility : Ability
             Characters hitCharacter = solid.collider.gameObject.GetComponent<Characters>();
             if (hitCharacter != null)
             {
-
+                Debug.Log("Target : " + hitCharacter.name);
                 //Check the exit point of the previous raycast
+                Debug.DrawRay(solid.point + direction * 5, -direction, Color.green, 100);
                 if (Physics.Raycast(solid.point + direction * 5, -direction, hitInfo: out exit))
+                {
+
                     for (int x = 0; x <= 5; x++)
                     {
+                        Debug.Log("Loop : " + x);
+                        Debug.Log("Hit this time : " + exit.collider.gameObject.name);
                         //Check if the exitpoint correspond to the character 
                         if (exit.collider.gameObject.GetComponent<Characters>() != null)
                         {
@@ -145,6 +152,8 @@ public class MovementAbility : Ability
                         }
                         Physics.Raycast(exit.point, solid.point, maxDistance: 20, hitInfo: out exit);
                     }
+                }
+                    
                 
                 if (!foundExit)//Trying to teleport to the front
                     blinkExit = solid.point - direction;

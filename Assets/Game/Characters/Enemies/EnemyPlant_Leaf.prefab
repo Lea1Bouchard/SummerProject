@@ -248,10 +248,14 @@ MonoBehaviour:
   weaknesses: 01000000
   affinityResistanceModifier: 0.75
   weaknessModifier: 1.25
-  abilities: []
   animator: {fileID: 4033117738360405976}
   target: {fileID: 0}
+  teleportTarget: {fileID: 0}
   weapon: {fileID: 4033117738507708441}
+  weaponNodes:
+  - {fileID: 4033117738369716254}
+  - {fileID: 4033117738369716242}
+  - {fileID: 4033117738369716258}
   maxRange: 20
   enemyType: 0
   enemyState: 0
@@ -266,6 +270,7 @@ MonoBehaviour:
   meleesAbilities:
   - {fileID: 11400000, guid: 05c0e46ca4e4e2f4893780f3be4a1e31, type: 2}
   rangeAbility: {fileID: 11400000, guid: 59fa888e48f7ec94599df89fd937c2d2, type: 2}
+  spellAbility: {fileID: 0}
 --- !u!114 &4033117737563070651
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -980,8 +985,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2de0d299e3101c4996a0c407252d1b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isActive: 0
   damage: 0
+  range: {x: 0, y: 0, z: 0}
   initiator: {fileID: 0}
   attackElement: 0
 --- !u!65 &4033117738507708443

@@ -166,7 +166,7 @@ public class Player : Characters
             RetrieveWeapon();
         }
 
-        
+
 
     }
 
@@ -224,7 +224,8 @@ public class Player : Characters
 
         weapon.gameObject.SetActive(true);
 
-        Destroy(teleportTarget);
+        if (teleportTarget)
+            Destroy(teleportTarget);
     }
 
 

@@ -101,4 +101,11 @@ public class Projectile : MonoBehaviour
         return closestBone;
     }
 
+    private void OnDestroy()
+    {
+        if(initiator.gameObject.GetComponent<Player>())
+        {
+            initiator.SetTeleportTarget(null);
+        }
+    }
 }

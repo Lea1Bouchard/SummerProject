@@ -58,12 +58,13 @@ public class MovementAbility : Ability
     {
         Debug.Log("Teleport Start");
 
-        initiator.SetTarget(GameObject.FindGameObjectWithTag("TeleportTarget"));
+        initiator.SetTeleportTarget(GameObject.FindGameObjectWithTag("TeleportTarget"));
 
-        if (TeleportLocation() != Vector3.zero)
-        {
-            GoTo();
-        }
+        if (initiator.teleportTarget != null)
+            if (TeleportLocation() != Vector3.zero)
+            {
+                GoTo();
+            }
 
 
         abilityCooldownClass.Initialize(this);
@@ -153,10 +154,10 @@ public class MovementAbility : Ability
                         Physics.Raycast(exit.point, -direction, maxDistance: 20, hitInfo: out exit);
                     }
                 }
-                    
-                
 
-                if(foundExit)
+
+
+                if (foundExit)
                 {
                     blinkExit = exit.point + (direction * 2);
                     Physics.Raycast(exit.point, blinkExit - exit.point, out safeDistance, maxDistance: 2);
@@ -174,9 +175,9 @@ public class MovementAbility : Ability
                 Physics.Raycast(solid.point, blinkExit - solid.point, out safeDistance, maxDistance: 2);
                 if (safeDistance.point == Vector3.zero)
                 {
-                        return blinkExit;
+                    return blinkExit;
                 }
-                
+
 
             }
         }

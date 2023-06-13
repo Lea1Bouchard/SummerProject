@@ -74,7 +74,7 @@ public class Characters : MonoBehaviour
         weapon.Deactivate();
     }
     //Called in teleport ability
-    public void SetTarget(GameObject obj)
+    public void SetTeleportTarget(GameObject obj)
     {
         teleportTarget = obj;
     }

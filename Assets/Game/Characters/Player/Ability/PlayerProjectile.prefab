@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 6692848061692881659}
   - component: {fileID: 7952094209886239122}
   m_Layer: 0
-  m_Name: Projectile_Prefab
+  m_Name: PlayerProjectile
   m_TagString: TeleportTarget
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

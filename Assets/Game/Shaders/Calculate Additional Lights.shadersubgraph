@@ -88,6 +88,20 @@
         {
             "m_OutputSlot": {
                 "m_Node": {
+                    "m_Id": "36b4ad16a0434d1797435b41c9b71a91"
+                },
+                "m_SlotId": 7
+            },
+            "m_InputSlot": {
+                "m_Node": {
+                    "m_Id": "53175596cc30481ca35d5e614a0a3375"
+                },
+                "m_SlotId": 3
+            }
+        },
+        {
+            "m_OutputSlot": {
+                "m_Node": {
                     "m_Id": "4bc76f8246d44eefb66911ac7544ae9d"
                 },
                 "m_SlotId": 0
@@ -270,6 +284,9 @@
         },
         {
             "m_Id": "57d00bdcad4d49fab477fb2ea6d500f8"
+        },
+        {
+            "m_Id": "d7087bb995a5472e93202ed5f13ce847"
         }
     ],
     "synonyms": [
@@ -385,6 +402,9 @@
         },
         {
             "m_Id": "e02bb28ec102413c842a713e671cf9b5"
+        },
+        {
+            "m_Id": "a6961b34b81f49d29fb73e062ebf972f"
         }
     ],
     "synonyms": [],
@@ -571,6 +591,29 @@
 
 {
     "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.Vector3MaterialSlot",
+    "m_ObjectId": "a6961b34b81f49d29fb73e062ebf972f",
+    "m_Id": 3,
+    "m_DisplayName": "LightColor",
+    "m_SlotType": 0,
+    "m_Hidden": false,
+    "m_ShaderOutputName": "LightColor",
+    "m_StageCapability": 3,
+    "m_Value": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+    },
+    "m_DefaultValue": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+    },
+    "m_Labels": []
+}
+
+{
+    "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.PropertyNode",
     "m_ObjectId": "ae16f45cd49e4313888c4256f3028ae7",
     "m_Group": {
@@ -718,6 +761,29 @@
         "m_SerializableColors": []
     },
     "m_Space": 2
+}
+
+{
+    "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.Vector3MaterialSlot",
+    "m_ObjectId": "d7087bb995a5472e93202ed5f13ce847",
+    "m_Id": 7,
+    "m_DisplayName": "LightColor",
+    "m_SlotType": 1,
+    "m_Hidden": false,
+    "m_ShaderOutputName": "LightColor",
+    "m_StageCapability": 3,
+    "m_Value": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+    },
+    "m_DefaultValue": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+    },
+    "m_Labels": []
 }
 
 {

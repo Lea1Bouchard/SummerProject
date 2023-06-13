@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[ExecuteInEditMode]
 public class AISensor : MonoBehaviour
 {
     public float distance = 10;
@@ -171,7 +170,7 @@ public class AISensor : MonoBehaviour
         scanInterval = 1.0f / scanFrequency;
 
     }
-
+    /*
     private void OnDrawGizmos()
     {
         if (mesh)
@@ -191,5 +190,5 @@ public class AISensor : MonoBehaviour
         {
             Gizmos.DrawSphere(obj.transform.position, 0.2f);
         }
-    }
+    }*/
 }

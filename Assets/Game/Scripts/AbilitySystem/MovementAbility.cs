@@ -150,26 +150,34 @@ public class MovementAbility : Ability
                                 break;
                             }
                         }
-                        Physics.Raycast(exit.point, solid.point, maxDistance: 20, hitInfo: out exit);
+                        Physics.Raycast(exit.point, -direction, maxDistance: 20, hitInfo: out exit);
                     }
                 }
                     
                 
-                if (!foundExit)//Trying to teleport to the front
-                    blinkExit = solid.point - direction;
-                else
-                    blinkExit = exit.point + direction;
 
+                if(foundExit)
+                {
+                    blinkExit = exit.point + (direction * 2);
+                    Physics.Raycast(exit.point, blinkExit - exit.point, out safeDistance, maxDistance: 2);
 
-                //Checking if the point where the character teleports is occupied
+                    Debug.Log(safeDistance.point);
 
+                    if (safeDistance.point == Vector3.zero)
+                    {
+                        return blinkExit;
+                    }
+                }
 
-                Physics.Raycast(exit.point, blinkExit - exit.point, out safeDistance, maxDistance: 2);
-
+                //This part won't be reached if the backside exit point works
+                blinkExit = solid.point - (direction * 2);
+                Physics.Raycast(solid.point, blinkExit - solid.point, out safeDistance, maxDistance: 2);
                 if (safeDistance.point == Vector3.zero)
                 {
-                    return safeDistance.point;
+                        return blinkExit;
                 }
+                
+
             }
         }
         return Vector3.zero;

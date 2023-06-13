@@ -63,10 +63,8 @@ public class Projectile : MonoBehaviour
             {
                 hit.ReceiveDamage(attackElement, damage);
 
-                ProjectileStick(GetClosestBone(hit, other.ClosestPoint(transform.position)));
-
-                gameObject.GetComponent<Collider>().enabled = false;
-                Destroy(rigidb);
+                if (initiator.gameObject.GetComponent<Player>())
+                    ProjectileStick(GetClosestBone(hit, other.ClosestPoint(transform.position)));
             }
 
             if (range > 0)
@@ -80,6 +78,9 @@ public class Projectile : MonoBehaviour
         transform.LookAt(bone);
         transform.position = bone.position;
         transform.parent = bone;
+
+        gameObject.GetComponent<Collider>().enabled = false;
+        Destroy(rigidb);
     }
 
     private Transform GetClosestBone(Characters hitChar, Vector3 hitPosition)

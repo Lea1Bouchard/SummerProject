@@ -18,8 +18,12 @@ public class Characters : MonoBehaviour
     private bool isDead = false;
 
     public Characters target;
+    public GameObject teleportTarget;
     public MeleeWeapon weapon;
     public Transform targetLocation;
+
+    [Header("Weapon Nodes")]
+    public Transform[] weaponNodes;
 
     /* Methods */
     //Add Ability and Target in function parameter when created
@@ -65,6 +69,21 @@ public class Characters : MonoBehaviour
         isDead = true;
         Animator.SetTrigger("Death");
         Destroy(this.gameObject, 1.5f);
+    }
+
+    public void ActivateWeapon()
+    {
+        weapon.Activate();
+    }
+
+    public void DeactivateWeapon()
+    {
+        weapon.Deactivate();
+    }
+    //Called in teleport ability
+    public void SetTeleportTarget(GameObject obj)
+    {
+        teleportTarget = obj;
     }
 
     /* Getters / Setters */

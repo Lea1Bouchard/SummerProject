@@ -22,11 +22,16 @@ public class Player : Characters
     private float lineOfSightDistance;
     private float lineOfSightRadius;
 
+    private bool weaponTrown;
+
+    private PlayerInputHandler _input;
+
     private RaycastHit raycastHit;
 
     Dictionary<Elements, Elements> opposingElements;
 
     [SerializeField] private List<Ability> abilities;
+    [SerializeField] private MovementAbility teleportAbility;
 
     public static Player Instance
     {
@@ -60,6 +65,8 @@ public class Player : Characters
         hasEnemyInLineOfSight = false;
         lineOfSightDistance = 15f;
         lineOfSightRadius = 15f;
+
+        weaponTrown = false;
     }
 
     private void Awake()
@@ -83,11 +90,24 @@ public class Player : Characters
         opposingElements.Add(Elements.Darkness, Elements.Light);
 
         opposingElements.Add(Elements.Null, Elements.Null);
+
+        InitializeAbilities();
     }
 
     private void Update()
     {
         DetectEnemiesInLineOfSight();
+    }
+
+    private void InitializeAbilities()
+    {
+        foreach (Ability ability in abilities)
+        {
+            Debug.Log("Initializing : " + ability.abilityName);
+            ability.Initialize(this);
+        }
+
+        teleportAbility.Initialize(this);
     }
 
     public void ChangeWeaponElement(Elements newElement)
@@ -132,6 +152,88 @@ public class Player : Characters
         target = enemy;
         //TODO : Set special sidestep movement to keep an eye on the target
     }
+
+    public void RangedAbility()
+    {
+        //TODO : Verify if this is the best way to do it
+
+        if (!weaponTrown)
+        {
+            Ability currAbility = abilities.Find((x) => x.abilityType == TypeOfAbility.Ranged);
+            currAbility.TriggerAbility();
+
+            Debug.Log(currAbility.abilityName);
+
+            ThrowWeapon();
+        }
+        else
+        {
+            teleportAbility.TriggerAbility();
+            RetrieveWeapon();
+        }
+
+
+
+    }
+
+    public void DodgeAbility()
+    {
+        //TODO : Verify if this is the best way to do it
+
+        Ability currAbility = abilities.Find((x) => x.abilityType == TypeOfAbility.Movement);
+        currAbility.TriggerAbility();
+
+        Debug.Log(currAbility.abilityName);
+        Debug.Log("Dodge");
+    }
+
+    public void MeleeAbility()
+    {
+        //TODO : Verify if this is the best way to do it
+        if (!weaponTrown)
+        {
+
+            Ability currAbility = abilities.Find((x) => x.abilityType == TypeOfAbility.Melee);
+            currAbility.TriggerAbility();
+
+            Debug.Log(currAbility.abilityName);
+
+        }
+        else
+        {
+            RetrieveWeapon();
+        }
+
+        Debug.Log("Melee");
+
+    }
+
+    //Called in animation
+    public void TeleportToTarget()
+    {
+        CharacterController controller = gameObject.GetComponent<CharacterController>();
+        controller.enabled = false;
+        gameObject.transform.position = teleportTarget.transform.position;
+        controller.enabled = true;
+    }
+
+    private void ThrowWeapon()
+    {
+        weaponTrown = true;
+
+        weapon.gameObject.SetActive(false);
+    }
+
+    private void RetrieveWeapon()
+    {
+        weaponTrown = false;
+
+        weapon.gameObject.SetActive(true);
+
+        if (teleportTarget)
+            Destroy(teleportTarget);
+    }
+
 
     /* Getters / Setters */
     #region getter/setter

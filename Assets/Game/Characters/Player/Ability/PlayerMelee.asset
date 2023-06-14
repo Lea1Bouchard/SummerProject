@@ -9,18 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 459a0bbee2e66c84ca6c12ca60fff8e2, type: 3}
-  m_Name: TesAbility
+  m_Script: {fileID: 11500000, guid: 6dea8b0b67d61d04db7de8bf01332994, type: 3}
+  m_Name: PlayerMelee
   m_EditorClassIdentifier: 
-  abilityName: Tes
+  abilityName: PlayerMelee
   abilityCost: 0
   abilitySound: {fileID: 0}
-  abilityCooldownTime: 1
-  animationStateName: 
-  baseDamage: 5
-  abilityType: 2
-  timeToLive: 5
-  speed: 2
-  force: 5
-  projectile: {fileID: 5348052858440426451, guid: 6d6ec581446013947bb375a817a980f2,
-    type: 3}
+  abilityCooldownTime: 0
+  animationStateName: MeleeAttack
+  baseDamage: 10
+  abilityType: 1

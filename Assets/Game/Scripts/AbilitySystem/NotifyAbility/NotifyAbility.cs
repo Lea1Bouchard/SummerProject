@@ -2,38 +2,28 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Abilities/MeleeAbility")]
-public class MeleeAbility : Ability
+[CreateAssetMenu(menuName = "Abilities/NotifyAbility")]
+public class NotifyAbility : Ability
 {
-    private MeleeWeapon weapon;
+    [Header("Notification Zone")]
 
+    public GameObject NotifyPrefab;
+    private GameObject NotifyClone;
     public override void Initialize(Characters ini)
     {
         animator = ini.GetComponent<Animator>();
         initiator = ini;
-        LoadWeaponAttribute();
-        abilityType = Enums.TypeOfAbility.Melee;
         abilityCooldownClass = initiator.gameObject.AddComponent<AbilityCooldown>();
     }
-
 
     public override void TriggerAbility()
     {
         if (CheckState())
         {
             isActive = true;
+            NotifyClone = Instantiate(NotifyPrefab, initiator.transform);
             Animate();
             abilityCooldownClass.Initialize(this);
         }
     }
-
-    private void LoadWeaponAttribute()
-    {
-        weapon = initiator.weapon;
-        weapon.damage = baseDamage;
-        weapon.initiator = initiator;
-        weapon.attackElement = attackElement;
-        weapon.Deactivate();
-    }
-
 }

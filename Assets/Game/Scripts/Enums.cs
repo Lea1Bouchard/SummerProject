@@ -54,8 +54,8 @@ namespace Enums
     public enum TypeOfAbility
     {
         Movement,
-        melee,
-        ranged
+        Melee,
+        Ranged
 
     }
 

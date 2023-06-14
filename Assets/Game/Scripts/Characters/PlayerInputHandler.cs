@@ -74,6 +74,12 @@ public class PlayerInputHandler : MonoBehaviour
             Player.Instance.MeleeAbility();
     }
 
+    public void OnLockOn(InputAction.CallbackContext value)
+    {
+        if (value.performed)
+            Player.Instance.SetTarget(Player.Instance.gameObject.GetComponent<EnemyLockOn>().GetTarget());
+    }
+
     public void SelectElementInputNormal(InputAction.CallbackContext context)
     {
         Vector2 vector = context.ReadValue<Vector2>();

@@ -127,6 +127,12 @@ public class Player : Characters
         animator.ResetTrigger("MeleeAttack");
     }
 
+    public void SetTarget(Characters enemy)
+    {
+        target = enemy;
+        //TODO : Set special sidestep movement to keep an eye on the target
+    }
+
     /* Getters / Setters */
     #region getter/setter
     public MovementState MovementState { get => movementState; set => movementState = value; }

@@ -19,6 +19,7 @@ public class Characters : MonoBehaviour
 
     public Characters target;
     public MeleeWeapon weapon;
+    public Transform targetLocation;
 
     /* Methods */
     //Add Ability and Target in function parameter when created

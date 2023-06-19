@@ -42,6 +42,7 @@ public class EnemyLockOn : MonoBehaviour
             if (BlockCheck(player.target.targetLocation) || RangeCheck(player.target.targetLocation))
             {
                 cinemachineAnimator.SetBool("Targeted", false);
+                lockOnCamera.LookAt = null;
                 player.target = null;
             }
         }
@@ -50,15 +51,12 @@ public class EnemyLockOn : MonoBehaviour
 
     public Characters GetTarget()
     {
-        Debug.Log("Trying to get a target");
-
         Collider[] nearbyTargets = Physics.OverlapSphere(player.transform.position, noticeZone, targetLayers);
         float closestAngle = maxAngle;
         Characters currentClosest = null;
 
         if (nearbyTargets.Length <= 0)
         {
-            Debug.Log("No enemies D: ");
             return null;
         }
             
@@ -71,10 +69,8 @@ public class EnemyLockOn : MonoBehaviour
 
             if(angle < closestAngle)
             {
-                Debug.Log("angle ok");
                 if (!BlockCheck(collider.gameObject.GetComponent<Characters>().targetLocation))
                 {
-                    Debug.Log("new closest");
                     closestAngle = angle;
                     currentClosest = collider.gameObject.GetComponent<Characters>();
                 }
@@ -85,11 +81,10 @@ public class EnemyLockOn : MonoBehaviour
 
         if (!currentClosest)
         {
-            Debug.Log("No closest, fk u");
             return null;
         }
 
-        Debug.Log("Targeted");
+        lockOnCamera.LookAt = currentClosest.targetLocation;
         cinemachineAnimator.SetBool("Targeted", true);
         return currentClosest;
     }

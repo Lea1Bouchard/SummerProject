@@ -36,6 +36,7 @@ public class EnemyLockOn : MonoBehaviour
 
     void Update()
     {
+        
         if(player.target != null)
         {
             if (BlockCheck(player.target.targetLocation) || RangeCheck(player.target.targetLocation))
@@ -44,6 +45,7 @@ public class EnemyLockOn : MonoBehaviour
                 player.target = null;
             }
         }
+        
     }
 
     public Characters GetTarget()
@@ -86,16 +88,16 @@ public class EnemyLockOn : MonoBehaviour
             Debug.Log("No closest, fk u");
             return null;
         }
-            
 
+        Debug.Log("Targeted");
         cinemachineAnimator.SetBool("Targeted", true);
         return currentClosest;
     }
 
     private bool BlockCheck(Transform thingToCheck)
     {
-        //TODO : check the layers to ignore enemy layer
-        if (Physics.Linecast(player.transform.position, thingToCheck.position, targetLayers))
+
+        if (Physics.Linecast(player.transform.position + new Vector3(0, 1, 0), thingToCheck.position, ~targetLayers))
             return true;
 
         return false;
@@ -105,8 +107,8 @@ public class EnemyLockOn : MonoBehaviour
     {
         float distance = (player.transform.position - thingToCheck.position).magnitude;
         if (distance / 2 > noticeZone) 
-            return false; 
+            return true; 
         else 
-            return true;
+            return false;
     }
 }

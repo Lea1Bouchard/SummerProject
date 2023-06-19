@@ -251,11 +251,13 @@ MonoBehaviour:
   target: {fileID: 0}
   teleportTarget: {fileID: 0}
   weapon: {fileID: 4033117738507708441}
+  targetLocation: {fileID: 4033117738369716242}
   weaponNodes:
   - {fileID: 4033117738369716254}
   - {fileID: 4033117738369716242}
   - {fileID: 4033117738369716258}
   maxRange: 20
+  meleeRange: 0
   enemyType: 0
   enemyState: 0
   isInFight: 0
@@ -269,21 +271,9 @@ MonoBehaviour:
   meleesAbilities:
   - {fileID: 11400000, guid: 05c0e46ca4e4e2f4893780f3be4a1e31, type: 2}
   rangeAbility: {fileID: 11400000, guid: 59fa888e48f7ec94599df89fd937c2d2, type: 2}
+  spellAbility: {fileID: 0}
   navAgent: {fileID: 0}
   maxWalkDistance: 50
-  spellAbility: {fileID: 0}
---- !u!114 &4033117737563070651
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4033117738369879048}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e6c1f366d3aae4147ab037b5c37ee034, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &4033117737563070650
 MonoBehaviour:
   m_ObjectHideFlags: 0

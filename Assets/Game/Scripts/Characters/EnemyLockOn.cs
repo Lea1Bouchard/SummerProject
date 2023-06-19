@@ -24,13 +24,13 @@ public class EnemyLockOn : MonoBehaviour
     private Transform cam;
 
     [SerializeField] private Cinemachine.CinemachineVirtualCamera lockOnCamera;
-    [SerializeField] private Transform lockOnCanvas;
+    [SerializeField] private Canvas lockOnCanvas;
 
     void Start()
     {
         player = Player.Instance;
         cam = Camera.main.transform;
-        //lockOnCanvas.gameObject.SetActive(false);
+        lockOnCanvas.gameObject.SetActive(false);
 
     }
 
@@ -42,6 +42,7 @@ public class EnemyLockOn : MonoBehaviour
             if (BlockCheck(player.target.targetLocation) || RangeCheck(player.target.targetLocation))
             {
                 cinemachineAnimator.SetBool("Targeted", false);
+                lockOnCanvas.gameObject.SetActive(false);
                 lockOnCamera.LookAt = null;
                 player.target = null;
             }
@@ -91,7 +92,6 @@ public class EnemyLockOn : MonoBehaviour
 
     private bool BlockCheck(Transform thingToCheck)
     {
-
         if (Physics.Linecast(player.transform.position + new Vector3(0, 1, 0), thingToCheck.position, ~targetLayers))
             return true;
 
@@ -105,5 +105,10 @@ public class EnemyLockOn : MonoBehaviour
             return true; 
         else 
             return false;
+    }
+
+    public void ActivateLockonCanvas()
+    {
+        lockOnCanvas.gameObject.SetActive(true);
     }
 }

@@ -150,6 +150,9 @@ public class Player : Characters
     public void SetTarget(Characters enemy)
     {
         target = enemy;
+        //Automaticly deactivate when player has no target
+        gameObject.GetComponent<EnemyLockOn>().ActivateLockonCanvas();
+
         //TODO : Set special sidestep movement to keep an eye on the target
     }
 

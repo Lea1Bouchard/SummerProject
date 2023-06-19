@@ -8,15 +8,20 @@ public class TargetUiRotation : MonoBehaviour
     private Transform targetLocation;
     private Player player;
 
-    private void Start()
+    private void Awake()
     {
         player = Player.Instance;
     }
 
     private void OnEnable()
     {
-        targetLocation = player.target.targetLocation;
-        StartCoroutine(LookAtCamera());
+        if (player)
+        {
+            targetLocation = player.target.targetLocation;
+            StartCoroutine(LookAtCamera());
+        }
+        else
+            Debug.Log("idk what's going on, tbh...");
     }
 
     private IEnumerator LookAtCamera()

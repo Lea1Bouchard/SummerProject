@@ -19,8 +19,6 @@ public class EnemyLockOn : MonoBehaviour
     [Tooltip("Angle degree")]
     [SerializeField] private float maxAngle = 60;
 
-    [SerializeField] private float crossHair_Scale = 0.01f;
-
     private Transform cam;
 
     [SerializeField] private Cinemachine.CinemachineVirtualCamera lockOnCamera;

@@ -150,6 +150,8 @@ public class Player : Characters
     public void SetTarget(Characters enemy)
     {
         target = enemy;
+
+        Debug.Log("Enemy targeted : " + target.name);
         //Automaticly deactivate when player has no target
         gameObject.GetComponent<EnemyLockOn>().ActivateLockonCanvas();
 

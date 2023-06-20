@@ -9,6 +9,7 @@ public class EnemyLockOn : MonoBehaviour
     private Player player;
 
     [SerializeField] private LayerMask targetLayers;
+    [SerializeField] private LayerMask ignoreLayer;
 
     [Tooltip("StateDrivenMethod for Switching Cameras")]
     [SerializeField] private Animator cinemachineAnimator;
@@ -90,7 +91,7 @@ public class EnemyLockOn : MonoBehaviour
 
     private bool BlockCheck(Transform thingToCheck)
     {
-        if (Physics.Linecast(player.transform.position + new Vector3(0, 1, 0), thingToCheck.position, ~targetLayers))
+        if (Physics.Linecast(player.transform.position + new Vector3(0, 1, 0), thingToCheck.position, ~ignoreLayer))
             return true;
 
         return false;

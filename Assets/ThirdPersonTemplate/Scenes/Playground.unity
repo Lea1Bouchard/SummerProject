@@ -1005,6 +1005,9 @@ MonoBehaviour:
   targetLayers:
     serializedVersion: 2
     m_Bits: 8
+  ignoreLayer:
+    serializedVersion: 2
+    m_Bits: 12
   cinemachineAnimator: {fileID: 268775914}
   zeroVert_Look: 0
   noticeZone: 10

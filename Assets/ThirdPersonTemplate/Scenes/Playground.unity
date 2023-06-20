@@ -1009,7 +1009,6 @@ MonoBehaviour:
   zeroVert_Look: 0
   noticeZone: 10
   maxAngle: 60
-  crossHair_Scale: 0.01
   lockOnCamera: {fileID: 1443076877}
   lockOnCanvas: {fileID: 1570052634}
 --- !u!1 &372845039
@@ -1253,12 +1252,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 591583337}
   m_CullTransparentMesh: 1
---- !u!4 &608586119 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4166986637303234356, guid: 3cf36580647170d4dbd79afb10ad24a6,
-    type: 3}
-  m_PrefabInstance: {fileID: 664446224}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &660756447
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1499,7 +1492,7 @@ PrefabInstance:
     - target: {fileID: 2027077787, guid: 3cf36580647170d4dbd79afb10ad24a6, type: 3}
       propertyPath: targetLocation
       value: 
-      objectReference: {fileID: 608586119}
+      objectReference: {fileID: 1085332054}
     - target: {fileID: 2027077787, guid: 3cf36580647170d4dbd79afb10ad24a6, type: 3}
       propertyPath: teleportAbility
       value: 
@@ -2271,6 +2264,12 @@ Transform:
   m_Father: {fileID: 2114283753834967213}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &1085332054 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1047965186596693884, guid: 3cf36580647170d4dbd79afb10ad24a6,
+    type: 3}
+  m_PrefabInstance: {fileID: 664446224}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1136812440
 GameObject:
   m_ObjectHideFlags: 0

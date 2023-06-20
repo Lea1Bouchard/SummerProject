@@ -31,7 +31,7 @@ public class Projectile : MonoBehaviour
     {
         if (target != null)
         {
-            transform.LookAt(target.gameObject.transform);
+            transform.LookAt(target.targetLocation.gameObject.transform);
             rigidb.velocity = transform.forward * speed;
         }
         else

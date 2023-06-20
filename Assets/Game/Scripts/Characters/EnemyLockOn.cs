@@ -21,6 +21,7 @@ public class EnemyLockOn : MonoBehaviour
     [SerializeField] private float maxAngle = 60;
 
     private Transform cam;
+    private List<Characters> nearbyEnemies;
 
     [SerializeField] private Cinemachine.CinemachineVirtualCamera lockOnCamera;
     [SerializeField] private Canvas lockOnCanvas;
@@ -35,8 +36,8 @@ public class EnemyLockOn : MonoBehaviour
 
     void Update()
     {
-        
-        if(player.target != null)
+
+        if (player.target != null)
         {
             if (BlockCheck(player.target.targetLocation) || RangeCheck(player.target.targetLocation))
             {
@@ -44,7 +45,7 @@ public class EnemyLockOn : MonoBehaviour
                 player.target = null;
             }
         }
-        
+
     }
 
     public Characters GetTarget()
@@ -57,22 +58,24 @@ public class EnemyLockOn : MonoBehaviour
         {
             return null;
         }
-            
 
-        foreach(Collider collider in nearbyTargets)
+
+        foreach (Collider collider in nearbyTargets)
         {
             Vector3 direction = collider.transform.position - cam.position;
             direction.y = 0;
             float angle = Vector3.Angle(cam.forward, direction);
 
-            if(angle < closestAngle)
+            nearbyEnemies.Add(collider.gameObject.GetComponent<Characters>());
+
+            if (angle < closestAngle)
             {
                 if (!BlockCheck(collider.gameObject.GetComponent<Characters>().targetLocation))
                 {
                     closestAngle = angle;
                     currentClosest = collider.gameObject.GetComponent<Characters>();
                 }
-                
+
             }
 
         }
@@ -93,7 +96,7 @@ public class EnemyLockOn : MonoBehaviour
         {
             return true;
         }
-            
+
 
         return false;
     }
@@ -101,9 +104,9 @@ public class EnemyLockOn : MonoBehaviour
     private bool RangeCheck(Transform thingToCheck)
     {
         float distance = (player.transform.position - thingToCheck.position).magnitude;
-        if (distance / 2 > noticeZone) 
-            return true; 
-        else 
+        if (distance / 2 > noticeZone)
+            return true;
+        else
             return false;
     }
 
@@ -117,5 +120,30 @@ public class EnemyLockOn : MonoBehaviour
         cinemachineAnimator.SetBool("Targeted", false);
         lockOnCanvas.gameObject.SetActive(false);
         lockOnCamera.LookAt = null;
+    }
+
+    public void NextTarget()
+    {
+        int currentIndex = 0;
+
+        foreach (Characters enemie in nearbyEnemies)
+        {
+            if (enemie == player.target)
+            {
+                Debug.Log("Current enemy index : " + currentIndex);
+
+                break;
+            }
+            currentIndex++;
+        }
+
+        currentIndex++;
+
+        if (nearbyEnemies.Count >= currentIndex + 1)
+            currentIndex = 0;
+
+        lockOnCanvas.enabled = false;
+        Debug.Log("New index : " + currentIndex);
+        player.SetTarget(nearbyEnemies[currentIndex]);
     }
 }

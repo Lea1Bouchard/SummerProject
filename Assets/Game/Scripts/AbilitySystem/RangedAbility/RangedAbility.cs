@@ -13,7 +13,7 @@ public class RangedAbility : Ability
     private Projectile projectileScript;
 
     public override void Initialize(Characters ini)
-    { 
+    {
         isActive = false;
         initiator = ini;
         animator = ini.GetComponent<Animator>();
@@ -33,7 +33,7 @@ public class RangedAbility : Ability
             Animate();
         }
     }
-    
+
 
     public void ProjectileDestroyed()
     {

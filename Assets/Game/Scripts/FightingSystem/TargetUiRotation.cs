@@ -15,18 +15,13 @@ public class TargetUiRotation : MonoBehaviour
 
     private void OnEnable()
     {
-        if (player)
-        {
-            targetLocation = player.target.targetLocation;
-            StartCoroutine(LookAtCamera());
-        }
-        else
-            Debug.Log("idk what's going on, tbh...");
+        targetLocation = player.target.targetLocation;
+        StartCoroutine(LookAtCamera());
     }
 
     private IEnumerator LookAtCamera()
     {
-        while(gameObject.activeInHierarchy)
+        while (gameObject.activeInHierarchy)
         {
             this.gameObject.transform.position = targetLocation.position;
 

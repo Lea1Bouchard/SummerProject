@@ -79,6 +79,11 @@ public class PlayerInputHandler : MonoBehaviour
         if (value.performed)
             Player.Instance.UseTargetting();
     }
+    public void OnNextTarget(InputAction.CallbackContext value)
+    {
+        if (value.performed)
+            Player.Instance.ChangeTarget();
+    }
 
     public void SelectElementInputNormal(InputAction.CallbackContext context)
     {

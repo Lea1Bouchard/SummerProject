@@ -254,6 +254,12 @@ public class Player : Characters
         }
     }
 
+    public void ChangeTarget()
+    {
+
+        gameObject.GetComponent<EnemyLockOn>().NextTarget();
+    }
+
 
     /* Getters / Setters */
     #region getter/setter

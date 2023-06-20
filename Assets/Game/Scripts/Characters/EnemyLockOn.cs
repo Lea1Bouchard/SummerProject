@@ -40,9 +40,7 @@ public class EnemyLockOn : MonoBehaviour
         {
             if (BlockCheck(player.target.targetLocation) || RangeCheck(player.target.targetLocation))
             {
-                cinemachineAnimator.SetBool("Targeted", false);
-                lockOnCanvas.gameObject.SetActive(false);
-                lockOnCamera.LookAt = null;
+                Unfocus();
                 player.target = null;
             }
         }
@@ -93,7 +91,6 @@ public class EnemyLockOn : MonoBehaviour
     {
         if (Physics.Linecast(player.transform.position + new Vector3(0, 1, 0), thingToCheck.position, ~ignoreLayer))
         {
-            Debug.Log("LOS broken");
             return true;
         }
             
@@ -113,5 +110,12 @@ public class EnemyLockOn : MonoBehaviour
     public void ActivateLockonCanvas()
     {
         lockOnCanvas.gameObject.SetActive(true);
+    }
+
+    public void Unfocus()
+    {
+        cinemachineAnimator.SetBool("Targeted", false);
+        lockOnCanvas.gameObject.SetActive(false);
+        lockOnCamera.LookAt = null;
     }
 }

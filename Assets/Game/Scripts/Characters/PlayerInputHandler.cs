@@ -77,7 +77,7 @@ public class PlayerInputHandler : MonoBehaviour
     public void OnLockOn(InputAction.CallbackContext value)
     {
         if (value.performed)
-            Player.Instance.SetTarget(Player.Instance.gameObject.GetComponent<EnemyLockOn>().GetTarget());
+            Player.Instance.UseTargetting();
     }
 
     public void SelectElementInputNormal(InputAction.CallbackContext context)

@@ -239,6 +239,21 @@ public class Player : Characters
             Destroy(teleportTarget);
     }
 
+    public void UseTargetting()
+    {
+        if (target == null)
+        {
+            Debug.Log("Target set");
+            SetTarget(gameObject.GetComponent<EnemyLockOn>().GetTarget());
+        }
+        else
+        {
+            Debug.Log("Target lost");
+            target = null;
+            gameObject.GetComponent<EnemyLockOn>().Unfocus();
+        }
+    }
+
 
     /* Getters / Setters */
     #region getter/setter

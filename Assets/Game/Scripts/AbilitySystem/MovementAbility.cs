@@ -56,15 +56,15 @@ public class MovementAbility : Ability
 
     private void Teleport()
     {
-        Debug.Log("Teleport Start");
 
         initiator.SetTeleportTarget(GameObject.FindGameObjectWithTag("TeleportTarget"));
 
         if (initiator.teleportTarget != null)
+        {
+            Debug.Log("Teleport target good");
             if (TeleportLocation() != Vector3.zero)
-            {
                 GoTo();
-            }
+        }
 
 
         abilityCooldownClass.Initialize(this);
@@ -127,21 +127,17 @@ public class MovementAbility : Ability
         Vector3 direction = (initiator.teleportTarget.transform.position - initiator.transform.position).normalized;
 
         //Check if an enemy is in range
-        if (Physics.Raycast(initiator.transform.position, direction, hitInfo: out solid))
+        if (Physics.Linecast(initiator.transform.position, initiator.teleportTarget.transform.position, hitInfo: out solid))
         {
             Characters hitCharacter = solid.collider.gameObject.GetComponent<Characters>();
             if (hitCharacter != null)
             {
-                Debug.Log("Target : " + hitCharacter.name);
                 //Check the exit point of the previous raycast
-                Debug.DrawRay(solid.point + direction * 5, -direction, Color.green, 100);
                 if (Physics.Raycast(solid.point + direction * 5, -direction, hitInfo: out exit))
                 {
 
                     for (int x = 0; x <= 5; x++)
                     {
-                        Debug.Log("Loop : " + x);
-                        Debug.Log("Hit this time : " + exit.collider.gameObject.name);
                         //Check if the exitpoint correspond to the character 
                         if (exit.collider.gameObject.GetComponent<Characters>() != null)
                         {
@@ -154,33 +150,51 @@ public class MovementAbility : Ability
                         Physics.Raycast(exit.point, -direction, maxDistance: 20, hitInfo: out exit);
                     }
                 }
-
-
-
-                if (foundExit)
-                {
-                    blinkExit = exit.point + (direction * 2);
-                    Physics.Raycast(exit.point, blinkExit - exit.point, out safeDistance, maxDistance: 2);
-
-                    Debug.Log(safeDistance.point);
-
-                    if (safeDistance.point == Vector3.zero)
-                    {
-                        return blinkExit;
-                    }
-                }
-
-                //This part won't be reached if the backside exit point works
-                blinkExit = solid.point - (direction * 2);
-                Physics.Raycast(solid.point, blinkExit - solid.point, out safeDistance, maxDistance: 2);
-                if (safeDistance.point == Vector3.zero)
-                {
-                    return blinkExit;
-                }
-
+                
+                return SafeDistance(exit, solid, direction, foundExit);
 
             }
         }
+        else
+        {
+            return FrontSafeDistanceCheck(initiator.teleportTarget.transform.position, direction);
+        }
+        return Vector3.zero;
+    }
+
+    private Vector3 SafeDistance(RaycastHit exit, RaycastHit solid, Vector3 direction, bool foundExit)
+    {
+        RaycastHit safeDistance = new RaycastHit();
+
+        if(foundExit)
+        {
+            blinkExit = exit.point + (direction * 2);
+            Physics.Raycast(exit.point, blinkExit - exit.point, out safeDistance, maxDistance: 2);
+
+            Debug.Log(safeDistance.point);
+
+            if (safeDistance.point == Vector3.zero)
+            {
+                return blinkExit;
+            }
+        }
+
+
+        //This part won't be reached if the backside exit point works
+        return FrontSafeDistanceCheck(solid.point, direction);
+    }
+
+    private Vector3 FrontSafeDistanceCheck(Vector3 objectPosition, Vector3 direction)
+    {
+        RaycastHit safeDistance = new RaycastHit();
+        blinkExit = objectPosition - (direction * 2);
+        Physics.Raycast(objectPosition, blinkExit - objectPosition, out safeDistance, maxDistance: 2);
+        Debug.Log("raycast result : " + safeDistance);
+        if (safeDistance.point == Vector3.zero)
+        {
+            return blinkExit;
+        }
+
         return Vector3.zero;
     }
 

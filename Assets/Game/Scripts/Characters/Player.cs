@@ -236,7 +236,7 @@ public class Player : Characters
         weapon.gameObject.SetActive(true);
 
         if (teleportTarget)
-            Destroy(teleportTarget);
+            Destroy(teleportTarget, .1f);
     }
 
     public void UseTargetting()

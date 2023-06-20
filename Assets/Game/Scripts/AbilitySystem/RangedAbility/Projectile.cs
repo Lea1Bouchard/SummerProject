@@ -37,8 +37,8 @@ public class Projectile : MonoBehaviour
         else
         {
             rigidb.useGravity = true;
-            Vector3 direction = transform.forward + new Vector3(0, 1f, 0);
-            rigidb.AddForce(direction * speed * force, ForceMode.Impulse);
+            Vector3 direction = transform.forward + new Vector3(0, 0.5f, 0);
+            rigidb.AddForce(direction * force, ForceMode.Impulse);
         }
 
         abilityIninitator = ability;

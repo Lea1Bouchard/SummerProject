@@ -92,7 +92,11 @@ public class EnemyLockOn : MonoBehaviour
     private bool BlockCheck(Transform thingToCheck)
     {
         if (Physics.Linecast(player.transform.position + new Vector3(0, 1, 0), thingToCheck.position, ~ignoreLayer))
+        {
+            Debug.Log("LOS broken");
             return true;
+        }
+            
 
         return false;
     }

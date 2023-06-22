@@ -148,6 +148,7 @@ public class EnemyLockOn : MonoBehaviour
         lockOnCanvas.gameObject.SetActive(false);
         Debug.Log("New index : " + currentIndex);
         player.SetTarget(nearbyEnemies[currentIndex]);
+        TargetChanged();
     }
 
     private void AddCloseEnemies()
@@ -169,5 +170,10 @@ public class EnemyLockOn : MonoBehaviour
     public void RemoveCloseEnemies(Characters characterToRemove)
     {
         nearbyEnemies.Remove(characterToRemove);
+    }
+
+    private void TargetChanged()
+    {
+        lockOnCamera.LookAt = player.target.targetLocation;
     }
 }

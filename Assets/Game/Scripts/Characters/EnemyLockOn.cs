@@ -32,6 +32,8 @@ public class EnemyLockOn : MonoBehaviour
         cam = Camera.main.transform;
         lockOnCanvas.gameObject.SetActive(false);
 
+        nearbyEnemies = new List<Characters>();
+
     }
 
     void Update()
@@ -125,6 +127,7 @@ public class EnemyLockOn : MonoBehaviour
     public void NextTarget()
     {
         int currentIndex = 0;
+        AddCloseEnemies();
 
         foreach (Characters enemie in nearbyEnemies)
         {
@@ -139,11 +142,32 @@ public class EnemyLockOn : MonoBehaviour
 
         currentIndex++;
 
-        if (nearbyEnemies.Count >= currentIndex + 1)
+        if (nearbyEnemies.Count <= currentIndex)
             currentIndex = 0;
 
-        lockOnCanvas.enabled = false;
+        lockOnCanvas.gameObject.SetActive(false);
         Debug.Log("New index : " + currentIndex);
         player.SetTarget(nearbyEnemies[currentIndex]);
+    }
+
+    private void AddCloseEnemies()
+    {
+        Collider[] nearbyTargets = Physics.OverlapSphere(player.transform.position, noticeZone, targetLayers);
+
+        foreach(Collider enemies in nearbyTargets)
+        {
+            Debug.Log("Current enemies in range : " + nearbyTargets.Length);
+
+            if (!nearbyEnemies.Find(x => x.GetInstanceID() == enemies.GetComponent<Characters>().GetInstanceID()))
+            {
+                nearbyEnemies.Add(enemies.GetComponent<Characters>());
+                Debug.Log("New enemy in range");
+            }
+        }
+    }
+
+    public void RemoveCloseEnemies(Characters characterToRemove)
+    {
+        nearbyEnemies.Remove(characterToRemove);
     }
 }

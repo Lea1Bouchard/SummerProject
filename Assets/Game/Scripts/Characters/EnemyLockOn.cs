@@ -124,9 +124,9 @@ public class EnemyLockOn : MonoBehaviour
         int currentIndex = 0;
         AddCloseEnemies();
 
-        foreach (Characters enemie in nearbyEnemies)
+        foreach (Characters enemy in nearbyEnemies)
         {
-            if (enemie == player.target)
+            if (enemy == player.target)
             {
                 Debug.Log("Current enemy index : " + currentIndex);
 
@@ -140,9 +140,11 @@ public class EnemyLockOn : MonoBehaviour
         if (nearbyEnemies.Count <= currentIndex)
             currentIndex = 0;
 
+
+
         lockOnCanvas.gameObject.SetActive(false);
-        Debug.Log("New index : " + currentIndex);
-        player.SetTarget(nearbyEnemies[currentIndex]);
+        Debug.Log("New index : " + EnemiesInFov(currentIndex));
+        player.SetTarget(nearbyEnemies[EnemiesInFov(currentIndex)]);
         TargetChanged();
     }
 
@@ -164,11 +166,42 @@ public class EnemyLockOn : MonoBehaviour
 
     public void RemoveCloseEnemies(Characters characterToRemove)
     {
-        nearbyEnemies.Remove(characterToRemove);
+        foreach (Characters enemies in nearbyEnemies)
+        {
+            if (nearbyEnemies.Find(x => x.GetInstanceID() == enemies.GetComponent<Characters>().GetInstanceID()))
+            {
+                nearbyEnemies.Remove(characterToRemove);
+            }
+        }
+        
     }
 
     private void TargetChanged()
     {
         lockOnCamera.LookAt = player.target.targetLocation;
+    }
+
+    private int EnemiesInFov(int curIndex)
+    {
+        int checkIndex = curIndex;
+        do
+        {
+            Vector3 direction = nearbyEnemies[checkIndex].transform.position - lockOnCamera.transform.position;
+            direction.y = 0;
+            float angle = Vector3.Angle(cam.forward, direction);
+
+            if (angle < 45)
+            {
+                if (BlockCheck(nearbyEnemies[checkIndex].transform) && RangeCheck(nearbyEnemies[checkIndex].transform))
+                    return checkIndex;
+            }
+
+            checkIndex++;
+            if (nearbyEnemies.Count <= checkIndex)
+                checkIndex = 0;
+
+        } while (checkIndex != curIndex);
+
+        return curIndex;
     }
 }

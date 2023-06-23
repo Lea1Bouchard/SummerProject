@@ -176,9 +176,6 @@ public class Player : Characters
             teleportAbility.TriggerAbility();
             RetrieveWeapon();
         }
-
-
-
     }
 
     public void DodgeAbility()
@@ -199,9 +196,6 @@ public class Player : Characters
         {
             if (target != null)
             {
-                //Vector3 targetRotation = new Vector3(target.transform.position.x, gameObject.transform.position.y, target.transform.position.z);
-                //transform.LookAt(targetRotation);
-
                 StartCoroutine(SmoothRotation(0.2f, target.targetLocation));
             }
                 

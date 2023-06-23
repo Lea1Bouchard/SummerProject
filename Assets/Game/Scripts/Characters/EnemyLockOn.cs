@@ -77,9 +77,7 @@ public class EnemyLockOn : MonoBehaviour
                     closestAngle = angle;
                     currentClosest = collider.gameObject.GetComponent<Characters>();
                 }
-
             }
-
         }
 
         if (!currentClosest)
@@ -95,10 +93,7 @@ public class EnemyLockOn : MonoBehaviour
     private bool BlockCheck(Transform thingToCheck)
     {
         if (Physics.Linecast(player.transform.position + new Vector3(0, 1, 0), thingToCheck.position, ~ignoreLayer))
-        {
             return true;
-        }
-
 
         return false;
     }
@@ -155,7 +150,7 @@ public class EnemyLockOn : MonoBehaviour
     {
         Collider[] nearbyTargets = Physics.OverlapSphere(player.transform.position, noticeZone, targetLayers);
 
-        foreach(Collider enemies in nearbyTargets)
+        foreach (Collider enemies in nearbyTargets)
         {
             Debug.Log("Current enemies in range : " + nearbyTargets.Length);
 

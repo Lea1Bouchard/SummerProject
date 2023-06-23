@@ -197,20 +197,23 @@ public class Player : Characters
         //TODO : Verify if this is the best way to do it
         if (!weaponTrown)
         {
+            if (target != null)
+            {
+                //Vector3 targetRotation = new Vector3(target.transform.position.x, gameObject.transform.position.y, target.transform.position.z);
+                //transform.LookAt(targetRotation);
 
+                StartCoroutine(SmoothRotation(0.2f, target.targetLocation));
+            }
+                
             Ability currAbility = abilities.Find((x) => x.abilityType == TypeOfAbility.Melee);
             currAbility.TriggerAbility();
 
             Debug.Log(currAbility.abilityName);
-
         }
         else
         {
             RetrieveWeapon();
         }
-
-        Debug.Log("Melee");
-
     }
 
     //Called in animation
@@ -256,8 +259,27 @@ public class Player : Characters
 
     public void ChangeTarget()
     {
-
         gameObject.GetComponent<EnemyLockOn>().NextTarget();
+    }
+
+    IEnumerator SmoothRotation(float duration, Transform target)
+    {
+        float t = 0f;
+        Quaternion targetRotation = Quaternion.LookRotation(target.position - transform.position);
+        targetRotation.x = transform.rotation.x;
+        targetRotation.z = transform.rotation.z;
+
+        Debug.Log("Quaternion rotation : " + targetRotation);
+
+        while(t < duration)
+        {
+            t += Time.deltaTime;
+            float factor = t / duration;
+
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, factor);
+
+            yield return null;
+        }
     }
 
 

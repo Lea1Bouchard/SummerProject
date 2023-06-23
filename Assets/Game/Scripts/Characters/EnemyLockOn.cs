@@ -41,7 +41,7 @@ public class EnemyLockOn : MonoBehaviour
 
         if (player.target != null)
         {
-            if (BlockCheck(player.target.targetLocation) || RangeCheck(player.target.targetLocation))
+            if (!BlockCheck(player.target.targetLocation) || !RangeCheck(player.target.targetLocation))
             {
                 Unfocus();
                 player.target = null;
@@ -72,7 +72,7 @@ public class EnemyLockOn : MonoBehaviour
 
             if (angle < closestAngle)
             {
-                if (!BlockCheck(collider.gameObject.GetComponent<Characters>().targetLocation))
+                if (BlockCheck(collider.gameObject.GetComponent<Characters>().targetLocation))
                 {
                     closestAngle = angle;
                     currentClosest = collider.gameObject.GetComponent<Characters>();
@@ -92,19 +92,28 @@ public class EnemyLockOn : MonoBehaviour
 
     private bool BlockCheck(Transform thingToCheck)
     {
-        if (Physics.Linecast(player.transform.position + new Vector3(0, 1, 0), thingToCheck.position, ~ignoreLayer))
-            return true;
+        Debug.DrawLine(player.transform.position + new Vector3(0, 1, 0), thingToCheck.position, Color.red);
 
-        return false;
+        if (Physics.Linecast(player.transform.position + new Vector3(0, 1, 0), thingToCheck.position, ~ignoreLayer))
+        {
+            return false;
+            Debug.Log("Blocked");
+        }
+
+        return true;
     }
 
     private bool RangeCheck(Transform thingToCheck)
     {
-        float distance = (player.transform.position - thingToCheck.position).magnitude;
-        if (distance / 2 > noticeZone)
-            return true;
-        else
+        float distance = Vector3.Distance(player.transform.position, thingToCheck.position);
+
+        if (distance > noticeZone)
+        {
             return false;
+        }
+
+        return true;
+
     }
 
     public void ActivateLockonCanvas()
@@ -127,11 +136,8 @@ public class EnemyLockOn : MonoBehaviour
         foreach (Characters enemy in nearbyEnemies)
         {
             if (enemy == player.target)
-            {
-                Debug.Log("Current enemy index : " + currentIndex);
-
                 break;
-            }
+
             currentIndex++;
         }
 
@@ -139,11 +145,7 @@ public class EnemyLockOn : MonoBehaviour
 
         if (nearbyEnemies.Count <= currentIndex)
             currentIndex = 0;
-
-
-
         lockOnCanvas.gameObject.SetActive(false);
-        Debug.Log("New index : " + EnemiesInFov(currentIndex));
         player.SetTarget(nearbyEnemies[EnemiesInFov(currentIndex)]);
         TargetChanged();
     }
@@ -154,26 +156,29 @@ public class EnemyLockOn : MonoBehaviour
 
         foreach (Collider enemies in nearbyTargets)
         {
-            Debug.Log("Current enemies in range : " + nearbyTargets.Length);
-
             if (!nearbyEnemies.Find(x => x.GetInstanceID() == enemies.GetComponent<Characters>().GetInstanceID()))
             {
                 nearbyEnemies.Add(enemies.GetComponent<Characters>());
-                Debug.Log("New enemy in range");
             }
         }
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawSphere(transform.position, noticeZone);
     }
 
     public void RemoveCloseEnemies(Characters characterToRemove)
     {
         foreach (Characters enemies in nearbyEnemies)
         {
-            if (nearbyEnemies.Find(x => x.GetInstanceID() == enemies.GetComponent<Characters>().GetInstanceID()))
+            if (nearbyEnemies.Find(x => x.GetInstanceID() == characterToRemove.GetInstanceID()))
             {
                 nearbyEnemies.Remove(characterToRemove);
+                break;
             }
         }
-        
     }
 
     private void TargetChanged()
@@ -186,15 +191,15 @@ public class EnemyLockOn : MonoBehaviour
         int checkIndex = curIndex;
         do
         {
-            Vector3 direction = nearbyEnemies[checkIndex].transform.position - lockOnCamera.transform.position;
+            Vector3 direction = nearbyEnemies[checkIndex].targetLocation.position - lockOnCamera.transform.position;
             direction.y = 0;
-            float angle = Vector3.Angle(cam.forward, direction);
+            float angle = Mathf.Abs(Vector3.Angle(cam.forward, direction));
+
+            Debug.Log("Angle : " + angle);
 
             if (angle < 45)
-            {
-                if (BlockCheck(nearbyEnemies[checkIndex].transform) && RangeCheck(nearbyEnemies[checkIndex].transform))
+                if (BlockCheck(nearbyEnemies[checkIndex].targetLocation) && RangeCheck(nearbyEnemies[checkIndex].targetLocation))
                     return checkIndex;
-            }
 
             checkIndex++;
             if (nearbyEnemies.Count <= checkIndex)
@@ -202,6 +207,7 @@ public class EnemyLockOn : MonoBehaviour
 
         } while (checkIndex != curIndex);
 
+        Debug.Log("Returned current index");
         return curIndex;
     }
 }

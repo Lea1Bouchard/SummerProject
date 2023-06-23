@@ -164,6 +164,11 @@ namespace UtilityAI.Core
             navAgent.isStopped = true;
             Animator.SetBool("Walk", false);
         }
+
+        private void OnDestroy()
+        {
+            player.GetComponent<EnemyLockOn>().RemoveCloseEnemies(this);
+        }
     }
 }
 

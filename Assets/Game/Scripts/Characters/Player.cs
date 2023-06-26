@@ -276,6 +276,11 @@ public class Player : Characters
         }
     }
 
+    public void Interact()
+    {
+        gameObject.GetComponent<PlayerInteract>().Interact();
+    }
+
 
     /* Getters / Setters */
     #region getter/setter

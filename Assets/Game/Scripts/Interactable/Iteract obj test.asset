@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6bff882e4273984d9ef6ce994769266, type: 3}
   m_Name: Iteract obj test
   m_EditorClassIdentifier: 
-  Name: 
+  Name: Unknown
   isQuestObject: 0

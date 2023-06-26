@@ -20,7 +20,7 @@ public class InteractableObject : Interactable
         } else
         {
             //TODO : Verify if this part is used (might not have an inventory system, quest item could be the only type of interactable items)
-            Debug.Log("Item grabbed : " + name);
+            Debug.Log("Item grabbed : " + Name);
         }
     }
     

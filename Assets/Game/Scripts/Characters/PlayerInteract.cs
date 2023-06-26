@@ -11,13 +11,14 @@ public class PlayerInteract : MonoBehaviour
     {
         Collider[] interactables = Physics.OverlapSphere(transform.position, interactRange, interactableMask);
 
-        ClosestInteractable(interactables).Interact();
+        if (interactables.Length > 0)
+            ClosestInteractable(interactables).StartInteract();
     }
 
-    private Interactable ClosestInteractable(Collider[] interactables)
+    private InteractingActor ClosestInteractable(Collider[] interactables)
     {
         float distance = interactRange;
-        Interactable currentClosest = null;
+        InteractingActor currentClosest = null;
 
         foreach (Collider interactCollider in interactables)
         {
@@ -27,7 +28,7 @@ public class PlayerInteract : MonoBehaviour
             {
                 distance = currDist;
 
-                currentClosest = interactCollider.GetComponent<Interactable>();
+                currentClosest = interactCollider.GetComponent<InteractingActor>();
             }
         }
 

@@ -163,12 +163,6 @@ public class EnemyLockOn : MonoBehaviour
         }
     }
 
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawSphere(transform.position, noticeZone);
-    }
-
     public void RemoveCloseEnemies(Characters characterToRemove)
     {
         foreach (Characters enemies in nearbyEnemies)
@@ -195,8 +189,6 @@ public class EnemyLockOn : MonoBehaviour
             direction.y = 0;
             float angle = Mathf.Abs(Vector3.Angle(cam.forward, direction));
 
-            Debug.Log("Angle : " + angle);
-
             if (angle < 45)
                 if (BlockCheck(nearbyEnemies[checkIndex].targetLocation) && RangeCheck(nearbyEnemies[checkIndex].targetLocation))
                     return checkIndex;
@@ -207,7 +199,6 @@ public class EnemyLockOn : MonoBehaviour
 
         } while (checkIndex != curIndex);
 
-        Debug.Log("Returned current index");
         return curIndex;
     }
 }

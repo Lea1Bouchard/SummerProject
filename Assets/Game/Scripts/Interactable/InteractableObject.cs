@@ -8,6 +8,7 @@ public class InteractableObject : Interactable
     [SerializeField] private bool isQuestObject;
     public override void Initialize()
     {
+        //TODO : Mabe initialize it with the quest name?
         throw new System.NotImplementedException();
     }
 
@@ -19,7 +20,7 @@ public class InteractableObject : Interactable
         } else
         {
             //TODO : Verify if this part is used (might not have an inventory system, quest item could be the only type of interactable items)
-            Debug.Log("Item grabbed");
+            Debug.Log("Item grabbed : " + name);
         }
     }
     

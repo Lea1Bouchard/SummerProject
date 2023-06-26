@@ -14,6 +14,6 @@ public class InteractableCharacter : Interactable
 
     public override void Interact()
     {
-        Debug.Log("Dialogue system here!!");
+        Debug.Log("Dialogue system here!! : " + name);
     }
 }

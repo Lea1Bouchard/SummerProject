@@ -84,6 +84,11 @@ public class PlayerInputHandler : MonoBehaviour
         if (value.performed)
             Player.Instance.ChangeTarget();
     }
+    public void OnInteract(InputAction.CallbackContext value)
+    {
+        if (value.performed)
+            Player.Instance.Interact();
+    }
 
     public void SelectElementInputNormal(InputAction.CallbackContext context)
     {

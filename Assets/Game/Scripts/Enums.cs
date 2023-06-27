@@ -81,4 +81,12 @@ namespace Enums
         Landing,
         Blocking
     }
+
+    //NPCs type
+    public enum NpcType
+    {
+        QuestGiver,
+        Merchant,
+        Civilian
+    }
 }

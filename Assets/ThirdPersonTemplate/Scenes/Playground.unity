@@ -668,7 +668,6 @@ GameObject:
   - component: {fileID: 239912997}
   - component: {fileID: 239912996}
   - component: {fileID: 239912995}
-  - component: {fileID: 239912994}
   - component: {fileID: 239912999}
   m_Layer: 6
   m_Name: Iteractable test
@@ -677,18 +676,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &239912994
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 239912992}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!65 &239912995
 BoxCollider:
   m_ObjectHideFlags: 0

@@ -9,14 +9,10 @@ public class DialogueManager : MonoBehaviour
     public Text DialogueText;
     public GameObject dialogueCanvas;
 
-    private Queue<string> Sentences;
-    //TODO : add the quest manager so they can communicate
-    //private QuestManager questManager;
+    public delegate void DialogueEnd();
+    public static event DialogueEnd OnEnd;
 
-    private void Awake()
-    {
-        //questManager = GameObject.FindGameObjectsWithTag("QuestManager")[0].GetComponent<QuestManager>();
-    }
+    private Queue<string> Sentences;
 
     void Start()
     {
@@ -27,11 +23,11 @@ public class DialogueManager : MonoBehaviour
     {
         Sentences.Clear();
 
+        dialogue.Subscribe();
+
         foreach (string sentence in dialogue.sentences)
         {
-
             Sentences.Enqueue(sentence);
-
         }
 
         nameText.text = dialogue.name;
@@ -55,10 +51,9 @@ public class DialogueManager : MonoBehaviour
 
     public void EndDialogue()
     {
-        /*
-        if (nameText.text == "Pand-Ah")
-            questManager.Talked("Panda");
-        */
+        if (OnEnd != null)
+            OnEnd();
+
         Cursor.lockState = CursorLockMode.Locked;
         dialogueCanvas.SetActive(false);
     }

@@ -1,12 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+[CreateAssetMenu(menuName = "Dialogue")]
 [System.Serializable]
-public class Dialogue
+public class Dialogue : ScriptableObject
 {
 
-    public string name;
+    public string initiatorName;
     [SerializeField] private bool isQuest;
 
     [TextArea(3, 10)]

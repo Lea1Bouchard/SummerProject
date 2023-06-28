@@ -35,8 +35,7 @@ public class PlayerInputHandler : MonoBehaviour
     public void OnMove(InputAction.CallbackContext value)
     {
         Vector2 inputMovement = value.ReadValue<Vector2>();
-        if (GameManager.Instance.currentGameState != GameState.InMenu && GameManager.Instance.currentGameState != GameState.InWaitMode)
-            MoveInput(inputMovement);
+        MoveInput(inputMovement);
     }
 
     public void OnLook(InputAction.CallbackContext value)
@@ -64,40 +63,40 @@ public class PlayerInputHandler : MonoBehaviour
     {
         if (GameManager.Instance.currentGameState != GameState.InMenu)
             if (value.performed)
-            Player.Instance.RangedAbility();
+                Player.Instance.RangedAbility();
     }
 
     public void OnDodge(InputAction.CallbackContext value)
     {
         if (GameManager.Instance.currentGameState != GameState.InMenu)
             if (value.performed)
-            Player.Instance.DodgeAbility();
+                Player.Instance.DodgeAbility();
     }
 
     public void OnMelee(InputAction.CallbackContext value)
     {
         if (GameManager.Instance.currentGameState != GameState.InMenu)
             if (value.performed)
-            Player.Instance.MeleeAbility();
+                Player.Instance.MeleeAbility();
     }
 
     public void OnLockOn(InputAction.CallbackContext value)
     {
         if (GameManager.Instance.currentGameState != GameState.InMenu)
             if (value.performed)
-            Player.Instance.UseTargetting();
+                Player.Instance.UseTargetting();
     }
     public void OnNextTarget(InputAction.CallbackContext value)
     {
         if (GameManager.Instance.currentGameState != GameState.InMenu)
             if (value.performed)
-            Player.Instance.ChangeTarget();
+                Player.Instance.ChangeTarget();
     }
     public void OnInteract(InputAction.CallbackContext value)
     {
         if (GameManager.Instance.currentGameState == GameState.InGame)
-        if (value.performed)
-            Player.Instance.Interact();
+            if (value.performed)
+                Player.Instance.Interact();
     }
 
     public void SelectElementInputNormal(InputAction.CallbackContext context)

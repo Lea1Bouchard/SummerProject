@@ -7,7 +7,7 @@ public class Dialogue : ScriptableObject
 {
 
     public string initiatorName;
-    [SerializeField] private bool isQuest;
+    public bool isQuest;
 
     [TextArea(3, 10)]
     public string[] sentences;

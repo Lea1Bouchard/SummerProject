@@ -2,21 +2,54 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class DialogueManager : MonoBehaviour
 {
-    public Text nameText;
-    public Text DialogueText;
-    public GameObject dialogueCanvas;
+    [SerializeField] private TextMeshProUGUI nameText;
+    [SerializeField] private TextMeshProUGUI DialogueText;
+    [SerializeField] private GameObject dialogueCanvas;
+    [SerializeField] private GameObject questMarker;
 
     public delegate void DialogueEnd();
     public static event DialogueEnd OnEnd;
 
     private Queue<string> Sentences;
 
+    private static DialogueManager _instance;
+
+    public static DialogueManager Instance
+    {
+        get
+        {
+            if (_instance is null)
+                Debug.LogError("DialogueManager is NULL");
+            return _instance;
+        }
+    }
+
+    private void Awake()
+    {
+        _instance = this;
+    }
+
     void Start()
     {
         Sentences = new Queue<string>();
+    }
+
+    public void TriggerDialogue(Dialogue dialogue)
+    {
+        dialogueCanvas.SetActive(true);
+
+        if (dialogue.isQuest)
+            questMarker.SetActive(true);
+        else
+            questMarker.SetActive(false);
+
+        Cursor.lockState = CursorLockMode.None;
+
+        StartDialogue(dialogue);
     }
 
     public void StartDialogue(Dialogue dialogue)

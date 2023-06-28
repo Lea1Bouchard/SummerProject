@@ -7,6 +7,7 @@ using Enums;
 public class InteractableCharacter : Interactable
 {
     [SerializeField] private List<NpcType> npcType;
+    [SerializeField] private Dialogue dialogue;
     public override void Initialize()
     {
         throw new System.NotImplementedException();
@@ -14,6 +15,6 @@ public class InteractableCharacter : Interactable
 
     public override void Interact()
     {
-        Debug.Log("Dialogue system here!! : " + Name);
+        DialogueManager.Instance.TriggerDialogue(dialogue);
     }
 }

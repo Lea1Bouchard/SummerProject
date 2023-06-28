@@ -35,57 +35,67 @@ public class PlayerInputHandler : MonoBehaviour
     public void OnMove(InputAction.CallbackContext value)
     {
         Vector2 inputMovement = value.ReadValue<Vector2>();
-        MoveInput(inputMovement);
+        if (GameManager.Instance.currentGameState != GameState.InMenu && GameManager.Instance.currentGameState != GameState.InWaitMode)
+            MoveInput(inputMovement);
     }
 
     public void OnLook(InputAction.CallbackContext value)
     {
-        if (cursorInputForLook)
-        {
-            LookInput(value.ReadValue<Vector2>());
-        }
+        if (GameManager.Instance.currentGameState != GameState.InMenu)
+            if (cursorInputForLook)
+            {
+                LookInput(value.ReadValue<Vector2>());
+            }
     }
 
     public void OnJump(InputAction.CallbackContext value)
     {
-        JumpInput(value.performed);
+        if (GameManager.Instance.currentGameState != GameState.InMenu && GameManager.Instance.currentGameState != GameState.InWaitMode)
+            JumpInput(value.performed);
     }
 
     public void OnSprint(InputAction.CallbackContext value)
     {
-        SprintInput(value.performed);
+        if (GameManager.Instance.currentGameState != GameState.InMenu && GameManager.Instance.currentGameState != GameState.InWaitMode)
+            SprintInput(value.performed);
     }
 
     public void OnRangedAbility(InputAction.CallbackContext value)
     {
-        if (value.performed)
+        if (GameManager.Instance.currentGameState != GameState.InMenu)
+            if (value.performed)
             Player.Instance.RangedAbility();
     }
 
     public void OnDodge(InputAction.CallbackContext value)
     {
-        if (value.performed)
+        if (GameManager.Instance.currentGameState != GameState.InMenu)
+            if (value.performed)
             Player.Instance.DodgeAbility();
     }
 
     public void OnMelee(InputAction.CallbackContext value)
     {
-        if (value.performed)
+        if (GameManager.Instance.currentGameState != GameState.InMenu)
+            if (value.performed)
             Player.Instance.MeleeAbility();
     }
 
     public void OnLockOn(InputAction.CallbackContext value)
     {
-        if (value.performed)
+        if (GameManager.Instance.currentGameState != GameState.InMenu)
+            if (value.performed)
             Player.Instance.UseTargetting();
     }
     public void OnNextTarget(InputAction.CallbackContext value)
     {
-        if (value.performed)
+        if (GameManager.Instance.currentGameState != GameState.InMenu)
+            if (value.performed)
             Player.Instance.ChangeTarget();
     }
     public void OnInteract(InputAction.CallbackContext value)
     {
+        if (GameManager.Instance.currentGameState == GameState.InGame)
         if (value.performed)
             Player.Instance.Interact();
     }

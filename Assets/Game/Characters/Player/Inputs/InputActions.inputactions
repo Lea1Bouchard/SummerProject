@@ -47,7 +47,7 @@
                     "id": "a61f8eac-055a-482c-88e3-d1f78fc09859",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "",
+                    "interactions": "Press",
                     "initialStateCheck": false
                 },
                 {
@@ -303,7 +303,7 @@
                 {
                     "name": "",
                     "id": "348f566f-1b6e-4078-a423-e076eb826ab7",
-                    "path": "<Keyboard>/tab",
+                    "path": "<Keyboard>/q",
                     "interactions": "",
                     "processors": "",
                     "groups": "KeyboardMouse",

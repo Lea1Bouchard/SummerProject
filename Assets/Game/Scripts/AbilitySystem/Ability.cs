@@ -32,9 +32,6 @@ public abstract class Ability : ScriptableObject
 
     [HideInInspector] public TypeOfAbility abilityType;
 
-    public List<GameState> GameStateBlocked { get => gameStateBlocked; set => gameStateBlocked = value; }
-    public List<MovementState> MovementStateBlocked { get => movementStateBlocked; set => movementStateBlocked = value; }
-    public List<FightingState> FightingStateBlocked { get => fightingStateBlocked; set => fightingStateBlocked = value; }
     public Characters Initiator { get => initiator; set => initiator = value; }
 
     public abstract void Initialize(Characters ini);
@@ -47,24 +44,10 @@ public abstract class Ability : ScriptableObject
         {
             return false;
         }
-        /*
-        foreach (GameState state in gameStateBlocked)
-        {
-            //Add check to game state
 
+        if (GameManager.Instance.currentGameState == GameState.InWaitMode)
+            GameManager.Instance.UpdateGameState(GameState.InFight);
 
-        }
-
-        foreach (MovementState state in movementStateBlocked)
-        {
-            //Add check to Movement state
-        }
-
-        foreach (FightingState state in fightingStateBlocked)
-        {
-            //Add check to Fighting state
-        }
-        */
         return true;
     }
 

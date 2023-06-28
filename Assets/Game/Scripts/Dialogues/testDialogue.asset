@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5152b2536d56c30499d8a94b6f18ec9f, type: 3}
   m_Name: testDialogue
   m_EditorClassIdentifier: 
-  initiatorName: Unknown
+  initiatorName: Blocky
   isQuest: 1
   sentences:
   - Well, hello there!!

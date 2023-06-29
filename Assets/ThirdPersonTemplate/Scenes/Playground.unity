@@ -857,9 +857,7 @@ MonoBehaviour:
   m_AnimatedTarget: {fileID: 268775914}
   m_LayerIndex: 0
   m_ShowDebugText: 0
-  m_ChildCameras:
-  - {fileID: 517066168}
-  - {fileID: 1443076877}
+  m_ChildCameras: []
   m_Instructions:
   - m_FullHash: 492734158
     m_VirtualCamera: {fileID: 517066168}
@@ -2434,6 +2432,7 @@ GameObject:
   - component: {fileID: 847968050}
   - component: {fileID: 847968049}
   - component: {fileID: 847968051}
+  - component: {fileID: 847968052}
   m_Layer: 0
   m_Name: Managers
   m_TagString: Untagged
@@ -2487,6 +2486,21 @@ MonoBehaviour:
   DialogueText: {fileID: 181115278}
   dialogueCanvas: {fileID: 770107560}
   questMarker: {fileID: 1078338781}
+--- !u!114 &847968052
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 847968048}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce328a6ebdc5c7a4f8e1667d3c505b7b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  questHolder: {fileID: 0}
+  CurrentQuests: []
+  currentActiveQuest: 0
 --- !u!1 &874605735
 GameObject:
   m_ObjectHideFlags: 0

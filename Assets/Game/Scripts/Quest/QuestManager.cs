@@ -49,11 +49,13 @@ public class QuestManager : MonoBehaviour
         questHolder.GetComponent<QuestWindow>().Initialize(CurrentQuests[currentActiveQuest]);
     }
 
+    /*
     public void Slay(string killedEnemie)
     {
         EventManager.Instance.QueueEvent(new KillGameEvent(killedEnemie));
         print("Slayed");
     }
+    */
 
     public void Fetched(string fetchedItem)
     {

@@ -167,6 +167,7 @@ namespace UtilityAI.Core
 
         private void OnDestroy()
         {
+            EventManager.Instance.QueueEvent(new KillGameEvent(enemyType));
             player.GetComponent<EnemyLockOn>().RemoveCloseEnemies(this);
         }
     }

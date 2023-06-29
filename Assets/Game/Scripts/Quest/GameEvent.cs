@@ -29,11 +29,11 @@ public class FetchGameEvent : GameEvent
 
 public class KillGameEvent : GameEvent
 {
-    public string KilledEnemie;
+    public Enums.EnemyType KilledEnemie;
 
-    public KillGameEvent(string name)
+    public KillGameEvent(Enums.EnemyType type)
     {
-        KilledEnemie = name;
+        KilledEnemie = type;
     }
 }
 

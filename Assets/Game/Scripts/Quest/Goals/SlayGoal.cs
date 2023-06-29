@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class SlayGoal : Quest.QuestGoal
 {
-    public string KilledEnemie;
+    public Enums.EnemyType KilledEnemie;
 
     public override string GetDescription()
     {
-        return $"Slay {this.RequiredAmount} {KilledEnemie}";
+        return $"Slay {this.RequiredAmount} {TypeTranslate.Instance.TranslateEnemies(KilledEnemie)}";
     }
 
     public override void Initialize()

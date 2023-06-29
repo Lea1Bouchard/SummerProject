@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b32a2b3f239489439198bcacf16c163, type: 3}
+  m_Name: BringDowBarrierTwo
+  m_EditorClassIdentifier: 
+  Information:
+    name: Cardboard Danger
+    icon: {fileID: 0}
+    description: They're just standing there... Menacingly... Anyways, bring that
+      barrier down by defeating the evil scarecrows!
+  reward:
+    Currency: 10
+    XP: 100
+  Goals:
+  - {fileID: 5415570190237622144}
+--- !u!114 &5415570190237622144
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef8f155821ad1174aaab7c142d378e06, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  RequiredAmount: 5
+  GoalCompleted:
+    m_PersistentCalls:
+      m_Calls: []
+  KilledEnemie: Scarecrow

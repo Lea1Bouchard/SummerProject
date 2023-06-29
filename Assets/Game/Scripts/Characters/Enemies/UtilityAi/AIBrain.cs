@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace UtilityAI.Core
@@ -15,7 +16,7 @@ namespace UtilityAI.Core
 
         private void Update()
         {
-            if(bestAction is null)
+            if (bestAction is null)
             {
                 DecideBestAction(enemy.normalActionsAvailable);
             }
@@ -23,16 +24,25 @@ namespace UtilityAI.Core
 
         //Loop through all the available actions
         //Give the highest scoring action
-        public void DecideBestAction(Action[] actionsAvailable)
+        public void DecideBestAction(List<Action> actionsAvailable)
         {
             float highestScore = 0f;
             int bestActionIndex = 0;
-            for (int i = 0; i < actionsAvailable.Length; i++)
+            for (int i = 0; i < actionsAvailable.Count; i++)
             {
-                if(ScoreAction(actionsAvailable[i]) > highestScore)
+                float actionScore = ScoreAction(actionsAvailable[i]);
+                if (actionScore > highestScore)
                 {
                     bestActionIndex = i;
                     highestScore = actionsAvailable[i].score;
+                }
+                else if (actionScore == highestScore)
+                {
+                    if(actionsAvailable[i].Importance > actionsAvailable[bestActionIndex].Importance)
+                    {
+                        bestActionIndex = i;
+                        highestScore = actionsAvailable[i].score;
+                    }
                 }
             }
 
@@ -51,7 +61,7 @@ namespace UtilityAI.Core
                 float considerationScore = action.considerations[i].ScoreConsideration(enemy);
                 score *= considerationScore;
 
-                if(score == 0)
+                if (score == 0)
                 {
                     action.score = 0;
                     return action.score; //No point computing further

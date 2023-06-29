@@ -5,8 +5,6 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Abilities/MeleeAbility")]
 public class MeleeAbility : Ability
 {
-
-    public string animationTrigger;
     private MeleeWeapon weapon;
 
     public override void Initialize(Characters ini)
@@ -14,6 +12,7 @@ public class MeleeAbility : Ability
         animator = ini.GetComponent<Animator>();
         initiator = ini;
         LoadWeaponAttribute();
+        abilityType = Enums.TypeOfAbility.Melee;
         abilityCooldownClass = initiator.gameObject.AddComponent<AbilityCooldown>();
     }
 
@@ -23,9 +22,7 @@ public class MeleeAbility : Ability
         if (CheckState())
         {
             isActive = true;
-            weapon.isActive = true;
             Animate();
-            isActive = false;
             abilityCooldownClass.Initialize(this);
         }
     }
@@ -36,6 +33,7 @@ public class MeleeAbility : Ability
         weapon.damage = baseDamage;
         weapon.initiator = initiator;
         weapon.attackElement = attackElement;
+        weapon.Deactivate();
     }
 
 }

@@ -1037,6 +1037,8 @@ GameObject:
   - component: {fileID: 5885216827943657505}
   - component: {fileID: 4416926081852918493}
   - component: {fileID: 2625898211617941801}
+  - component: {fileID: 6927317849927437366}
+  - component: {fileID: 7055529603688996913}
   m_Layer: 8
   m_Name: PlayerArmature
   m_TagString: Player
@@ -1276,9 +1278,60 @@ MonoBehaviour:
   look: {x: 0, y: 0}
   jump: 0
   sprint: 0
+  ranged: 0
+  dodge: 0
   analogMovement: 0
   cursorLocked: 1
   cursorInputForLook: 1
+  elementList: 
+--- !u!114 &6927317849927437366
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4416926081852918481}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a8f41fd7492c8a4ca8fe9cf5bad71de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  enemyTarget_Locator: {fileID: 0}
+  cinemachineAnimator: {fileID: 0}
+  zeroVert_Look: 0
+  noticeZone: 10
+  lookAtSmoothing: 2
+  maxAngle: 60
+  crossHair_Scale: 0.01
+  lockOnCamera: {fileID: 0}
+  lockOnCanvas: {fileID: 0}
+--- !u!114 &7055529603688996913
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4416926081852918481}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a8f41fd7492c8a4ca8fe9cf5bad71de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  enemyTarget_Locator: {fileID: 0}
+  cinemachineAnimator: {fileID: 0}
+  zeroVert_Look: 0
+  noticeZone: 10
+  lookAtSmoothing: 2
+  maxAngle: 60
+  crossHair_Scale: 0.01
+  lockOnCamera: {fileID: 0}
+  lockOnCanvas: {fileID: 0}
 --- !u!1 &4523139366846529165
 GameObject:
   m_ObjectHideFlags: 0

@@ -15,14 +15,12 @@ MonoBehaviour:
   abilityName: Tes
   abilityCost: 0
   abilitySound: {fileID: 0}
-  abilityCooldownTime: 0
-  abilityUiSprite: {fileID: 0}
+  abilityCooldownTime: 1
   animationStateName: 
-  attackElement: 0
   baseDamage: 5
-  range: 5
+  abilityType: 2
+  timeToLive: 5
   speed: 2
   force: 5
   projectile: {fileID: 5348052858440426451, guid: 6d6ec581446013947bb375a817a980f2,
     type: 3}
-  projectileClone: {fileID: 0}

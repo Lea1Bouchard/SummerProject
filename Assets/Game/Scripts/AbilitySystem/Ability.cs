@@ -36,6 +36,7 @@ public abstract class Ability : ScriptableObject
     public List<MovementState> MovementStateBlocked { get => movementStateBlocked; set => movementStateBlocked = value; }
     public List<FightingState> FightingStateBlocked { get => fightingStateBlocked; set => fightingStateBlocked = value; }
     public Characters Initiator { get => initiator; set => initiator = value; }
+    public bool IsActive { get => isActive; set => isActive = value; }
 
     public abstract void Initialize(Characters ini);
     public abstract void TriggerAbility();

@@ -165,11 +165,14 @@ public class Player : Characters
         if (!weaponTrown)
         {
             Ability currAbility = abilities.Find((x) => x.abilityType == TypeOfAbility.Ranged);
-            currAbility.TriggerAbility();
+            if(!currAbility.IsActive)
+            {
+                currAbility.TriggerAbility();
 
-            Debug.Log(currAbility.abilityName);
+                Debug.Log(currAbility.abilityName);
 
-            ThrowWeapon();
+                ThrowWeapon();
+            }
         }
         else
         {

@@ -172,7 +172,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 0
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
@@ -561,6 +561,7 @@ GameObject:
   - component: {fileID: 5632554419367594695}
   - component: {fileID: 4551391282119067785}
   - component: {fileID: 2622586564975725228}
+  - component: {fileID: 3795582411642481567}
   m_Layer: 5
   m_Name: DialogueCanvas
   m_TagString: Untagged
@@ -650,6 +651,20 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &3795582411642481567
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6960070081680904975}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce4a02c6e547a9c4dab0c7c852e4cda5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  firstButton: {fileID: 3628477514814581226}
+  newCurrentButton: {fileID: 0}
 --- !u!1 &7480757229510877384
 GameObject:
   m_ObjectHideFlags: 0

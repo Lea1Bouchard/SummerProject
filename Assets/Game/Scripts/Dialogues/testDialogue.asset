@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: testDialogue
   m_EditorClassIdentifier: 
   initiatorName: Blocky
-  isQuest: 1
+  isQuest: 0
   sentences:
   - Well, hello there!!
   - '''sup? :D'

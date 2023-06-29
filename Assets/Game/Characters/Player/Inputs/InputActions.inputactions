@@ -47,7 +47,7 @@
                     "id": "a61f8eac-055a-482c-88e3-d1f78fc09859",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "",
+                    "interactions": "Press",
                     "initialStateCheck": false
                 },
                 {
@@ -108,6 +108,15 @@
                     "name": "NextTarget",
                     "type": "Button",
                     "id": "1db2c866-deae-49fa-8e92-6cdff2cdbb12",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Press",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Interact",
+                    "type": "Button",
+                    "id": "f7b8a277-5d70-4a1c-9818-9d633ac1cac9",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "Press",
@@ -294,7 +303,7 @@
                 {
                     "name": "",
                     "id": "348f566f-1b6e-4078-a423-e076eb826ab7",
-                    "path": "<Keyboard>/tab",
+                    "path": "<Keyboard>/q",
                     "interactions": "",
                     "processors": "",
                     "groups": "KeyboardMouse",
@@ -464,6 +473,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "NextTarget",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "bca08826-3f8f-4130-a2fb-07fc9390953a",
+                    "path": "<Keyboard>/f",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Interact",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d7a407e0-21d4-4dd1-b9ca-65e172fe06e5",
+                    "path": "<Gamepad>/rightTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Interact",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

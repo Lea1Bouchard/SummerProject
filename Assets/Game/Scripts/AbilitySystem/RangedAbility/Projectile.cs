@@ -49,7 +49,7 @@ public class Projectile : MonoBehaviour
 
     IEnumerator rangeTimer()
     {
-        yield return new WaitForSecondsRealtime(range);
+        yield return new WaitForSeconds(range);
         abilityIninitator.ProjectileDestroyed();
 
     }

@@ -16,7 +16,6 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Canvas waitModeUI;
 
     [Header("Fighting Manager")]
-    public bool isInWaitMode;
     public List<EnemyController> enemiesInFight;
 
     public static GameManager Instance
@@ -39,7 +38,7 @@ public class GameManager : MonoBehaviour
         UpdateGameState(GameState.InGame);
 
         //Wait mode
-        isInWaitMode = false;
+
         waitModeUI.gameObject.SetActive(false);
     }
 
@@ -130,15 +129,13 @@ public class GameManager : MonoBehaviour
 
     public void InWaitMode(InputAction.CallbackContext context)
     {
-        if (!isInWaitMode)//Enter Wait Mode
+        if (currentGameState != GameState.InWaitMode)//Enter Wait Mode
         {
             UpdateGameState(GameState.InWaitMode);
-            isInWaitMode = true;
         }
         else
         {
             UpdateGameState(GameState.InGame);
-            isInWaitMode = false;
         }
     }
     #endregion

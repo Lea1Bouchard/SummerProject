@@ -40,6 +40,8 @@ public class DialogueManager : MonoBehaviour
 
     public void TriggerDialogue(Dialogue dialogue)
     {
+        GameManager.Instance.UpdateGameState(Enums.GameState.InMenu);
+
         dialogueCanvas.SetActive(true);
 
         if (dialogue.isQuest)
@@ -89,6 +91,7 @@ public class DialogueManager : MonoBehaviour
 
         Cursor.lockState = CursorLockMode.Locked;
         dialogueCanvas.SetActive(false);
+        GameManager.Instance.UpdateGameState(Enums.GameState.InGame);
     }
 
 }

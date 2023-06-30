@@ -5,7 +5,9 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Interactable/Interactable object")]
 public class InteractableObject : Interactable
 {
+    #region variables
     [SerializeField] private bool isQuestObject;
+    #endregion
     public override void Initialize()
     {
         //TODO : Mabe initialize it with the quest name?

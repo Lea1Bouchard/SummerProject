@@ -3,10 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+//Used by all abilities to stop them from being overused
 public class AbilityCooldown : MonoBehaviour
 {
+    #region variables
     private float cooldownDuration;
     private Ability ability;
+    #endregion
 
     public void Initialize(Ability selectedAbility)
     {

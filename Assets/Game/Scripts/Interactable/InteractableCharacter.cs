@@ -6,8 +6,10 @@ using Enums;
 [CreateAssetMenu(menuName = "Interactable/Interactable character")]
 public class InteractableCharacter : Interactable
 {
+    #region variable
     [SerializeField] private List<NpcType> npcType;
     [SerializeField] private Dialogue dialogue;
+    #endregion
     public override void Initialize()
     {
         throw new System.NotImplementedException();

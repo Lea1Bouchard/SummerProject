@@ -3,8 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Abilities/MovementAbility")]
+
+//Class is used both for dodge and teleport (with projectile)
 public class MovementAbility : Ability
 {
+    #region variables
     public float distance;
     public bool rendersImmortal;
     public float speed;
@@ -13,6 +16,7 @@ public class MovementAbility : Ability
     private CharacterController controller;
     public bool isTeleport;
     private Vector3 blinkExit;
+    #endregion
 
     //TODO : Render player immortal **MIGHT PUT THIS IN PLAYER SCRIPT
 
@@ -38,10 +42,11 @@ public class MovementAbility : Ability
             Animate();
         }
     }
-
+    //Dodge part
     private void Move()
     {
-
+        //Verify if there is an enemy in the dodge trajectory
+        //and teleports behind it if there is one
         if (EnemyStep())
         {
             GoTo();
@@ -53,7 +58,7 @@ public class MovementAbility : Ability
 
         abilityCooldownClass.Initialize(this);
     }
-
+    //Teleport part
     private void Teleport()
     {
 
@@ -71,6 +76,9 @@ public class MovementAbility : Ability
     }
 
     //TODO : Might need to rework this later
+
+    //Used to verify if there is an enemy 
+    //and if it's possible to teleport behind it
     private bool EnemyStep()
     {
         RaycastHit solid = new RaycastHit();
@@ -117,6 +125,8 @@ public class MovementAbility : Ability
         return false;
     }
 
+    //Used during the teleport to verify if teleporting
+    // is doable and where the player should land
     private Vector3 TeleportLocation()
     {
 
@@ -155,13 +165,15 @@ public class MovementAbility : Ability
 
             }
         }
-        else
+        //Try to teleport to the weapon (not in an enemy)
+        else 
         {
             return FrontSafeDistanceCheck(initiator.teleportTarget.transform.position, direction);
         }
         return Vector3.zero;
     }
 
+    //Verify if there is enough space for the player to teleport behind the enemy
     private Vector3 SafeDistance(RaycastHit exit, RaycastHit solid, Vector3 direction, bool foundExit)
     {
         RaycastHit safeDistance = new RaycastHit();
@@ -184,6 +196,7 @@ public class MovementAbility : Ability
         return FrontSafeDistanceCheck(solid.point, direction);
     }
 
+    //Verify if there is enough space for the player to teleport in fron of the enemy (or weapon)
     private Vector3 FrontSafeDistanceCheck(Vector3 objectPosition, Vector3 direction)
     {
         RaycastHit safeDistance = new RaycastHit();
@@ -198,6 +211,7 @@ public class MovementAbility : Ability
         return Vector3.zero;
     }
 
+    //"actual" teleport. Brings the player to the safe teleport poin
     private void GoTo()
     {
         controller.enabled = false;

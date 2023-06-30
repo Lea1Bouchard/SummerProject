@@ -11,7 +11,8 @@ public class Menu : MonoBehaviour
     {
         ChangeButton(firstButton);
     }
-
+    //Changes the current selected button in a menu
+    //SHOULD BE USED WITH THE MANUAL BUTTON LINKS IN THE MENU
     private void ChangeButton(GameObject button)
     {
 

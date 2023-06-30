@@ -2,11 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//Used to verify if something is interactable around the player
 public class PlayerInteract : MonoBehaviour
 {
+    #region variables
     [SerializeField] private float interactRange = 2f;
     [SerializeField] private LayerMask interactableMask;
+    #endregion
 
+    //Casts a collider to see if any interactables are around
     public void Interact()
     {
         Collider[] interactables = Physics.OverlapSphere(transform.position, interactRange, interactableMask);
@@ -16,9 +20,8 @@ public class PlayerInteract : MonoBehaviour
             Debug.Log("Current object : " + interactables[0].gameObject.name);
             ClosestInteractable(interactables).StartInteract();
         }
-            
     }
-
+    //Gets the closest interactable and triggers it's interaction
     private InteractingActor ClosestInteractable(Collider[] interactables)
     {
         float distance = 100;

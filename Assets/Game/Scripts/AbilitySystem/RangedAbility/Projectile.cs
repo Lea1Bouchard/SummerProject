@@ -5,7 +5,7 @@ using Enums;
 
 public class Projectile : MonoBehaviour
 {
-
+    #region variables
     private int damage;
     private float speed;
     private float force;
@@ -21,14 +21,18 @@ public class Projectile : MonoBehaviour
     public Characters Initiator { get => initiator; set => initiator = value; }
     public float Force { get => force; set => force = value; }
 
-    // Start is called before the first frame update
+    #endregion
+
+    
     void Start()
     {
         rigidb = this.gameObject.GetComponent<Rigidbody>();
     }
-
+    //Sends the projectile
     public void Shoot(RangedAbility ability, Characters target)
     {
+        //If there is a target, the projectile will go straigh towards it,
+        //otherwise, it will only fly using force and gravity
         if (target != null)
         {
             transform.LookAt(target.targetLocation.gameObject.transform);
@@ -46,7 +50,7 @@ public class Projectile : MonoBehaviour
         if (range > 0)
             StartCoroutine(rangeTimer());
     }
-
+    //Destroy the projectile after a time
     IEnumerator rangeTimer()
     {
         yield return new WaitForSeconds(range);
@@ -57,6 +61,7 @@ public class Projectile : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         Characters hit = other.gameObject.GetComponent<Characters>();
+        //Verify if there is a hit and if it's not a notify zone
         if (hit != initiator && other.GetComponent<NotifyZone>() == null)
         {
             if (hit != null)
@@ -72,7 +77,7 @@ public class Projectile : MonoBehaviour
         }
 
     }
-
+    //Used to leave the projectile in an enemy and teleport to it
     private void ProjectileStick(Transform bone)
     {
         transform.LookAt(bone);
@@ -82,7 +87,7 @@ public class Projectile : MonoBehaviour
         gameObject.GetComponent<Collider>().enabled = false;
         Destroy(rigidb);
     }
-
+    //Uses preselected zones where the weapon could get stuck to
     private Transform GetClosestBone(Characters hitChar, Vector3 hitPosition)
     {
 

@@ -5,11 +5,14 @@ using Enums;
 
 public class MeleeWeapon : MonoBehaviour
 {
+    #region variables
     public int damage;
     public Vector3 range;
     [HideInInspector] public Characters initiator;
     [HideInInspector] public Elements attackElement;
+    #endregion
 
+    //Attack detected with trigger
     private void OnTriggerEnter(Collider other)
     {
         Characters hit = other.gameObject.GetComponent<Characters>();
@@ -34,6 +37,7 @@ public class MeleeWeapon : MonoBehaviour
         gameObject.GetComponent<Collider>().enabled = false;
     }
 
+    //Used with ranged attack
     public void HideWeapon()
     {
         gameObject.SetActive(false);

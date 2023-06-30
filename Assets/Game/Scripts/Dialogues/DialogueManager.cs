@@ -6,6 +6,7 @@ using TMPro;
 
 public class DialogueManager : MonoBehaviour
 {
+    #region variables
     [SerializeField] private TextMeshProUGUI nameText;
     [SerializeField] private TextMeshProUGUI DialogueText;
     [SerializeField] private GameObject dialogueCanvas;
@@ -17,7 +18,9 @@ public class DialogueManager : MonoBehaviour
     private Queue<string> Sentences;
 
     private static DialogueManager _instance;
+    #endregion
 
+    //Settup of the sigleton instance
     public static DialogueManager Instance
     {
         get
@@ -38,6 +41,7 @@ public class DialogueManager : MonoBehaviour
         Sentences = new Queue<string>();
     }
 
+    //Activates the canvas and gets it ready for the dialogue and change the game state
     public void TriggerDialogue(Dialogue dialogue)
     {
         GameManager.Instance.UpdateGameState(Enums.GameState.InMenu);
@@ -54,6 +58,8 @@ public class DialogueManager : MonoBehaviour
         StartDialogue(dialogue);
     }
 
+    //Fills the sentences queue with the dialogue and subscribes
+    //the dialogue to the end of this dialogue
     public void StartDialogue(Dialogue dialogue)
     {
         Sentences.Clear();
@@ -70,6 +76,7 @@ public class DialogueManager : MonoBehaviour
         DisplayNextSentence();
     }
 
+    //Fills the dialogue canvas with the sentences
     public void DisplayNextSentence()
     {
         if (Sentences.Count == 0)
@@ -84,6 +91,7 @@ public class DialogueManager : MonoBehaviour
 
     }
 
+    //Subscribed event will trigger. Also hides the canvas and change the game state
     public void EndDialogue()
     {
         if (OnEnd != null)

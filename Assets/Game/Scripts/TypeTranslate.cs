@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//Class used to translate types to usable strings
 public class TypeTranslate
 {
     [HideInInspector] public Dictionary<Enums.EnemyType, string> enemyNames;
@@ -22,7 +23,8 @@ public class TypeTranslate
     {
         InitializeDictionaries();
     }
-
+    //Returns the string linked to the enemy type
+    //to be used in a written line (dialogue or quest)
     public string TranslateEnemies(Enums.EnemyType Translated)
     {
         if (enemyNames.ContainsKey(Translated))

@@ -15,7 +15,6 @@ public class Menu : MonoBehaviour
     //SHOULD BE USED WITH THE MANUAL BUTTON LINKS IN THE MENU
     private void ChangeButton(GameObject button)
     {
-
         EventSystem.current.SetSelectedGameObject(null);
         EventSystem.current.SetSelectedGameObject(button);
     }

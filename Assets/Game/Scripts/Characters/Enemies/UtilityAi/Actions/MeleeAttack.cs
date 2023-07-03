@@ -46,19 +46,20 @@ namespace UtilityAI.Actions
                         break;
                 }
             }
-            if(enemy.GetDistanceWithPlayer() > enemy.meleeRange)
+            if (enemy.GetDistanceWithPlayer() > enemy.meleeRange)
             {
                 Debug.Log("Too far");
                 Vector3 pointNextToPlayer = enemy.target.transform.position + Random.insideUnitSphere * enemy.meleeRange;
                 NavMeshHit hit;
-                if(NavMesh.SamplePosition(pointNextToPlayer, out hit, 1.0f, NavMesh.AllAreas))
+                if (NavMesh.SamplePosition(pointNextToPlayer, out hit, 1.0f, NavMesh.AllAreas))
                 {
                     Debug.Log("hit.position : " + hit.position);
                     Debug.Log("navAgent.remainingDistance : " + enemy.navAgent.remainingDistance);
                     enemy.navAgent.SetDestination(hit.position);
                     enemy.AnimateMovement();
 
-                    if(enemy.navAgent.remainingDistance <= enemy.meleeRange){
+                    if (enemy.navAgent.remainingDistance <= enemy.meleeRange)
+                    {
                         enemy.StopMovement();
                         enemy.OnFinishedAction();
                     }

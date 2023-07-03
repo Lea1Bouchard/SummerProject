@@ -5,6 +5,7 @@ using System.Collections;
 
 public class Player : Characters
 {
+    #region Variables
     private static Player _instance;
 
     private MovementState movementState;
@@ -21,8 +22,10 @@ public class Player : Characters
     private bool hasEnemyInLineOfSight;
     private float lineOfSightDistance;
     private float lineOfSightRadius;
+    private IEnumerator _coroutine;
 
     private bool weaponTrown;
+    private EnemyLockOn lockOnSys;
 
     private PlayerInputHandler _input;
 
@@ -32,7 +35,9 @@ public class Player : Characters
 
     [SerializeField] private List<Ability> abilities;
     [SerializeField] private MovementAbility teleportAbility;
+    #endregion
 
+    //Instantiates the player singleton
     public static Player Instance
     {
         get
@@ -42,7 +47,7 @@ public class Player : Characters
             return _instance;
         }
     }
-
+    //Variables initialization
     public Player()
     {
         MaxhealthPoints = 100f;
@@ -73,7 +78,7 @@ public class Player : Characters
     {
         _instance = this;
     }
-
+    //Variables initialization on startup
     private void Start()
     {
         opposingElements = new Dictionary<Elements, Elements>();
@@ -92,13 +97,12 @@ public class Player : Characters
         opposingElements.Add(Elements.Null, Elements.Null);
 
         InitializeAbilities();
+
+        _coroutine = ActionReset();
+        lockOnSys = gameObject.GetComponent<EnemyLockOn>();
     }
 
-    private void Update()
-    {
-        DetectEnemiesInLineOfSight();
-    }
-
+    //Initialize the player's abilities
     private void InitializeAbilities()
     {
         foreach (Ability ability in abilities)
@@ -121,23 +125,14 @@ public class Player : Characters
         Weaknesses.Add(opposingElements[newElement]);
     }
 
-    private void DetectEnemiesInLineOfSight()
-    {
-        bool detectedSomething = Physics.SphereCast(transform.position, lineOfSightRadius, transform.forward, out raycastHit, lineOfSightDistance);
-        if (detectedSomething)
-        {
-            if (raycastHit.transform.GetType().ToString() == "Enemy")
-            {
-                hasEnemyInLineOfSight = true;
-            }
-        }
-    }
-
+    //Sets a trigget to allow a combo system
     public void NextAction() // called by animation event
     {
+        StopCoroutine(_coroutine);
         animator.ResetTrigger("MeleeAttack");
         animator.SetTrigger("NextAction");
-        StartCoroutine(ActionReset());
+
+        StartCoroutine(_coroutine);
     }
 
     IEnumerator ActionReset()
@@ -154,10 +149,10 @@ public class Player : Characters
         Debug.Log("Enemy targeted : " + target.name);
         //Automaticly deactivate when player has no target
         gameObject.GetComponent<EnemyLockOn>().ActivateLockonCanvas();
-
-        //TODO : Set special sidestep movement to keep an eye on the target
     }
 
+    //Triggers the range ability if the weapon hasn't been trown yet
+    //Triggers the teleport ability if the weapon has been trown
     public void RangedAbility()
     {
         //TODO : Verify if this is the best way to do it
@@ -165,7 +160,7 @@ public class Player : Characters
         if (!weaponTrown)
         {
             Ability currAbility = abilities.Find((x) => x.abilityType == TypeOfAbility.Ranged);
-            if(!currAbility.IsActive)
+            if (!currAbility.IsActive)
             {
                 currAbility.TriggerAbility();
 
@@ -180,7 +175,7 @@ public class Player : Characters
             RetrieveWeapon();
         }
     }
-
+    //Triggers the dodge ability
     public void DodgeAbility()
     {
         //TODO : Verify if this is the best way to do it
@@ -191,7 +186,7 @@ public class Player : Characters
         Debug.Log(currAbility.abilityName);
         Debug.Log("Dodge");
     }
-
+    //Triggers the melee ability or retrieve the weapon if it has been trown
     public void MeleeAbility()
     {
         //TODO : Verify if this is the best way to do it
@@ -201,7 +196,7 @@ public class Player : Characters
             {
                 StartCoroutine(SmoothRotation(0.2f, target.targetLocation));
             }
-                
+
             Ability currAbility = abilities.Find((x) => x.abilityType == TypeOfAbility.Melee);
             currAbility.TriggerAbility();
 
@@ -212,7 +207,7 @@ public class Player : Characters
             RetrieveWeapon();
         }
     }
-
+    //TODO : Actualy make the teleport animation where this will be called
     //Called in animation
     public void TeleportToTarget()
     {
@@ -221,14 +216,16 @@ public class Player : Characters
         gameObject.transform.position = teleportTarget.transform.position;
         controller.enabled = true;
     }
-
+    //TODO : This probably should be called in an animation
+    //Hides the held weapon
     private void ThrowWeapon()
     {
         weaponTrown = true;
 
         weapon.gameObject.SetActive(false);
     }
-
+    //TODO : This probably should be called in an animation
+    //Re-enable the held weapon and destroys the trown weapon if a teleport was triggered
     private void RetrieveWeapon()
     {
         weaponTrown = false;
@@ -244,21 +241,21 @@ public class Player : Characters
         if (target == null)
         {
             Debug.Log("Target set");
-            SetTarget(gameObject.GetComponent<EnemyLockOn>().GetTarget());
+            SetTarget(lockOnSys.GetTarget());
         }
         else
         {
             Debug.Log("Target lost");
             target = null;
-            gameObject.GetComponent<EnemyLockOn>().Unfocus();
+            lockOnSys.Unfocus();
         }
     }
 
     public void ChangeTarget()
     {
-        gameObject.GetComponent<EnemyLockOn>().NextTarget();
+        lockOnSys.NextTarget();
     }
-
+    //Function to rotate smoothly when attacking while targeted
     IEnumerator SmoothRotation(float duration, Transform target)
     {
         float t = 0f;
@@ -268,7 +265,7 @@ public class Player : Characters
 
         Debug.Log("Quaternion rotation : " + targetRotation);
 
-        while(t < duration)
+        while (t < duration)
         {
             t += Time.deltaTime;
             float factor = t / duration;
@@ -283,7 +280,6 @@ public class Player : Characters
     {
         gameObject.GetComponent<PlayerInteract>().Interact();
     }
-
 
     /* Getters / Setters */
     #region getter/setter

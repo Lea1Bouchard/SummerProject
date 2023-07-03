@@ -88,7 +88,6 @@ public class DialogueManager : MonoBehaviour
         string sentence = Sentences.Dequeue();
 
         DialogueText.text = sentence;
-
     }
 
     //Subscribed event will trigger. Also hides the canvas and change the game state

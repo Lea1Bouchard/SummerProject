@@ -39,7 +39,6 @@ public class NotifyZone : MonoBehaviour
         }
 
         Destroy(this.gameObject);
-
     }
     //Gives a little time for the detection to occur
     IEnumerator DetectionTime()

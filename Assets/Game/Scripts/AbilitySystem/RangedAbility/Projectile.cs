@@ -23,7 +23,6 @@ public class Projectile : MonoBehaviour
 
     #endregion
 
-    
     void Start()
     {
         rigidb = this.gameObject.GetComponent<Rigidbody>();
@@ -75,7 +74,6 @@ public class Projectile : MonoBehaviour
             if (range > 0)
                 abilityIninitator.ProjectileDestroyed();
         }
-
     }
     //Used to leave the projectile in an enemy and teleport to it
     private void ProjectileStick(Transform bone)
@@ -108,7 +106,7 @@ public class Projectile : MonoBehaviour
 
     private void OnDestroy()
     {
-        if(initiator.gameObject.GetComponent<Player>())
+        if (initiator.gameObject.GetComponent<Player>())
         {
             initiator.SetTeleportTarget(null);
         }

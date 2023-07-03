@@ -53,6 +53,5 @@ public class RangedAbility : Ability
         projectileScript.Force = force;
         projectileScript.Initiator = Initiator;
         projectileScript.attackElement = attackElement;
-
     }
 }

@@ -5,6 +5,7 @@ using Enums;
 
 public class Characters : MonoBehaviour
 {
+    #region variables
     [Header("Character's Stats")]
     [SerializeField] private float maxhealthPoints;
     private float currenthealthPoints;
@@ -24,14 +25,14 @@ public class Characters : MonoBehaviour
 
     [Header("Weapon Nodes")]
     public Transform[] weaponNodes;
+    #endregion
 
     /* Methods */
-    //Add Ability and Target in function parameter when created
     public void UseAbility(Ability ability)
     {
         ability.TriggerAbility();
     }
-
+    //Take away the HP from the character
     public void ReceiveDamage(Elements elementHit, float damageReceived)
     {
         if (!isDead)
@@ -47,7 +48,7 @@ public class Characters : MonoBehaviour
 
         }
     }
-
+    //Calculate the total damage taken using the elemental affinities
     private float DamageTaken(Elements elementHit, float damageReceived)
     {
         if (affinities.Contains(elementHit))
@@ -70,12 +71,14 @@ public class Characters : MonoBehaviour
         Animator.SetTrigger("Death");
         Destroy(this.gameObject, 1.5f);
     }
-
+    //Activates the weapon's hitbox during an attack
+    //Called in animation
     public void ActivateWeapon()
     {
         weapon.Activate();
     }
-
+    //Deactivates the weapon's hitbox during an attack
+    //Called in animation
     public void DeactivateWeapon()
     {
         weapon.Deactivate();

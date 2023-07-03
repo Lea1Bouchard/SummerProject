@@ -40,5 +40,4 @@ public class MeleeAbility : Ability
         weapon.attackElement = attackElement;
         weapon.Deactivate();
     }
-
 }

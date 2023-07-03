@@ -21,7 +21,6 @@ public class MeleeWeapon : MonoBehaviour
             hit.ReceiveDamage(attackElement, damage);
         }
 
-
         Debug.Log(other.gameObject);
     }
 

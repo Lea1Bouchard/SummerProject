@@ -7,6 +7,7 @@ namespace UtilityAI.Core
 {
     public class EnemyController : Characters
     {
+        #region variables
         [Header("Enemy's Stats")]
         public float maxRange;
         public float meleeRange;
@@ -31,8 +32,9 @@ namespace UtilityAI.Core
         private Vector3 currentDestination;
         private NavMeshHit navHit;
         [SerializeField] private float maxWalkDistance = 10f;
+        #endregion
 
-
+        //Variables initialization
         public EnemyController()
         {
             MaxhealthPoints = 100f;
@@ -42,6 +44,7 @@ namespace UtilityAI.Core
             WeaknessModifier = 1.25f;
         }
 
+        //Variables initialization on startup
         private void Start()
         {
             aIBrain = GetComponent<AIBrain>();
@@ -75,7 +78,8 @@ namespace UtilityAI.Core
 
             spellAbility.Initialize(this);
         }
-
+        //AIbrain executes the action it decided was the best
+        //once it has choosen it
         private void Update()
         {
             if (aIBrain.finishedDeciding)
@@ -84,7 +88,7 @@ namespace UtilityAI.Core
                 aIBrain.bestAction.Execute(this);
             }
         }
-
+        //Sets the enemy's state to fight and gives it a target
         public void TriggerInFight()
         {
             enemyState = EnemyState.Attacking;
@@ -93,6 +97,7 @@ namespace UtilityAI.Core
             target = Player.Instance;
         }
 
+        //Allows the AIbrain to take another decision
         //Called at the end of the animation
         public void OnFinishedAction()
         {
@@ -104,7 +109,6 @@ namespace UtilityAI.Core
             {
                 aIBrain.DecideBestAction(normalActionsAvailable);
             }
-
         }
 
         public float GetDistanceWithPlayer()
@@ -136,6 +140,8 @@ namespace UtilityAI.Core
                 }
             }
         }
+        //TODO : The If with the velocity could be done directly in the animator
+        //Sets the animator variables to allow a smooth movement animation
         public void AnimateMovement()
         {
             enemyState = EnemyState.Moving;
@@ -164,7 +170,7 @@ namespace UtilityAI.Core
             navAgent.isStopped = true;
             Animator.SetBool("Walk", false);
         }
-
+        //Removes this enemy from the list of close enemies of the player's targetting
         private void OnDestroy()
         {
             player.GetComponent<EnemyLockOn>().RemoveCloseEnemies(this);

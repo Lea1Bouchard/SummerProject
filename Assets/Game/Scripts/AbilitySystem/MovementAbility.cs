@@ -61,7 +61,6 @@ public class MovementAbility : Ability
     //Teleport part
     private void Teleport()
     {
-
         initiator.SetTeleportTarget(GameObject.FindGameObjectWithTag("TeleportTarget"));
 
         if (initiator.teleportTarget != null)
@@ -70,7 +69,6 @@ public class MovementAbility : Ability
             if (TeleportLocation() != Vector3.zero)
                 GoTo();
         }
-
 
         abilityCooldownClass.Initialize(this);
     }
@@ -92,7 +90,6 @@ public class MovementAbility : Ability
             Characters hitCharacter = solid.collider.gameObject.GetComponent<Characters>();
             if (hitCharacter != null)
             {
-
                 //Check the exit point of the previous raycast
                 if (Physics.Raycast(solid.point + initiator.transform.forward * 5, initiator.transform.position - solid.point, hitInfo: out exit))
                     for (int x = 0; x <= 5; x++)
@@ -160,13 +157,12 @@ public class MovementAbility : Ability
                         Physics.Raycast(exit.point, -direction, maxDistance: 20, hitInfo: out exit);
                     }
                 }
-                
-                return SafeDistance(exit, solid, direction, foundExit);
 
+                return SafeDistance(exit, solid, direction, foundExit);
             }
         }
         //Try to teleport to the weapon (not in an enemy)
-        else 
+        else
         {
             return FrontSafeDistanceCheck(initiator.teleportTarget.transform.position, direction);
         }
@@ -178,7 +174,7 @@ public class MovementAbility : Ability
     {
         RaycastHit safeDistance = new RaycastHit();
 
-        if(foundExit)
+        if (foundExit)
         {
             blinkExit = exit.point + (direction * 2);
             Physics.Raycast(exit.point, blinkExit - exit.point, out safeDistance, maxDistance: 2);

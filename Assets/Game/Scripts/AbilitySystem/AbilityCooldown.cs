@@ -24,5 +24,4 @@ public class AbilityCooldown : MonoBehaviour
 
         ability.OnEnd();
     }
-
 }

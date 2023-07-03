@@ -1,11 +1,15 @@
 using UnityEngine;
 
 namespace UtilityAI.Core
-{   
+{
+    //Class is used to help determine the best action to take 
     public abstract class Consideration : ScriptableObject
     {
+        #region variables
         public string Name;
         private float _score;
+        #endregion
+
         public float score
         {
             get { return _score; }

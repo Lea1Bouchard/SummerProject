@@ -3,12 +3,14 @@ using UnityEngine;
 
 namespace UtilityAI.Core
 {
+    //Class uses action's consideration to return the best current action to take
     public class AIBrain : MonoBehaviour
     {
+        #region variables
         public Action bestAction { get; set; }
         private EnemyController enemy;
         public bool finishedDeciding { get; set; }
-
+        #endregion
         void Start()
         {
             enemy = GetComponent<EnemyController>();
@@ -38,7 +40,7 @@ namespace UtilityAI.Core
                 }
                 else if (actionScore == highestScore)
                 {
-                    if(actionsAvailable[i].Importance > actionsAvailable[bestActionIndex].Importance)
+                    if (actionsAvailable[i].Importance > actionsAvailable[bestActionIndex].Importance)
                     {
                         bestActionIndex = i;
                         highestScore = actionsAvailable[i].score;

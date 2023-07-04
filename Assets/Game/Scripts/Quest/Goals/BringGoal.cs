@@ -22,7 +22,7 @@ public class BringGoal : Quest.QuestGoal
     {
         if (eventInfo.BroughtItem == BroughtItem && eventInfo.Location == Location)
         {
-            CurrentAmount++;
+            currentAmount++;
             Evaluate();
         }
     }

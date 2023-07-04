@@ -21,7 +21,7 @@ public class FetchGoal : Quest.QuestGoal
     {
         if (eventInfo.FetchedItem == FetchedItem)
         {
-            CurrentAmount++;
+            currentAmount++;
             Evaluate();
         }
     }

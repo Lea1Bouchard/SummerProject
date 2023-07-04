@@ -14,6 +14,7 @@ public class TalkGoal : Quest.QuestGoal
     public override void Initialize()
     {
         base.Initialize();
+        goalType = Enums.GoalType.Talk;
         EventManager.Instance.AddListener<TalkGameEvent>(OnTalk);
     }
 
@@ -21,7 +22,7 @@ public class TalkGoal : Quest.QuestGoal
     {
         if (eventInfo.TalkedTo == TalkedTo)
         {
-            CurrentAmount++;
+            currentAmount++;
             Evaluate();
         }
     }

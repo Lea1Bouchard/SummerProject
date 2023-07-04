@@ -32,27 +32,28 @@ public class Quest : ScriptableObject
 
     public abstract class QuestGoal : ScriptableObject
     {
-        protected string Description;
-        public int CurrentAmount { get; protected set; }
-        public int RequiredAmount;
-        public bool Completed { get; protected set; }
+        public Enums.GoalType goalType;
+        protected string description;
+        public int currentAmount { get; protected set; }
+        public int requiredAmount;
+        public bool completed { get; protected set; }
         [HideInInspector] public UnityEvent GoalCompleted;
 
         public virtual string GetDescription()
         {
-            return Description;
+            return description;
         }
 
         public virtual void Initialize()
         {
-            Completed = false;
+            completed = false;
             GoalCompleted = new UnityEvent();
-            CurrentAmount = 0;
+            currentAmount = 0;
         }
 
         protected void Evaluate()
         {
-            if (CurrentAmount >= RequiredAmount)
+            if (currentAmount >= requiredAmount)
             {
                 Complete();
             }
@@ -60,7 +61,7 @@ public class Quest : ScriptableObject
 
         private void Complete()
         {
-            Completed = true;
+            completed = true;
             GoalCompleted.Invoke();
             GoalCompleted.RemoveAllListeners();
 
@@ -90,7 +91,7 @@ public class Quest : ScriptableObject
 
     private void CheckGoals()
     {
-        Completed = Goals.All(g => g.Completed);
+        Completed = Goals.All(g => g.completed);
         if (Completed)
         {
             //Give reward

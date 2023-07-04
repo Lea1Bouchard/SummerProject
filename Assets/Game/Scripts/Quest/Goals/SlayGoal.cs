@@ -8,12 +8,13 @@ public class SlayGoal : Quest.QuestGoal
 
     public override string GetDescription()
     {
-        return $"Slay {this.RequiredAmount} {TypeTranslate.Instance.TranslateEnemies(KilledEnemie)}";
+        return $"Slay {this.requiredAmount} {TypeTranslate.Instance.TranslateEnemies(KilledEnemie)}";
     }
 
     public override void Initialize()
     {
         base.Initialize();
+        goalType = Enums.GoalType.Slay;
         EventManager.Instance.AddListener<KillGameEvent>(OnKill);
     }
 
@@ -21,7 +22,7 @@ public class SlayGoal : Quest.QuestGoal
     {
         if (eventInfo.KilledEnemie == KilledEnemie)
         {
-            CurrentAmount++;
+            currentAmount++;
             Evaluate();
         }
     }

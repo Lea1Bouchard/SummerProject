@@ -21,7 +21,7 @@ public class ExampleGoal : Quest.QuestGoal
     {
         if (eventInfo.Example == Example)
         {
-            CurrentAmount++;
+            currentAmount++;
             Evaluate();
         }
     }

@@ -89,4 +89,13 @@ namespace Enums
         Merchant,
         Civilian
     }
+
+    public enum GoalType
+    {
+        Slay,
+        Talk,
+        Gather,
+        Bring,
+        Fetch
+    }
 }

@@ -550,7 +550,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &19994139
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2436,6 +2436,7 @@ GameObject:
   - component: {fileID: 847968051}
   - component: {fileID: 847968052}
   - component: {fileID: 847968053}
+  - component: {fileID: 847968054}
   m_Layer: 0
   m_Name: Managers
   m_TagString: Untagged
@@ -2518,6 +2519,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LimitQueueProcesing: 0
   QueueProcessTime: 0
+--- !u!114 &847968054
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 847968048}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e42276b96e4275148ad27fe383542837, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &874605735
 GameObject:
   m_ObjectHideFlags: 0
@@ -3142,6 +3155,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: QuestCanvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 9058469855357681653, guid: 5cd59b23aec858e45acf30295935eb00,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9058469855359774215, guid: 5cd59b23aec858e45acf30295935eb00,
         type: 3}
@@ -5463,7 +5481,7 @@ PrefabInstance:
     - target: {fileID: 6960070081680904975, guid: 63d207f8299a28b45810e34481416e83,
         type: 3}
       propertyPath: m_Name
-      value: Canvas
+      value: DialogueCanvas
       objectReference: {fileID: 0}
     - target: {fileID: 6960070081680904975, guid: 63d207f8299a28b45810e34481416e83,
         type: 3}

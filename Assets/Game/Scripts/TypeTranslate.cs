@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 //Class used to translate types to usable strings
-public class TypeTranslate
+public class TypeTranslate : MonoBehaviour
 {
     [HideInInspector] public Dictionary<Enums.EnemyType, string> enemyNames;
 
@@ -14,13 +14,14 @@ public class TypeTranslate
         get
         {
             if (_instance is null)
-                Debug.LogError("Player is NULL");
+                Debug.LogError("translate is NULL");
             return _instance;
         }
     }
 
-    void Start()
+    private void Awake()
     {
+        _instance = this;
         InitializeDictionaries();
     }
     //Returns the string linked to the enemy type

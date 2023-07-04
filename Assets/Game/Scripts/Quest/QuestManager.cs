@@ -10,52 +10,46 @@ public class QuestManager : MonoBehaviour
     [SerializeField] private GameObject questHolder;
 
     public List<Quest> CurrentQuests;
-    [SerializeField] private int currentActiveQuest;
 
     private void Awake()
     {
-        if (CurrentQuests[0] != null)
+        if (CurrentQuests.Count > 0)
         {
-            CurrentQuests[0].Initialize();
-            CurrentQuests[0].QuestCompleted.AddListener(OnQuestCompleted);
+            foreach (Quest quest in CurrentQuests)
+            {
+                quest.Initialize();
+                quest.QuestCompleted.AddListener(OnQuestCompleted);
+            }
 
-
+            questHolder.GetComponent<QuestWindow>().Initialize(CurrentQuests[0]);
             questHolder.SetActive(true);
-
         }
-        currentActiveQuest = 0;
-
-        questHolder.GetComponent<QuestWindow>().Initialize(CurrentQuests[currentActiveQuest]);
     }
 
     private void OnQuestCompleted(Quest quest)
     {
+        CurrentQuests.Remove(quest);
+
         print("quest completed");
-        currentActiveQuest++;
         questHolder.GetComponent<QuestWindow>().closeWindow();
 
-        if (CurrentQuests.Count == currentActiveQuest)
+        if (CurrentQuests.Count == 0)
         {
             print("All quests are done");
-            SceneManager.LoadScene(2);
             return;
         }
         print(CurrentQuests.Count);
-        print(currentActiveQuest);
 
-        CurrentQuests[currentActiveQuest].Initialize();
-        CurrentQuests[currentActiveQuest].QuestCompleted.AddListener(OnQuestCompleted);
-
-        questHolder.GetComponent<QuestWindow>().Initialize(CurrentQuests[currentActiveQuest]);
+        //TODO : Check how we can cycle trough quests
+        //questHolder.GetComponent<QuestWindow>().Initialize(CurrentQuests[0]);
     }
 
-    /*
-    public void Slay(string killedEnemie)
+    
+    public void Slay(Enums.EnemyType killedEnemie)
     {
         EventManager.Instance.QueueEvent(new KillGameEvent(killedEnemie));
         print("Slayed");
     }
-    */
 
     public void Fetched(string fetchedItem)
     {

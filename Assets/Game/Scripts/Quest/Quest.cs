@@ -32,7 +32,6 @@ public class Quest : ScriptableObject
 
     public abstract class QuestGoal : ScriptableObject
     {
-
         protected string Description;
         public int CurrentAmount { get; protected set; }
         public int RequiredAmount;

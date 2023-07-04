@@ -15,6 +15,9 @@ public class InteractableCharacter : Interactable
 
     public override void Interact()
     {
+        Debug.Log("Enemy type : " + TypeTranslate.Instance.TranslateEnemies(EnemyType.Dragon_NoWings));
+
         DialogueManager.Instance.TriggerDialogue(dialogue);
+        EventManager.Instance.QueueEvent(new TalkGameEvent(Name));
     }
 }

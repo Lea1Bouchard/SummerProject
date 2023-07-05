@@ -15,4 +15,8 @@ public class HoverManager : MonoBehaviour, IPointerEnterHandler
         print("Quest name : " + QuestManager.Instance.CurrentQuests[linkedQuestIndex].Information.name);
     }
 
+    public void ChangeFocusedQuest()
+    {
+        QuestWindow.Instance.ChangeFocusedQuest(QuestManager.Instance.CurrentQuests[linkedQuestIndex]);
+    }
 }

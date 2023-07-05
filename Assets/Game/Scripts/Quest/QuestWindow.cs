@@ -15,14 +15,32 @@ public class QuestWindow : MonoBehaviour
     [SerializeField] private TextMeshProUGUI goldText;
     [SerializeField] private AudioClip newQuestSound;
 
+    private static QuestWindow _instance;
+
+    private Vector3 offset = new Vector3(0, 25, 0);
+
     private List<GameObject> goalsIndicators = new List<GameObject>();
+
+    public static QuestWindow Instance
+    {
+        get
+        {
+            if (_instance is null)
+                Debug.LogError("QuestDescriptionWindow is NULL");
+            return _instance;
+        }
+    }
+
+    private void Awake()
+    {
+        _instance = this;
+    }
 
     public void Initialize(Quest quest)
     {
         titleText.text = quest.Information.name;
         descriptionText.text = quest.Information.description;
 
-        var offset = new Vector3(0, 25, 0);
         int loopTimes = 0;
 
         gameObject.SetActive(true);
@@ -67,8 +85,40 @@ public class QuestWindow : MonoBehaviour
         }
     }
 
+    public void ChangeFocusedQuest(Quest quest)
+    {
+        DestroyGoal();
+
+        int loopTimes = 0;
+
+        foreach (var goal in quest.Goals)
+        {
+            GameObject goalObj = Instantiate(goalPrefab, goalsContent);
+
+            goalObj.GetComponent<GoalIndicator>().LinkedGoal = goal;
+            goalsIndicators.Add(goalObj);
+            goalObj.transform.position += (offset * -loopTimes);
+
+            goalObj.GetComponent<GoalIndicator>().Initialize();
+
+            UpdateListener(goalObj.GetComponent<GoalIndicator>(), goal);
+
+            loopTimes++;
+        }
+    }
+
+    public void DestroyGoal()
+    {
+        goalsIndicators.Clear();
+        foreach (Transform goal in goalsContent)
+        {
+            Destroy(goal.gameObject);
+        }
+    }
+
     private void UpdateListener(GoalIndicator indicator, Quest.QuestGoal goal)
     {
+
         switch (goal.goalType)
         {
             case Enums.GoalType.Bring:

@@ -5,14 +5,14 @@ using UnityEngine.EventSystems;
 
 public class Menu : MonoBehaviour
 {
-    public GameObject firstButton, newCurrentButton;
+    public GameObject firstButton;
 
     private void OnEnable()
     {
         ChangeButton(firstButton);
     }
 
-    private void ChangeButton(GameObject button)
+    public void ChangeButton(GameObject button)
     {
 
         EventSystem.current.SetSelectedGameObject(null);

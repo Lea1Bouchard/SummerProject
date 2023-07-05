@@ -7,12 +7,25 @@ using UnityEngine.UI;
 
 public class QuestManager : MonoBehaviour
 {
+    private static QuestManager _instance;
     [SerializeField] private GameObject questHolder;
 
     public List<Quest> CurrentQuests;
 
+    public static QuestManager Instance
+    {
+        get
+        {
+            if (_instance is null)
+                Debug.LogError("QuestManager is NULL");
+            return _instance;
+        }
+    }
+
     private void Awake()
     {
+        _instance = this;
+
         if (CurrentQuests.Count > 0)
         {
             foreach (Quest quest in CurrentQuests)

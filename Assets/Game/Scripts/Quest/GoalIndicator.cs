@@ -15,7 +15,7 @@ public class GoalIndicator : MonoBehaviour
 
         if (linkedGoal.completed)
         {
-            transform.Find("Done").gameObject.SetActive(true);
+            transform.GetChild(0).Find("Done").gameObject.SetActive(true);
         }
         else if (linkedGoal.requiredAmount > 1)
         {

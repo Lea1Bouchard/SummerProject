@@ -2505,16 +2505,16 @@ MonoBehaviour:
   questHolder: {fileID: 9058469855463662752}
   CurrentQuests:
   - {fileID: 11400000, guid: 255ae73827e07d14ab10245d970dc7ce, type: 2}
+  - {fileID: 11400000, guid: d52402919503b93449af3fb57d818369, type: 2}
   - {fileID: 11400000, guid: 255ae73827e07d14ab10245d970dc7ce, type: 2}
   - {fileID: 11400000, guid: 255ae73827e07d14ab10245d970dc7ce, type: 2}
+  - {fileID: 11400000, guid: d52402919503b93449af3fb57d818369, type: 2}
+  - {fileID: 11400000, guid: 2155529a68ee31549bfe9a579c8d671c, type: 2}
   - {fileID: 11400000, guid: 255ae73827e07d14ab10245d970dc7ce, type: 2}
+  - {fileID: 11400000, guid: 2155529a68ee31549bfe9a579c8d671c, type: 2}
+  - {fileID: 11400000, guid: 2155529a68ee31549bfe9a579c8d671c, type: 2}
   - {fileID: 11400000, guid: 255ae73827e07d14ab10245d970dc7ce, type: 2}
-  - {fileID: 11400000, guid: 255ae73827e07d14ab10245d970dc7ce, type: 2}
-  - {fileID: 11400000, guid: 255ae73827e07d14ab10245d970dc7ce, type: 2}
-  - {fileID: 11400000, guid: 255ae73827e07d14ab10245d970dc7ce, type: 2}
-  - {fileID: 11400000, guid: 255ae73827e07d14ab10245d970dc7ce, type: 2}
-  - {fileID: 11400000, guid: 255ae73827e07d14ab10245d970dc7ce, type: 2}
-  - {fileID: 11400000, guid: 255ae73827e07d14ab10245d970dc7ce, type: 2}
+  - {fileID: 11400000, guid: d52402919503b93449af3fb57d818369, type: 2}
 --- !u!114 &847968053
 MonoBehaviour:
   m_ObjectHideFlags: 0

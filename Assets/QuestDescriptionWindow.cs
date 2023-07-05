@@ -39,6 +39,8 @@ public class QuestDescriptionWindow : MonoBehaviour
         var offset = new Vector3(0, 25, 0);
         int loopTimes = 0;
 
+        DestroyGoal();
+
         foreach (var goal in quest.Goals)
         {
             GameObject goalObj = Instantiate(goalPrefab, goalContainer);
@@ -51,4 +53,12 @@ public class QuestDescriptionWindow : MonoBehaviour
             loopTimes++;
         }
     }    
+
+    public void DestroyGoal()
+    {
+        foreach(Transform goal in goalContainer)
+        {
+            Destroy(goal.gameObject);
+        }
+    }
 }

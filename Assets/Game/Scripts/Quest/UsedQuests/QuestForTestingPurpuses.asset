@@ -1,5 +1,24 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-335209832857447920
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f58845e414913dc4fb890cf174a03986, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  goalType: 3
+  requiredAmount: 0
+  GoalCompleted:
+    m_PersistentCalls:
+      m_Calls: []
+  BroughtItem: 4
+  Location: Ricky valey
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13,10 +32,11 @@ MonoBehaviour:
   m_Name: QuestForTestingPurpuses
   m_EditorClassIdentifier: 
   Information:
-    name: 
+    name: Never giving up
     icon: {fileID: 0}
-    description: 
+    description: nep nep :>
   reward:
-    Currency: 10
-    XP: 100
-  Goals: []
+    Currency: 23
+    XP: 152
+  Goals:
+  - {fileID: -335209832857447920}

@@ -32,7 +32,7 @@ public class Quest : ScriptableObject
 
     public abstract class QuestGoal : ScriptableObject
     {
-        public Enums.GoalType goalType;
+        [HideInInspector]public Enums.GoalType goalType;
         protected string description;
         public int currentAmount { get; protected set; }
         public int requiredAmount;

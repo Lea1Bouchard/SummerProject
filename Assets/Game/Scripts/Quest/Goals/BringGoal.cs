@@ -15,6 +15,7 @@ public class BringGoal : Quest.QuestGoal
     public override void Initialize()
     {
         base.Initialize();
+        goalType = Enums.GoalType.Bring;
         EventManager.Instance.AddListener<BringGameEvent>(OnBrought);
     }
 

@@ -14,6 +14,7 @@ public class FetchGoal : Quest.QuestGoal
     public override void Initialize()
     {
         base.Initialize();
+        goalType = Enums.GoalType.Fetch;
         EventManager.Instance.AddListener<FetchGameEvent>(OnFetched);
     }
 

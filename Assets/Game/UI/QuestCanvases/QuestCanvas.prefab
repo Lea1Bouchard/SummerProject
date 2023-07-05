@@ -945,13 +945,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ff6f8a4cd3b10f478fc6a2018c48b6b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  titleText: {fileID: 0}
-  descriptionText: {fileID: 0}
-  goalPrefab: {fileID: 4007240157717353031, guid: 8a4e26a1aa34e5b449d646b8ac760264,
+  titleText: {fileID: 282899616548932398}
+  descriptionText: {fileID: 2240162895826452367}
+  goalPrefab: {fileID: 4007240157717353031, guid: c869d83845f82b6479e1f708214d3ae6,
     type: 3}
   goalsContent: {fileID: 9058469853776915527}
-  xpText: {fileID: 0}
-  goldText: {fileID: 0}
+  xpText: {fileID: 5583147820799251570}
+  goldText: {fileID: 8281666376660052677}
   newQuestSound: {fileID: 8300000, guid: 32e9540d5ef3b1b4a9282beae1ea18f3, type: 3}
 --- !u!1 &9058469855526696193
 GameObject:

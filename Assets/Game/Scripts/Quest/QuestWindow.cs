@@ -7,12 +7,12 @@ using UnityEngine.UI;
 
 public class QuestWindow : MonoBehaviour
 {
-    [SerializeField] private Text titleText;
-    [SerializeField] private Text descriptionText;
+    [SerializeField] private TextMeshProUGUI titleText;
+    [SerializeField] private TextMeshProUGUI descriptionText;
     [SerializeField] private GameObject goalPrefab;
     [SerializeField] private Transform goalsContent;
-    [SerializeField] private Text xpText;
-    [SerializeField] private Text goldText;
+    [SerializeField] private TextMeshProUGUI xpText;
+    [SerializeField] private TextMeshProUGUI goldText;
     [SerializeField] private AudioClip newQuestSound;
 
     private List<GameObject> goalsIndicators = new List<GameObject>();

@@ -91,7 +91,6 @@ public class DialogueManager : MonoBehaviour
 
         if(!questMarker.activeInHierarchy)
         {
-            Cursor.lockState = CursorLockMode.Locked;
             GameManager.Instance.UpdateGameState(Enums.GameState.InGame);
         }
 

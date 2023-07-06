@@ -8,8 +8,7 @@ public class InteractableCharacter : Interactable
 {
     [SerializeField] private NpcType npcType;
     [SerializeField] private Dialogue dialogue;
-    [SerializeField] private Dialogue questDialogue;
-    [SerializeField] private List<Quest> quests;
+    [SerializeField] private List<Dialogue> questDialogue;
     [SerializeField] private int currQuestIndex = 0;
     public bool isReadyToGiveQuest;
 
@@ -20,9 +19,9 @@ public class InteractableCharacter : Interactable
 
     public override void Interact()
     {
-        if (npcType == NpcType.QuestGiver)
+        if (npcType == NpcType.QuestGiver && questDialogue.Count > 0)
         {
-            TriggerDialogue(questDialogue);
+            TriggerDialogue(questDialogue[currQuestIndex]);
         }
         else if (npcType == NpcType.Merchant)
         {

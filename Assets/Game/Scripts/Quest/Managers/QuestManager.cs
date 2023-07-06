@@ -8,7 +8,6 @@ using UnityEngine.UI;
 public class QuestManager : MonoBehaviour
 {
     private static QuestManager _instance;
-    [SerializeField] private GameObject questHolder;
 
     public List<Quest> currentQuests;
 
@@ -33,9 +32,6 @@ public class QuestManager : MonoBehaviour
                 quest.Initialize();
                 quest.QuestCompleted.AddListener(OnQuestCompleted);
             }
-
-            questHolder.GetComponent<QuestWindow>().Initialize(currentQuests[0]);
-            questHolder.SetActive(true);
         }
     }
 
@@ -44,7 +40,6 @@ public class QuestManager : MonoBehaviour
         currentQuests.Remove(quest);
 
         print("quest completed");
-        questHolder.GetComponent<QuestWindow>().closeWindow();
 
         if (currentQuests.Count == 0)
         {
@@ -52,9 +47,6 @@ public class QuestManager : MonoBehaviour
             return;
         }
         print(currentQuests.Count);
-
-        //TODO : Check how we can cycle trough quests
-        //questHolder.GetComponent<QuestWindow>().Initialize(CurrentQuests[0]);
     }
 
     public void AddQuest(Quest quest)

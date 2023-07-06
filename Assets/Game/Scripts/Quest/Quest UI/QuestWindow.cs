@@ -22,7 +22,7 @@ public class QuestWindow : MonoBehaviour
         get
         {
             if (_instance is null)
-                Debug.LogError("QuestDescriptionWindow is NULL");
+                Debug.LogError("QuestWindow is NULL");
             return _instance;
         }
     }
@@ -30,6 +30,7 @@ public class QuestWindow : MonoBehaviour
     private void Awake()
     {
         _instance = this;
+        gameObject.SetActive(false);
     }
 
     public void Initialize(Quest quest)
@@ -48,6 +49,7 @@ public class QuestWindow : MonoBehaviour
 
     public void closeWindow()
     {
+
         gameObject.SetActive(false);
         requestedQuest = null;
         GameManager.Instance.UpdateGameState(Enums.GameState.InGame);

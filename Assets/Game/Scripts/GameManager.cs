@@ -90,8 +90,8 @@ public class GameManager : MonoBehaviour
         switch (gameState)
         {
             case GameState.InMenu:
-                Cursor.lockState = CursorLockMode.None;
                 Time.timeScale = 1;
+                Cursor.lockState = CursorLockMode.None;
                 break;
             case GameState.InGame:
                 Cursor.lockState = CursorLockMode.Locked;

@@ -10,7 +10,7 @@ public class QuestManager : MonoBehaviour
     private static QuestManager _instance;
     [SerializeField] private GameObject questHolder;
 
-    public List<Quest> CurrentQuests;
+    public List<Quest> currentQuests;
 
     public static QuestManager Instance
     {
@@ -26,35 +26,40 @@ public class QuestManager : MonoBehaviour
     {
         _instance = this;
 
-        if (CurrentQuests.Count > 0)
+        if (currentQuests.Count > 0)
         {
-            foreach (Quest quest in CurrentQuests)
+            foreach (Quest quest in currentQuests)
             {
                 quest.Initialize();
                 quest.QuestCompleted.AddListener(OnQuestCompleted);
             }
 
-            questHolder.GetComponent<QuestWindow>().Initialize(CurrentQuests[0]);
+            questHolder.GetComponent<QuestWindow>().Initialize(currentQuests[0]);
             questHolder.SetActive(true);
         }
     }
 
     private void OnQuestCompleted(Quest quest)
     {
-        CurrentQuests.Remove(quest);
+        currentQuests.Remove(quest);
 
         print("quest completed");
         questHolder.GetComponent<QuestWindow>().closeWindow();
 
-        if (CurrentQuests.Count == 0)
+        if (currentQuests.Count == 0)
         {
             print("All quests are done");
             return;
         }
-        print(CurrentQuests.Count);
+        print(currentQuests.Count);
 
         //TODO : Check how we can cycle trough quests
         //questHolder.GetComponent<QuestWindow>().Initialize(CurrentQuests[0]);
+    }
+
+    public void AddQuest(Quest quest)
+    {
+        currentQuests.Add(quest);
     }
 
     

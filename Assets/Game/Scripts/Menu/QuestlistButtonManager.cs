@@ -22,7 +22,7 @@ public class QuestlistButtonManager : MonoBehaviour
     private void FillButtons()
     {
         int index = 0;
-        foreach(Quest quest in QuestManager.Instance.CurrentQuests)
+        foreach(Quest quest in QuestManager.Instance.currentQuests)
         {
             GameObject button = Instantiate(buttonTemplate);
             button.transform.SetParent(scrollViewContent.transform);

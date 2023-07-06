@@ -8,6 +8,7 @@ public class Dialogue : ScriptableObject
 
     public string initiatorName;
     public bool isQuest;
+    [SerializeField] private Quest quest;
 
     [TextArea(3, 10)]
     public string[] sentences;
@@ -22,6 +23,6 @@ public class Dialogue : ScriptableObject
     {
         DialogueManager.OnEnd -= QuestTrigger;
 
-        //TODO : add quest events
+        QuestManager.Instance.AddQuest(quest);
     }
 }

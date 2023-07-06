@@ -23,6 +23,8 @@ public class Dialogue : ScriptableObject
     {
         DialogueManager.OnEnd -= QuestTrigger;
 
-        QuestManager.Instance.AddQuest(quest);
+        //Pop a quest window
+
+        //QuestManager.Instance.AddQuest(quest);
     }
 }

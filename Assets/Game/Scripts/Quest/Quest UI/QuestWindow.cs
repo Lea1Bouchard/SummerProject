@@ -41,24 +41,25 @@ public class QuestWindow : MonoBehaviour
         titleText.text = quest.Information.name;
         descriptionText.text = quest.Information.description;
 
-        int loopTimes = 0;
-
         gameObject.SetActive(true);
 
+        //MIGHT BE USED TO SHOW QUEST OBJECTIVES
+        /*
+         
+        int loopTimes = 0;
+         
         foreach (var goal in quest.Goals)
         {
             GameObject goalObj = Instantiate(goalPrefab, goalsContent);
 
             goalObj.GetComponent<GoalIndicator>().LinkedGoal = goal;
-            goalsIndicators.Add(goalObj);
             goalObj.transform.position += (offset * -loopTimes);
 
             goalObj.GetComponent<GoalIndicator>().Initialize();
-
-            UpdateListener(goalObj.GetComponent<GoalIndicator>(), goal);
-
             loopTimes++;
         }
+
+        */
 
         xpText.text = quest.reward.XP.ToString() + " XP";
         goldText.text = quest.reward.Currency.ToString() + " Gold";
@@ -85,62 +86,5 @@ public class QuestWindow : MonoBehaviour
         }
     }
 
-    public void ChangeFocusedQuest(Quest quest)
-    {
-        DestroyGoal();
-
-        int loopTimes = 0;
-
-        foreach (var goal in quest.Goals)
-        {
-            GameObject goalObj = Instantiate(goalPrefab, goalsContent);
-
-            goalObj.GetComponent<GoalIndicator>().LinkedGoal = goal;
-            goalsIndicators.Add(goalObj);
-            goalObj.transform.position += (offset * -loopTimes);
-
-            goalObj.GetComponent<GoalIndicator>().Initialize();
-
-            UpdateListener(goalObj.GetComponent<GoalIndicator>(), goal);
-
-            loopTimes++;
-        }
-    }
-
-    public void DestroyGoal()
-    {
-        goalsIndicators.Clear();
-        foreach (Transform goal in goalsContent)
-        {
-            Destroy(goal.gameObject);
-        }
-    }
-
-    private void UpdateListener(GoalIndicator indicator, Quest.QuestGoal goal)
-    {
-
-        switch (goal.goalType)
-        {
-            case Enums.GoalType.Bring:
-                EventManager.Instance.AddListener<BringGameEvent>(delegate { indicator.UpdateGoalIndicator(); });
-                break;      
-                
-            case Enums.GoalType.Fetch:
-                EventManager.Instance.AddListener<FetchGameEvent>(delegate { indicator.UpdateGoalIndicator(); });
-                break;
-
-            case Enums.GoalType.Gather:
-                //Game event not yet implemented
-                //EventManager.Instance.AddListener<>(delegate { indicator.UpdateGoalIndicator(); });
-                break;
-
-            case Enums.GoalType.Slay:
-                EventManager.Instance.AddListener<KillGameEvent>(delegate { indicator.UpdateGoalIndicator(); });
-                break;
-
-            case Enums.GoalType.Talk:
-                EventManager.Instance.AddListener<TalkGameEvent>(delegate { indicator.UpdateGoalIndicator(); });
-                break;
-        }
-    }
+    
 }

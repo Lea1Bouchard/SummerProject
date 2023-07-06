@@ -21,6 +21,16 @@ public class CurrentObjectiveIndicator : MonoBehaviour
         }
     }
 
+    private void Awake()
+    {
+        _instance = this;
+
+        if(transform.childCount <= 0 && QuestManager.Instance.currentQuests.Count > 0)
+        {
+            LoadGoals(QuestManager.Instance.currentQuests[0]);
+        }
+    }
+
     private void LoadGoals(Quest quest)
     {
         int loopTimes = 0;
@@ -42,26 +52,11 @@ public class CurrentObjectiveIndicator : MonoBehaviour
         }
     }
 
-
     public void ChangeFocusedQuest(Quest quest)
     {
         DestroyGoal();
 
-        int loopTimes = 0;
-
-        foreach (var goal in quest.Goals)
-        {
-            GameObject goalObj = Instantiate(goalPrefab, goalsContent);
-
-            goalObj.GetComponent<GoalIndicator>().LinkedGoal = goal;
-            goalObj.transform.position += (offset * -loopTimes);
-
-            goalObj.GetComponent<GoalIndicator>().Initialize();
-
-            UpdateListener(goalObj.GetComponent<GoalIndicator>(), goal);
-
-            loopTimes++;
-        }
+        LoadGoals(quest);
     }
 
     private void UpdateListener(GoalIndicator indicator, Quest.QuestGoal goal)

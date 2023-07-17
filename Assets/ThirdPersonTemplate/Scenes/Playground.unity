@@ -797,15 +797,34 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: RefuseQuest
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 1971744270825470385, guid: a4ba78126aaf2c64e85f499a8a34bc46, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a4ba78126aaf2c64e85f499a8a34bc46, type: 3}
+--- !u!1 &92326444 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9058469853776915524, guid: 5cd59b23aec858e45acf30295935eb00,
+    type: 3}
+  m_PrefabInstance: {fileID: 7741091183894097771}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &92326445 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 9058469853776915527, guid: 5cd59b23aec858e45acf30295935eb00,
     type: 3}
   m_PrefabInstance: {fileID: 7741091183894097771}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &92326446
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 92326444}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c2f46161e6ef094c89e96c5ced1fe5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  goalPrefab: {fileID: 0}
+  goalsContent: {fileID: 0}
 --- !u!4 &136963871 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4033117738369716254, guid: 5853b18e559fb234b8559603d8a5be28,

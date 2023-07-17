@@ -14,9 +14,6 @@ public class QuestlistButtonManager : MonoBehaviour
         FillButtons();
 
         gameObject.GetComponent<Menu>().ChangeButton(scrollViewContent.transform.GetChild(0).gameObject);
-
-        //TEMP TEST
-        GameManager.Instance.UpdateGameState(Enums.GameState.InMenu);
     }
 
     private void FillButtons()

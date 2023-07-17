@@ -6,6 +6,7 @@ public class PauseMenu : MonoBehaviour
 {
     [SerializeField] GameObject pauseMenu;
     [SerializeField] GameObject questMenu;
+    [SerializeField] GameObject resumeButton;
     private static PauseMenu _instance;
 
     public static PauseMenu Instance
@@ -27,6 +28,7 @@ public class PauseMenu : MonoBehaviour
     private void OnEnable()
     {
         GameManager.Instance.UpdateGameState(Enums.GameState.InMenu);
+        gameObject.GetComponent<Menu>().ChangeButton(resumeButton);
     }
 
     public void PauseGame()

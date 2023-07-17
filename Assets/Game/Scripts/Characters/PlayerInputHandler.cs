@@ -99,6 +99,17 @@ public class PlayerInputHandler : MonoBehaviour
                 Player.Instance.Interact();
     }
 
+    public void OnPause(InputAction.CallbackContext value)
+    {
+        if (GameManager.Instance.currentGameState == GameState.InGame)
+            if (value.performed)
+                PauseMenu.Instance.gameObject.SetActive(true);
+            else if (GameManager.Instance.currentGameState == GameState.InGame)
+                if (value.performed)
+                    PauseMenu.Instance.gameObject.SetActive(false);
+
+    }
+
     public void SelectElementInputNormal(InputAction.CallbackContext context)
     {
         Vector2 vector = context.ReadValue<Vector2>();

@@ -22,6 +22,11 @@ public class PauseMenu : MonoBehaviour
     private void Awake()
     {
         _instance = this;
+    }
+
+    private void Start()
+    {
+
         gameObject.SetActive(false);
     }
 
@@ -50,6 +55,7 @@ public class PauseMenu : MonoBehaviour
     {
         questMenu.gameObject.SetActive(false);
         pauseMenu.gameObject.SetActive(true);
+        gameObject.GetComponent<Menu>().ChangeButton(resumeButton);
     }
 
     public void OptionMenu()
@@ -71,6 +77,8 @@ public class PauseMenu : MonoBehaviour
 
     private void OnDisable()
     {
+        questMenu.gameObject.SetActive(false);
+        pauseMenu.gameObject.SetActive(true);
         GameManager.Instance.UpdateGameState(Enums.GameState.InGame);
     }
 

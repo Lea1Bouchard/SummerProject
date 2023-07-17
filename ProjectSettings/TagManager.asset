@@ -6,6 +6,7 @@ TagManager:
   tags:
   - CinemachineTarget
   - TeleportTarget
+  - PauseMenu
   layers:
   - Default
   - TransparentFX

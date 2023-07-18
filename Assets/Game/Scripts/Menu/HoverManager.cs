@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class HoverManager : MonoBehaviour, IPointerEnterHandler, ISelectHandler
 {
@@ -13,7 +14,14 @@ public class HoverManager : MonoBehaviour, IPointerEnterHandler, ISelectHandler
 
     public void ChangeFocusedQuest()
     {
+        foreach (Transform child in transform.parent)
+        {
+            child.GetComponent<Button>().image.color = Color.white;
+        }
+
         CurrentObjectiveIndicator.Instance.ChangeFocusedQuest(QuestManager.Instance.currentQuests[linkedQuestIndex]);
+
+        gameObject.GetComponent<Button>().image.color = Color.yellow;
 
         CurrentObjectiveIndicator.Instance.gameObject.SetActive(false);
     }

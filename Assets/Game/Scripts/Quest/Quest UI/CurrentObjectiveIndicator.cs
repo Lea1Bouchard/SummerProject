@@ -8,6 +8,7 @@ public class CurrentObjectiveIndicator : MonoBehaviour
     [SerializeField] private GameObject goalPrefab;
     [SerializeField] private Transform goalsContent;
     private static CurrentObjectiveIndicator _instance;
+    public Quest currentQuest;
 
     private Vector3 offset = new Vector3(0, 25, 0);
 
@@ -39,6 +40,8 @@ public class CurrentObjectiveIndicator : MonoBehaviour
         int loopTimes = 0;
 
         gameObject.SetActive(true);
+
+        currentQuest = quest;
 
         foreach (var goal in quest.Goals)
         {

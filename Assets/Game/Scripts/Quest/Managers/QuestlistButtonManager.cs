@@ -38,6 +38,11 @@ public class QuestlistButtonManager : MonoBehaviour
             button.transform.GetChild(0).GetComponent<TextMeshProUGUI>().SetText(quest.Information.name);
             button.GetComponent<HoverManager>().linkedQuestIndex = index;
 
+            if(CurrentObjectiveIndicator.Instance.currentQuest == quest)
+            {
+                button.GetComponent<Button>().image.color = Color.yellow;
+            }
+
             FillButtonNavigation(index, button);
 
             index++;
@@ -78,8 +83,4 @@ public class QuestlistButtonManager : MonoBehaviour
         }
     }
 
-    private void LoadQuestData()
-    {
-
-    }
 }

@@ -11,6 +11,7 @@ public class QuestlistButtonManager : MonoBehaviour
     [SerializeField] private GameObject buttonTemplate;
     [SerializeField] private GameObject questDescription;
     [SerializeField] private GameObject returnButton;
+    private int currQuestIndex;
 
     private void OnEnable()
     {
@@ -75,11 +76,6 @@ public class QuestlistButtonManager : MonoBehaviour
         {
             Destroy(child.gameObject);
         }
-    }
-
-    IEnumerator wait(float time)
-    {
-        yield return new WaitForSeconds(time);
     }
 
     private void LoadQuestData()

@@ -14,6 +14,8 @@ public class HoverManager : MonoBehaviour, IPointerEnterHandler, ISelectHandler
     public void ChangeFocusedQuest()
     {
         CurrentObjectiveIndicator.Instance.ChangeFocusedQuest(QuestManager.Instance.currentQuests[linkedQuestIndex]);
+
+        CurrentObjectiveIndicator.Instance.gameObject.SetActive(false);
     }
 
     public void OnSelect(BaseEventData eventData)

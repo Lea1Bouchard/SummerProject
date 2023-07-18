@@ -27,7 +27,7 @@ public class QuestDescriptionWindow : MonoBehaviour
     private void Awake()
     {
         _instance = this;
-        gameObject.SetActive(false);
+        //gameObject.SetActive(false);
     }
 
     public void FillQuestData(Quest quest)

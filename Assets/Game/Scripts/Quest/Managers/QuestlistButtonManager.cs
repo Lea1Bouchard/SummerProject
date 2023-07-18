@@ -9,12 +9,12 @@ public class QuestlistButtonManager : MonoBehaviour
 
     [SerializeField] private GameObject scrollViewContent;
     [SerializeField] private GameObject buttonTemplate;
+    [SerializeField] private GameObject questDescription;
     [SerializeField] private GameObject returnButton;
 
     private void OnEnable()
     {
         EmptyButtons();
-        //wait(0);
         FillButtons();
         //TODO : Mabe find a way to select back the previously selected button if select on right
         //Could use linkedQuestIndex in HoverManager
@@ -33,8 +33,7 @@ public class QuestlistButtonManager : MonoBehaviour
         int index = 0;
         foreach (Quest quest in QuestManager.Instance.currentQuests)
         {
-            GameObject button = Instantiate(buttonTemplate);
-            button.transform.SetParent(scrollViewContent.transform);
+            GameObject button = Instantiate(buttonTemplate, scrollViewContent.transform, false);
             button.transform.GetChild(0).GetComponent<TextMeshProUGUI>().SetText(quest.Information.name);
             button.GetComponent<HoverManager>().linkedQuestIndex = index;
 

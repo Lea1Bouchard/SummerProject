@@ -11,14 +11,14 @@ public class QuestlistButtonManager : MonoBehaviour
     [SerializeField] private GameObject buttonTemplate;
     [SerializeField] private GameObject questDescription;
     [SerializeField] private GameObject returnButton;
-    private int currQuestIndex;
 
     private void OnEnable()
     {
-        EmptyButtons();
         FillButtons();
+        print("ButtonEnabled");
         //TODO : Mabe find a way to select back the previously selected button if select on right
         //Could use linkedQuestIndex in HoverManager
+        print(scrollViewContent.transform.GetChild(0).gameObject.activeInHierarchy);
         gameObject.GetComponent<Menu>().ChangeButton(scrollViewContent.transform.GetChild(0).gameObject);
 
         Navigation buttonNav = new Navigation();
@@ -75,12 +75,17 @@ public class QuestlistButtonManager : MonoBehaviour
         button.GetComponent<Button>().navigation = buttonNav;
     }
 
-    private void EmptyButtons()
+    public void EmptyButtons()
     {
         foreach(Transform child in scrollViewContent.transform)
         {
             Destroy(child.gameObject);
         }
+    }
+
+    private void OnDisable()
+    {
+        EmptyButtons();
     }
 
 }

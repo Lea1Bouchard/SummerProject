@@ -9,13 +9,15 @@ public class Menu : MonoBehaviour
 
     private void OnEnable()
     {
-        ChangeButton(firstButton);
+        if(firstButton)
+            ChangeButton(firstButton);
     }
 
     public void ChangeButton(GameObject button)
     {
-
         EventSystem.current.SetSelectedGameObject(null);
         EventSystem.current.SetSelectedGameObject(button);
+
+        print("Button Changed");
     }
 }

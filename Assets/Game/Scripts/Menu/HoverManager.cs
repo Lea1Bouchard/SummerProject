@@ -34,9 +34,5 @@ public class HoverManager : MonoBehaviour, IPointerEnterHandler, ISelectHandler
     private void ChangeData()
     {
         QuestDescriptionWindow.Instance.FillQuestData(QuestManager.Instance.currentQuests[linkedQuestIndex]);
-
-        print("PointerEnter!! Quest index : " + linkedQuestIndex);
-
-        print("Quest name : " + QuestManager.Instance.currentQuests[linkedQuestIndex].Information.name);
     }
 }

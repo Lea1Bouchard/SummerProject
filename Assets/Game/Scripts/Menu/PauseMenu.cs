@@ -29,11 +29,6 @@ public class PauseMenu : MonoBehaviour
         gameObject.SetActive(false);
     }
 
-    private void OnEnable()
-    {
-        gameObject.GetComponent<Menu>().ChangeButton(resumeButton);
-    }
-
     public void PauseGame()
     {
         print("Pausing the game");

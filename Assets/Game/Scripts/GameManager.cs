@@ -91,10 +91,8 @@ public class GameManager : MonoBehaviour
         {
             case GameState.InMenu:
                 Time.timeScale = 1;
-                Cursor.lockState = CursorLockMode.None;
                 break;
             case GameState.InGame:
-                Cursor.lockState = CursorLockMode.Locked;
                 break;
             case GameState.InWaitMode:
                 Time.timeScale = 1;
@@ -120,11 +118,13 @@ public class GameManager : MonoBehaviour
     private void HandleInGame()
     {
         currentGameState = GameState.InGame;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     private void HandleInMenu()
     {
         currentGameState = GameState.InMenu;
+        Cursor.lockState = CursorLockMode.None;
         Time.timeScale = 0;
     }
 

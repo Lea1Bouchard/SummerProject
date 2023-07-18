@@ -13,6 +13,8 @@ public class QuestlistButtonManager : MonoBehaviour
 
     private void OnEnable()
     {
+        EmptyButtons();
+        //wait(0);
         FillButtons();
         //TODO : Mabe find a way to select back the previously selected button if select on right
         //Could use linkedQuestIndex in HoverManager
@@ -66,6 +68,19 @@ public class QuestlistButtonManager : MonoBehaviour
         }
         buttonNav.selectOnLeft = returnButton.GetComponent<Button>();
         button.GetComponent<Button>().navigation = buttonNav;
+    }
+
+    private void EmptyButtons()
+    {
+        foreach(Transform child in scrollViewContent.transform)
+        {
+            Destroy(child.gameObject);
+        }
+    }
+
+    IEnumerator wait(float time)
+    {
+        yield return new WaitForSeconds(time);
     }
 
     private void LoadQuestData()

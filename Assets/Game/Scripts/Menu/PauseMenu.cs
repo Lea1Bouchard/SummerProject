@@ -31,13 +31,14 @@ public class PauseMenu : MonoBehaviour
 
     private void OnEnable()
     {
-        GameManager.Instance.UpdateGameState(Enums.GameState.InMenu);
         gameObject.GetComponent<Menu>().ChangeButton(resumeButton);
-        CurrentObjectiveIndicator.Instance.gameObject.SetActive(false);
     }
 
     public void PauseGame()
     {
+        print("Pausing the game");
+        GameManager.Instance.UpdateGameState(Enums.GameState.InMenu);
+        CurrentObjectiveIndicator.Instance.gameObject.SetActive(false);
         gameObject.SetActive(true);
     }
 

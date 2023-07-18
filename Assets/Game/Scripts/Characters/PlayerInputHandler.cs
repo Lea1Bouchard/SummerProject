@@ -103,11 +103,10 @@ public class PlayerInputHandler : MonoBehaviour
     {
         if (GameManager.Instance.currentGameState == GameState.InGame)
             if (value.performed)
-                PauseMenu.Instance.gameObject.SetActive(true);
-            else if (GameManager.Instance.currentGameState == GameState.InGame)
+                PauseMenu.Instance.PauseGame();
+            else if (GameManager.Instance.currentGameState == GameState.InMenu)
                 if (value.performed)
-                    PauseMenu.Instance.gameObject.SetActive(false);
-
+                    PauseMenu.Instance.ResumeGame();
     }
 
     public void SelectElementInputNormal(InputAction.CallbackContext context)

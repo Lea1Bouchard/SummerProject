@@ -24,8 +24,11 @@ public class CurrentObjectiveIndicator : MonoBehaviour
     private void Awake()
     {
         _instance = this;
+    }
 
-        if(transform.childCount <= 0 && QuestManager.Instance.currentQuests.Count > 0)
+    private void Start()
+    {
+        if (transform.childCount <= 0 && QuestManager.Instance.currentQuests.Count > 0)
         {
             LoadGoals(QuestManager.Instance.currentQuests[0]);
         }

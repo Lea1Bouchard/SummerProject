@@ -9,18 +9,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 459a0bbee2e66c84ca6c12ca60fff8e2, type: 3}
-  m_Name: TesAbility
+  m_Script: {fileID: 11500000, guid: adccee98d6913814c93e1b15d3bef782, type: 3}
+  m_Name: NotifyAllies
   m_EditorClassIdentifier: 
-  abilityName: Tes
+  abilityName: 
   abilityCost: 0
   abilitySound: {fileID: 0}
-  abilityCooldownTime: 1
+  abilityCooldownTime: 10
   animationStateName: 
-  baseDamage: 5
-  abilityType: 2
-  timeToLive: 5
-  speed: 2
-  force: 5
-  projectile: {fileID: 5348052858440426451, guid: 6d6ec581446013947bb375a817a980f2,
+  attackElement: 0
+  baseDamage: 0
+  NotifyPrefab: {fileID: 811174387969266211, guid: 3fa99d72233339548b592b5c18f8b3f8,
     type: 3}

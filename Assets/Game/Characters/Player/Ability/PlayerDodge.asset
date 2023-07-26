@@ -9,18 +9,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 459a0bbee2e66c84ca6c12ca60fff8e2, type: 3}
-  m_Name: TesAbility
+  m_Script: {fileID: 11500000, guid: 55fe577b630cf904691af98196692900, type: 3}
+  m_Name: PlayerDodge
   m_EditorClassIdentifier: 
-  abilityName: Tes
+  abilityName: PlayerDodge
   abilityCost: 0
   abilitySound: {fileID: 0}
-  abilityCooldownTime: 1
-  animationStateName: 
-  baseDamage: 5
-  abilityType: 2
-  timeToLive: 5
-  speed: 2
-  force: 5
-  projectile: {fileID: 5348052858440426451, guid: 6d6ec581446013947bb375a817a980f2,
-    type: 3}
+  abilityCooldownTime: 3
+  animationStateName: Dodge
+  baseDamage: 0
+  abilityType: 0
+  distance: 10
+  rendersImmortal: 0
+  speed: 1
+  timeImmortal: 2
+  target: {fileID: 0}
+  isTeleport: 0

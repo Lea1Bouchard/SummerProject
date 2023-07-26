@@ -22,6 +22,7 @@ namespace UtilityAI.Core
         public List<Action> normalActionsAvailable;
         public List<Ability> meleesAbilities;
         public Ability rangeAbility;
+        public Ability spellAbility;
         public AIBrain aIBrain { get; set; }
         public AISensor sensor { get; set; }
 
@@ -70,6 +71,9 @@ namespace UtilityAI.Core
             {
                 SetNewDestination();
             }
+            spellAbility = Instantiate(spellAbility);
+
+            spellAbility.Initialize(this);
         }
 
         private void Update()

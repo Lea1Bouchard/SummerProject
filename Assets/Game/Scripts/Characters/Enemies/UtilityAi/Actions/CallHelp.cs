@@ -10,6 +10,8 @@ namespace UtilityAI.Actions
         {
             //enemy.UseAbility();
             enemy.fightingActionsAvailable.Remove(this);
+            enemy.UseAbility(enemy.spellAbility);
+            Debug.Log("Calling for help");
         }
     }
 }

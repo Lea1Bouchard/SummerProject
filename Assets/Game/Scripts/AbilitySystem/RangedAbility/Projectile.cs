@@ -57,13 +57,14 @@ public class Projectile : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         Characters hit = other.gameObject.GetComponent<Characters>();
-        if (hit != initiator)
+        if (hit != initiator && other.GetComponent<NotifyZone>() == null)
         {
             if (hit != null)
             {
                 hit.ReceiveDamage(attackElement, damage);
-                transform.LookAt(hit.transform);
-                transform.parent = hit.transform;
+
+                if (initiator.gameObject.GetComponent<Player>())
+                    ProjectileStick(GetClosestBone(hit, other.ClosestPoint(transform.position)));
             }
 
             if (range > 0)
@@ -72,4 +73,39 @@ public class Projectile : MonoBehaviour
 
     }
 
+    private void ProjectileStick(Transform bone)
+    {
+        transform.LookAt(bone);
+        transform.position = bone.position;
+        transform.parent = bone;
+
+        gameObject.GetComponent<Collider>().enabled = false;
+        Destroy(rigidb);
+    }
+
+    private Transform GetClosestBone(Characters hitChar, Vector3 hitPosition)
+    {
+
+        float closestPos = 100;
+        Transform closestBone = null;
+
+        foreach (Transform child in hitChar.weaponNodes)
+        {
+            if (Vector3.Distance(child.position, hitPosition) < closestPos)
+            {
+                closestPos = Vector3.Distance(child.position, hitPosition);
+                closestBone = child;
+            }
+        }
+
+        return closestBone;
+    }
+
+    private void OnDestroy()
+    {
+        if(initiator.gameObject.GetComponent<Player>())
+        {
+            initiator.SetTeleportTarget(null);
+        }
+    }
 }

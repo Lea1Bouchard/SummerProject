@@ -30,7 +30,7 @@ public class PlayerInputHandler : MonoBehaviour
     private InputAction elementShiftAction;
     private enum DpadDirection { UP, DOWN, LEFT, RIGHT, NONE }
     [SerializeField] private List<Elements> elementList;
-  
+
 #if ENABLE_INPUT_SYSTEM
     public void OnMove(InputAction.CallbackContext value)
     {
@@ -58,12 +58,26 @@ public class PlayerInputHandler : MonoBehaviour
 
     public void OnRangedAbility(InputAction.CallbackContext value)
     {
-        RangedInput(value.performed);
+        if (value.performed)
+            Player.Instance.RangedAbility();
     }
 
     public void OnDodge(InputAction.CallbackContext value)
     {
-        DodgeInput(value.performed);
+        if (value.performed)
+            Player.Instance.DodgeAbility();
+    }
+
+    public void OnMelee(InputAction.CallbackContext value)
+    {
+        if (value.performed)
+            Player.Instance.MeleeAbility();
+    }
+
+    public void OnLockOn(InputAction.CallbackContext value)
+    {
+        if (value.performed)
+            Player.Instance.SetTarget(Player.Instance.gameObject.GetComponent<EnemyLockOn>().GetTarget());
     }
 
     public void SelectElementInputNormal(InputAction.CallbackContext context)
@@ -166,16 +180,6 @@ public class PlayerInputHandler : MonoBehaviour
     public void SprintInput(bool newSprintState)
     {
         sprint = newSprintState;
-    }
-
-    public void RangedInput(bool newRangedState)
-    {
-        ranged = newRangedState;
-    }
-
-    public void DodgeInput(bool newDodgeState)
-    {
-        dodge = newDodgeState;
     }
 
     private void OnApplicationFocus(bool hasFocus)

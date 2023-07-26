@@ -358,7 +358,7 @@
                 "m_Node": {
                     "m_Id": "61e9cb72dd7c407dbd1fcb026f57d8f7"
                 },
-                "m_SlotId": 1
+                "m_SlotId": 0
             }
         },
         {
@@ -834,7 +834,7 @@
                 "m_Node": {
                     "m_Id": "61e9cb72dd7c407dbd1fcb026f57d8f7"
                 },
-                "m_SlotId": 0
+                "m_SlotId": 1
             }
         },
         {
@@ -3567,7 +3567,7 @@
     "hlslDeclarationOverride": 0,
     "m_Hidden": false,
     "m_Value": {
-        "m_SerializedTexture": "{\"texture\":{\"fileID\":2800000,\"guid\":\"0c7d4206399b2894bb5a8a4c194e42f3\",\"type\":3}}",
+        "m_SerializedTexture": "{\"texture\":{\"instanceID\":0}}",
         "m_Guid": ""
     },
     "isMainTexture": false,
@@ -6782,8 +6782,8 @@
     "hlslDeclarationOverride": 0,
     "m_Hidden": false,
     "m_Value": {
-        "r": 0.3156094551086426,
-        "g": 0.8773584961891174,
+        "r": 0.0,
+        "g": 0.0,
         "b": 0.0,
         "a": 0.0
     },

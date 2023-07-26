@@ -71,9 +71,14 @@ namespace UtilityAI.Core
             {
                 SetNewDestination();
             }
-            spellAbility = Instantiate(spellAbility);
 
-            spellAbility.Initialize(this);
+            if (spellAbility)
+            {
+                spellAbility = Instantiate(spellAbility);
+
+                spellAbility.Initialize(this);
+
+            }
         }
 
         private void Update()

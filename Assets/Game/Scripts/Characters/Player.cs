@@ -19,8 +19,6 @@ public class Player : Characters
     private float movementSpeed;
 
     private bool hasEnemyInLineOfSight;
-    private float lineOfSightDistance;
-    private float lineOfSightRadius;
 
     private bool weaponTrown;
 
@@ -63,8 +61,6 @@ public class Player : Characters
         movementSpeed = 2f;
 
         hasEnemyInLineOfSight = false;
-        lineOfSightDistance = 15f;
-        lineOfSightRadius = 15f;
 
         weaponTrown = false;
     }
@@ -96,7 +92,6 @@ public class Player : Characters
 
     private void Update()
     {
-        DetectEnemiesInLineOfSight();
     }
 
     private void InitializeAbilities()
@@ -121,18 +116,6 @@ public class Player : Characters
         Weaknesses.Add(opposingElements[newElement]);
     }
 
-    private void DetectEnemiesInLineOfSight()
-    {
-        bool detectedSomething = Physics.SphereCast(transform.position, lineOfSightRadius, transform.forward, out raycastHit, lineOfSightDistance);
-        if (detectedSomething)
-        {
-            if (raycastHit.transform.GetType().ToString() == "Enemy")
-            {
-                hasEnemyInLineOfSight = true;
-            }
-        }
-    }
-
     public void NextAction() // called by animation event
     {
         animator.ResetTrigger("MeleeAttack");
@@ -151,7 +134,6 @@ public class Player : Characters
     {
         target = enemy;
 
-        Debug.Log("Enemy targeted : " + target.name);
         //Automaticly deactivate when player has no target
         gameObject.GetComponent<EnemyLockOn>().ActivateLockonCanvas();
 

@@ -166,8 +166,11 @@ namespace UtilityAI.Core
 
         public void StopMovement()
         {
-            navAgent.isStopped = true;
-            Animator.SetBool("Walk", false);
+            if(navAgent != null)
+            {
+                navAgent.isStopped = true;
+                Animator.SetBool("Walk", false);
+            }
         }
 
         private void OnDestroy()

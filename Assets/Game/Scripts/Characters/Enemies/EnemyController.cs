@@ -27,11 +27,13 @@ namespace UtilityAI.Core
         public AISensor sensor { get; set; }
 
         [Header("Movement")]
-        public NavMeshAgent navAgent;
+        [HideInInspector] public NavMeshAgent navAgent;
         private Vector3 currentDestination;
         private NavMeshHit navHit;
         [SerializeField] private float maxWalkDistance = 10f;
 
+        [Header("Debugging Only")]
+        public Transform movementTracker;
         public EnemyController()
         {
             MaxhealthPoints = 100f;
@@ -121,6 +123,7 @@ namespace UtilityAI.Core
             if (currentDestination != navHit.position)
             {
                 currentDestination = navHit.position;
+                movementTracker.position = currentDestination;
                 navAgent.SetDestination(currentDestination);
             }
         }

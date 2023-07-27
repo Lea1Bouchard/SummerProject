@@ -17,6 +17,5 @@ MonoBehaviour:
   abilitySound: {fileID: 0}
   abilityCooldownTime: 2
   animationStateName: Smash Attack
-  attackElement: 0
-  baseDamage: 0
-  animationTrigger: 
+  baseDamage: 5
+  abilityType: 0

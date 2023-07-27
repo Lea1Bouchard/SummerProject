@@ -32,7 +32,6 @@ namespace UtilityAI.Core
         private NavMeshHit navHit;
         [SerializeField] private float maxWalkDistance = 10f;
 
-
         public EnemyController()
         {
             MaxhealthPoints = 100f;
@@ -48,8 +47,6 @@ namespace UtilityAI.Core
             sensor = GetComponent<AISensor>();
             enemyState = EnemyState.Idle;
             isInFight = false;
-
-            meleeRange = 2f;
 
             player = Player.Instance;
 
@@ -117,7 +114,7 @@ namespace UtilityAI.Core
             return Vector3.Distance(transform.position, player.transform.position);
         }
 
-        public void SetNewDestination()
+        public void SetNewDestination() //For wandering only
         {
             NavMesh.SamplePosition(((Random.insideUnitSphere * maxWalkDistance) + transform.position), out navHit, maxWalkDistance, -1);
 
@@ -128,7 +125,7 @@ namespace UtilityAI.Core
             }
         }
 
-        public void CheckIfAgentReachedDestination()
+        public void CheckIfAgentReachedDestination() //For wandering only
         {
             if (!navAgent.pathPending)
             {

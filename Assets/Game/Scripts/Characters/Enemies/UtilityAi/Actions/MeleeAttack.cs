@@ -9,9 +9,18 @@ namespace UtilityAI.Actions
     {
         public override void Execute(EnemyController enemy)
         {
-            enemy.StopMovement();
-            enemy.enemyState = Enums.EnemyState.Attacking;
-            DecideAttackToDo(enemy);
+            float distanceToTarget = Vector3.Distance(enemy.target.transform.position, enemy.transform.position);
+            if (distanceToTarget > enemy.meleeRange)
+            {
+                GetCloserToPlayer(enemy);
+            }
+            else
+            {
+                DecideAttackToDo(enemy);
+                enemy.StopMovement();
+                enemy.enemyState = Enums.EnemyState.Attacking;
+            }
+            enemy.OnFinishedAction();
         }
 
         private void DecideAttackToDo(EnemyController enemy)
@@ -31,7 +40,6 @@ namespace UtilityAI.Actions
 
         private void ScarabsAttacks(EnemyController enemy)
         {
-            Debug.Log("ScarabsAttacks");
             Ability smashAbility = null;
             Ability stabAbility = null;
             foreach (var ability in enemy.meleesAbilities)
@@ -46,38 +54,28 @@ namespace UtilityAI.Actions
                         break;
                 }
             }
-            if(enemy.GetDistanceWithPlayer() > enemy.meleeRange)
+            if (enemy.sensor.IsInSight(Player.Instance.gameObject))//If player is in front
             {
-                Debug.Log("Too far");
-                Vector3 pointNextToPlayer = enemy.target.transform.position + Random.insideUnitSphere * enemy.meleeRange;
-                NavMeshHit hit;
-                if(NavMesh.SamplePosition(pointNextToPlayer, out hit, 1.0f, NavMesh.AllAreas))
-                {
-                    Debug.Log("hit.position : " + hit.position);
-                    Debug.Log("navAgent.remainingDistance : " + enemy.navAgent.remainingDistance);
-                    enemy.navAgent.SetDestination(hit.position);
-                    enemy.AnimateMovement();
-
-                    if(enemy.navAgent.remainingDistance <= enemy.meleeRange){
-                        enemy.StopMovement();
-                        enemy.OnFinishedAction();
-                    }
-                }
+                enemy.UseAbility(stabAbility);
             }
             else
             {
-                Debug.Log("Attacking");
-                if (enemy.sensor.IsInSight(Player.Instance.gameObject))//If player is in front
-                {
-                    Debug.Log("Using Stab");
-                    enemy.UseAbility(stabAbility);
-                }
-                else
-                {
-                    Debug.Log("Using Smash");
-                    enemy.UseAbility(smashAbility);
-                    enemy.transform.LookAt(enemy.target.transform);
-                }
+                enemy.UseAbility(smashAbility);
+                enemy.transform.LookAt(enemy.target.transform);
+            }
+
+        }
+
+        private void GetCloserToPlayer(EnemyController enemy)
+        {
+            Vector3 pointNextToPlayer = enemy.target.transform.position + Random.insideUnitSphere * enemy.meleeRange;
+            NavMeshHit hit;
+            if (NavMesh.SamplePosition(pointNextToPlayer, out hit, 1.0f, NavMesh.AllAreas))
+            {
+                Debug.Log("hit.position : " + hit.position);
+                Debug.Log("navAgent.remainingDistance : " + enemy.navAgent.remainingDistance);
+                enemy.navAgent.SetDestination(hit.position);
+                enemy.AnimateMovement();
             }
         }
     }

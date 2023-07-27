@@ -119,6 +119,9 @@ public class Player : Characters
         //Change to new Affinities and Weaknesses
         Affinities.Add(newElement);
         Weaknesses.Add(opposingElements[newElement]);
+
+        //Change animator's element for correct combos
+        animator.SetInteger("Element", (int)newElement);
     }
 
     private void DetectEnemiesInLineOfSight()
@@ -135,9 +138,9 @@ public class Player : Characters
 
     public void NextAction() // called by animation event
     {
-        animator.ResetTrigger("MeleeAttack");
+        //animator.ResetTrigger("MeleeAttack");
         animator.SetTrigger("NextAction");
-        StartCoroutine(ActionReset());
+        //StartCoroutine(ActionReset());
     }
 
     IEnumerator ActionReset()

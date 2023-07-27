@@ -2438,6 +2438,46 @@ PrefabInstance:
       propertyPath: cinemachineAnimator
       value: 
       objectReference: {fileID: 268775914}
+    - target: {fileID: 5224745808776912665, guid: 3cf36580647170d4dbd79afb10ad24a6,
+        type: 3}
+      propertyPath: elementList.Array.size
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224745808776912665, guid: 3cf36580647170d4dbd79afb10ad24a6,
+        type: 3}
+      propertyPath: elementList.Array.data[1]
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224745808776912665, guid: 3cf36580647170d4dbd79afb10ad24a6,
+        type: 3}
+      propertyPath: elementList.Array.data[2]
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224745808776912665, guid: 3cf36580647170d4dbd79afb10ad24a6,
+        type: 3}
+      propertyPath: elementList.Array.data[3]
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224745808776912665, guid: 3cf36580647170d4dbd79afb10ad24a6,
+        type: 3}
+      propertyPath: elementList.Array.data[4]
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224745808776912665, guid: 3cf36580647170d4dbd79afb10ad24a6,
+        type: 3}
+      propertyPath: elementList.Array.data[5]
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224745808776912665, guid: 3cf36580647170d4dbd79afb10ad24a6,
+        type: 3}
+      propertyPath: elementList.Array.data[6]
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224745808776912665, guid: 3cf36580647170d4dbd79afb10ad24a6,
+        type: 3}
+      propertyPath: elementList.Array.data[7]
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 5348052858389077119, guid: 3cf36580647170d4dbd79afb10ad24a6,
         type: 3}
       propertyPath: m_Layer

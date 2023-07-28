@@ -143,9 +143,8 @@ public class Player : Characters
         //StartCoroutine(ActionReset());
     }
 
-    IEnumerator ActionReset()
+    public void ActionReset()
     {
-        yield return new WaitForSeconds(0.5f);
         animator.ResetTrigger("NextAction");
         animator.ResetTrigger("MeleeAttack");
     }

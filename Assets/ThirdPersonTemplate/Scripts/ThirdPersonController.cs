@@ -348,6 +348,11 @@ namespace StarterAssets
             }
         }
 
+        public void AnimJump(float jumpCoefficient)
+        {
+            _verticalVelocity = Mathf.Sqrt(JumpHeight * -jumpCoefficient * Gravity);
+        }
+
         private static float ClampAngle(float lfAngle, float lfMin, float lfMax)
         {
             if (lfAngle < -360f) lfAngle += 360f;

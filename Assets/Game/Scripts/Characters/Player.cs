@@ -32,6 +32,7 @@ public class Player : Characters
 
     [SerializeField] private List<Ability> abilities;
     [SerializeField] private MovementAbility teleportAbility;
+    [SerializeField] private float groundCheckDistance;
 
     public static Player Instance
     {
@@ -96,7 +97,39 @@ public class Player : Characters
 
     private void Update()
     {
-        DetectEnemiesInLineOfSight();
+        //DetectEnemiesInLineOfSight();
+        Debug.DrawRay(transform.position, Vector3.down * groundCheckDistance, Color.red, .1f);
+    }
+
+    public void StartGroundCheck()
+    {
+        StartCoroutine(GroundDistanceCheck());
+    }    
+
+    public void EndGroundCheck()
+    {
+        StopCoroutine(GroundDistanceCheck());
+    }
+
+    IEnumerator GroundDistanceCheck()
+    {
+        while (true)
+        {
+            print("blbl");
+            if (Physics.Raycast(transform.position, Vector3.down, groundCheckDistance))
+            {
+                animator.SetTrigger("GroundClose");
+                break;
+            }
+            yield return new WaitForSeconds(0);
+        }
+    }
+
+
+
+    public void ResetGroundDistance()
+    {
+        animator.ResetTrigger("GroundClose");
     }
 
     private void InitializeAbilities()
@@ -167,7 +200,7 @@ public class Player : Characters
         if (!weaponTrown)
         {
             Ability currAbility = abilities.Find((x) => x.abilityType == TypeOfAbility.Ranged);
-            if(!currAbility.IsActive)
+            if (!currAbility.IsActive)
             {
                 currAbility.TriggerAbility();
 
@@ -203,7 +236,7 @@ public class Player : Characters
             {
                 StartCoroutine(SmoothRotation(0.2f, target.targetLocation));
             }
-                
+
             Ability currAbility = abilities.Find((x) => x.abilityType == TypeOfAbility.Melee);
             currAbility.TriggerAbility();
 
@@ -270,7 +303,7 @@ public class Player : Characters
 
         Debug.Log("Quaternion rotation : " + targetRotation);
 
-        while(t < duration)
+        while (t < duration)
         {
             t += Time.deltaTime;
             float factor = t / duration;

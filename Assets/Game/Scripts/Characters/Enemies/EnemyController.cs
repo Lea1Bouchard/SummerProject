@@ -14,6 +14,7 @@ namespace UtilityAI.Core
         [Header("Enemy's States")]
         public EnemyType enemyType;
         public EnemyState enemyState;
+        public int enemyRank;
         [HideInInspector] public bool isInFight;
         private Player player;
 
@@ -94,8 +95,18 @@ namespace UtilityAI.Core
         {
             enemyState = EnemyState.Attacking;
             isInFight = true;
+            animator.SetBool("IsInFight", true);
             GameManager.Instance.AddEnemyToFight(this);
             target = Player.Instance;
+        }
+
+        public void ExitInFight()
+        {
+            enemyState = EnemyState.Idle;
+            isInFight = false;
+            animator.SetBool("IsInFight", false);
+            GameManager.Instance.RemoveEnemyToFight(this);
+            target = null;
         }
 
         //Called at the end of the animation
@@ -181,4 +192,3 @@ namespace UtilityAI.Core
         }
     }
 }
-

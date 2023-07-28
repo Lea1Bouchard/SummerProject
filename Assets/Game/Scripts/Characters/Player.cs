@@ -98,7 +98,6 @@ public class Player : Characters
     {
         foreach (Ability ability in abilities)
         {
-            Debug.Log("Initializing : " + ability.abilityName);
             ability.Initialize(this);
         }
 

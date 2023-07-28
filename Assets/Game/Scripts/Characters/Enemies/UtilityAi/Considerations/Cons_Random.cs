@@ -11,7 +11,6 @@ namespace UtilityAI.Considerations
         public override float ScoreConsideration(EnemyController enemy)
         {
             int randNum = Random.Range(0, maxRange);
-            Debug.Log(randNum);
             if (randNum <= maxNumAccepted)
                 score = 1;
             else

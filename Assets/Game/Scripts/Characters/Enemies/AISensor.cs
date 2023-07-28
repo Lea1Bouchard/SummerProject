@@ -59,7 +59,7 @@ public class AISensor : MonoBehaviour
         {
             return false;
         }
-            
+
 
         //Check if is in the angle of FoV
         direction.y = 0;
@@ -78,6 +78,21 @@ public class AISensor : MonoBehaviour
         }
 
         return true;
+    }
+
+    public bool IsDirectlyInFront(GameObject obj)
+    {
+        Vector3 origin = transform.position;
+        Vector3 destination = obj.transform.position;
+        Vector3 direction = destination - origin;
+        //Check if is in the angle of FoV
+        direction.y = 0;
+        float deltaAngle = Vector3.Angle(direction, transform.forward);
+
+        if (IsInSight(obj) && deltaAngle <= 15)
+            return true;
+        else
+            return false;
     }
 
     Mesh CreateWedgeMesh()
@@ -150,7 +165,7 @@ public class AISensor : MonoBehaviour
             currentAngle += deltaAngle;
         }
 
-        
+
 
         for (int i = 0; i < numVertices; ++i)
         {
@@ -168,7 +183,6 @@ public class AISensor : MonoBehaviour
     {
         mesh = CreateWedgeMesh();
         scanInterval = 1.0f / scanFrequency;
-
     }
     /*
     private void OnDrawGizmos()

@@ -30,6 +30,7 @@ namespace UtilityAI.Core
             int bestActionIndex = 0;
             for (int i = 0; i < actionsAvailable.Count; i++)
             {
+                Debug.Log("actionsAvailable.Count : " + actionsAvailable.Count + " actionsAvailable.Name : " + actionsAvailable[i].Name);
                 float actionScore = ScoreAction(actionsAvailable[i]);
                 if (actionScore > highestScore)
                 {
@@ -74,6 +75,7 @@ namespace UtilityAI.Core
             float makeupValue = (1 - originalScore) * modFactor;
             action.score = originalScore + (makeupValue * originalScore);
 
+            Debug.Log("Action " + action.Name + " scored " + action.score);
             return action.score;
         }
     }

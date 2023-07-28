@@ -12,7 +12,7 @@ public class MeleeWeapon : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Characters hit = other.gameObject.GetComponent<Characters>();
+        Characters hit = other.gameObject.GetComponentInParent<Characters>();
         if (hit != initiator && hit != null)
         {
             hit.ReceiveDamage(attackElement, damage);

@@ -34,10 +34,11 @@ namespace UtilityAI.Core
 
         [Header("Debugging Only")]
         public Transform movementTracker;
+
         public EnemyController()
         {
             MaxhealthPoints = 100f;
-            CurrenthealthPoints = 100f;
+            CurrenthealthPoints = MaxhealthPoints;
 
             AffinityResistanceModifier = 0.75f;
             WeaknessModifier = 1.25f;

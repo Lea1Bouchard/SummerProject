@@ -10,7 +10,7 @@ namespace UtilityAI.Actions
         public override void Execute(EnemyController enemy)
         {
             float distanceToTarget = Vector3.Distance(enemy.target.transform.position, enemy.transform.position);
-            if (distanceToTarget > enemy.meleeRange)
+            if (distanceToTarget > enemy.meleeRange && enemy.navAgent != null)
             {
                 GetCloserToPlayer(enemy);
             }

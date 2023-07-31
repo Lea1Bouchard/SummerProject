@@ -125,30 +125,27 @@ namespace UtilityAI.Actions
         {
             Ability basicAbility = null;
             Ability clawAbility = null;
+            Ability fireAbility = null;
             foreach (var ability in enemy.meleesAbilities)
             {
                 if (ability.abilityName == "Basic")
                     basicAbility = ability;
                 else if (ability.abilityName == "Claw")
                     clawAbility = ability;
+                else if (ability.abilityName == "Fire")
+                    fireAbility = ability;
             }
             if (enemy.sensor.IsDirectlyInFront(enemy.target.gameObject))
-            {
                 enemy.UseAbility(basicAbility);
-                Debug.Log("Basic");
-            }
             else if (enemy.sensor.IsInSight(enemy.target.gameObject))
             {
                 enemy.UseAbility(clawAbility);
-                Debug.Log("Claw");
                 if(enemy.Animator.GetCurrentAnimatorClipInfo(0)[0].clip.name == clawAbility.animationStateName)
                     enemy.transform.LookAt(enemy.target.transform);
             }
             else
-            {
-                Debug.Log("LookAt");
                 enemy.transform.LookAt(enemy.target.transform);
-            }
+            
         }
 
         private void DragonLongAttacks(EnemyController enemy)

@@ -8,6 +8,7 @@ namespace UtilityAI.Core
         public Action bestAction { get; set; }
         private EnemyController enemy;
         public bool finishedDeciding { get; set; }
+        public bool isBrainStopped { get; set; }
 
         void Start()
         {
@@ -15,8 +16,9 @@ namespace UtilityAI.Core
         }
         private void Update()
         {
-            if (bestAction is null)
+            if (bestAction is null && !isBrainStopped)
             {
+                Debug.Log("Deciding");
                 DecideBestAction(enemy.normalActionsAvailable);
             }
         }

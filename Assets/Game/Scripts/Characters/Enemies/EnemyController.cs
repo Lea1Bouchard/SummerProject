@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using Enums;
 
+
 namespace UtilityAI.Core
 {
     public class EnemyController : Characters
@@ -153,6 +154,7 @@ namespace UtilityAI.Core
                 }
             }
         }
+
         public void AnimateMovement()
         {
             enemyState = EnemyState.Moving;
@@ -178,7 +180,7 @@ namespace UtilityAI.Core
 
         public void StopMovement()
         {
-            if(navAgent != null)
+            if (navAgent != null)
             {
                 navAgent.isStopped = true;
                 Animator.SetBool("Walk", false);

@@ -186,6 +186,7 @@ MonoBehaviour:
   meleeRange: 0
   enemyType: 0
   enemyState: 0
+  enemyRank: 0
   isInFight: 0
   fightingActionsAvailable: []
   normalActionsAvailable: []
@@ -194,6 +195,7 @@ MonoBehaviour:
   spellAbility: {fileID: 0}
   navAgent: {fileID: 0}
   maxWalkDistance: 10
+  movementTracker: {fileID: 0}
 --- !u!114 &6385742951629129284
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3069,7 +3071,7 @@ CapsuleCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4081157004715155303}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   m_Radius: 90
   m_Height: 337.89853

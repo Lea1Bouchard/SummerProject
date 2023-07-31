@@ -16,9 +16,10 @@ namespace UtilityAI.Actions
                         enemy.TriggerInFight();
                     break;
                 case 3:
-                    if (enemy.sensor.IsInSight(Player.Instance.gameObject) ||
-                            (enemy.CurrenthealthPoints != enemy.MaxhealthPoints
-                            && enemy.GetDistanceWithPlayer() <= enemy.maxRange))
+                    if (enemy.CurrenthealthPoints != enemy.MaxhealthPoints
+                           && enemy.GetDistanceWithPlayer() <= enemy.maxRange)
+                        enemy.TriggerInFight();
+                    else if (enemy.sensor.IsInSight(Player.Instance.gameObject))
                     {
                         enemy.Animator.SetTrigger("Scream");
                         if (enemy.Animator.GetCurrentAnimatorClipInfo(0)[0].clip.name == "Idle01")

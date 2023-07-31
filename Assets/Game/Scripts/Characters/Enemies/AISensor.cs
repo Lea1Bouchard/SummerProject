@@ -89,7 +89,7 @@ public class AISensor : MonoBehaviour
         direction.y = 0;
         float deltaAngle = Vector3.Angle(direction, transform.forward);
 
-        if (IsInSight(obj) && deltaAngle <= 15)
+        if (IsInSight(obj) && deltaAngle <= 7)
             return true;
         else
             return false;

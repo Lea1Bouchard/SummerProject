@@ -5,7 +5,7 @@ using Enums;
 
 public class MeleeWeapon : MonoBehaviour
 {
-    public int damage;
+    public float damage;
     public Vector3 range;
     [HideInInspector] public Characters initiator;
     [HideInInspector] public Elements attackElement;

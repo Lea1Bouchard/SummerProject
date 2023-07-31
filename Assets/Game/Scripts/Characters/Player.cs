@@ -92,6 +92,8 @@ public class Player : Characters
 
         opposingElements.Add(Elements.Null, Elements.Null);
 
+        ResetMoveSpeed();
+
         InitializeAbilities();
     }
 
@@ -104,7 +106,7 @@ public class Player : Characters
     public void StartGroundCheck()
     {
         StartCoroutine(GroundDistanceCheck());
-    }    
+    }
 
     public void EndGroundCheck()
     {
@@ -125,7 +127,24 @@ public class Player : Characters
         }
     }
 
+    public void ChangeMoveSpeed(float speed)
+    {
+        gameObject.GetComponent<StarterAssets.ThirdPersonController>().MoveSpeed = speed;
+    }
+    public void ResetMoveSpeed()
+    {
+        gameObject.GetComponent<StarterAssets.ThirdPersonController>().MoveSpeed = movementSpeed;
+    }
 
+    public void DisableMovement()
+    {
+        gameObject.GetComponent<StarterAssets.ThirdPersonController>().movementDisabled = true;
+    }
+
+    public void EnableMovement()
+    {
+        gameObject.GetComponent<StarterAssets.ThirdPersonController>().movementDisabled = false;
+    }
 
     public void ResetGroundDistance()
     {

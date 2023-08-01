@@ -125,17 +125,16 @@ namespace UtilityAI.Actions
         {
             Ability basicAbility = null;
             Ability clawAbility = null;
-            Ability fireAbility = null;
             foreach (var ability in enemy.meleesAbilities)
             {
                 if (ability.abilityName == "Basic")
                     basicAbility = ability;
                 else if (ability.abilityName == "Claw")
                     clawAbility = ability;
-                else if (ability.abilityName == "Fire")
-                    fireAbility = ability;
             }
-            if (enemy.sensor.IsDirectlyInFront(enemy.target.gameObject))
+            if(enemy.GetDistanceWithPlayer() > 8)
+                enemy.Animator.SetTrigger("Fire");
+            else if (enemy.sensor.IsDirectlyInFront(enemy.target.gameObject))
                 enemy.UseAbility(basicAbility);
             else if (enemy.sensor.IsInSight(enemy.target.gameObject))
             {
@@ -151,7 +150,6 @@ namespace UtilityAI.Actions
         {
             throw new System.NotImplementedException();
         }
-
 
         private void GetCloserToPlayer(EnemyController enemy)
         {

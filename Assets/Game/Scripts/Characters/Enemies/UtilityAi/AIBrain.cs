@@ -18,7 +18,6 @@ namespace UtilityAI.Core
         {
             if (bestAction is null && !isBrainStopped)
             {
-                Debug.Log("Deciding");
                 DecideBestAction(enemy.normalActionsAvailable);
             }
         }

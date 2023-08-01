@@ -25,6 +25,7 @@ namespace UtilityAI.Core
         public List<Ability> meleesAbilities;
         public Ability rangeAbility;
         public Ability spellAbility;
+        public GameObject vfxAttack;
         public AIBrain aIBrain { get; set; }
         public AISensor sensor { get; set; }
 
@@ -110,7 +111,7 @@ namespace UtilityAI.Core
             target = null;
         }
 
-        //Called at the end of the animation
+        //Called at the end of the action
         public void OnFinishedAction()
         {
             if (GameManager.Instance.currentGameState == GameState.InFight && isInFight)
@@ -129,6 +130,13 @@ namespace UtilityAI.Core
             return Vector3.Distance(transform.position, player.transform.position);
         }
 
+        private void OnDestroy()
+        {
+            EventManager.Instance.QueueEvent(new KillGameEvent(enemyType));
+            player.GetComponent<EnemyLockOn>().RemoveCloseEnemies(this);
+        }
+
+        #region Movements
         public void SetNewDestination() //For wandering only
         {
             NavMesh.SamplePosition(((Random.insideUnitSphere * maxWalkDistance) + transform.position), out navHit, maxWalkDistance, -1);
@@ -186,11 +194,18 @@ namespace UtilityAI.Core
                 Animator.SetBool("Walk", false);
             }
         }
+        #endregion
 
-        private void OnDestroy()
+        #region Animation Events
+        private void StartFireBreath()
         {
-            EventManager.Instance.QueueEvent(new KillGameEvent(enemyType));
-            player.GetComponent<EnemyLockOn>().RemoveCloseEnemies(this);
+            vfxAttack.SetActive(true);
         }
+
+        private void EndFireBreath()
+        {
+            vfxAttack.SetActive(false);
+        }
+        #endregion
     }
 }

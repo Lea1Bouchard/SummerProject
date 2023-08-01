@@ -6,12 +6,9 @@ public class ParticleAttack : MonoBehaviour
 {
     public float damage;
 
-    private void OnCollisionStay(Collision collision)
+    private void OnTriggerStay(Collider other)
     {
-        if (collision.gameObject.GetComponent<Characters>())
-        {
-            collision.gameObject.GetComponent<Characters>().CurrenthealthPoints -= damage;
-            Debug.Log(collision.gameObject.GetComponent<Characters>().CurrenthealthPoints);
-        }
+        if (other.gameObject.GetComponent<Characters>() != null)
+            other.gameObject.GetComponent<Characters>().CurrenthealthPoints -= damage;
     }
 }

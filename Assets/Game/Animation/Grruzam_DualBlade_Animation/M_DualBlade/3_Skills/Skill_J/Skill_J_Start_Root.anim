@@ -15135,4 +15135,18 @@ AnimationClip:
     script: {fileID: 0}
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 1
-  m_Events: []
+  m_Events:
+  - time: 0.033333335
+    functionName: DisableGravity
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 0.033333335
+    functionName: OverrideRoot
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 6
+    intParameter: 0
+    messageOptions: 0

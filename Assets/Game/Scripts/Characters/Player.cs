@@ -22,6 +22,9 @@ public class Player : Characters
     private float lineOfSightDistance;
     private float lineOfSightRadius;
 
+    private bool isOverrideRoot;
+    private float gravity;
+
     private bool weaponTrown;
 
     private PlayerInputHandler _input;
@@ -94,6 +97,8 @@ public class Player : Characters
 
         ResetMoveSpeed();
 
+        gravity = GetComponent<StarterAssets.ThirdPersonController>().Gravity;
+
         InitializeAbilities();
     }
 
@@ -102,54 +107,7 @@ public class Player : Characters
         //DetectEnemiesInLineOfSight();
         Debug.DrawRay(transform.position, Vector3.down * groundCheckDistance, Color.red, .1f);
     }
-
-    public void StartGroundCheck()
-    {
-        StartCoroutine(GroundDistanceCheck());
-    }
-
-    public void EndGroundCheck()
-    {
-        StopCoroutine(GroundDistanceCheck());
-    }
-
-    IEnumerator GroundDistanceCheck()
-    {
-        while (true)
-        {
-            print("blbl");
-            if (Physics.Raycast(transform.position, Vector3.down, groundCheckDistance))
-            {
-                animator.SetTrigger("GroundClose");
-                break;
-            }
-            yield return new WaitForSeconds(0);
-        }
-    }
-
-    public void ChangeMoveSpeed(float speed)
-    {
-        gameObject.GetComponent<StarterAssets.ThirdPersonController>().MoveSpeed = speed;
-    }
-    public void ResetMoveSpeed()
-    {
-        gameObject.GetComponent<StarterAssets.ThirdPersonController>().MoveSpeed = movementSpeed;
-    }
-
-    public void DisableMovement()
-    {
-        gameObject.GetComponent<StarterAssets.ThirdPersonController>().movementDisabled = true;
-    }
-
-    public void EnableMovement()
-    {
-        gameObject.GetComponent<StarterAssets.ThirdPersonController>().movementDisabled = false;
-    }
-
-    public void ResetGroundDistance()
-    {
-        animator.ResetTrigger("GroundClose");
-    }
+    
 
     private void InitializeAbilities()
     {
@@ -320,8 +278,6 @@ public class Player : Characters
         targetRotation.x = transform.rotation.x;
         targetRotation.z = transform.rotation.z;
 
-        Debug.Log("Quaternion rotation : " + targetRotation);
-
         while (t < duration)
         {
             t += Time.deltaTime;
@@ -337,6 +293,82 @@ public class Player : Characters
     {
         gameObject.GetComponent<PlayerInteract>().Interact();
     }
+
+    #region Animation Events
+
+    private void StartGroundCheck()
+    {
+        StartCoroutine(GroundDistanceCheck());
+    }
+
+    private void EndGroundCheck()
+    {
+        StopCoroutine(GroundDistanceCheck());
+    }
+
+    IEnumerator GroundDistanceCheck()
+    {
+        while (true)
+        {
+            if (Physics.Raycast(transform.position, Vector3.down, groundCheckDistance))
+            {
+                animator.SetTrigger("GroundClose");
+                break;
+            }
+            yield return new WaitForSeconds(0);
+        }
+    }
+
+    public void ChangeMoveSpeed(float speed)
+    {
+        gameObject.GetComponent<StarterAssets.ThirdPersonController>().MoveSpeed = speed;
+    }
+    public void ResetMoveSpeed()
+    {
+        gameObject.GetComponent<StarterAssets.ThirdPersonController>().MoveSpeed = movementSpeed;
+    }
+
+    private void OverrideRoot(float distance)
+    {
+        animator.applyRootMotion = false;
+        isOverrideRoot = true;
+        StartCoroutine(SimulateRootMovement(distance));
+    }
+
+    private void EndOverrideRoot()
+    {
+        isOverrideRoot = false;
+        animator.applyRootMotion = true;
+    }
+
+    IEnumerator SimulateRootMovement(float distance)
+    {
+        while (isOverrideRoot)
+        {
+            gameObject.GetComponent<CharacterController>().Move(gameObject.transform.forward * distance * Time.deltaTime);
+            yield return new WaitForSeconds(0);
+        }
+
+    }
+
+    private void ResetGroundDistance()
+    {
+        animator.ResetTrigger("GroundClose");
+    }
+
+    private void DisableGravity()
+    {
+        GetComponent<StarterAssets.ThirdPersonController>().Gravity = 0;
+        //jumps with a coefivient of 0, resetting the vertical velocity
+        GetComponent<StarterAssets.ThirdPersonController>().AnimJump(0);
+    }    
+    
+    private void EnableGravity()
+    {
+        GetComponent<StarterAssets.ThirdPersonController>().Gravity = gravity;
+    }
+
+    #endregion
 
 
     /* Getters / Setters */

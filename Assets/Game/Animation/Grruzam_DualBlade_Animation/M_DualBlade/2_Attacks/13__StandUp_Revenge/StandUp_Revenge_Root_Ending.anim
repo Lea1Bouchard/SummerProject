@@ -57245,11 +57245,11 @@ AnimationClip:
     floatParameter: 1
     intParameter: 0
     messageOptions: 0
-  - time: 0.56666666
-    functionName: NextAction
+  - time: 0.7
+    functionName: AnimJump
     data: 
     objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
+    floatParameter: 1
     intParameter: 0
     messageOptions: 0
   - time: 1.1

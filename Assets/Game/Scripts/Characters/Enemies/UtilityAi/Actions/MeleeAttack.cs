@@ -145,7 +145,6 @@ namespace UtilityAI.Actions
             }
             else
                 enemy.transform.LookAt(enemy.target.transform);
-            
         }
 
         private void DragonLongAttacks(EnemyController enemy)

@@ -1,8 +1,8 @@
 using System.Collections.Generic;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 using Enums;
-
 
 namespace UtilityAI.Core
 {
@@ -11,6 +11,7 @@ namespace UtilityAI.Core
         [Header("Enemy's Stats")]
         public float maxRange;
         public float meleeRange;
+        public float midRange;
 
         [Header("Enemy's States")]
         public EnemyType enemyType;
@@ -25,7 +26,9 @@ namespace UtilityAI.Core
         public List<Ability> meleesAbilities;
         public Ability rangeAbility;
         public Ability spellAbility;
-        public GameObject vfxAttack;
+        public GameObject midRangeAttack;
+        public float midRangeCooldown;
+        [HideInInspector] public bool isMidRangeAvailable;
         public AIBrain aIBrain { get; set; }
         public AISensor sensor { get; set; }
 
@@ -67,6 +70,9 @@ namespace UtilityAI.Core
             rangeAbility = Instantiate(rangeAbility);
 
             rangeAbility.Initialize(this);
+
+            isMidRangeAvailable = true;
+            animator.SetBool("CanFlameAttack", true);
 
             //Initialize movement components
             navAgent = GetComponent<NavMeshAgent>();
@@ -128,6 +134,21 @@ namespace UtilityAI.Core
         public float GetDistanceWithPlayer()
         {
             return Vector3.Distance(transform.position, player.transform.position);
+        }
+
+        public void StartAttackCooldown()
+        {
+            StartCoroutine(StartCooldown());
+        }
+
+        private IEnumerator StartCooldown()
+        {
+            isMidRangeAvailable = false;
+            animator.SetBool("CanFlameAttack", false);
+            yield return new WaitForSeconds(midRangeCooldown);
+            isMidRangeAvailable = true;
+            animator.SetBool("CanFlameAttack", true);
+
         }
 
         private void OnDestroy()
@@ -199,12 +220,13 @@ namespace UtilityAI.Core
         #region Animation Events
         private void StartFireBreath()
         {
-            vfxAttack.SetActive(true);
+            midRangeAttack.SetActive(true);
         }
 
         private void EndFireBreath()
         {
-            vfxAttack.SetActive(false);
+            midRangeAttack.SetActive(false);
+            StartAttackCooldown();
         }
         #endregion
     }

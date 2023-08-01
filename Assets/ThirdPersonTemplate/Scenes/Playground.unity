@@ -5551,6 +5551,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -2608578441121476722, guid: 59c100dd669d88f46b60555886d4dae7,
         type: 3}
+      propertyPath: midRange
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: -2608578441121476722, guid: 59c100dd669d88f46b60555886d4dae7,
+        type: 3}
       propertyPath: navAgent
       value: 
       objectReference: {fileID: 1430483217}
@@ -5585,6 +5590,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: b2dfbe33ab3eb4740b1012ba8b99eb9c,
         type: 2}
+    - target: {fileID: -2608578441121476722, guid: 59c100dd669d88f46b60555886d4dae7,
+        type: 3}
+      propertyPath: attackCooldown
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: -2608578441121476722, guid: 59c100dd669d88f46b60555886d4dae7,
         type: 3}
       propertyPath: maxWalkDistance

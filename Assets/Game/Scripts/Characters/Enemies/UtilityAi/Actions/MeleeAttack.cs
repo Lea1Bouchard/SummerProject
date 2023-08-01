@@ -132,14 +132,12 @@ namespace UtilityAI.Actions
                 else if (ability.abilityName == "Claw")
                     clawAbility = ability;
             }
-            if(enemy.GetDistanceWithPlayer() > 8)
-                enemy.Animator.SetTrigger("Fire");
-            else if (enemy.sensor.IsDirectlyInFront(enemy.target.gameObject))
+            if (enemy.sensor.IsDirectlyInFront(enemy.target.gameObject))
                 enemy.UseAbility(basicAbility);
             else if (enemy.sensor.IsInSight(enemy.target.gameObject))
             {
                 enemy.UseAbility(clawAbility);
-                if(enemy.Animator.GetCurrentAnimatorClipInfo(0)[0].clip.name == clawAbility.animationStateName)
+                if (enemy.Animator.GetCurrentAnimatorClipInfo(0)[0].clip.name == clawAbility.animationStateName)
                     enemy.transform.LookAt(enemy.target.transform);
             }
             else
@@ -153,7 +151,7 @@ namespace UtilityAI.Actions
 
         private void GetCloserToPlayer(EnemyController enemy)
         {
-            Vector3 pointNextToPlayer = enemy.target.transform.position + Random.insideUnitSphere * enemy.meleeRange;
+            Vector3 pointNextToPlayer = enemy.target.transform.position + Random.insideUnitSphere * (enemy.meleeRange / 2);
             NavMeshHit hit;
             if (NavMesh.SamplePosition(pointNextToPlayer, out hit, 1.0f, NavMesh.AllAreas))
             {

@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e38b83a424f065342bc507268e262cbf, type: 3}
   m_Name: isMidRangeAvailable
   m_EditorClassIdentifier: 
-  Name: 
+  Name: isMidRangeAvailable

@@ -5577,7 +5577,7 @@ PrefabInstance:
     - target: {fileID: -2608578441121476722, guid: 59c100dd669d88f46b60555886d4dae7,
         type: 3}
       propertyPath: meleeRange
-      value: 15
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: -2608578441121476722, guid: 59c100dd669d88f46b60555886d4dae7,
         type: 3}
@@ -5597,6 +5597,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -2608578441121476722, guid: 59c100dd669d88f46b60555886d4dae7,
         type: 3}
+      propertyPath: midRangeAttack
+      value: 
+      objectReference: {fileID: 1802409549}
+    - target: {fileID: -2608578441121476722, guid: 59c100dd669d88f46b60555886d4dae7,
+        type: 3}
       propertyPath: maxWalkDistance
       value: 50
       objectReference: {fileID: 0}
@@ -5605,6 +5610,11 @@ PrefabInstance:
       propertyPath: movementTracker
       value: 
       objectReference: {fileID: 479347933}
+    - target: {fileID: -2608578441121476722, guid: 59c100dd669d88f46b60555886d4dae7,
+        type: 3}
+      propertyPath: midRangeCooldown
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: -2608578441121476722, guid: 59c100dd669d88f46b60555886d4dae7,
         type: 3}
       propertyPath: meleesAbilities.Array.size
@@ -5636,7 +5646,7 @@ PrefabInstance:
     - target: {fileID: -2608578441121476722, guid: 59c100dd669d88f46b60555886d4dae7,
         type: 3}
       propertyPath: fightingActionsAvailable.Array.size
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: -2608578441121476722, guid: 59c100dd669d88f46b60555886d4dae7,
         type: 3}
@@ -5660,7 +5670,7 @@ PrefabInstance:
         type: 3}
       propertyPath: fightingActionsAvailable.Array.data[1]
       value: 
-      objectReference: {fileID: 11400000, guid: ae3169c79d5834746b248cc3a0b7118a,
+      objectReference: {fileID: 11400000, guid: 36ce17619f275874591499c7d750a474,
         type: 2}
     - target: {fileID: -2608578441121476722, guid: 59c100dd669d88f46b60555886d4dae7,
         type: 3}
@@ -5865,7 +5875,7 @@ PrefabInstance:
     - target: {fileID: 7292553244638396570, guid: 59c100dd669d88f46b60555886d4dae7,
         type: 3}
       propertyPath: m_StoppingDistance
-      value: 3
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 59c100dd669d88f46b60555886d4dae7, type: 3}

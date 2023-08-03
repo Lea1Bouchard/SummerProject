@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1355f5c52e2977e439545bbbea8506de, type: 3}
   m_Name: MidRangeAttack
   m_EditorClassIdentifier: 
-  Name: 
+  Name: MidRange
   Importance: 0
-  considerations: []
+  considerations:
+  - {fileID: 11400000, guid: 355464febdb23154ea44b5c806693515, type: 2}
+  - {fileID: 11400000, guid: 63a77f03782311f4a82b92ed1b681ddf, type: 2}

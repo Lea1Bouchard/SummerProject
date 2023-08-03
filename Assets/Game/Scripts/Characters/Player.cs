@@ -105,7 +105,6 @@ public class Player : Characters
     private void Update()
     {
         //DetectEnemiesInLineOfSight();
-        Debug.DrawRay(transform.position, Vector3.down * groundCheckDistance, Color.red, .1f);
     }
     
 
@@ -312,7 +311,7 @@ public class Player : Characters
     {
         while (true)
         {
-            if (Physics.Raycast(transform.position, Vector3.down, groundCheckDistance))
+            if (Physics.Raycast(transform.position + new Vector3(0, 1, 0) , Vector3.down, groundCheckDistance + 1))
             {
                 animator.SetTrigger("GroundClose");
                 break;

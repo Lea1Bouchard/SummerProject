@@ -278,6 +278,10 @@ public class Player : Characters
         targetRotation.x = transform.rotation.x;
         targetRotation.z = transform.rotation.z;
 
+        CharacterController controller = GetComponent<CharacterController>();
+
+        print("Controller rotation : " + controller.transform.rotation);
+        print("Character rotation : " + transform.rotation);
         while (t < duration)
         {
             t += Time.deltaTime;
@@ -287,6 +291,8 @@ public class Player : Characters
 
             yield return null;
         }
+
+        print("Finished rotating");
     }
 
     public void Interact()

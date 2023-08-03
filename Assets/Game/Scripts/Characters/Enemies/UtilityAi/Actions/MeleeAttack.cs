@@ -151,7 +151,7 @@ namespace UtilityAI.Actions
 
         private void GetCloserToPlayer(EnemyController enemy)
         {
-            Vector3 pointNextToPlayer = enemy.target.transform.position + Random.insideUnitSphere * (enemy.meleeRange / 2);
+            Vector3 pointNextToPlayer = enemy.target.transform.position + Random.insideUnitSphere * enemy.meleeRange;
             NavMeshHit hit;
             if (NavMesh.SamplePosition(pointNextToPlayer, out hit, 1.0f, NavMesh.AllAreas))
             {

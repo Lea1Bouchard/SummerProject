@@ -9,14 +9,7 @@ namespace UtilityAI.Actions
     {
         public override void Execute(EnemyController enemy)
         {
-            enemy.CheckIfAgentReachedDestination();
-            enemy.AnimateMovement();
-            Debug.Log("FLYIIIING");
-            if (enemy.CurrenthealthPoints != enemy.MaxhealthPoints)
-            {
-                enemy.TriggerInFight();
-            }
-
+            enemy.Animator.SetTrigger("Fire");
             enemy.OnFinishedAction();
         }
     }

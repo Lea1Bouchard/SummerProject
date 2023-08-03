@@ -11,7 +11,6 @@ namespace UtilityAI.Core
         [Header("Enemy's Stats")]
         public float maxRange;
         public float meleeRange;
-        public float midRange;
 
         [Header("Enemy's States")]
         public EnemyType enemyType;

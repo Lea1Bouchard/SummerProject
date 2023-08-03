@@ -193,6 +193,9 @@ MonoBehaviour:
   meleesAbilities: []
   rangeAbility: {fileID: 0}
   spellAbility: {fileID: 0}
+  midRangeAttack: {fileID: 0}
+  midRangeCooldown: 0
+  isMidRangeAvailable: 0
   navAgent: {fileID: 0}
   maxWalkDistance: 10
   movementTracker: {fileID: 0}
@@ -3027,7 +3030,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1681322563448855088}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 382.9001, y: 150.66019, z: 255.44998}
@@ -3285,7 +3288,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6745045301564624309}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 382.9001, y: 150.66019, z: 255.44998}

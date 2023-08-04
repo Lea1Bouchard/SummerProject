@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Random 1-100
   maxRange: 100
-  maxNumAccepted: 1
+  maxNumAccepted: 50

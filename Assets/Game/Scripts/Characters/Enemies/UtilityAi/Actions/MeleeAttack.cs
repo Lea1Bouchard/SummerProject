@@ -64,7 +64,7 @@ namespace UtilityAI.Actions
                 else if (ability.abilityName == "Smash")
                     smashAbility = ability;
             }
-            if (enemy.sensor.IsInSight(Player.Instance.gameObject))//If player is in front
+            if (enemy.aiSensor.IsInSight(Player.Instance.gameObject))//If player is in front
                 enemy.UseAbility(stabAbility);
             else
             {
@@ -107,9 +107,9 @@ namespace UtilityAI.Actions
                 else if (ability.abilityName == "Horn")
                     hornAbility = ability;
             }
-            if (enemy.sensor.IsDirectlyInFront(enemy.target.gameObject))
+            if (enemy.aiSensor.IsDirectlyInFront(enemy.target.gameObject))
                 enemy.UseAbility(basicAbility);
-            else if (enemy.sensor.IsInSight(enemy.target.gameObject))
+            else if (enemy.aiSensor.IsInSight(enemy.target.gameObject))
             {
                 enemy.UseAbility(clawAbility);
                 enemy.transform.LookAt(enemy.target.transform);
@@ -132,9 +132,9 @@ namespace UtilityAI.Actions
                 else if (ability.abilityName == "Claw")
                     clawAbility = ability;
             }
-            if (enemy.sensor.IsDirectlyInFront(enemy.target.gameObject))
+            if (enemy.aiSensor.IsDirectlyInFront(enemy.target.gameObject))
                 enemy.UseAbility(basicAbility);
-            else if (enemy.sensor.IsInSight(enemy.target.gameObject))
+            else if (enemy.aiSensor.IsInSight(enemy.target.gameObject))
             {
                 enemy.UseAbility(clawAbility);
                 if (enemy.Animator.GetCurrentAnimatorClipInfo(0)[0].clip.name == clawAbility.animationStateName)

@@ -82,6 +82,16 @@ namespace Enums
         Blocking
     }
 
+    public enum FlyingState
+    {
+        TakingOff,
+        Floating,
+        Moving,
+        Gliding,
+        Attacking,
+        Landing
+    }
+
     //NPCs type
     public enum NpcType
     {

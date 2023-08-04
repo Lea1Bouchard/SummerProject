@@ -28,12 +28,14 @@ namespace UtilityAI.Core
         public GameObject midRangeAttack;
         public float midRangeCooldown;
         [HideInInspector] public bool isMidRangeAvailable;
-        public AIBrain aIBrain { get; set; }
-        public AISensor sensor { get; set; }
+        public AIBrain aiBrain { get; set; }
+        public AISensor aiSensor { get; set; }
 
         [Header("Movement")]
+        public GameObject flightController;
+        public FlyingState flyingState;
+        private Vector3 currentDestination;        
         [HideInInspector] public NavMeshAgent navAgent;
-        private Vector3 currentDestination;
         private NavMeshHit navHit;
         [SerializeField] private float maxWalkDistance = 10f;
 
@@ -51,9 +53,10 @@ namespace UtilityAI.Core
 
         private void Start()
         {
-            aIBrain = GetComponent<AIBrain>();
-            sensor = GetComponent<AISensor>();
+            aiBrain = GetComponent<AIBrain>();
+            aiSensor = GetComponent<AISensor>();
             enemyState = EnemyState.Idle;
+            flyingState = FlyingState.TakingOff;
             isInFight = false;
 
             player = Player.Instance;
@@ -91,10 +94,10 @@ namespace UtilityAI.Core
 
         private void Update()
         {
-            if (aIBrain.finishedDeciding)
+            if (aiBrain.finishedDeciding)
             {
-                aIBrain.finishedDeciding = false;
-                aIBrain.bestAction.Execute(this);
+                aiBrain.finishedDeciding = false;
+                aiBrain.bestAction.Execute(this);
             }
         }
 
@@ -121,11 +124,11 @@ namespace UtilityAI.Core
         {
             if (GameManager.Instance.currentGameState == GameState.InFight && isInFight)
             {
-                aIBrain.DecideBestAction(fightingActionsAvailable);
+                aiBrain.DecideBestAction(fightingActionsAvailable);
             }
             else
             {
-                aIBrain.DecideBestAction(normalActionsAvailable);
+                aiBrain.DecideBestAction(normalActionsAvailable);
             }
 
         }

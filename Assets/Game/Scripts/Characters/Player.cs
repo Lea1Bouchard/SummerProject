@@ -67,8 +67,6 @@ public class Player : Characters
         movementSpeed = 2f;
 
         hasEnemyInLineOfSight = false;
-        lineOfSightDistance = 15f;
-        lineOfSightRadius = 15f;
 
         weaponTrown = false;
     }
@@ -113,7 +111,6 @@ public class Player : Characters
     {
         foreach (Ability ability in abilities)
         {
-            Debug.Log("Initializing : " + ability.abilityName);
             ability.Initialize(this);
         }
 
@@ -163,7 +160,6 @@ public class Player : Characters
     {
         target = enemy;
 
-        Debug.Log("Enemy targeted : " + target.name);
         //Automaticly deactivate when player has no target
         gameObject.GetComponent<EnemyLockOn>().ActivateLockonCanvas();
 

@@ -10,10 +10,7 @@ namespace UtilityAI.Actions
         {
             if(enemy.GetDistanceWithPlayer() > enemy.maxRange)
             {
-                enemy.enemyState = Enums.EnemyState.Idle;
-                enemy.isInFight = false;
-                enemy.target = null;
-                GameManager.Instance.RemoveEnemyToFight(enemy);
+                enemy.ExitInFight();
                 enemy.OnFinishedAction();
             }
             enemy.OnFinishedAction();

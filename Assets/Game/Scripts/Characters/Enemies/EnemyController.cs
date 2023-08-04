@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 using Enums;
@@ -14,6 +15,7 @@ namespace UtilityAI.Core
         [Header("Enemy's States")]
         public EnemyType enemyType;
         public EnemyState enemyState;
+        public int enemyRank;
         [HideInInspector] public bool isInFight;
         private Player player;
 
@@ -23,20 +25,27 @@ namespace UtilityAI.Core
         public List<Ability> meleesAbilities;
         public Ability rangeAbility;
         public Ability spellAbility;
-        public AIBrain aIBrain { get; set; }
-        public AISensor sensor { get; set; }
+        public GameObject midRangeAttack;
+        public float midRangeCooldown;
+        [HideInInspector] public bool isMidRangeAvailable;
+        public AIBrain aiBrain { get; set; }
+        public AISensor aiSensor { get; set; }
 
         [Header("Movement")]
-        public NavMeshAgent navAgent;
-        private Vector3 currentDestination;
+        public GameObject flightController;
+        public FlyingState flyingState;
+        private Vector3 currentDestination;        
+        [HideInInspector] public NavMeshAgent navAgent;
         private NavMeshHit navHit;
         [SerializeField] private float maxWalkDistance = 10f;
 
+        [Header("Debugging Only")]
+        public Transform movementTracker;
 
         public EnemyController()
         {
             MaxhealthPoints = 100f;
-            CurrenthealthPoints = 100f;
+            CurrenthealthPoints = MaxhealthPoints;
 
             AffinityResistanceModifier = 0.75f;
             WeaknessModifier = 1.25f;
@@ -44,12 +53,11 @@ namespace UtilityAI.Core
 
         private void Start()
         {
-            aIBrain = GetComponent<AIBrain>();
-            sensor = GetComponent<AISensor>();
+            aiBrain = GetComponent<AIBrain>();
+            aiSensor = GetComponent<AISensor>();
             enemyState = EnemyState.Idle;
+            flyingState = FlyingState.TakingOff;
             isInFight = false;
-
-            meleeRange = 2f;
 
             player = Player.Instance;
 
@@ -65,23 +73,31 @@ namespace UtilityAI.Core
 
             rangeAbility.Initialize(this);
 
+            isMidRangeAvailable = true;
+            animator.SetBool("CanFlameAttack", true);
+
             //Initialize movement components
             navAgent = GetComponent<NavMeshAgent>();
             if (navAgent != null)
             {
                 SetNewDestination();
             }
-            spellAbility = Instantiate(spellAbility);
 
-            spellAbility.Initialize(this);
+            if (spellAbility)
+            {
+                spellAbility = Instantiate(spellAbility);
+
+                spellAbility.Initialize(this);
+
+            }
         }
 
         private void Update()
         {
-            if (aIBrain.finishedDeciding)
+            if (aiBrain.finishedDeciding)
             {
-                aIBrain.finishedDeciding = false;
-                aIBrain.bestAction.Execute(this);
+                aiBrain.finishedDeciding = false;
+                aiBrain.bestAction.Execute(this);
             }
         }
 
@@ -89,20 +105,30 @@ namespace UtilityAI.Core
         {
             enemyState = EnemyState.Attacking;
             isInFight = true;
+            animator.SetBool("IsInFight", true);
             GameManager.Instance.AddEnemyToFight(this);
             target = Player.Instance;
         }
 
-        //Called at the end of the animation
+        public void ExitInFight()
+        {
+            enemyState = EnemyState.Idle;
+            isInFight = false;
+            animator.SetBool("IsInFight", false);
+            GameManager.Instance.RemoveEnemyToFight(this);
+            target = null;
+        }
+
+        //Called at the end of the action
         public void OnFinishedAction()
         {
             if (GameManager.Instance.currentGameState == GameState.InFight && isInFight)
             {
-                aIBrain.DecideBestAction(fightingActionsAvailable);
+                aiBrain.DecideBestAction(fightingActionsAvailable);
             }
             else
             {
-                aIBrain.DecideBestAction(normalActionsAvailable);
+                aiBrain.DecideBestAction(normalActionsAvailable);
             }
 
         }
@@ -112,18 +138,41 @@ namespace UtilityAI.Core
             return Vector3.Distance(transform.position, player.transform.position);
         }
 
-        public void SetNewDestination()
+        public void StartAttackCooldown()
+        {
+            StartCoroutine(StartCooldown());
+        }
+
+        private IEnumerator StartCooldown()
+        {
+            isMidRangeAvailable = false;
+            animator.SetBool("CanFlameAttack", false);
+            yield return new WaitForSeconds(midRangeCooldown);
+            isMidRangeAvailable = true;
+            animator.SetBool("CanFlameAttack", true);
+
+        }
+
+        private void OnDestroy()
+        {
+            EventManager.Instance.QueueEvent(new KillGameEvent(enemyType));
+            player.GetComponent<EnemyLockOn>().RemoveCloseEnemies(this);
+        }
+
+        #region Movements
+        public void SetNewDestination() //For wandering only
         {
             NavMesh.SamplePosition(((Random.insideUnitSphere * maxWalkDistance) + transform.position), out navHit, maxWalkDistance, -1);
 
             if (currentDestination != navHit.position)
             {
                 currentDestination = navHit.position;
+                movementTracker.position = currentDestination;
                 navAgent.SetDestination(currentDestination);
             }
         }
 
-        public void CheckIfAgentReachedDestination()
+        public void CheckIfAgentReachedDestination() //For wandering only
         {
             if (!navAgent.pathPending)
             {
@@ -136,6 +185,7 @@ namespace UtilityAI.Core
                 }
             }
         }
+
         public void AnimateMovement()
         {
             enemyState = EnemyState.Moving;
@@ -161,15 +211,25 @@ namespace UtilityAI.Core
 
         public void StopMovement()
         {
-            navAgent.isStopped = true;
-            Animator.SetBool("Walk", false);
+            if (navAgent != null)
+            {
+                navAgent.isStopped = true;
+                Animator.SetBool("Walk", false);
+            }
+        }
+        #endregion
+
+        #region Animation Events
+        private void StartFireBreath()
+        {
+            midRangeAttack.SetActive(true);
         }
 
-        private void OnDestroy()
+        private void EndFireBreath()
         {
-            EventManager.Instance.QueueEvent(new KillGameEvent(enemyType));
-            player.GetComponent<EnemyLockOn>().RemoveCloseEnemies(this);
+            midRangeAttack.SetActive(false);
+            StartAttackCooldown();
         }
+        #endregion
     }
 }
-

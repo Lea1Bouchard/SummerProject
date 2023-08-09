@@ -137,21 +137,6 @@ MonoBehaviour:
     - model: {fileID: 8926484042661615432}
       id: 1
       isStickyNote: 0
-    - model: {fileID: 8926484042661615233}
-      id: 0
-      isStickyNote: 0
-    - model: {fileID: 8926484042661615234}
-      id: 0
-      isStickyNote: 0
-    - model: {fileID: 8926484042661615236}
-      id: 0
-      isStickyNote: 0
-    - model: {fileID: 8926484042661615265}
-      id: 0
-      isStickyNote: 0
-    - model: {fileID: 8926484042661615267}
-      id: 0
-      isStickyNote: 0
     - model: {fileID: 8926484042661615437}
       id: 0
       isStickyNote: 0
@@ -227,21 +212,6 @@ MonoBehaviour:
     - model: {fileID: 8926484042661615451}
       id: 0
       isStickyNote: 0
-    - model: {fileID: 8926484042661615398}
-      id: 0
-      isStickyNote: 0
-    - model: {fileID: 8926484042661615399}
-      id: 0
-      isStickyNote: 0
-    - model: {fileID: 8926484042661615408}
-      id: 0
-      isStickyNote: 0
-    - model: {fileID: 8926484042661615421}
-      id: 0
-      isStickyNote: 0
-    - model: {fileID: 8926484042661615401}
-      id: 0
-      isStickyNote: 0
     - model: {fileID: 8926484042661615453}
       id: 0
       isStickyNote: 0
@@ -252,7 +222,15 @@ MonoBehaviour:
       id: 0
       isStickyNote: 0
   stickyNoteInfos: []
-  categories: []
+  categories:
+  - name: Lightning
+    collapsed: 0
+  - name: Blur
+    collapsed: 0
+  - name: Flash
+    collapsed: 0
+  - name: Sparks
+    collapsed: 0
   uiBounds:
     serializedVersion: 2
     x: -744
@@ -326,16 +304,15 @@ MonoBehaviour:
   m_UISuperCollapsed: 0
   m_UIInfos: {fileID: 114340500867371532}
   m_ParameterInfo:
-  - name: LightningSize
-    path: LightningSize
+  - name: Lightning
+    path: 
     tooltip: 
-    sheetType: m_Float
-    realType: Single
+    sheetType: 
+    realType: 
     defaultValue:
       m_Type:
-        m_SerializableType: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
-          PublicKeyToken=b77a5c561934e089
-      m_SerializableObject: 100
+        m_SerializableType: 
+      m_SerializableObject: 
     min: -Infinity
     max: Infinity
     enumValues: []
@@ -350,6 +327,20 @@ MonoBehaviour:
         m_SerializableType: UnityEngine.Gradient, UnityEngine.CoreModule, Version=0.0.0.0,
           Culture=neutral, PublicKeyToken=null
       m_SerializableObject: '{"colorKeys":[{"color":{"r":0.0,"g":0.0512293204665184,"b":0.7830188870429993,"a":1.0},"time":0.0},{"color":{"r":0.010679955594241619,"g":0.01187274418771267,"b":0.15094339847564698,"a":1.0},"time":0.2058899849653244},{"color":{"r":0.6574097871780396,"g":5.502279758453369,"b":27.87417984008789,"a":1.0},"time":0.5176470875740051},{"color":{"r":0.0053399777971208099,"g":0.03021339513361454,"b":0.22641509771347047,"a":1.0},"time":1.0}],"alphaKeys":[{"alpha":0.0,"time":0.0},{"alpha":1.0,"time":0.05882352963089943},{"alpha":0.9785714149475098,"time":0.16765087842941285},{"alpha":0.0,"time":0.2205844223499298},{"alpha":0.0,"time":0.45000380277633669},{"alpha":1.0,"time":0.5499961972236633},{"alpha":0.0,"time":1.0}],"gradientMode":0}'
+    min: -Infinity
+    max: Infinity
+    enumValues: []
+    descendantCount: 0
+  - name: LightningSize
+    path: LightningSize
+    tooltip: 
+    sheetType: m_Float
+    realType: Single
+    defaultValue:
+      m_Type:
+        m_SerializableType: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
+          PublicKeyToken=b77a5c561934e089
+      m_SerializableObject: 100
     min: -Infinity
     max: Infinity
     enumValues: []
@@ -382,6 +373,19 @@ MonoBehaviour:
     max: Infinity
     enumValues: []
     descendantCount: 0
+  - name: Blur
+    path: 
+    tooltip: 
+    sheetType: 
+    realType: 
+    defaultValue:
+      m_Type:
+        m_SerializableType: 
+      m_SerializableObject: 
+    min: -Infinity
+    max: Infinity
+    enumValues: []
+    descendantCount: 0
   - name: BlurColor
     path: BlurColor
     tooltip: 
@@ -410,6 +414,19 @@ MonoBehaviour:
     max: Infinity
     enumValues: []
     descendantCount: 0
+  - name: Flash
+    path: 
+    tooltip: 
+    sheetType: 
+    realType: 
+    defaultValue:
+      m_Type:
+        m_SerializableType: 
+      m_SerializableObject: 
+    min: -Infinity
+    max: Infinity
+    enumValues: []
+    descendantCount: 0
   - name: FlashColor
     path: FlashColor
     tooltip: 
@@ -420,6 +437,20 @@ MonoBehaviour:
         m_SerializableType: UnityEngine.Color, UnityEngine.CoreModule, Version=0.0.0.0,
           Culture=neutral, PublicKeyToken=null
       m_SerializableObject: '{"r":0.5435016751289368,"g":1.098095178604126,"b":2.6065895557403566,"a":1.0}'
+    min: -Infinity
+    max: Infinity
+    enumValues: []
+    descendantCount: 0
+  - name: FlashSize
+    path: FlashSize
+    tooltip: 
+    sheetType: m_Float
+    realType: Single
+    defaultValue:
+      m_Type:
+        m_SerializableType: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
+          PublicKeyToken=b77a5c561934e089
+      m_SerializableObject: 25
     min: -Infinity
     max: Infinity
     enumValues: []
@@ -452,16 +483,57 @@ MonoBehaviour:
     max: Infinity
     enumValues: []
     descendantCount: 0
-  - name: FlashSize
-    path: FlashSize
+  - name: Sparks
+    path: 
     tooltip: 
-    sheetType: m_Float
-    realType: Single
+    sheetType: 
+    realType: 
     defaultValue:
       m_Type:
-        m_SerializableType: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
-          PublicKeyToken=b77a5c561934e089
-      m_SerializableObject: 25
+        m_SerializableType: 
+      m_SerializableObject: 
+    min: -Infinity
+    max: Infinity
+    enumValues: []
+    descendantCount: 0
+  - name: SparkHue
+    path: SparkHue
+    tooltip: 
+    sheetType: m_Gradient
+    realType: Gradient
+    defaultValue:
+      m_Type:
+        m_SerializableType: UnityEngine.Gradient, UnityEngine.CoreModule, Version=0.0.0.0,
+          Culture=neutral, PublicKeyToken=null
+      m_SerializableObject: '{"colorKeys":[{"color":{"r":1.0,"g":1.0,"b":1.0,"a":1.0},"time":0.0},{"color":{"r":1.0,"g":1.0,"b":1.0,"a":1.0},"time":1.0}],"alphaKeys":[{"alpha":0.0,"time":0.0},{"alpha":1.0,"time":0.10000763088464737},{"alpha":1.0,"time":0.800000011920929},{"alpha":0.0,"time":1.0}],"gradientMode":0}'
+    min: -Infinity
+    max: Infinity
+    enumValues: []
+    descendantCount: 0
+  - name: SparkSizeMin
+    path: SparkSizeMin
+    tooltip: 
+    sheetType: m_Vector3f
+    realType: Vector3
+    defaultValue:
+      m_Type:
+        m_SerializableType: UnityEngine.Vector3, UnityEngine.CoreModule, Version=0.0.0.0,
+          Culture=neutral, PublicKeyToken=null
+      m_SerializableObject: '{"x":0.20000000298023225,"y":2.0,"z":1.0}'
+    min: -Infinity
+    max: Infinity
+    enumValues: []
+    descendantCount: 0
+  - name: SparkSizeMax
+    path: SparkSizeMax
+    tooltip: 
+    sheetType: m_Vector3f
+    realType: Vector3
+    defaultValue:
+      m_Type:
+        m_SerializableType: UnityEngine.Vector3, UnityEngine.CoreModule, Version=0.0.0.0,
+          Culture=neutral, PublicKeyToken=null
+      m_SerializableObject: '{"x":0.800000011920929,"y":4.0,"z":1.0}'
     min: -Infinity
     max: Infinity
     enumValues: []
@@ -518,48 +590,6 @@ MonoBehaviour:
         m_SerializableType: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
           PublicKeyToken=b77a5c561934e089
       m_SerializableObject: 0.75
-    min: -Infinity
-    max: Infinity
-    enumValues: []
-    descendantCount: 0
-  - name: SparkSizeMin
-    path: SparkSizeMin
-    tooltip: 
-    sheetType: m_Vector3f
-    realType: Vector3
-    defaultValue:
-      m_Type:
-        m_SerializableType: UnityEngine.Vector3, UnityEngine.CoreModule, Version=0.0.0.0,
-          Culture=neutral, PublicKeyToken=null
-      m_SerializableObject: '{"x":0.20000000298023225,"y":2.0,"z":1.0}'
-    min: -Infinity
-    max: Infinity
-    enumValues: []
-    descendantCount: 0
-  - name: SparkSizeMax
-    path: SparkSizeMax
-    tooltip: 
-    sheetType: m_Vector3f
-    realType: Vector3
-    defaultValue:
-      m_Type:
-        m_SerializableType: UnityEngine.Vector3, UnityEngine.CoreModule, Version=0.0.0.0,
-          Culture=neutral, PublicKeyToken=null
-      m_SerializableObject: '{"x":0.800000011920929,"y":4.0,"z":1.0}'
-    min: -Infinity
-    max: Infinity
-    enumValues: []
-    descendantCount: 0
-  - name: SparkHue
-    path: SparkHue
-    tooltip: 
-    sheetType: m_Gradient
-    realType: Gradient
-    defaultValue:
-      m_Type:
-        m_SerializableType: UnityEngine.Gradient, UnityEngine.CoreModule, Version=0.0.0.0,
-          Culture=neutral, PublicKeyToken=null
-      m_SerializableObject: '{"colorKeys":[{"color":{"r":1.0,"g":1.0,"b":1.0,"a":1.0},"time":0.0},{"color":{"r":1.0,"g":1.0,"b":1.0,"a":1.0},"time":1.0}],"alphaKeys":[{"alpha":0.0,"time":0.0},{"alpha":1.0,"time":0.10000763088464737},{"alpha":1.0,"time":0.800000011920929},{"alpha":0.0,"time":1.0}],"gradientMode":0}'
     min: -Infinity
     max: Infinity
     enumValues: []
@@ -1667,8 +1697,8 @@ MonoBehaviour:
   - {fileID: 8926484042661614886}
   m_ExposedName: LightningSize
   m_Exposed: 1
-  m_Order: 0
-  m_Category: 
+  m_Order: 1
+  m_Category: Lightning
   m_Min:
     m_Type:
       m_SerializableType: 
@@ -4046,8 +4076,8 @@ MonoBehaviour:
   - {fileID: 8926484042661614999}
   m_ExposedName: LightningColor
   m_Exposed: 1
-  m_Order: 1
-  m_Category: 
+  m_Order: 0
+  m_Category: Lightning
   m_Min:
     m_Type:
       m_SerializableType: 
@@ -4127,7 +4157,7 @@ MonoBehaviour:
   m_ExposedName: LightningAngle
   m_Exposed: 1
   m_Order: 2
-  m_Category: 
+  m_Category: Lightning
   m_Min:
     m_Type:
       m_SerializableType: 
@@ -4317,7 +4347,7 @@ MonoBehaviour:
   m_ExposedName: LightningLifetime
   m_Exposed: 1
   m_Order: 3
-  m_Category: 
+  m_Category: Lightning
   m_Min:
     m_Type:
       m_SerializableType: 
@@ -4396,8 +4426,8 @@ MonoBehaviour:
   - {fileID: 8926484042661615008}
   m_ExposedName: BlurLifetime
   m_Exposed: 1
-  m_Order: 5
-  m_Category: 
+  m_Order: 1
+  m_Category: Blur
   m_Min:
     m_Type:
       m_SerializableType: 
@@ -4476,8 +4506,8 @@ MonoBehaviour:
   - {fileID: 8926484042661615010}
   m_ExposedName: BlurColor
   m_Exposed: 1
-  m_Order: 4
-  m_Category: 
+  m_Order: 0
+  m_Category: Blur
   m_Min:
     m_Type:
       m_SerializableType: 
@@ -5374,8 +5404,8 @@ MonoBehaviour:
   - {fileID: 8926484042661615186}
   m_ExposedName: FlashColor
   m_Exposed: 1
-  m_Order: 6
-  m_Category: 
+  m_Order: 0
+  m_Category: Flash
   m_Min:
     m_Type:
       m_SerializableType: 
@@ -9960,8 +9990,8 @@ MonoBehaviour:
   - {fileID: 8926484042661615427}
   m_ExposedName: FlashLifetime
   m_Exposed: 1
-  m_Order: 7
-  m_Category: 
+  m_Order: 2
+  m_Category: Flash
   m_Min:
     m_Type:
       m_SerializableType: 
@@ -10192,8 +10222,8 @@ MonoBehaviour:
   - {fileID: 8926484042661615433}
   m_ExposedName: FlashPosition
   m_Exposed: 1
-  m_Order: 8
-  m_Category: 
+  m_Order: 3
+  m_Category: Flash
   m_Min:
     m_Type:
       m_SerializableType: 
@@ -10382,8 +10412,8 @@ MonoBehaviour:
   - {fileID: 8926484042661615438}
   m_ExposedName: FlashSize
   m_Exposed: 1
-  m_Order: 9
-  m_Category: 
+  m_Order: 1
+  m_Category: Flash
   m_Min:
     m_Type:
       m_SerializableType: 
@@ -10470,8 +10500,8 @@ MonoBehaviour:
   - {fileID: 8926484042661615440}
   m_ExposedName: SparksCount
   m_Exposed: 1
-  m_Order: 10
-  m_Category: 
+  m_Order: 3
+  m_Category: Sparks
   m_Min:
     m_Type:
       m_SerializableType: 
@@ -10550,8 +10580,8 @@ MonoBehaviour:
   - {fileID: 8926484042661615442}
   m_ExposedName: SparkVelocityMin
   m_Exposed: 1
-  m_Order: 11
-  m_Category: 
+  m_Order: 4
+  m_Category: Sparks
   m_Min:
     m_Type:
       m_SerializableType: 
@@ -10732,8 +10762,8 @@ MonoBehaviour:
   - {fileID: 8926484042661615447}
   m_ExposedName: SparkVelocityMax
   m_Exposed: 1
-  m_Order: 12
-  m_Category: 
+  m_Order: 5
+  m_Category: Sparks
   m_Min:
     m_Type:
       m_SerializableType: 
@@ -10914,8 +10944,8 @@ MonoBehaviour:
   - {fileID: 8926484042661615452}
   m_ExposedName: SparkLifetime
   m_Exposed: 1
-  m_Order: 13
-  m_Category: 
+  m_Order: 6
+  m_Category: Sparks
   m_Min:
     m_Type:
       m_SerializableType: 
@@ -10994,8 +11024,8 @@ MonoBehaviour:
   - {fileID: 8926484042661615454}
   m_ExposedName: SparkSizeMin
   m_Exposed: 1
-  m_Order: 14
-  m_Category: 
+  m_Order: 1
+  m_Category: Sparks
   m_Min:
     m_Type:
       m_SerializableType: 
@@ -11176,8 +11206,8 @@ MonoBehaviour:
   - {fileID: 8926484042661615459}
   m_ExposedName: SparkSizeMax
   m_Exposed: 1
-  m_Order: 15
-  m_Category: 
+  m_Order: 2
+  m_Category: Sparks
   m_Min:
     m_Type:
       m_SerializableType: 
@@ -11358,8 +11388,8 @@ MonoBehaviour:
   - {fileID: 8926484042661615464}
   m_ExposedName: SparkHue
   m_Exposed: 1
-  m_Order: 16
-  m_Category: 
+  m_Order: 0
+  m_Category: Sparks
   m_Min:
     m_Type:
       m_SerializableType: 

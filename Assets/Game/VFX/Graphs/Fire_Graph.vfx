@@ -72,15 +72,6 @@ MonoBehaviour:
     - model: {fileID: 8926484042661614901}
       id: 0
       isStickyNote: 0
-    - model: {fileID: 8926484042661614589}
-      id: 0
-      isStickyNote: 0
-    - model: {fileID: 8926484042661614624}
-      id: 0
-      isStickyNote: 0
-    - model: {fileID: 8926484042661614591}
-      id: 0
-      isStickyNote: 0
   - title: SMOKE
     position:
       serializedVersion: 2
@@ -167,7 +158,11 @@ MonoBehaviour:
       id: 0
       isStickyNote: 0
   stickyNoteInfos: []
-  categories: []
+  categories:
+  - name: Flame
+    collapsed: 0
+  - name: Smoke
+    collapsed: 0
   uiBounds:
     serializedVersion: 2
     x: 482
@@ -233,8 +228,21 @@ MonoBehaviour:
   m_UISuperCollapsed: 0
   m_UIInfos: {fileID: 114340500867371532}
   m_ParameterInfo:
-  - name: Color
-    path: Color
+  - name: Flame
+    path: 
+    tooltip: 
+    sheetType: 
+    realType: 
+    defaultValue:
+      m_Type:
+        m_SerializableType: 
+      m_SerializableObject: 
+    min: -Infinity
+    max: Infinity
+    enumValues: []
+    descendantCount: 0
+  - name: FlameColor
+    path: FlameColor
     tooltip: 
     sheetType: m_Vector4f
     realType: Color
@@ -257,6 +265,20 @@ MonoBehaviour:
         m_SerializableType: UnityEngine.Texture2D, UnityEngine.CoreModule, Version=0.0.0.0,
           Culture=neutral, PublicKeyToken=null
       m_SerializableObject: '{"obj":{"fileID":2800000,"guid":"2840fe28ea8840b4389175bd5102ee8f","type":3}}'
+    min: -Infinity
+    max: Infinity
+    enumValues: []
+    descendantCount: 0
+  - name: FlameSize
+    path: FlameSize
+    tooltip: 
+    sheetType: m_Float
+    realType: Single
+    defaultValue:
+      m_Type:
+        m_SerializableType: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
+          PublicKeyToken=b77a5c561934e089
+      m_SerializableObject: 2
     min: -Infinity
     max: Infinity
     enumValues: []
@@ -289,20 +311,6 @@ MonoBehaviour:
     max: Infinity
     enumValues: []
     descendantCount: 0
-  - name: FlameSize
-    path: FlameSize
-    tooltip: 
-    sheetType: m_Float
-    realType: Single
-    defaultValue:
-      m_Type:
-        m_SerializableType: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
-          PublicKeyToken=b77a5c561934e089
-      m_SerializableObject: 2
-    min: -Infinity
-    max: Infinity
-    enumValues: []
-    descendantCount: 0
   - name: FlameVelocity
     path: FlameVelocity
     tooltip: 
@@ -313,6 +321,19 @@ MonoBehaviour:
         m_SerializableType: UnityEngine.Vector3, UnityEngine.CoreModule, Version=0.0.0.0,
           Culture=neutral, PublicKeyToken=null
       m_SerializableObject: '{"x":0.10000000149011612,"y":1.0,"z":0.10000000149011612}'
+    min: -Infinity
+    max: Infinity
+    enumValues: []
+    descendantCount: 0
+  - name: Smoke
+    path: 
+    tooltip: 
+    sheetType: 
+    realType: 
+    defaultValue:
+      m_Type:
+        m_SerializableType: 
+      m_SerializableObject: 
     min: -Infinity
     max: Infinity
     enumValues: []
@@ -1706,10 +1727,10 @@ MonoBehaviour:
   m_InputSlots: []
   m_OutputSlots:
   - {fileID: 8926484042661614601}
-  m_ExposedName: Color
+  m_ExposedName: FlameColor
   m_Exposed: 1
   m_Order: 0
-  m_Category: 
+  m_Category: Flame
   m_Min:
     m_Type:
       m_SerializableType: 
@@ -1933,7 +1954,7 @@ MonoBehaviour:
   m_ExposedName: FlameTexture
   m_Exposed: 1
   m_Order: 1
-  m_Category: 
+  m_Category: Flame
   m_Min:
     m_Type:
       m_SerializableType: 
@@ -2698,8 +2719,8 @@ MonoBehaviour:
   - {fileID: 8926484042661614640}
   m_ExposedName: FlameRate
   m_Exposed: 1
-  m_Order: 2
-  m_Category: 
+  m_Order: 3
+  m_Category: Flame
   m_Min:
     m_Type:
       m_SerializableType: 
@@ -2779,7 +2800,7 @@ MonoBehaviour:
   m_ExposedName: FlameVelocity
   m_Exposed: 1
   m_Order: 5
-  m_Category: 
+  m_Category: Flame
   m_Min:
     m_Type:
       m_SerializableType: 
@@ -3296,8 +3317,8 @@ MonoBehaviour:
   - {fileID: 8926484042661614659}
   m_ExposedName: FlameLifetime
   m_Exposed: 1
-  m_Order: 3
-  m_Category: 
+  m_Order: 4
+  m_Category: Flame
   m_Min:
     m_Type:
       m_SerializableType: 
@@ -3379,8 +3400,8 @@ MonoBehaviour:
   - {fileID: 8926484042661614661}
   m_ExposedName: FlameSize
   m_Exposed: 1
-  m_Order: 4
-  m_Category: 
+  m_Order: 2
+  m_Category: Flame
   m_Min:
     m_Type:
       m_SerializableType: 
@@ -6019,8 +6040,8 @@ MonoBehaviour:
   - {fileID: 8926484042661614748}
   m_ExposedName: SmokeRate
   m_Exposed: 1
-  m_Order: 6
-  m_Category: 
+  m_Order: 0
+  m_Category: Smoke
   m_Min:
     m_Type:
       m_SerializableType: 
@@ -6099,8 +6120,8 @@ MonoBehaviour:
   - {fileID: 8926484042661614750}
   m_ExposedName: SmokeLifetime
   m_Exposed: 1
-  m_Order: 7
-  m_Category: 
+  m_Order: 1
+  m_Category: Smoke
   m_Min:
     m_Type:
       m_SerializableType: 
@@ -6318,8 +6339,8 @@ MonoBehaviour:
   - {fileID: 8926484042661614756}
   m_ExposedName: SmokeSize
   m_Exposed: 1
-  m_Order: 8
-  m_Category: 
+  m_Order: 2
+  m_Category: Smoke
   m_Min:
     m_Type:
       m_SerializableType: 
@@ -6537,8 +6558,8 @@ MonoBehaviour:
   - {fileID: 8926484042661614762}
   m_ExposedName: SmokeVelocity
   m_Exposed: 1
-  m_Order: 9
-  m_Category: 
+  m_Order: 3
+  m_Category: Smoke
   m_Min:
     m_Type:
       m_SerializableType: 

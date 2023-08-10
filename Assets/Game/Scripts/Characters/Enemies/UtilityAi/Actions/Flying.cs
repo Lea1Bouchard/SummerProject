@@ -33,6 +33,7 @@ namespace UtilityAI.Actions
                         enemy.flyingState = FlyingState.Floating;
 
                     enemy.aiSensor.height = 10.5f;
+                    enemy.navAgent.agentTypeID = enemy.GetNavMeshAgentID("Flying");
                     break;
                 case FlyingState.Floating:
                     if (enemy.GetDistanceWithPlayer() >= 25f)

@@ -34,7 +34,7 @@ namespace UtilityAI.Core
         [Header("Movement")]
         public GameObject flightController;
         public FlyingState flyingState;
-        private Vector3 currentDestination;        
+        private Vector3 currentDestination;
         [HideInInspector] public NavMeshAgent navAgent;
         private NavMeshHit navHit;
         [SerializeField] private float maxWalkDistance = 10f;
@@ -91,7 +91,6 @@ namespace UtilityAI.Core
 
             }
         }
-
         private void Update()
         {
             if (aiBrain.finishedDeciding)
@@ -152,6 +151,19 @@ namespace UtilityAI.Core
             animator.SetBool("CanFlameAttack", true);
 
         }
+
+        public int GetNavMeshAgentID(string name)
+        {
+            for (int i = 0; i < NavMesh.GetSettingsCount(); i++)
+            {
+                NavMeshBuildSettings settings = NavMesh.GetSettingsByIndex(index: i);
+                if (name == NavMesh.GetSettingsNameFromID(agentTypeID: settings.agentTypeID))
+                    return settings.agentTypeID;
+            }
+            Debug.Log("GetNavMeshAgentID: This name doesn't exist");
+            return -1;
+        }
+
 
         private void OnDestroy()
         {

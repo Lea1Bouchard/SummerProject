@@ -39,6 +39,11 @@ namespace UtilityAI.Core
         private NavMeshHit navHit;
         [SerializeField] private float maxWalkDistance = 10f;
 
+        [Header("Flying")]
+        public float flyingHeight = 5f;
+        public float takeOffSpeed = 1f;
+        [HideInInspector] public Vector3 takeOffStartingPosition = new Vector3(-999, -999, -999);
+
         [Header("Debugging Only")]
         public Transform movementTracker;
 
@@ -163,7 +168,6 @@ namespace UtilityAI.Core
             Debug.Log("GetNavMeshAgentID: This name doesn't exist");
             return -1;
         }
-
 
         private void OnDestroy()
         {

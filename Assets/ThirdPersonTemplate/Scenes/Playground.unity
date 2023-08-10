@@ -125,7 +125,7 @@ NavMeshSettings:
     preserveTilesOutsideBounds: 0
     debug:
       m_Flags: 0
-  m_NavMeshData: {fileID: 0}
+  m_NavMeshData: {fileID: 23800000, guid: 81952a24e7aef3747a99c1df9fae9838, type: 2}
 --- !u!1 &19994138
 GameObject:
   m_ObjectHideFlags: 0
@@ -4251,7 +4251,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1354130618}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7a5ac11cc976e418e8d13136b07e1f52, type: 3}
   m_Name: 
@@ -4281,7 +4281,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1354130618}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7a5ac11cc976e418e8d13136b07e1f52, type: 3}
   m_Name: 
@@ -5654,6 +5654,21 @@ PrefabInstance:
         type: 3}
       propertyPath: midRangeCooldown
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: -2608578441121476722, guid: 59c100dd669d88f46b60555886d4dae7,
+        type: 3}
+      propertyPath: takeOffStartingPosition.x
+      value: -999
+      objectReference: {fileID: 0}
+    - target: {fileID: -2608578441121476722, guid: 59c100dd669d88f46b60555886d4dae7,
+        type: 3}
+      propertyPath: takeOffStartingPosition.y
+      value: -999
+      objectReference: {fileID: 0}
+    - target: {fileID: -2608578441121476722, guid: 59c100dd669d88f46b60555886d4dae7,
+        type: 3}
+      propertyPath: takeOffStartingPosition.z
+      value: -999
       objectReference: {fileID: 0}
     - target: {fileID: -2608578441121476722, guid: 59c100dd669d88f46b60555886d4dae7,
         type: 3}

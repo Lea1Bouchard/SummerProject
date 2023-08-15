@@ -29,17 +29,11 @@ namespace UtilityAI.Actions
                 case FlyingState.Floating:
                     if (enemy.GetDistanceWithPlayer() >= 25f)
                         enemy.flyingState = FlyingState.Moving;
-                    else if(enemy.aiSensor.IsInSight(enemy.target.gameObject))
+                    else if (enemy.aiSensor.IsInSight(enemy.target.gameObject))
                         enemy.flyingState = FlyingState.Attacking;
                     break;
                 case FlyingState.Moving:
                     animator.SetBool("Fly", true);
-                    Moving(enemy);
-
-                    enemy.flyingState = FlyingState.Floating;
-                    break;
-                case FlyingState.Gliding:
-                    animator.SetBool("Glide", true);
                     Moving(enemy);
 
                     enemy.flyingState = FlyingState.Floating;
@@ -104,10 +98,10 @@ namespace UtilityAI.Actions
 
                 if (enemy.flyingState == FlyingState.Moving)
                     if (Random.Range(0, 5) == 1)
-                        enemy.flyingState = FlyingState.Gliding;
-                else if (enemy.flyingState == FlyingState.Gliding)
-                    if (Random.Range(0, 5) == 1)
-                    enemy.flyingState = FlyingState.Moving;
+                        enemy.Animator.SetBool("Glide", true);
+                    else if (enemy.Animator.GetBool("Glide"))
+                        if (Random.Range(0, 5) == 1)
+                            enemy.Animator.SetBool("Glide", false);
             }
         }
     }

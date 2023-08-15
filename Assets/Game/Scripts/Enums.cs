@@ -87,7 +87,6 @@ namespace Enums
         TakingOff,
         Floating,
         Moving,
-        Gliding,
         Attacking,
         Landing
     }

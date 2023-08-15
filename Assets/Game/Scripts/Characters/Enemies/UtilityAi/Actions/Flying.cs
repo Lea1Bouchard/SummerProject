@@ -11,6 +11,7 @@ namespace UtilityAI.Actions
         public override void Execute(EnemyController enemy)
         {
             enemy.StopMovement();
+            enemy.enemyState = EnemyState.Flying;
             enemy.Animator.SetBool("IsInFlight", true);
             AnimateFlight(enemy);
 
@@ -61,46 +62,32 @@ namespace UtilityAI.Actions
 
         private void TakeOff(EnemyController enemy)
         {
-            Debug.Log("new Vector3(-500, -500, -500) : " + new Vector3(-500, -500, -500));
-            Debug.Log("enemy.takeOffStartingPosition : " + enemy.takeOffStartingPosition);
-            if (enemy.takeOffStartingPosition != new Vector3(-500, -500, -500))
+            if (enemy.takeOffStartingPosition != -999)
             {
                 enemy.StopMovement();
                 // Distance moved equals elapsed time times speed..
-                float distCovered = Vector3.Distance(enemy.takeOffStartingPosition, enemy.transform.position);
-                Debug.Log("distCovered : " + distCovered);
-                Debug.Log("enemy.takeOffStartingPosition : " + enemy.takeOffStartingPosition);
-                Debug.Log("enemy.transform.position : " + enemy.transform.position);
+                float distCovered = (Time.time - enemy.takeOffStartingPosition) * enemy.takeOffSpeed;
 
                 // Fraction of journey completed equals current distance divided by total distance.
                 float fractionOfJourney = distCovered / enemy.flyingHeight;
-                Vector3 pos = enemy.transform.position;
 
                 // Set our position as a fraction of the distance between the markers.
+                Vector3 pos = enemy.transform.position;
                 Vector3 lerpVector = Vector3.Lerp(pos, new Vector3(pos.x, pos.y + enemy.flyingHeight, pos.y), fractionOfJourney);
                 enemy.flightController.transform.localPosition = new Vector3(0, lerpVector.y, 0);
 
-                Debug.Log("lerpVector : " + lerpVector);
-
                 if (distCovered >= enemy.flyingHeight)
                 {
+                    enemy.Animator.SetBool("IsTakeOffDone", true);
                     enemy.flyingState = FlyingState.Floating;
                 }
             }
             else
             {
-                enemy.takeOffStartingPosition = enemy.transform.position;
+                enemy.takeOffStartingPosition = Time.time;
                 enemy.aiSensor.height = 10.5f;
                 enemy.navAgent.agentTypeID = enemy.GetNavMeshAgentID("Flying");
             }
-            /*
-            Vector3 flightController = enemy.flightController.transform.localPosition;
-            float flyingHeight = enemy.transform.position.y - flightController.y;
-            if (flyingHeight < 5f)
-                enemy.flightController.transform.localPosition = new Vector3(0, flightController.y += 0.01f, 0);
-            else
-                enemy.flyingState = FlyingState.Floating;
-            */
         }
 
         private void Moving(EnemyController enemy)

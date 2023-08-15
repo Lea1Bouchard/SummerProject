@@ -42,7 +42,7 @@ namespace UtilityAI.Core
         [Header("Flying")]
         public float flyingHeight = 5f;
         public float takeOffSpeed = 1f;
-        [HideInInspector] public Vector3 takeOffStartingPosition = new Vector3(-999, -999, -999);
+        [HideInInspector] public float takeOffStartingPosition = -999;
 
         [Header("Debugging Only")]
         public Transform movementTracker;

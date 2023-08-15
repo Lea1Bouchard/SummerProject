@@ -5621,10 +5621,20 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -2608578441121476722, guid: 59c100dd669d88f46b60555886d4dae7,
         type: 3}
+      propertyPath: flyingHeight
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: -2608578441121476722, guid: 59c100dd669d88f46b60555886d4dae7,
+        type: 3}
       propertyPath: rangeAbility
       value: 
       objectReference: {fileID: 11400000, guid: b2dfbe33ab3eb4740b1012ba8b99eb9c,
         type: 2}
+    - target: {fileID: -2608578441121476722, guid: 59c100dd669d88f46b60555886d4dae7,
+        type: 3}
+      propertyPath: takeOffSpeed
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: -2608578441121476722, guid: 59c100dd669d88f46b60555886d4dae7,
         type: 3}
       propertyPath: attackCooldown

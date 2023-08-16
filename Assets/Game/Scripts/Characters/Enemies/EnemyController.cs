@@ -32,20 +32,17 @@ namespace UtilityAI.Core
         public AISensor aiSensor { get; set; }
 
         [Header("Movement")]
-        public GameObject flightController;
-        public FlyingState flyingState;
-        private Vector3 currentDestination;
         [HideInInspector] public NavMeshAgent navAgent;
-        private NavMeshHit navHit;
+        private NavMeshHit navHit;       
+        private Vector3 currentDestination;
         [SerializeField] private float maxWalkDistance = 10f;
 
         [Header("Flying")]
+        public GameObject flightController;
+        public FlyingState flyingState;
         public float flyingHeight = 5f;
         public float takeOffSpeed = 1f;
         [HideInInspector] public float takeOffStartingPosition = -999;
-
-        [Header("Debugging Only")]
-        public Transform movementTracker;
 
         public EnemyController()
         {
@@ -183,7 +180,6 @@ namespace UtilityAI.Core
             if (currentDestination != navHit.position)
             {
                 currentDestination = navHit.position;
-                movementTracker.position = currentDestination;
                 navAgent.SetDestination(currentDestination);
             }
         }

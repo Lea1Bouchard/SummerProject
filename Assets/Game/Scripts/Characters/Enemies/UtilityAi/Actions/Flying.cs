@@ -24,7 +24,8 @@ namespace UtilityAI.Actions
             switch (enemy.flyingState)
             {
                 case FlyingState.TakingOff:
-                    TakeOff(enemy);
+                    //TakeOff(enemy);
+                    enemy.flyingState = FlyingState.Floating;
                     break;
                 case FlyingState.Floating:
                     if (enemy.GetDistanceWithPlayer() >= 25f)
@@ -34,13 +35,13 @@ namespace UtilityAI.Actions
                     break;
                 case FlyingState.Moving:
                     animator.SetBool("Fly", true);
-                    Moving(enemy);
-
-                    enemy.flyingState = FlyingState.Floating;
+                    if (enemy.GetDistanceWithPlayer() <= 25f)
+                        enemy.flyingState = FlyingState.Floating;
+                    else
+                        Moving(enemy);
                     break;
                 case FlyingState.Attacking:
                     animator.SetTrigger("Fire");
-
                     enemy.flyingState = FlyingState.Floating;
                     break;
                 case FlyingState.Landing:
@@ -91,10 +92,9 @@ namespace UtilityAI.Actions
             NavMeshHit hit;
             if (NavMesh.SamplePosition(pointNextToPlayer, out hit, 1.0f, NavMesh.AllAreas))
             {
-                enemy.navAgent.SetDestination(hit.position);
-                enemy.movementTracker.position = hit.position;
                 enemy.enemyState = EnemyState.Moving;
                 enemy.navAgent.isStopped = false;
+                enemy.navAgent.SetDestination(hit.position);
 
                 if (enemy.flyingState == FlyingState.Moving)
                     if (Random.Range(0, 5) == 1)

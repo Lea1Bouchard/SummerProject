@@ -99,7 +99,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 414830}
   - {fileID: 8375474155130556320}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -196,11 +195,13 @@ MonoBehaviour:
   midRangeAttack: {fileID: 0}
   midRangeCooldown: 0
   isMidRangeAvailable: 0
-  flightController: {fileID: 0}
-  flyingState: 0
   navAgent: {fileID: 0}
   maxWalkDistance: 10
-  movementTracker: {fileID: 0}
+  flightController: {fileID: 0}
+  flyingState: 0
+  flyingHeight: 5
+  takeOffSpeed: 1
+  takeOffStartingPosition: -999
 --- !u!114 &6385742951629129284
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1311,7 +1312,7 @@ Transform:
   - {fileID: 427310}
   - {fileID: 494018}
   m_Father: {fileID: 8375474155130556320}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &146338
 GameObject:
@@ -2432,12 +2433,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 182918}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 454130}
+  m_Father: {fileID: 8375474155130556320}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!137 &13719964
@@ -3188,9 +3189,10 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 414830}
   - {fileID: 423030}
   m_Father: {fileID: 454130}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5888222371720984874
 GameObject:

@@ -47,8 +47,11 @@ public class Player : Characters
         }
     }
 
-    public Player()
+
+    private void Awake()
     {
+        _instance = this;
+
         MaxhealthPoints = 100f;
         CurrenthealthPoints = MaxhealthPoints;
         Level = 1;
@@ -69,11 +72,6 @@ public class Player : Characters
         hasEnemyInLineOfSight = false;
 
         weaponTrown = false;
-    }
-
-    private void Awake()
-    {
-        _instance = this;
     }
 
     private void Start()

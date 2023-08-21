@@ -42,17 +42,15 @@ namespace UtilityAI.Core
         [Header("Debugging Only")]
         public Transform movementTracker;
 
-        public EnemyController()
+
+        private void Start()
         {
             MaxhealthPoints = 100f;
             CurrenthealthPoints = MaxhealthPoints;
 
             AffinityResistanceModifier = 0.75f;
             WeaknessModifier = 1.25f;
-        }
 
-        private void Start()
-        {
             aiBrain = GetComponent<AIBrain>();
             aiSensor = GetComponent<AISensor>();
             enemyState = EnemyState.Idle;

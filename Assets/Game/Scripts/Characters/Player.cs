@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Enums;
 using System.Collections;
+using UnityEngine.Events;
 
 public class Player : Characters
 {
@@ -32,6 +33,9 @@ public class Player : Characters
     private RaycastHit raycastHit;
 
     Dictionary<Elements, Elements> opposingElements;
+    public class ElementChangeEvent : UnityEvent<Elements> { }
+    public ElementChangeEvent ElementChanged { get; private set; } = new ElementChangeEvent();
+
 
     [SerializeField] private List<Ability> abilities;
     [SerializeField] private MovementAbility teleportAbility;
@@ -127,6 +131,9 @@ public class Player : Characters
 
         //Change animator's element for correct combos
         animator.SetInteger("Element", (int)newElement);
+
+        //Trigger event to alert the listeners
+        ElementChanged.Invoke(newElement);
     }
 
     private void DetectEnemiesInLineOfSight()

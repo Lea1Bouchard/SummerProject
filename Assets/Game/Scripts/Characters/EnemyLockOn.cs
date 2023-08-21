@@ -64,9 +64,13 @@ public class EnemyLockOn : MonoBehaviour
 
         foreach (Collider collider in nearbyTargets)
         {
+            if (collider.gameObject.GetComponent<Characters>() == null)
+                continue;
+
             Vector3 direction = collider.transform.position - cam.position;
             direction.y = 0;
             float angle = Vector3.Angle(cam.forward, direction);
+
 
             nearbyEnemies.Add(collider.gameObject.GetComponent<Characters>());
 

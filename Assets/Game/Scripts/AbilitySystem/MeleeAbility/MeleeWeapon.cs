@@ -18,8 +18,6 @@ public class MeleeWeapon : MonoBehaviour
                 hit.ReceiveDamage(affinity, damage);
             }
         }
-
-        Debug.Log( "Hit : " + other.gameObject);
     }
 
     //This is call in the animator

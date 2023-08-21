@@ -13,10 +13,10 @@ public class ComboAnimations : StateMachineBehaviour
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        Player.Instance.weapon.damage = weaponDamage;
+        foreach (MeleeWeapon weapon in Player.Instance.weapons)
+            weapon.damage = weaponDamage;
 
         Player.Instance.ChangeMoveSpeed(allowedMoveSpeed);
-
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks

@@ -6,18 +6,18 @@ using Enums;
 public class MeleeWeapon : MonoBehaviour
 {
     public float damage;
-    public Vector3 range;
-    [HideInInspector] public Characters initiator;
-    [HideInInspector] public Elements attackElement;
+    [SerializeField] private Characters owner;
 
     private void OnTriggerEnter(Collider other)
     {
         Characters hit = other.gameObject.GetComponent<Characters>();
-        if (hit != initiator && hit != null)
+        if (hit != owner && hit != null)
         {
-            hit.ReceiveDamage(attackElement, damage);
+            foreach (Elements affinity in owner.Affinities)
+            {
+                hit.ReceiveDamage(affinity, damage);
+            }
         }
-
 
         Debug.Log(other.gameObject);
     }

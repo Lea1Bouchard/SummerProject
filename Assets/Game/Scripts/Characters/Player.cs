@@ -237,14 +237,15 @@ public class Player : Characters
     {
         weaponTrown = true;
 
-        weapon.gameObject.SetActive(false);
+        foreach (MeleeWeapon weapon in weapons)
+            weapon.gameObject.SetActive(false);
     }
 
     private void RetrieveWeapon()
     {
         weaponTrown = false;
-
-        weapon.gameObject.SetActive(true);
+        foreach (MeleeWeapon weapon in weapons)
+            weapon.gameObject.SetActive(true);
 
         if (teleportTarget)
             Destroy(teleportTarget, .1f);

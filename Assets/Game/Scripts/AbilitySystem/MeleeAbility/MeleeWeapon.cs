@@ -19,7 +19,7 @@ public class MeleeWeapon : MonoBehaviour
             }
         }
 
-        Debug.Log(other.gameObject);
+        Debug.Log( "Hit : " + other.gameObject);
     }
 
     //This is call in the animator

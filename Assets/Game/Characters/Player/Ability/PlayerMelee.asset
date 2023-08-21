@@ -19,3 +19,4 @@ MonoBehaviour:
   animationStateName: MeleeAttack
   baseDamage: 10
   abilityType: 1
+  weaponId: 0

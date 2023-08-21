@@ -11,8 +11,6 @@ public class StateChangeCombo : StateMachineBehaviour
         player = animator.gameObject.GetComponent<Player>();
 
         player.ActivateWeapon();
-
-        Debug.Log("Activated weapon");
     }
 
     // OnStateUpdate is called before OnStateUpdate is called on any state inside this state machine
@@ -24,8 +22,7 @@ public class StateChangeCombo : StateMachineBehaviour
     // OnStateExit is called before OnStateExit is called on any state inside this state machine
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        player.DeactivateWeapon();
-        Debug.Log("Deactivated weapon");
+        //player.DeactivateWeapon();
     }
 
     // OnStateMove is called before OnStateMove is called on any state inside this state machine

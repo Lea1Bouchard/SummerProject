@@ -28,6 +28,7 @@ namespace UtilityAI.Core
         public GameObject midRangeAttack;
         public float midRangeCooldown;
         [HideInInspector] public bool isMidRangeAvailable;
+        private bool hasFlameAttack;
         public AIBrain aiBrain { get; set; }
         public AISensor aiSensor { get; set; }
 
@@ -72,7 +73,13 @@ namespace UtilityAI.Core
             rangeAbility.Initialize(this);
 
             isMidRangeAvailable = true;
-            animator.SetBool("CanFlameAttack", true);
+            if (enemyRank == 3) //Is a dragon
+                hasFlameAttack = true;
+            else
+                hasFlameAttack = false;
+
+            if(hasFlameAttack)
+                animator.SetBool("CanFlameAttack", true);
 
             //Initialize movement components
             navAgent = GetComponent<NavMeshAgent>();
@@ -144,10 +151,12 @@ namespace UtilityAI.Core
         private IEnumerator StartCooldown()
         {
             isMidRangeAvailable = false;
-            animator.SetBool("CanFlameAttack", false);
+            if (hasFlameAttack)
+                animator.SetBool("CanFlameAttack", false);
             yield return new WaitForSeconds(midRangeCooldown);
             isMidRangeAvailable = true;
-            animator.SetBool("CanFlameAttack", true);
+            if (hasFlameAttack)
+                animator.SetBool("CanFlameAttack", true);
 
         }
 

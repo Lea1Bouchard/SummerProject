@@ -39,16 +39,31 @@ public class GameUI : MonoBehaviour
         if (gameObject.GetComponent<Player>())
             PlayerHealthPoint();
         else if (gameObject.GetComponent<EnemyController>())
-            Debug.Log("Enemy health Changed");
+            EnemyHealthPoint(gameObject);
         else
             Debug.Log("health changed but not player or enemy");
     }
 
+    private void PlayerHealthPoint()
+    {
+        playerHealthBar.fillAmount = player.CurrenthealthPoints / player.MaxhealthPoints;
+    }
+
+    private void EnemyHealthPoint(GameObject enemy)
+    {
+        if (player.target != null)
+            if (enemy.name == player.target.name)
+            {
+                Debug.Log("Target Enemy health changed");
+            }
+    }
+
+
     private void OnElementChange(Elements element)
     {
-        if(!currentElementImage.gameObject.activeSelf && element != Elements.Null)
+        if (!currentElementImage.gameObject.activeSelf && element != Elements.Null)
             currentElementImage.gameObject.SetActive(true);
-        
+
         switch (element)
         {
             case Elements.Fire:
@@ -81,10 +96,5 @@ public class GameUI : MonoBehaviour
             default:
                 break;
         }
-    }
-
-    private void PlayerHealthPoint()
-    {
-        playerHealthBar.fillAmount = Player.Instance.CurrenthealthPoints / Player.Instance.MaxhealthPoints;
     }
 }

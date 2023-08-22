@@ -33,8 +33,13 @@ public class Player : Characters
     private RaycastHit raycastHit;
 
     Dictionary<Elements, Elements> opposingElements;
+
+    //Unity Events
     public class ElementChangeEvent : UnityEvent<Elements> { }
+    public class CharacterChangeEvent : UnityEvent<Characters> { }
+
     public ElementChangeEvent ElementChanged { get; private set; } = new ElementChangeEvent();
+    public CharacterChangeEvent TargetChanged { get; private set; } = new CharacterChangeEvent();
 
 
     [SerializeField] private List<Ability> abilities;
@@ -100,6 +105,8 @@ public class Player : Characters
         gravity = GetComponent<StarterAssets.ThirdPersonController>().Gravity;
 
         InitializeAbilities();
+
+        ChangeWeaponElement(Elements.Null);
     }
 
     private void Update()
@@ -163,6 +170,8 @@ public class Player : Characters
     public void SetTarget(Characters enemy)
     {
         target = enemy;
+
+        TargetChanged.Invoke(target);
 
         //Automaticly deactivate when player has no target
         gameObject.GetComponent<EnemyLockOn>().ActivateLockonCanvas();

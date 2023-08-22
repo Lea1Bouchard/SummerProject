@@ -31,6 +31,7 @@ public class GameUI : MonoBehaviour
         }
 
         player.ElementChanged.AddListener(OnElementChange);
+        player.TargetChanged.AddListener(OnTargetChange);
     }
 
     private void OnHealthChange(GameObject gameObject)
@@ -54,10 +55,23 @@ public class GameUI : MonoBehaviour
         if (player.target != null)
             if (enemy.name == player.target.name)
             {
+                EnemyController character = enemy.GetComponent<EnemyController>();
+                enemyHealthBar.fillAmount = character.CurrenthealthPoints / character.MaxhealthPoints;
                 Debug.Log("Target Enemy health changed");
             }
     }
 
+    private void OnTargetChange(Characters character)
+    {
+        if (character != null)
+        {
+            enemyHealthBarHolder.SetActive(true);
+            EnemyHealthPoint(character.gameObject);
+            Debug.Log(character + " health showed");
+        }
+        else
+            enemyHealthBarHolder.SetActive(false);
+    }
 
     private void OnElementChange(Elements element)
     {

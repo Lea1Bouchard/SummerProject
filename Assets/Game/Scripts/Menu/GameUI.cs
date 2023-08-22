@@ -11,15 +11,17 @@ public class GameUI : MonoBehaviour
     private Characters[] characters;
     private Player player;
     public Image playerHealthBar;
-    public GameObject enemyHealthBarHolder;
+    public GameObject enemyBarHolder;
     public Image enemyHealthBar;
     public Image currentElementImage;
+    public GameObject affinitiesHolder;
+    public GameObject weaknessesHolder;
     public Sprite[] elementImages;
 
     // Start is called before the first frame update
     void Start()
     {
-        enemyHealthBarHolder.SetActive(false);
+        enemyBarHolder.SetActive(false);
         currentElementImage.gameObject.SetActive(false);
 
         characters = FindObjectsOfType<Characters>();
@@ -61,49 +63,81 @@ public class GameUI : MonoBehaviour
     {
         if (character != null)
         {
-            enemyHealthBarHolder.SetActive(true);
+            enemyBarHolder.SetActive(true);
             EnemyHealthPoint(character.gameObject);
+            SetAffinitiesAndWeaknesses(character);
         }
         else
-            enemyHealthBarHolder.SetActive(false);
+            enemyBarHolder.SetActive(false);
     }
 
+    private void SetAffinitiesAndWeaknesses(Characters character)
+    {
+        ClearResistanceHolder();
+
+        AddElementInList(character.Affinities, affinitiesHolder.transform);
+        AddElementInList(character.Weaknesses, weaknessesHolder.transform);
+    }
+
+    private void ClearResistanceHolder()
+    {
+        for (int i = 0; i < affinitiesHolder.transform.childCount; i++)
+        {
+            Destroy(affinitiesHolder.transform.GetChild(i).gameObject);
+        }
+
+        for (int i = 0; i < weaknessesHolder.transform.childCount; i++)
+        {
+            Destroy(weaknessesHolder.transform.GetChild(i).gameObject);
+        }
+    }
+
+    private void AddElementInList(List<Elements> elements, Transform parent)
+    {
+        foreach (Elements element in elements)
+        {
+            Sprite sprite = ConvertElementToImage(element);
+            GameObject image = new GameObject();
+            image.AddComponent<Image>().sprite = sprite;
+            image.transform.SetParent(parent);
+            image.GetComponent<RectTransform>().localScale = new Vector3(1, 1, 1);
+        }
+    }
+    
     private void OnElementChange(Elements element)
     {
         if (!currentElementImage.gameObject.activeSelf && element != Elements.Null)
             currentElementImage.gameObject.SetActive(true);
 
+        currentElementImage.sprite = ConvertElementToImage(element);
+    }
+
+    private Sprite ConvertElementToImage(Elements element)
+    {
         switch (element)
         {
             case Elements.Fire:
-                currentElementImage.sprite = elementImages[0];
-                break;
+                return elementImages[0];
             case Elements.Water:
-                currentElementImage.sprite = elementImages[1];
-                break;
+                return elementImages[1];
             case Elements.Air:
-                currentElementImage.sprite = elementImages[2];
-                break;
+                return elementImages[2];
             case Elements.Earth:
-                currentElementImage.sprite = elementImages[3];
-                break;
+                return elementImages[3];
             case Elements.Lightning:
-                currentElementImage.sprite = elementImages[4];
-                break;
+                return elementImages[4];
             case Elements.Ice:
-                currentElementImage.sprite = elementImages[5];
-                break;
+                return elementImages[5];
             case Elements.Light:
-                currentElementImage.sprite = elementImages[6];
-                break;
+                return elementImages[6];
             case Elements.Darkness:
-                currentElementImage.sprite = elementImages[7];
-                break;
+                return elementImages[7];
             case Elements.Null:
                 currentElementImage.gameObject.SetActive(false);
                 break;
             default:
-                break;
+                return null;
         }
+        return null;
     }
 }

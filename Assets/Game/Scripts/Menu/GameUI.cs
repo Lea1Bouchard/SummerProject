@@ -25,7 +25,6 @@ public class GameUI : MonoBehaviour
         characters = FindObjectsOfType<Characters>();
         player = Player.Instance;
 
-        Debug.Log(characters);
         for (int i = 0; i < characters.Length; i++)
         {
             characters[i].HealthChanged.AddListener(OnHealthChange);
@@ -51,6 +50,7 @@ public class GameUI : MonoBehaviour
 
     private void EnemyHealthPoint(GameObject enemy)
     {
+        Debug.Log(enemy.name + " health changed");
         if (player.target != null)
             if (enemy.name == player.target.name)
             {

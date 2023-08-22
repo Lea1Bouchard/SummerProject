@@ -2294,7 +2294,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2027077787, guid: 3cf36580647170d4dbd79afb10ad24a6, type: 3}
       propertyPath: affinities.Array.size
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2027077787, guid: 3cf36580647170d4dbd79afb10ad24a6, type: 3}
       propertyPath: weapons.Array.data[0]
@@ -2319,6 +2319,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: d2e07594b9e00824b95360ac7f8e04be,
         type: 2}
+    - target: {fileID: 2027077787, guid: 3cf36580647170d4dbd79afb10ad24a6, type: 3}
+      propertyPath: affinities.Array.data[0]
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 2027077787, guid: 3cf36580647170d4dbd79afb10ad24a6, type: 3}
       propertyPath: affinities.Array.data[1]
       value: 1

@@ -272,6 +272,7 @@ public class Player : Characters
         {
             Debug.Log("Target lost");
             target = null;
+            TargetChanged.Invoke(target);
             gameObject.GetComponent<EnemyLockOn>().Unfocus();
         }
     }

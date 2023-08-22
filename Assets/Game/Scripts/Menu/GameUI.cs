@@ -40,8 +40,6 @@ public class GameUI : MonoBehaviour
             PlayerHealthPoint();
         else if (gameObject.GetComponent<EnemyController>())
             EnemyHealthPoint(gameObject);
-        else
-            Debug.Log("health changed but not player or enemy");
     }
 
     private void PlayerHealthPoint()
@@ -51,13 +49,11 @@ public class GameUI : MonoBehaviour
 
     private void EnemyHealthPoint(GameObject enemy)
     {
-        Debug.Log(enemy.name + " health changed");
         if (player.target != null)
             if (enemy.name == player.target.name)
             {
                 EnemyController character = enemy.GetComponent<EnemyController>();
                 enemyHealthBar.fillAmount = character.CurrenthealthPoints / character.MaxhealthPoints;
-                Debug.Log("Target Enemy health changed");
             }
     }
 
@@ -67,7 +63,6 @@ public class GameUI : MonoBehaviour
         {
             enemyHealthBarHolder.SetActive(true);
             EnemyHealthPoint(character.gameObject);
-            Debug.Log(character + " health showed");
         }
         else
             enemyHealthBarHolder.SetActive(false);

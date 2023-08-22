@@ -15,8 +15,15 @@ public class TargetUiRotation : MonoBehaviour
 
     private void OnEnable()
     {
-        targetLocation = player.target.targetLocation;
-        StartCoroutine(LookAtCamera());
+        if(player.target != null)
+        {
+            targetLocation = player.target.targetLocation;
+            StartCoroutine(LookAtCamera());
+        } else
+        {
+            gameObject.SetActive(false);
+        }
+
     }
 
     private IEnumerator LookAtCamera()

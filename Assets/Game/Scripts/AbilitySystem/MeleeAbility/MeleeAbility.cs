@@ -22,7 +22,6 @@ public class MeleeAbility : Ability
     {
         if (CheckState())
         {
-            Debug.Log("Triggered");
             isActive = true;
             Animate();
             abilityCooldownClass.Initialize(this);

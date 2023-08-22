@@ -6,8 +6,8 @@ using UnityEngine;
 public class RangedAbility : Ability
 {
     public float timeToLive = 5f;
-    public float speed = 1f;
-    public float force = 1f;
+    public float targettedSpeed = 1f;
+    public float untargettedForce = 1f;
     public GameObject projectile;
     private GameObject projectileClone;
     private Projectile projectileScript;
@@ -25,6 +25,11 @@ public class RangedAbility : Ability
     {
         if (CheckState())
         {
+            if(projectileClone != null)
+            {
+                ProjectileDestroyed();
+            }
+
             projectileClone = Instantiate(projectile, initiator.transform.Find("ProjectileSpawn").position, initiator.transform.rotation);
             SetProjectileValues();
             projectileClone.GetComponent<Projectile>().Shoot(this, initiator.target);
@@ -46,8 +51,8 @@ public class RangedAbility : Ability
 
         projectileScript.Damage = baseDamage;
         projectileScript.Range = timeToLive;
-        projectileScript.Speed = speed;
-        projectileScript.Force = force;
+        projectileScript.Speed = targettedSpeed;
+        projectileScript.Force = untargettedForce;
         projectileScript.Initiator = Initiator;
         projectileScript.attackElement = attackElement;
 

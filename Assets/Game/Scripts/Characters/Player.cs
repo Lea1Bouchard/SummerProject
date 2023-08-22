@@ -112,7 +112,6 @@ public class Player : Characters
     {
         foreach (Ability ability in abilities)
         {
-            Debug.Log("Initializing : " + ability.abilityName);
             ability.Initialize(this);
         }
 
@@ -162,7 +161,6 @@ public class Player : Characters
     {
         target = enemy;
 
-        Debug.Log("Enemy targeted : " + target.name);
         //Automaticly deactivate when player has no target
         gameObject.GetComponent<EnemyLockOn>().ActivateLockonCanvas();
 
@@ -179,8 +177,6 @@ public class Player : Characters
             if (!currAbility.IsActive)
             {
                 currAbility.TriggerAbility();
-
-                Debug.Log(currAbility.abilityName);
 
                 ThrowWeapon();
             }
@@ -199,8 +195,6 @@ public class Player : Characters
         Ability currAbility = abilities.Find((x) => x.abilityType == TypeOfAbility.Movement);
         currAbility.TriggerAbility();
 
-        Debug.Log(currAbility.abilityName);
-        Debug.Log("Dodge");
     }
 
     public void MeleeAbility()
@@ -215,8 +209,6 @@ public class Player : Characters
 
             Ability currAbility = abilities.Find((x) => x.abilityType == TypeOfAbility.Melee);
             currAbility.TriggerAbility();
-
-            Debug.Log(currAbility.abilityName);
         }
         else
         {
@@ -255,12 +247,10 @@ public class Player : Characters
     {
         if (target == null)
         {
-            Debug.Log("Target set");
             SetTarget(gameObject.GetComponent<EnemyLockOn>().GetTarget());
         }
         else
         {
-            Debug.Log("Target lost");
             target = null;
             gameObject.GetComponent<EnemyLockOn>().Unfocus();
         }

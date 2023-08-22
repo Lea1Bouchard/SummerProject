@@ -19,9 +19,9 @@ MonoBehaviour:
   animationStateName: Dodge
   baseDamage: 0
   abilityType: 0
-  distance: 10
+  maxDistance: 10
   rendersImmortal: 0
-  speed: 1
+  speed: 10
   timeImmortal: 2
   target: {fileID: 0}
   isTeleport: 0

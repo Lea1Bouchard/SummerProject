@@ -40,9 +40,6 @@ namespace UtilityAI.Core
         private NavMeshHit navHit;
         [SerializeField] private float maxWalkDistance = 10f;
 
-        [Header("Debugging Only")]
-        public Transform movementTracker;
-
 
         private void Start()
         {
@@ -174,7 +171,6 @@ namespace UtilityAI.Core
             if (currentDestination != navHit.position)
             {
                 currentDestination = navHit.position;
-                movementTracker.position = currentDestination;
                 navAgent.SetDestination(currentDestination);
             }
         }

@@ -14,6 +14,8 @@ public class GameManager : MonoBehaviour
 
     [Header("UIs")]
     [SerializeField] private Canvas waitModeUI;
+    public Sprite[] elementImages;
+
 
     [Header("Fighting Manager")]
     public List<EnemyController> enemiesInFight;

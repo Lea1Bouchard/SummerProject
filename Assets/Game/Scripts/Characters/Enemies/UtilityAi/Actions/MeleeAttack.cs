@@ -156,7 +156,6 @@ namespace UtilityAI.Actions
             if (NavMesh.SamplePosition(pointNextToPlayer, out hit, 1.0f, NavMesh.AllAreas))
             {
                 enemy.navAgent.SetDestination(hit.position);
-                enemy.movementTracker.position = hit.position;
                 enemy.AnimateMovement();
             }
         }

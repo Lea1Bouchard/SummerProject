@@ -10,13 +10,12 @@ public class GameUI : MonoBehaviour
 {
     private Characters[] characters;
     private Player player;
-    public Image playerHealthBar;
-    public GameObject enemyBarHolder;
-    public Image enemyHealthBar;
-    public Image currentElementImage;
-    public GameObject affinitiesHolder;
-    public GameObject weaknessesHolder;
-    public Sprite[] elementImages;
+    [SerializeField] private Image playerHealthBar;
+    [SerializeField] private GameObject enemyBarHolder;
+    [SerializeField] private Image enemyHealthBar;
+    [SerializeField] private Image currentElementImage;
+    [SerializeField] private GameObject affinitiesHolder;
+    [SerializeField] private GameObject weaknessesHolder;
 
     // Start is called before the first frame update
     void Start()
@@ -114,6 +113,7 @@ public class GameUI : MonoBehaviour
 
     private Sprite ConvertElementToImage(Elements element)
     {
+        Sprite[] elementImages = GameManager.Instance.elementImages;
         switch (element)
         {
             case Elements.Fire:

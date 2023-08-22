@@ -9,6 +9,8 @@ public class IdleState : StateMachineBehaviour
     {
         Player.Instance.ResetMoveSpeed();
         Player.Instance.ActionReset();
+
+        Player.Instance.DeactivateWeapon();
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks

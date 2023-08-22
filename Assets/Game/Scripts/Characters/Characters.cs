@@ -20,7 +20,7 @@ public class Characters : MonoBehaviour
 
     public Characters target;
     public GameObject teleportTarget;
-    public MeleeWeapon weapon;
+    public List<MeleeWeapon> weapons;
     public Transform targetLocation;
 
     [Header("Weapon Nodes")]
@@ -78,12 +78,18 @@ public class Characters : MonoBehaviour
 
     public void ActivateWeapon()
     {
-        weapon.Activate();
+        foreach (MeleeWeapon weapon in weapons)
+            weapon.Activate();
+    }    
+    public void ActivateWeapon(int weaponId)
+    {
+       weapons[weaponId].Activate();
     }
 
     public void DeactivateWeapon()
     {
-        weapon.Deactivate();
+        foreach (MeleeWeapon weapon in weapons)
+            weapon.Deactivate();
     }
     //Called in teleport ability
     public void SetTeleportTarget(GameObject obj)

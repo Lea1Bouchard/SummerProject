@@ -105,7 +105,6 @@ public class Player : Characters
     private void Update()
     {
         //DetectEnemiesInLineOfSight();
-        Debug.DrawRay(transform.position, Vector3.down * groundCheckDistance, Color.red, .1f);
     }
     
 
@@ -239,14 +238,15 @@ public class Player : Characters
     {
         weaponTrown = true;
 
-        weapon.gameObject.SetActive(false);
+        foreach (MeleeWeapon weapon in weapons)
+            weapon.gameObject.SetActive(false);
     }
 
     private void RetrieveWeapon()
     {
         weaponTrown = false;
-
-        weapon.gameObject.SetActive(true);
+        foreach (MeleeWeapon weapon in weapons)
+            weapon.gameObject.SetActive(true);
 
         if (teleportTarget)
             Destroy(teleportTarget, .1f);
@@ -288,6 +288,8 @@ public class Player : Characters
 
             yield return null;
         }
+
+        print("Finished rotating");
     }
 
     public void Interact()
@@ -311,7 +313,7 @@ public class Player : Characters
     {
         while (true)
         {
-            if (Physics.Raycast(transform.position, Vector3.down, groundCheckDistance))
+            if (Physics.Raycast(transform.position + new Vector3(0, 1, 0) , Vector3.down, groundCheckDistance + 1))
             {
                 animator.SetTrigger("GroundClose");
                 break;

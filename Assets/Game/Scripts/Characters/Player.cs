@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Enums;
 using System.Collections;
+using UnityEngine.Events;
 
 public class Player : Characters
 {
@@ -22,7 +23,9 @@ public class Player : Characters
     private bool hasEnemyInLineOfSight;
     private float lineOfSightDistance;
     private float lineOfSightRadius;
-    private IEnumerator _coroutine;
+
+    private bool isOverrideRoot;
+    private float gravity;
 
     private bool weaponTrown;
     private EnemyLockOn lockOnSys;
@@ -33,8 +36,17 @@ public class Player : Characters
 
     Dictionary<Elements, Elements> opposingElements;
 
+    //Unity Events
+    public class ElementChangeEvent : UnityEvent<Elements> { }
+    public class CharacterChangeEvent : UnityEvent<Characters> { }
+
+    public ElementChangeEvent ElementChanged { get; private set; } = new ElementChangeEvent();
+    public CharacterChangeEvent TargetChanged { get; private set; } = new CharacterChangeEvent();
+
+
     [SerializeField] private List<Ability> abilities;
     [SerializeField] private MovementAbility teleportAbility;
+    [SerializeField] private float groundCheckDistance;
     #endregion
 
     //Instantiates the player singleton
@@ -47,9 +59,12 @@ public class Player : Characters
             return _instance;
         }
     }
-    //Variables initialization
-    public Player()
+
+
+    private void Awake()
     {
+        _instance = this;
+
         MaxhealthPoints = 100f;
         CurrenthealthPoints = MaxhealthPoints;
         Level = 1;
@@ -68,17 +83,10 @@ public class Player : Characters
         movementSpeed = 2f;
 
         hasEnemyInLineOfSight = false;
-        lineOfSightDistance = 15f;
-        lineOfSightRadius = 15f;
 
         weaponTrown = false;
     }
 
-    private void Awake()
-    {
-        _instance = this;
-    }
-    //Variables initialization on startup
     private void Start()
     {
         opposingElements = new Dictionary<Elements, Elements>();
@@ -96,10 +104,18 @@ public class Player : Characters
 
         opposingElements.Add(Elements.Null, Elements.Null);
 
+        ResetMoveSpeed();
+
+        gravity = GetComponent<StarterAssets.ThirdPersonController>().Gravity;
+
         InitializeAbilities();
 
-        _coroutine = ActionReset();
-        lockOnSys = gameObject.GetComponent<EnemyLockOn>();
+        ChangeWeaponElement(Elements.Null);
+    }
+
+    private void Update()
+    {
+        //DetectEnemiesInLineOfSight();
     }
 
     //Initialize the player's abilities
@@ -107,7 +123,6 @@ public class Player : Characters
     {
         foreach (Ability ability in abilities)
         {
-            Debug.Log("Initializing : " + ability.abilityName);
             ability.Initialize(this);
         }
 
@@ -123,21 +138,24 @@ public class Player : Characters
         //Change to new Affinities and Weaknesses
         Affinities.Add(newElement);
         Weaknesses.Add(opposingElements[newElement]);
+
+        //Change animator's element for correct combos
+        animator.SetInteger("Element", (int)newElement);
+
+        //Trigger event to alert the listeners
+        ElementChanged.Invoke(newElement);
     }
 
     //Sets a trigget to allow a combo system
     public void NextAction() // called by animation event
     {
-        StopCoroutine(_coroutine);
-        animator.ResetTrigger("MeleeAttack");
+        //animator.ResetTrigger("MeleeAttack");
         animator.SetTrigger("NextAction");
-
-        StartCoroutine(_coroutine);
+        //StartCoroutine(ActionReset());
     }
 
-    IEnumerator ActionReset()
+    public void ActionReset()
     {
-        yield return new WaitForSeconds(0.5f);
         animator.ResetTrigger("NextAction");
         animator.ResetTrigger("MeleeAttack");
     }
@@ -146,7 +164,8 @@ public class Player : Characters
     {
         target = enemy;
 
-        Debug.Log("Enemy targeted : " + target.name);
+        TargetChanged.Invoke(target);
+
         //Automaticly deactivate when player has no target
         gameObject.GetComponent<EnemyLockOn>().ActivateLockonCanvas();
     }
@@ -222,15 +241,16 @@ public class Player : Characters
     {
         weaponTrown = true;
 
-        weapon.gameObject.SetActive(false);
+        foreach (MeleeWeapon weapon in weapons)
+            weapon.gameObject.SetActive(false);
     }
     //TODO : This probably should be called in an animation
     //Re-enable the held weapon and destroys the trown weapon if a teleport was triggered
     private void RetrieveWeapon()
     {
         weaponTrown = false;
-
-        weapon.gameObject.SetActive(true);
+        foreach (MeleeWeapon weapon in weapons)
+            weapon.gameObject.SetActive(true);
 
         if (teleportTarget)
             Destroy(teleportTarget, .1f);
@@ -240,14 +260,13 @@ public class Player : Characters
     {
         if (target == null)
         {
-            Debug.Log("Target set");
             SetTarget(lockOnSys.GetTarget());
         }
         else
         {
-            Debug.Log("Target lost");
             target = null;
-            lockOnSys.Unfocus();
+            TargetChanged.Invoke(target);
+            gameObject.GetComponent<EnemyLockOn>().Unfocus();
         }
     }
 
@@ -263,8 +282,6 @@ public class Player : Characters
         targetRotation.x = transform.rotation.x;
         targetRotation.z = transform.rotation.z;
 
-        Debug.Log("Quaternion rotation : " + targetRotation);
-
         while (t < duration)
         {
             t += Time.deltaTime;
@@ -274,12 +291,90 @@ public class Player : Characters
 
             yield return null;
         }
+
     }
 
     public void Interact()
     {
         gameObject.GetComponent<PlayerInteract>().Interact();
     }
+
+    #region Animation Events
+
+    private void StartGroundCheck()
+    {
+        StartCoroutine(GroundDistanceCheck());
+    }
+
+    private void EndGroundCheck()
+    {
+        StopCoroutine(GroundDistanceCheck());
+    }
+
+    IEnumerator GroundDistanceCheck()
+    {
+        while (true)
+        {
+            if (Physics.Raycast(transform.position + new Vector3(0, 1, 0) , Vector3.down, groundCheckDistance + 1))
+            {
+                animator.SetTrigger("GroundClose");
+                break;
+            }
+            yield return new WaitForSeconds(0);
+        }
+    }
+
+    public void ChangeMoveSpeed(float speed)
+    {
+        gameObject.GetComponent<StarterAssets.ThirdPersonController>().MoveSpeed = speed;
+    }
+    public void ResetMoveSpeed()
+    {
+        gameObject.GetComponent<StarterAssets.ThirdPersonController>().MoveSpeed = movementSpeed;
+    }
+
+    private void OverrideRoot(float distance)
+    {
+        animator.applyRootMotion = false;
+        isOverrideRoot = true;
+        StartCoroutine(SimulateRootMovement(distance));
+    }
+
+    private void EndOverrideRoot()
+    {
+        isOverrideRoot = false;
+        animator.applyRootMotion = true;
+    }
+
+    IEnumerator SimulateRootMovement(float distance)
+    {
+        while (isOverrideRoot)
+        {
+            gameObject.GetComponent<CharacterController>().Move(gameObject.transform.forward * distance * Time.deltaTime);
+            yield return new WaitForSeconds(0);
+        }
+
+    }
+
+    private void ResetGroundDistance()
+    {
+        animator.ResetTrigger("GroundClose");
+    }
+
+    private void DisableGravity()
+    {
+        GetComponent<StarterAssets.ThirdPersonController>().Gravity = 0;
+        //jumps with a coefivient of 0, resetting the vertical velocity
+        GetComponent<StarterAssets.ThirdPersonController>().AnimJump(0);
+    }    
+    
+    private void EnableGravity()
+    {
+        GetComponent<StarterAssets.ThirdPersonController>().Gravity = gravity;
+    }
+
+    #endregion
+
 
     /* Getters / Setters */
     #region getter/setter

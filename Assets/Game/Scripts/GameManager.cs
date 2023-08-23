@@ -15,6 +15,8 @@ public class GameManager : MonoBehaviour
 
     [Header("UIs")]
     [SerializeField] private Canvas waitModeUI;
+    public Sprite[] elementImages;
+
 
     [Header("Fighting Manager")]
     public List<EnemyController> enemiesInFight;
@@ -99,7 +101,6 @@ public class GameManager : MonoBehaviour
                 Time.timeScale = 1;
                 break;
             case GameState.InGame:
-
                 break;
             case GameState.InWaitMode:
                 Time.timeScale = 1;
@@ -125,11 +126,13 @@ public class GameManager : MonoBehaviour
     private void HandleInGame()
     {
         currentGameState = GameState.InGame;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     private void HandleInMenu()
     {
         currentGameState = GameState.InMenu;
+        Cursor.lockState = CursorLockMode.None;
         Time.timeScale = 0;
     }
 

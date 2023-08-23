@@ -96,9 +96,12 @@ public class DialogueManager : MonoBehaviour
         if (OnEnd != null)
             OnEnd();
 
-        Cursor.lockState = CursorLockMode.Locked;
+        if(!questMarker.activeInHierarchy)
+        {
+            GameManager.Instance.UpdateGameState(Enums.GameState.InGame);
+        }
+
         dialogueCanvas.SetActive(false);
-        GameManager.Instance.UpdateGameState(Enums.GameState.InGame);
     }
 
 }

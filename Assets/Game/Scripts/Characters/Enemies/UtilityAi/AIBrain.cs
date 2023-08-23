@@ -10,15 +10,15 @@ namespace UtilityAI.Core
         public Action bestAction { get; set; }
         private EnemyController enemy;
         public bool finishedDeciding { get; set; }
-        #endregion
+        public bool isBrainStopped { get; set; }
+
         void Start()
         {
             enemy = GetComponent<EnemyController>();
         }
-
         private void Update()
         {
-            if (bestAction is null)
+            if (bestAction is null && !isBrainStopped)
             {
                 DecideBestAction(enemy.normalActionsAvailable);
             }

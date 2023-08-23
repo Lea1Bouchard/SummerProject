@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Enums;
+using UnityEngine.Events;
 
 public class Characters : MonoBehaviour
 {
@@ -20,12 +21,16 @@ public class Characters : MonoBehaviour
 
     public Characters target;
     public GameObject teleportTarget;
-    public MeleeWeapon weapon;
+    public List<MeleeWeapon> weapons;
     public Transform targetLocation;
 
     [Header("Weapon Nodes")]
     public Transform[] weaponNodes;
     #endregion
+
+    public class GameObjectEvent : UnityEvent<GameObject> { }
+    public GameObjectEvent HealthChanged { get; private set; } = new GameObjectEvent();
+
 
     /* Methods */
     public void UseAbility(Ability ability)
@@ -38,11 +43,11 @@ public class Characters : MonoBehaviour
         if (!isDead)
         {
             float removeHp = DamageTaken(elementHit, damageReceived);
-            if (currenthealthPoints - removeHp > 0)
-                currenthealthPoints -= removeHp;
+            if (CurrenthealthPoints - removeHp > 0)
+                CurrenthealthPoints -= removeHp;
             else
             {
-                currenthealthPoints = 0;
+                CurrenthealthPoints = 0;
                 Death();
             }
 
@@ -75,13 +80,19 @@ public class Characters : MonoBehaviour
     //Called in animation
     public void ActivateWeapon()
     {
-        weapon.Activate();
+        foreach (MeleeWeapon weapon in weapons)
+            weapon.Activate();
+    }    
+    public void ActivateWeapon(int weaponId)
+    {
+       weapons[weaponId].Activate();
     }
     //Deactivates the weapon's hitbox during an attack
     //Called in animation
     public void DeactivateWeapon()
     {
-        weapon.Deactivate();
+        foreach (MeleeWeapon weapon in weapons)
+            weapon.Deactivate();
     }
     //Called in teleport ability
     public void SetTeleportTarget(GameObject obj)
@@ -97,8 +108,8 @@ public class Characters : MonoBehaviour
     public List<Elements> Weaknesses { get => weaknesses; set => weaknesses = value; }
     public float AffinityResistanceModifier { get => affinityResistanceModifier; set => affinityResistanceModifier = value; }
     public float MaxhealthPoints { get => maxhealthPoints; set => maxhealthPoints = value; }
-    public float CurrenthealthPoints { get => currenthealthPoints; set => currenthealthPoints = value; }
-    public Animator Animator { get => animator; set => animator = value; }
+    public float CurrenthealthPoints { get => currenthealthPoints; set { currenthealthPoints = value; HealthChanged?.Invoke(this.gameObject); } }
+public Animator Animator { get => animator; set => animator = value; }
 
     #endregion
 }

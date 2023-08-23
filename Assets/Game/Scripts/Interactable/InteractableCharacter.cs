@@ -6,10 +6,12 @@ using Enums;
 [CreateAssetMenu(menuName = "Interactable/Interactable character")]
 public class InteractableCharacter : Interactable
 {
-    #region variable
-    [SerializeField] private List<NpcType> npcType;
+    [SerializeField] private NpcType npcType;
     [SerializeField] private Dialogue dialogue;
-    #endregion
+    [SerializeField] private List<Dialogue> questDialogue;
+    [SerializeField] private int currQuestIndex = 0;
+    public bool isReadyToGiveQuest;
+
     public override void Initialize()
     {
         throw new System.NotImplementedException();
@@ -17,6 +19,31 @@ public class InteractableCharacter : Interactable
 
     public override void Interact()
     {
-        DialogueManager.Instance.TriggerDialogue(dialogue);
+        if (npcType == NpcType.QuestGiver && questDialogue.Count > 0)
+        {
+            TriggerDialogue(questDialogue[currQuestIndex]);
+        }
+        else if (npcType == NpcType.Merchant)
+        {
+            //TODO : Do stuff if NPC is a merchant
+        }
+        else
+        {
+            TriggerDialogue(dialogue);
+        }
     }
+
+    private void TriggerDialogue(Dialogue dial)
+    {
+        DialogueManager.Instance.TriggerDialogue(dial);
+
+        EventManager.Instance.QueueEvent(new TalkGameEvent(Name));
+    }
+
+    private void OpenShop()
+    {
+
+    }
+
+
 }

@@ -82,11 +82,30 @@ namespace Enums
         Blocking
     }
 
+    public enum FlyingState
+    {
+        TakingOff,
+        Floating,
+        Moving,
+        Gliding,
+        Attacking,
+        Landing
+    }
+
     //NPCs type
     public enum NpcType
     {
         QuestGiver,
         Merchant,
         Civilian
+    }
+
+    public enum GoalType
+    {
+        Slay,
+        Talk,
+        Gather,
+        Bring,
+        Fetch
     }
 }

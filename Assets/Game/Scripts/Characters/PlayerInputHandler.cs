@@ -104,7 +104,19 @@ public class PlayerInputHandler : MonoBehaviour
             if (value.performed)
                 Player.Instance.Interact();
     }
-    //Selection for the first 4 elements
+
+    public void OnPause(InputAction.CallbackContext value)
+    {
+        if (GameManager.Instance.currentGameState == GameState.InGame)
+        {
+            if (value.performed)
+                PauseMenu.Instance.PauseGame();
+        }
+        else if (GameManager.Instance.currentGameState == GameState.InMenu)
+            if (value.performed)
+                PauseMenu.Instance.ResumeGame();
+    }
+
     public void SelectElementInputNormal(InputAction.CallbackContext context)
     {
         Vector2 vector = context.ReadValue<Vector2>();

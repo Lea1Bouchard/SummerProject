@@ -66,6 +66,7 @@ public class AISensor : MonoBehaviour
             return false;
         }
 
+
         //Check if is in the angle of FoV
         direction.y = 0;
         float deltaAngle = Vector3.Angle(direction, transform.forward);
@@ -84,8 +85,22 @@ public class AISensor : MonoBehaviour
         print("Player in sight");
         return true;
     }
-    //This is used to draw accurate LOS
-    //Debug purpuses only
+
+    public bool IsDirectlyInFront(GameObject obj)
+    {
+        Vector3 origin = transform.position;
+        Vector3 destination = obj.transform.position;
+        Vector3 direction = destination - origin;
+        //Check if is in the angle of FoV
+        direction.y = 0;
+        float deltaAngle = Vector3.Angle(direction, transform.forward);
+
+        if (IsInSight(obj) && deltaAngle <= 7)
+            return true;
+        else
+            return false;
+    }
+
     Mesh CreateWedgeMesh()
     {
         Mesh mesh = new Mesh();

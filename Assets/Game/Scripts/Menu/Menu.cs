@@ -5,17 +5,19 @@ using UnityEngine.EventSystems;
 
 public class Menu : MonoBehaviour
 {
-    public GameObject firstButton, newCurrentButton;
+    public GameObject firstButton;
 
     private void OnEnable()
     {
-        ChangeButton(firstButton);
+        if(firstButton)
+            ChangeButton(firstButton);
     }
-    //Changes the current selected button in a menu
-    //SHOULD BE USED WITH THE MANUAL BUTTON LINKS IN THE MENU
-    private void ChangeButton(GameObject button)
+
+    public void ChangeButton(GameObject button)
     {
         EventSystem.current.SetSelectedGameObject(null);
         EventSystem.current.SetSelectedGameObject(button);
+
+        print("Button Changed");
     }
 }

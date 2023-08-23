@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: OutOfRange
   m_EditorClassIdentifier: 
   Name: Out of Range
-  Importance: 1
+  Importance: 10
   considerations:
   - {fileID: 11400000, guid: b5960c8d862ee1a46a8baadcb2f6fa5c, type: 2}

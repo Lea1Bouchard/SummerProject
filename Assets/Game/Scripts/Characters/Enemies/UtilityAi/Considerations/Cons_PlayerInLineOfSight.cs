@@ -8,7 +8,7 @@ namespace UtilityAI.Considerations
     {
         public override float ScoreConsideration(EnemyController enemy)
         {
-            if (enemy.sensor.IsInSight(Player.Instance.gameObject))
+            if (enemy.aiSensor.IsInSight(Player.Instance.gameObject))
                 return score = 1;
             else
                 return score = 0;

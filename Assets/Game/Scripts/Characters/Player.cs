@@ -194,7 +194,6 @@ public class Player : Characters
         currAbility.TriggerAbility();
 
         Debug.Log(currAbility.abilityName);
-        Debug.Log("Dodge");
     }
     //Triggers the melee ability or retrieve the weapon if it has been trown
     public void MeleeAbility()

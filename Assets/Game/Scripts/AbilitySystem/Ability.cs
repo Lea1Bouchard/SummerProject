@@ -44,7 +44,6 @@ public abstract class Ability : ScriptableObject
     {
         if (isActive)
         {
-            Debug.Log("IsActive");
             return false;
         }
 

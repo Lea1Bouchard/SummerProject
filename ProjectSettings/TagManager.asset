@@ -5,16 +5,14 @@ TagManager:
   serializedVersion: 2
   tags:
   - CinemachineTarget
-  - TeleportTarget
-  - PauseMenu
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - Enemies
+  - 
   - Water
   - UI
-  - Interactables
+  - 
   - 
   - Character
   - Ground

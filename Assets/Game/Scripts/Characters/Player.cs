@@ -279,8 +279,6 @@ public class Player : Characters
 
             yield return null;
         }
-
-        print("Finished rotating");
     }
 
     public void Interact()

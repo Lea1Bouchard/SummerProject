@@ -31,14 +31,11 @@ public class EnemyLockOn : MonoBehaviour
         player = Player.Instance;
         cam = Camera.main.transform;
         lockOnCanvas.gameObject.SetActive(false);
-
         nearbyEnemies = new List<Characters>();
-
     }
 
     void Update()
     {
-
         if (player.target != null)
         {
             if (!BlockCheck(player.target.targetLocation) || !RangeCheck(player.target.targetLocation))
@@ -112,12 +109,9 @@ public class EnemyLockOn : MonoBehaviour
         float distance = Vector3.Distance(player.transform.position, thingToCheck.position);
 
         if (distance > noticeZone)
-        {
             return false;
-        }
 
         return true;
-
     }
 
     public void ActivateLockonCanvas()
@@ -130,6 +124,7 @@ public class EnemyLockOn : MonoBehaviour
         cinemachineAnimator.SetBool("Targeted", false);
         lockOnCanvas.gameObject.SetActive(false);
         lockOnCamera.LookAt = null;
+        nearbyEnemies = new List<Characters>();
     }
 
     public void NextTarget()
@@ -147,7 +142,14 @@ public class EnemyLockOn : MonoBehaviour
 
         currentIndex++;
 
-        if (nearbyEnemies.Count <= currentIndex)
+        print(nearbyEnemies.Count);
+
+        if (nearbyEnemies.Count == 0)
+        {
+            Unfocus();
+            return;
+        }
+        else if (nearbyEnemies.Count <= currentIndex)
             currentIndex = 0;
         lockOnCanvas.gameObject.SetActive(false);
         player.SetTarget(nearbyEnemies[EnemiesInFov(currentIndex)]);
@@ -173,7 +175,11 @@ public class EnemyLockOn : MonoBehaviour
         {
             if (nearbyEnemies.Find(x => x.GetInstanceID() == characterToRemove.GetInstanceID()))
             {
-                nearbyEnemies.Remove(characterToRemove);
+                if (player.target.GetInstanceID() == characterToRemove.GetInstanceID())
+                {
+                    nearbyEnemies.Remove(characterToRemove);
+                    NextTarget();
+                }
                 break;
             }
         }
@@ -204,5 +210,14 @@ public class EnemyLockOn : MonoBehaviour
         } while (checkIndex != curIndex);
 
         return curIndex;
+    }
+
+    private void ListCleanup()
+    {
+        foreach (Characters enemies in nearbyEnemies)
+        {
+            if (!BlockCheck(enemies.transform) || !RangeCheck(enemies.transform))
+                nearbyEnemies.Remove(enemies);
+        }
     }
 }

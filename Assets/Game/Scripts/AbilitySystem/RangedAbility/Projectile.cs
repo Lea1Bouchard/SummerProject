@@ -5,7 +5,6 @@ using Enums;
 
 public class Projectile : MonoBehaviour
 {
-
     private int damage;
     private float speed;
     private float force;

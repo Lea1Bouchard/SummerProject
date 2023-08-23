@@ -34,14 +34,18 @@ namespace UtilityAI.Core
         public AISensor aiSensor { get; set; }
 
         [Header("Movement")]
-        public GameObject flightController;
-        public FlyingState flyingState;
-        private Vector3 currentDestination;        
         [HideInInspector] public NavMeshAgent navAgent;
-        private NavMeshHit navHit;
+        private NavMeshHit navHit;       
+        private Vector3 currentDestination;
         [SerializeField] private float maxWalkDistance = 10f;
         #endregion
 
+        [Header("Flying")]
+        public GameObject flightController;
+        public FlyingState flyingState;
+        public float flyingHeight = 5f;
+        public float takeOffSpeed = 1f;
+        [HideInInspector] public float takeOffStartingPosition = -999;
 
         private void Start()
         {
@@ -157,6 +161,18 @@ public void ExitInFight()
             if (hasFlameAttack)
                 animator.SetBool("CanFlameAttack", true);
 
+        }
+
+        public int GetNavMeshAgentID(string name)
+        {
+            for (int i = 0; i < NavMesh.GetSettingsCount(); i++)
+            {
+                NavMeshBuildSettings settings = NavMesh.GetSettingsByIndex(index: i);
+                if (name == NavMesh.GetSettingsNameFromID(agentTypeID: settings.agentTypeID))
+                    return settings.agentTypeID;
+            }
+            Debug.Log("GetNavMeshAgentID: This name doesn't exist");
+            return -1;
         }
 
         private void OnDestroy()

@@ -272,7 +272,8 @@ public class Player : Characters
 
     public void ChangeTarget()
     {
-        lockOnSys.NextTarget();
+        if (target != null)
+            gameObject.GetComponent<EnemyLockOn>().NextTarget();
     }
     //Function to rotate smoothly when attacking while targeted
     IEnumerator SmoothRotation(float duration, Transform target)
@@ -315,7 +316,7 @@ public class Player : Characters
     {
         while (true)
         {
-            if (Physics.Raycast(transform.position + new Vector3(0, 1, 0) , Vector3.down, groundCheckDistance + 1))
+            if (Physics.Raycast(transform.position + new Vector3(0, 1, 0), Vector3.down, groundCheckDistance + 1))
             {
                 animator.SetTrigger("GroundClose");
                 break;
@@ -366,8 +367,8 @@ public class Player : Characters
         GetComponent<StarterAssets.ThirdPersonController>().Gravity = 0;
         //jumps with a coefivient of 0, resetting the vertical velocity
         GetComponent<StarterAssets.ThirdPersonController>().AnimJump(0);
-    }    
-    
+    }
+
     private void EnableGravity()
     {
         GetComponent<StarterAssets.ThirdPersonController>().Gravity = gravity;

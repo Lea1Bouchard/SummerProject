@@ -17,8 +17,15 @@ public class TargetUiRotation : MonoBehaviour
 
     private void OnEnable()
     {
-        targetLocation = player.target.targetLocation;
-        StartCoroutine(LookAtCamera());
+        if(player.target != null)
+        {
+            targetLocation = player.target.targetLocation;
+            StartCoroutine(LookAtCamera());
+        } else
+        {
+            gameObject.SetActive(false);
+        }
+
     }
 
     //Using an IEnumerator to simulate an update that won't run when we don't want it to

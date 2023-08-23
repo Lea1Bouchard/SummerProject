@@ -99,7 +99,6 @@ public class EnemyLockOn : MonoBehaviour
         if (Physics.Linecast(player.transform.position + new Vector3(0, 1, 0), thingToCheck.position, ~ignoreLayer))
         {
             return false;
-            Debug.Log("Blocked");
         }
 
         return true;

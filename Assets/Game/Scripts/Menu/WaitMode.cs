@@ -12,15 +12,15 @@ public class WaitMode : MonoBehaviour
     public GameObject weaknessesHolder;
 
     private List<EnemyController> enemies = new List<EnemyController>();
-    private Camera camera;
+    private Camera mainCamera;
     private Plane[] cameraPlanes;
     private List<Collider> colliders = new List<Collider>();
     private List<GameObject> enemyBars = new List<GameObject>();
 
     private void OnEnable()
     {
-        camera = Camera.main;
-        cameraPlanes = GeometryUtility.CalculateFrustumPlanes(camera);
+        mainCamera = Camera.main;
+        cameraPlanes = GeometryUtility.CalculateFrustumPlanes(mainCamera);
         foreach (var enemy in GameObject.FindGameObjectsWithTag("Enemy"))
         {
             Debug.Log(enemy.GetComponent<Collider>());
@@ -62,7 +62,7 @@ public class WaitMode : MonoBehaviour
             //Find top of enemy
             Vector3 pos = new Vector3(enemy.transform.position.x, enemy.GetComponentInChildren<Renderer>().bounds.extents.y + 0.5f, enemy.transform.position.z);
             GameObject enemyBar = Instantiate(enemyCanvas, pos, 
-                Quaternion.LookRotation(camera.transform.forward));
+                Quaternion.LookRotation(mainCamera.transform.forward));
             enemyHealthBar = enemyBar.transform.Find("HealthBar").GetComponent<Slider>();
             weaknessesHolder = enemyBar.transform.Find("WeaknessHolder").gameObject;
             affinitiesHolder = enemyBar.transform.Find("AffinitiesHolder").gameObject;

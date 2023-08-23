@@ -171,7 +171,7 @@ public void ExitInFight()
                 if (name == NavMesh.GetSettingsNameFromID(agentTypeID: settings.agentTypeID))
                     return settings.agentTypeID;
             }
-            Debug.Log("GetNavMeshAgentID: This name doesn't exist");
+            Debug.LogWarning("GetNavMeshAgentID: This name doesn't exist");
             return -1;
         }
 
@@ -237,13 +237,7 @@ public void ExitInFight()
                 Animator.SetBool("Walk", false);
             }
         }
-
-        private void OnDestroy()
-        {
-            midRangeAttack.SetActive(false);
-            StartAttackCooldown();
-        }
-        #endregion
+        #endregion //Movements
 
         #region Animation Events
         private void StartFireBreath()
@@ -256,6 +250,6 @@ public void ExitInFight()
             midRangeAttack.SetActive(false);
             StartAttackCooldown();
         }
-        #endregion
+        #endregion //Animation Events
     }
 }

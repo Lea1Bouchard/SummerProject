@@ -82,7 +82,6 @@ public class AISensor : MonoBehaviour
         {
             return false;
         }
-        print("Player in sight");
         return true;
     }
 

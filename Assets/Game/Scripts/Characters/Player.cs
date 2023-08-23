@@ -107,6 +107,7 @@ public class Player : Characters
         ResetMoveSpeed();
 
         gravity = GetComponent<StarterAssets.ThirdPersonController>().Gravity;
+        lockOnSys = GetComponent<EnemyLockOn>();
 
         InitializeAbilities();
 
@@ -160,16 +161,6 @@ public class Player : Characters
         animator.ResetTrigger("MeleeAttack");
     }
 
-    public void SetTarget(Characters enemy)
-    {
-        target = enemy;
-
-        TargetChanged.Invoke(target);
-
-        //Automaticly deactivate when player has no target
-        gameObject.GetComponent<EnemyLockOn>().ActivateLockonCanvas();
-    }
-
     //Triggers the range ability if the weapon hasn't been trown yet
     //Triggers the teleport ability if the weapon has been trown
     public void RangedAbility()
@@ -218,8 +209,6 @@ public class Player : Characters
 
             Ability currAbility = abilities.Find((x) => x.abilityType == TypeOfAbility.Melee);
             currAbility.TriggerAbility();
-
-            Debug.Log(currAbility.abilityName);
         }
         else
         {
@@ -266,14 +255,24 @@ public class Player : Characters
         {
             target = null;
             TargetChanged.Invoke(target);
-            gameObject.GetComponent<EnemyLockOn>().Unfocus();
+            lockOnSys.Unfocus();
         }
+    }
+
+    public void SetTarget(Characters enemy)
+    {
+        target = enemy;
+
+        TargetChanged.Invoke(target);
+
+        //Automaticly deactivate when player has no target
+        lockOnSys.ActivateLockonCanvas();
     }
 
     public void ChangeTarget()
     {
         if (target != null)
-            gameObject.GetComponent<EnemyLockOn>().NextTarget();
+            lockOnSys.NextTarget();
     }
     //Function to rotate smoothly when attacking while targeted
     IEnumerator SmoothRotation(float duration, Transform target)

@@ -129,7 +129,6 @@ public class MovementAbility : Ability
 
         RaycastHit solid = new RaycastHit();
         RaycastHit exit = new RaycastHit();
-        RaycastHit safeDistance = new RaycastHit();
         bool foundExit = false;
         Vector3 direction = (initiator.teleportTarget.transform.position - initiator.transform.position).normalized;
 

@@ -17,7 +17,5 @@ public class Menu : MonoBehaviour
     {
         EventSystem.current.SetSelectedGameObject(null);
         EventSystem.current.SetSelectedGameObject(button);
-
-        print("Button Changed");
     }
 }

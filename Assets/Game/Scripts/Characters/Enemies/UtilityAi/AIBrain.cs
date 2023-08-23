@@ -6,7 +6,6 @@ namespace UtilityAI.Core
     //Class uses action's consideration to return the best current action to take
     public class AIBrain : MonoBehaviour
     {
-        #region variables
         public Action bestAction { get; set; }
         private EnemyController enemy;
         public bool finishedDeciding { get; set; }
@@ -33,7 +32,6 @@ namespace UtilityAI.Core
             for (int i = 0; i < actionsAvailable.Count; i++)
             {
                 float actionScore = ScoreAction(actionsAvailable[i]);
-                Debug.Log("Action " + actionsAvailable[i].Name + " scored " + actionScore);
                 if (actionScore > highestScore)
                 {
                     bestActionIndex = i;
@@ -48,7 +46,6 @@ namespace UtilityAI.Core
                     }
                 }
             }
-            Debug.Log("Best action is :" + actionsAvailable[bestActionIndex]);
             bestAction = actionsAvailable[bestActionIndex];
             finishedDeciding = true;
         }
@@ -62,7 +59,6 @@ namespace UtilityAI.Core
             for (int i = 0; i < action.considerations.Length; i++)
             {
                 float considerationScore = action.considerations[i].ScoreConsideration(enemy);
-                Debug.Log("Consideration " + action.considerations[i].Name + " scored " + considerationScore);
                 score *= considerationScore;
 
                 if (score == 0)

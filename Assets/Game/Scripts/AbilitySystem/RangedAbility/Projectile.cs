@@ -87,6 +87,7 @@ public class Projectile : MonoBehaviour
         {
             isMoving = false;
             gameObject.GetComponent<Collider>().enabled = false;
+            StopAllCoroutines();
             Destroy(rigidb);
         }
     }

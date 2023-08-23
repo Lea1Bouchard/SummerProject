@@ -239,8 +239,9 @@ public class Player : Characters
         foreach (MeleeWeapon weapon in weapons)
             weapon.gameObject.SetActive(true);
 
-        if (teleportTarget)
-            Destroy(teleportTarget, .1f);
+        RangedAbility rAbility = (RangedAbility)abilities.Find((x) => x.abilityType == TypeOfAbility.Ranged);
+
+        rAbility.ProjectileDestroyed();
     }
 
     public void UseTargetting()

@@ -113,7 +113,7 @@ public class GameUI : MonoBehaviour
 
     private Sprite ConvertElementToImage(Elements element)
     {
-        Sprite[] elementImages = GameManager.Instance.elementImages;
+        Sprite[] elementImages = ElementManager.Instance.elementImages;
         switch (element)
         {
             case Elements.Fire:

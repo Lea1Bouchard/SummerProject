@@ -14,6 +14,7 @@ public class Projectile : MonoBehaviour
     private RangedAbility abilityIninitator;
     public Rigidbody rigidb;
     [HideInInspector] public Elements attackElement;
+    private bool isMoving;
 
     public int Damage { get => damage; set => damage = value; }
     public float Speed { get => speed; set => speed = value; }
@@ -24,7 +25,7 @@ public class Projectile : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        rigidb = this.gameObject.GetComponent<Rigidbody>();
+        rigidb = GetComponent<Rigidbody>();
     }
 
     public void Shoot(RangedAbility ability, Characters target)
@@ -40,24 +41,35 @@ public class Projectile : MonoBehaviour
             Vector3 direction = transform.forward + new Vector3(0, 0.5f, 0);
             rigidb.AddForce(direction * force, ForceMode.Impulse);
         }
-
+        
         abilityIninitator = ability;
+        isMoving = true;
 
         if (range > 0)
-            StartCoroutine(rangeTimer());
+            StartCoroutine(RangeTimer());
+
+        StartCoroutine(AngleAjustment());
     }
 
-    IEnumerator rangeTimer()
+    IEnumerator RangeTimer()
     {
         yield return new WaitForSeconds(range);
         abilityIninitator.ProjectileDestroyed();
 
-    }
+    }    
 
+    IEnumerator AngleAjustment()
+    {
+        while(isMoving)
+        {
+            yield return new WaitForSeconds(0);
+            AjustAngle();
+        }
+    }
     private void OnTriggerEnter(Collider other)
     {
         Characters hit = other.gameObject.GetComponent<Characters>();
-        if (hit != initiator && other.GetComponent<NotifyZone>() == null)
+        if (hit != null && hit != initiator && other.GetComponent<NotifyZone>() == null)
         {
             if (hit != null)
             {
@@ -69,12 +81,18 @@ public class Projectile : MonoBehaviour
 
             if (range > 0)
                 abilityIninitator.ProjectileDestroyed();
+        } 
+        
+        if (other.gameObject.layer == LayerMask.NameToLayer("Ground"))
+        {
+            isMoving = false;
+            gameObject.GetComponent<Collider>().enabled = false;
+            Destroy(rigidb);
         }
-
     }
-
     private void ProjectileStick(Transform bone)
     {
+        isMoving = false;
         transform.LookAt(bone);
         transform.position = bone.position;
         transform.parent = bone;
@@ -101,11 +119,21 @@ public class Projectile : MonoBehaviour
         return closestBone;
     }
 
+    private void AjustAngle()
+    {
+        float angle = Mathf.Atan2(rigidb.velocity.y, Mathf.Abs(rigidb.velocity.z)) * Mathf.Rad2Deg;
+
+        transform.rotation = Quaternion.Euler(Quaternion.AngleAxis(angle, -Vector3.right).eulerAngles.x, transform.rotation.eulerAngles.y, transform.rotation.eulerAngles.z);
+    }
+
     private void OnDestroy()
     {
         if(initiator.gameObject.GetComponent<Player>())
         {
             initiator.SetTeleportTarget(null);
         }
+
+        StopAllCoroutines();
     }
+
 }

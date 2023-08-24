@@ -170,7 +170,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8b8c47b768f83b4aa7c09657e1de94f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxhealthPoints: 100
+  maxhealthPoints: 500
   level: 0
   affinities: 00000000
   weaknesses: 01000000
@@ -3029,7 +3029,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3209957899476600900}
   - component: {fileID: 8184000741705045286}
-  m_Layer: 3
+  m_Layer: 2
   m_Name: LeftWingCollider1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3075,7 +3075,7 @@ GameObject:
   - component: {fileID: 8890663901918182390}
   - component: {fileID: 6403220053458007463}
   - component: {fileID: 1779535445}
-  m_Layer: 3
+  m_Layer: 2
   m_Name: HeadCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3135,7 +3135,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3116065122817659094}
   - component: {fileID: 8225040542355032497}
-  m_Layer: 3
+  m_Layer: 2
   m_Name: TailCollider2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3246,7 +3246,7 @@ GameObject:
   - component: {fileID: 2161617871126734595}
   - component: {fileID: 3216286809821745607}
   - component: {fileID: 1417266318}
-  m_Layer: 3
+  m_Layer: 2
   m_Name: RightWingCollider2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3276,7 +3276,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5888222371720984874}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 930.7751, y: 230.66972, z: 255.45}
@@ -3305,7 +3305,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5015666995515834122}
   - component: {fileID: 6044241162105727969}
-  m_Layer: 3
+  m_Layer: 2
   m_Name: TailCollider1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3350,7 +3350,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3848833968580116345}
   - component: {fileID: 4360639018294524117}
-  m_Layer: 3
+  m_Layer: 2
   m_Name: RightWingCollider1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3396,7 +3396,7 @@ GameObject:
   - component: {fileID: 8492104594958525269}
   - component: {fileID: 8320731401578250378}
   - component: {fileID: 523141041}
-  m_Layer: 3
+  m_Layer: 2
   m_Name: LeftWingCollider2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3426,7 +3426,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8388755626863584679}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 930.7751, y: 230.66972, z: 255.45}
@@ -3455,7 +3455,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6039991868447162270}
   - component: {fileID: 3412283569189529185}
-  m_Layer: 3
+  m_Layer: 2
   m_Name: BodyCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}

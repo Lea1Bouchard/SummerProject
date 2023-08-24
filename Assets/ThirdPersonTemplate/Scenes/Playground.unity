@@ -339,6 +339,7 @@ MonoBehaviour:
   weaponNodes: []
   maxRange: 10
   meleeRange: 0
+  turnSpeed: 0
   enemyType: 4
   enemyState: 0
   enemyRank: 0
@@ -2301,6 +2302,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 870593881622985761, guid: 3cf36580647170d4dbd79afb10ad24a6,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 8e81a945e2433e042ad385279d966c39, type: 2}
     - target: {fileID: 3980718552676170216, guid: 3cf36580647170d4dbd79afb10ad24a6,
         type: 3}
       propertyPath: lockOnCamera
@@ -4628,10 +4634,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Dragon_Red
       objectReference: {fileID: 0}
-    - target: {fileID: 101568, guid: 59c100dd669d88f46b60555886d4dae7, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 454130, guid: 59c100dd669d88f46b60555886d4dae7, type: 3}
       propertyPath: m_RootOrder
       value: 19
@@ -4676,33 +4678,13 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 819436032, guid: 59c100dd669d88f46b60555886d4dae7, type: 3}
-      propertyPath: m_Size.x
-      value: 3.808916
+    - target: {fileID: 523141041, guid: 59c100dd669d88f46b60555886d4dae7, type: 3}
+      propertyPath: damage
+      value: 1.5
       objectReference: {fileID: 0}
-    - target: {fileID: 819436032, guid: 59c100dd669d88f46b60555886d4dae7, type: 3}
-      propertyPath: m_Size.y
-      value: 3.9630153
-      objectReference: {fileID: 0}
-    - target: {fileID: 819436032, guid: 59c100dd669d88f46b60555886d4dae7, type: 3}
-      propertyPath: m_Size.z
-      value: 5.0414686
-      objectReference: {fileID: 0}
-    - target: {fileID: 819436032, guid: 59c100dd669d88f46b60555886d4dae7, type: 3}
-      propertyPath: m_Center.x
-      value: -0.0063217827
-      objectReference: {fileID: 0}
-    - target: {fileID: 819436032, guid: 59c100dd669d88f46b60555886d4dae7, type: 3}
-      propertyPath: m_Center.y
-      value: 1.8681892
-      objectReference: {fileID: 0}
-    - target: {fileID: 819436032, guid: 59c100dd669d88f46b60555886d4dae7, type: 3}
-      propertyPath: m_Center.z
-      value: -0.959672
-      objectReference: {fileID: 0}
-    - target: {fileID: 819436032, guid: 59c100dd669d88f46b60555886d4dae7, type: 3}
-      propertyPath: m_IsTrigger
-      value: 0
+    - target: {fileID: 1417266318, guid: 59c100dd669d88f46b60555886d4dae7, type: 3}
+      propertyPath: damage
+      value: 1.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 59c100dd669d88f46b60555886d4dae7, type: 3}

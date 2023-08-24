@@ -86,6 +86,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1109940681195810938}
     m_Modifications:
+    - target: {fileID: -9089251081239633261, guid: ad1b9cc9053bfd04f9c6d951af919301,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 9e06428f904ed5b4ca8d6ccf65a3a3ca, type: 2}
     - target: {fileID: -8679921383154817045, guid: ad1b9cc9053bfd04f9c6d951af919301,
         type: 3}
       propertyPath: m_RootOrder
@@ -146,6 +151,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: AhkimSword_String
       objectReference: {fileID: 0}
+    - target: {fileID: 5768825423103491822, guid: ad1b9cc9053bfd04f9c6d951af919301,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 9e06428f904ed5b4ca8d6ccf65a3a3ca, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ad1b9cc9053bfd04f9c6d951af919301, type: 3}
 --- !u!4 &4824035931879292229 stripped

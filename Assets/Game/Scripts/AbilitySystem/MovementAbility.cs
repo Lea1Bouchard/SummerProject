@@ -156,13 +156,13 @@ public class MovementAbility : Ability
             if (hitCharacter != null)
             {
                 //Check the exit point of the previous raycast
-                if (Physics.Raycast(solid.point + direction * 5, -direction, hitInfo: out exit))
+                if (Physics.Raycast(solid.point + direction * 10, -direction, hitInfo: out exit))
                 {
 
                     for (int x = 0; x <= 5; x++)
                     {
                         //Check if the exitpoint correspond to the character 
-                        if (exit.collider.gameObject.GetComponent<Characters>() != null)
+                        if (exit.collider.gameObject.GetComponentInParent<Characters>() != null)
                         {
                             if (exit.collider.gameObject.GetComponent<Characters>() == hitCharacter && exit.point.y >= initiator.transform.position.y)
                             {

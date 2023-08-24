@@ -12,6 +12,7 @@ namespace UtilityAI.Core
         [Header("Enemy's Stats")]
         public float maxRange;
         public float meleeRange;
+        public float turnSpeed;
 
         [Header("Enemy's States")]
         public EnemyType enemyType;
@@ -38,7 +39,6 @@ namespace UtilityAI.Core
         private NavMeshHit navHit;       
         private Vector3 currentDestination;
         [SerializeField] private float maxWalkDistance = 10f;
-        #endregion
 
         [Header("Flying")]
         public GameObject flightController;
@@ -46,6 +46,9 @@ namespace UtilityAI.Core
         public float flyingHeight = 5f;
         public float takeOffSpeed = 1f;
         [HideInInspector] public float takeOffStartingPosition = -999;
+        #endregion
+
+
 
         private void Start()
         {

@@ -190,6 +190,7 @@ MonoBehaviour:
   - {fileID: 414426}
   maxRange: 35
   meleeRange: 5
+  turnSpeed: 0
   enemyType: 8
   enemyState: 0
   enemyRank: 3
@@ -250,8 +251,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 2, z: 0}
+  m_Size: {x: 3.808916, y: 3.9630153, z: 5.0414686}
+  m_Center: {x: -0.0063217827, y: 1.8681892, z: -0.959672}
 --- !u!1 &101846
 GameObject:
   m_ObjectHideFlags: 0

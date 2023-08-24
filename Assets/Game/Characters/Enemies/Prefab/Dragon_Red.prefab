@@ -178,7 +178,7 @@ MonoBehaviour:
   animator: {fileID: 0}
   target: {fileID: 0}
   teleportTarget: {fileID: 0}
-  weapon: {fileID: 0}
+  weapons: []
   targetLocation: {fileID: 0}
   weaponNodes: []
   maxRange: 0
@@ -2400,7 +2400,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 180676}
   m_LocalRotation: {x: 1, y: -0.00000015923331, z: 0.0000000014418865, w: 2.9082868e-16}
-  m_LocalPosition: {x: -61.302383, y: 0, z: 1.0784942e-15}
+  m_LocalPosition: {x: -61.302383, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3449,7 +3449,7 @@ PrefabInstance:
     - target: {fileID: 6295256003999631285, guid: 7600c8d7a61da2b4d86d4f394a32f8eb,
         type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6295256004464168514, guid: 7600c8d7a61da2b4d86d4f394a32f8eb,
         type: 3}
@@ -3459,7 +3459,7 @@ PrefabInstance:
     - target: {fileID: 6295256004464168514, guid: 7600c8d7a61da2b4d86d4f394a32f8eb,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6295256004464168515, guid: 7600c8d7a61da2b4d86d4f394a32f8eb,
         type: 3}

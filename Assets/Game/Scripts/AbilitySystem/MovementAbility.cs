@@ -8,7 +8,7 @@ using UnityEngine;
 public class MovementAbility : Ability
 {
     #region variables
-    public float distance;
+    public float maxDistance;
     public bool rendersImmortal;
     public float speed;
     public float timeImmortal;
@@ -40,6 +40,7 @@ public class MovementAbility : Ability
                 Teleport();
 
             Animate();
+            initiator.RenderImmortal(timeImmortal);
         }
     }
     //Dodge part
@@ -53,7 +54,14 @@ public class MovementAbility : Ability
         }
         else
         {
-            controller.Move(initiator.transform.forward * speed / 2);
+            if(initiator.Animator.GetBool("FreeFall"))
+            {
+                controller.Move(initiator.transform.forward * speed / 10);
+            }
+            else
+            { 
+                controller.Move(initiator.transform.forward * speed / 2);
+            }
         }
 
         abilityCooldownClass.Initialize(this);
@@ -65,7 +73,6 @@ public class MovementAbility : Ability
 
         if (initiator.teleportTarget != null)
         {
-            Debug.Log("Teleport target good");
             if (TeleportLocation() != Vector3.zero)
                 GoTo();
         }
@@ -85,7 +92,7 @@ public class MovementAbility : Ability
         bool foundExit = false;
 
         //Check if an enemy is in range
-        if (Physics.Raycast(initiator.transform.position, initiator.transform.forward, maxDistance: distance, hitInfo: out solid))
+        if (Physics.Raycast(initiator.transform.position, initiator.transform.forward, maxDistance: maxDistance, hitInfo: out solid))
         {
             Characters hitCharacter = solid.collider.gameObject.GetComponent<Characters>();
             if (hitCharacter != null)
@@ -178,15 +185,11 @@ public class MovementAbility : Ability
             blinkExit = exit.point + (direction * 2);
             Physics.Raycast(exit.point, blinkExit - exit.point, out safeDistance, maxDistance: 2);
 
-            Debug.Log(safeDistance.point);
-
             if (safeDistance.point == Vector3.zero)
             {
                 return blinkExit;
             }
         }
-
-
         //This part won't be reached if the backside exit point works
         return FrontSafeDistanceCheck(solid.point, direction);
     }
@@ -197,7 +200,6 @@ public class MovementAbility : Ability
         RaycastHit safeDistance = new RaycastHit();
         blinkExit = objectPosition - (direction * 2);
         Physics.Raycast(objectPosition, blinkExit - objectPosition, out safeDistance, maxDistance: 2);
-        Debug.Log("raycast result : " + safeDistance);
         if (safeDistance.point == Vector3.zero)
         {
             return blinkExit;

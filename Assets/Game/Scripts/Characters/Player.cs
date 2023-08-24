@@ -160,9 +160,7 @@ public class Player : Characters
         animator.ResetTrigger("NextAction");
         animator.ResetTrigger("MeleeAttack");
     }
-
-    //Triggers the range ability if the weapon hasn't been trown yet
-    //Triggers the teleport ability if the weapon has been trown
+    
     public void RangedAbility()
     {
         //TODO : Verify if this is the best way to do it
@@ -173,8 +171,6 @@ public class Player : Characters
             if (!currAbility.IsActive)
             {
                 currAbility.TriggerAbility();
-
-                Debug.Log(currAbility.abilityName);
 
                 ThrowWeapon();
             }
@@ -192,8 +188,6 @@ public class Player : Characters
 
         Ability currAbility = abilities.Find((x) => x.abilityType == TypeOfAbility.Movement);
         currAbility.TriggerAbility();
-
-        Debug.Log(currAbility.abilityName);
     }
     //Triggers the melee ability or retrieve the weapon if it has been trown
     public void MeleeAbility()
@@ -240,11 +234,12 @@ public class Player : Characters
         foreach (MeleeWeapon weapon in weapons)
             weapon.gameObject.SetActive(true);
 
-        if (teleportTarget)
-            Destroy(teleportTarget, .1f);
+        RangedAbility rAbility = (RangedAbility)abilities.Find((x) => x.abilityType == TypeOfAbility.Ranged);
+
+        rAbility.ProjectileDestroyed();
     }
 
-    public void UseTargetting()
+     public void UseTargetting()
     {
         if (target == null)
         {
@@ -290,7 +285,6 @@ public class Player : Characters
 
             yield return null;
         }
-
     }
 
     public void Interact()

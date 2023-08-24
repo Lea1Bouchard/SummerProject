@@ -64,8 +64,6 @@ public class Quest : ScriptableObject
             completed = true;
             GoalCompleted.Invoke();
             GoalCompleted.RemoveAllListeners();
-
-            Debug.Log("Goal complete");
         }
 
         public void skip()

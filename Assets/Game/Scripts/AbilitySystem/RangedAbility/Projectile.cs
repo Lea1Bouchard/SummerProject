@@ -5,7 +5,6 @@ using Enums;
 
 public class Projectile : MonoBehaviour
 {
-    #region variables
     private int damage;
     private float speed;
     private float force;
@@ -14,6 +13,7 @@ public class Projectile : MonoBehaviour
     private RangedAbility abilityIninitator;
     public Rigidbody rigidb;
     [HideInInspector] public Elements attackElement;
+    private bool isMoving;
 
     public int Damage { get => damage; set => damage = value; }
     public float Speed { get => speed; set => speed = value; }
@@ -21,17 +21,14 @@ public class Projectile : MonoBehaviour
     public Characters Initiator { get => initiator; set => initiator = value; }
     public float Force { get => force; set => force = value; }
 
-    #endregion
-
+    // Start is called before the first frame update
     void Start()
     {
-        rigidb = this.gameObject.GetComponent<Rigidbody>();
+        rigidb = GetComponent<Rigidbody>();
     }
-    //Sends the projectile
+
     public void Shoot(RangedAbility ability, Characters target)
     {
-        //If there is a target, the projectile will go straigh towards it,
-        //otherwise, it will only fly using force and gravity
         if (target != null)
         {
             transform.LookAt(target.targetLocation.gameObject.transform);
@@ -43,25 +40,35 @@ public class Projectile : MonoBehaviour
             Vector3 direction = transform.forward + new Vector3(0, 0.5f, 0);
             rigidb.AddForce(direction * force, ForceMode.Impulse);
         }
-
+        
         abilityIninitator = ability;
+        isMoving = true;
 
         if (range > 0)
-            StartCoroutine(rangeTimer());
+            StartCoroutine(RangeTimer());
+
+        StartCoroutine(AngleAjustment());
     }
-    //Destroy the projectile after a time
-    IEnumerator rangeTimer()
+
+    IEnumerator RangeTimer()
     {
         yield return new WaitForSeconds(range);
         abilityIninitator.ProjectileDestroyed();
 
-    }
+    }    
 
+    IEnumerator AngleAjustment()
+    {
+        while(isMoving)
+        {
+            yield return new WaitForSeconds(0);
+            AjustAngle();
+        }
+    }
     private void OnTriggerEnter(Collider other)
     {
         Characters hit = other.gameObject.GetComponent<Characters>();
-        //Verify if there is a hit and if it's not a notify zone
-        if (hit != initiator && other.GetComponent<NotifyZone>() == null)
+        if (hit != null && hit != initiator && other.GetComponent<NotifyZone>() == null)
         {
             if (hit != null)
             {
@@ -73,11 +80,20 @@ public class Projectile : MonoBehaviour
 
             if (range > 0)
                 abilityIninitator.ProjectileDestroyed();
+        } 
+        
+        if (other.gameObject.layer == LayerMask.NameToLayer("Ground"))
+        {
+            isMoving = false;
+            gameObject.GetComponent<Collider>().enabled = false;
+            Destroy(rigidb);
         }
+
+        StopAllCoroutines();
     }
-    //Used to leave the projectile in an enemy and teleport to it
     private void ProjectileStick(Transform bone)
     {
+        isMoving = false;
         transform.LookAt(bone);
         transform.position = bone.position;
         transform.parent = bone;
@@ -85,7 +101,7 @@ public class Projectile : MonoBehaviour
         gameObject.GetComponent<Collider>().enabled = false;
         Destroy(rigidb);
     }
-    //Uses preselected zones where the weapon could get stuck to
+
     private Transform GetClosestBone(Characters hitChar, Vector3 hitPosition)
     {
 
@@ -104,11 +120,21 @@ public class Projectile : MonoBehaviour
         return closestBone;
     }
 
+    private void AjustAngle()
+    {
+        float angle = Mathf.Atan2(rigidb.velocity.y, Mathf.Abs(rigidb.velocity.z)) * Mathf.Rad2Deg;
+
+        transform.rotation = Quaternion.Euler(Quaternion.AngleAxis(angle, -Vector3.right).eulerAngles.x, transform.rotation.eulerAngles.y, transform.rotation.eulerAngles.z);
+    }
+
     private void OnDestroy()
     {
-        if (initiator.gameObject.GetComponent<Player>())
+        if(initiator.gameObject.GetComponent<Player>())
         {
             initiator.SetTeleportTarget(null);
         }
+
+        StopAllCoroutines();
     }
+
 }

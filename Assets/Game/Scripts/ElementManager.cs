@@ -7,11 +7,9 @@ public class ElementManager : MonoBehaviour
 {
     private static ElementManager _instance;
 
-
     private Player player;
     public Sprite[] elementImages;
     public GameObject[] swordElementVFX;
-
 
     public static ElementManager Instance
     {
@@ -37,7 +35,26 @@ public class ElementManager : MonoBehaviour
 
     private void OnElementChange(Elements element)
     {
+        ChangeSwordsVFX(element);
+    }
 
+    private void ChangeSwordsVFX(Elements element)
+    {
+        foreach (MeleeWeapon meleeWeapon in Player.Instance.weapons)
+        {
+            GameObject sword = meleeWeapon.gameObject;
+            ClearOldElement(sword);
+            Instantiate(ConvertElementToSwordVFX(element), sword.transform);
+        }
+    }
+
+    private void ClearOldElement(GameObject sword)
+    {
+        for (int i = 0; i < sword.transform.childCount; i++)
+        {
+            if(sword.transform.GetChild(i).name.StartsWith("SwordEffects"))
+                Destroy(sword.transform.GetChild(i).gameObject);
+        }
     }
 
     public Sprite ConvertElementToImage(Elements element)
@@ -66,6 +83,32 @@ public class ElementManager : MonoBehaviour
             default:
                 return null;
         }
-        return null;
+    }
+
+    public GameObject ConvertElementToSwordVFX(Elements element)
+    {
+        switch (element)
+        {
+            case Elements.Fire:
+                return swordElementVFX[0];
+            case Elements.Water:
+                return swordElementVFX[1];
+            case Elements.Air:
+                return swordElementVFX[2];
+            case Elements.Earth:
+                return swordElementVFX[3];
+            case Elements.Lightning:
+                return swordElementVFX[4];
+            case Elements.Ice:
+                return swordElementVFX[5];
+            case Elements.Light:
+                return swordElementVFX[6];
+            case Elements.Darkness:
+                return swordElementVFX[7];
+            case Elements.Null:
+                return null;
+            default:
+                return null;
+        }
     }
 }

@@ -79,7 +79,6 @@ public class ElementManager : MonoBehaviour
                 return elementImages[7];
             case Elements.Null:
                 return null;
-                break;
             default:
                 return null;
         }

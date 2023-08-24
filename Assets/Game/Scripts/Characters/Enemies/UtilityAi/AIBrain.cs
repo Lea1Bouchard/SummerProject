@@ -47,7 +47,6 @@ namespace UtilityAI.Core
                 }
             }
             bestAction = actionsAvailable[bestActionIndex];
-            Debug.Log("best action : " + bestAction);
             finishedDeciding = true;
         }
 
@@ -61,8 +60,6 @@ namespace UtilityAI.Core
             {
                 float considerationScore = action.considerations[i].ScoreConsideration(enemy);
                 score *= considerationScore;
-                Debug.Log("Action " + action.Name);
-                Debug.Log("action.considerations[i] " + action.considerations[i] + " , considerationScore " + considerationScore);
                 if (score == 0)
                 {
                     action.score = 0;

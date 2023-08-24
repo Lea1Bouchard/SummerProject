@@ -7,6 +7,7 @@ using UtilityAI.Core;
 
 public class GameManager : MonoBehaviour
 {
+    #region variables
     private static GameManager _instance;
     private static GameState gameState;
     public static event Action<GameState> OnGameStateChanged;
@@ -15,9 +16,12 @@ public class GameManager : MonoBehaviour
     [Header("UIs")]
     [SerializeField] private Canvas waitModeUI;
 
+
     [Header("Fighting Manager")]
     public List<EnemyController> enemiesInFight;
+    #endregion
 
+    //Instatiation of singleton
     public static GameManager Instance
     {
         get
@@ -27,12 +31,12 @@ public class GameManager : MonoBehaviour
             return _instance;
         }
     }
-
+    //Initialize variables
     private void Awake()
     {
         _instance = this;
     }
-
+    //Initialize variables on startup and sets the gamestate to default (InGame)
     private void Start()
     {
         UpdateGameState(GameState.InGame);
@@ -41,7 +45,8 @@ public class GameManager : MonoBehaviour
 
         waitModeUI.gameObject.SetActive(false);
     }
-
+    //Fills a list with all currently aggresive enemies
+    //and puts the game in fight mode if it wasn't
     public void AddEnemyToFight(EnemyController enemy)
     {
         enemiesInFight.Add(enemy);
@@ -59,6 +64,8 @@ public class GameManager : MonoBehaviour
     }
 
     #region GameStates
+    //Sets the game state to a new state and calls the appropriate
+    //state change function to match with the new game state
     public void UpdateGameState(GameState newState)
     {
         EndState(gameState);
@@ -84,7 +91,7 @@ public class GameManager : MonoBehaviour
 
         OnGameStateChanged?.Invoke(newState);
     }
-
+    //Resets previousl
     private void EndState(GameState gameState)
     {
         switch (gameState)

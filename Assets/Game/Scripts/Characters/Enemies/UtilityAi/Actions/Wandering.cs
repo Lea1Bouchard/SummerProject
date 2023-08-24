@@ -19,7 +19,5 @@ namespace UtilityAI.Actions
 
             enemy.OnFinishedAction();
         }
-
-        
     }
 }

@@ -8,10 +8,30 @@ namespace UtilityAI.Actions
     {
         public override void Execute(EnemyController enemy)
         {
-            if (enemy.CurrenthealthPoints != enemy.MaxhealthPoints && enemy.GetDistanceWithPlayer() <= enemy.maxRange)
+            enemy.StopMovement();
+            switch (enemy.enemyRank)
             {
-                enemy.TriggerInFight();
+                case > 0 and <= 2:
+                    if (enemy.CurrenthealthPoints != enemy.MaxhealthPoints && enemy.GetDistanceWithPlayer() <= enemy.maxRange)
+                        enemy.TriggerInFight();
+                    break;
+                case 3:
+                    if (enemy.CurrenthealthPoints != enemy.MaxhealthPoints
+                           && enemy.GetDistanceWithPlayer() <= enemy.maxRange)
+                        enemy.TriggerInFight();
+                    else if (enemy.aiSensor.IsInSight(Player.Instance.gameObject))
+                    {
+                        enemy.Animator.SetTrigger("Scream");
+                        if (enemy.Animator.GetCurrentAnimatorClipInfo(0)[0].clip.name == "Idle01")
+                            enemy.TriggerInFight();
+                    }
+                    break;
+                default:
+                    if (enemy.CurrenthealthPoints != enemy.MaxhealthPoints && enemy.GetDistanceWithPlayer() <= enemy.maxRange)
+                        enemy.TriggerInFight();
+                    break;
             }
+
             enemy.OnFinishedAction();
         }
     }

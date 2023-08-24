@@ -8,12 +8,9 @@ namespace UtilityAI.Actions
     {
         public override void Execute(EnemyController enemy)
         {
-            if(enemy.GetDistanceWithPlayer() > enemy.maxRange)
+            if (enemy.GetDistanceWithPlayer() > enemy.maxRange)
             {
-                enemy.enemyState = Enums.EnemyState.Idle;
-                enemy.isInFight = false;
-                enemy.target = null;
-                GameManager.Instance.RemoveEnemyToFight(enemy);
+                enemy.ExitInFight();
                 enemy.OnFinishedAction();
             }
             enemy.OnFinishedAction();

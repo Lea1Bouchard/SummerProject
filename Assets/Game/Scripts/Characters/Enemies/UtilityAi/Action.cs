@@ -4,10 +4,12 @@ namespace UtilityAI.Core
 {
     public abstract class Action : ScriptableObject
     {
+        #region variables
         public string Name;
         private float _score;
         public int Importance;
-
+        #endregion
+        //Sets a score to compare it's desireability
         public float score
         {
             get { return _score; }
@@ -23,7 +25,6 @@ namespace UtilityAI.Core
         {
             score = 0;
         }
-
         public abstract void Execute(EnemyController enemy);
     }
 }

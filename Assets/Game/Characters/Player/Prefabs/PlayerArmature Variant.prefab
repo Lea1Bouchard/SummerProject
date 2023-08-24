@@ -160,9 +160,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 0
-  range: {x: 0, y: 0, z: 0}
-  initiator: {fileID: 0}
-  attackElement: 0
+  owner: {fileID: 0}
 --- !u!1001 &7850642916392957488
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -740,7 +738,7 @@ MonoBehaviour:
   animator: {fileID: 870593881622985761}
   target: {fileID: 0}
   teleportTarget: {fileID: 0}
-  weapon: {fileID: 6692848061742060889}
+  weapons: []
   targetLocation: {fileID: 0}
   weaponNodes: []
   abilities: []

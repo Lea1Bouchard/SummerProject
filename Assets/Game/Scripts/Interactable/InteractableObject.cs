@@ -5,7 +5,9 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Interactable/Interactable object")]
 public class InteractableObject : Interactable
 {
+    #region variables
     [SerializeField] private bool isQuestObject;
+    #endregion
     public override void Initialize()
     {
         //TODO : Mabe initialize it with the quest name?
@@ -14,16 +16,17 @@ public class InteractableObject : Interactable
 
     public override void Interact()
     {
-        if(isQuestObject)
+        if (isQuestObject)
         {
             NotifyQuest();
-        } else
+        }
+        else
         {
             //TODO : Verify if this part is used (might not have an inventory system, quest item could be the only type of interactable items)
             Debug.Log("Item grabbed : " + Name);
         }
     }
-    
+
     public void NotifyQuest()
     {
         //TODO : Send notification that a quest object has been added

@@ -261,6 +261,7 @@ MonoBehaviour:
   meleeRange: 0
   enemyType: 0
   enemyState: 0
+  enemyRank: 0
   isInFight: 0
   fightingActionsAvailable:
   - {fileID: 11400000, guid: a09c20c309ae54b498098faaff60e00f, type: 2}
@@ -273,8 +274,14 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 05c0e46ca4e4e2f4893780f3be4a1e31, type: 2}
   rangeAbility: {fileID: 11400000, guid: 59fa888e48f7ec94599df89fd937c2d2, type: 2}
   spellAbility: {fileID: 0}
+  midRangeAttack: {fileID: 0}
+  midRangeCooldown: 0
+  isMidRangeAvailable: 0
+  flightController: {fileID: 0}
+  flyingState: 0
   navAgent: {fileID: 0}
   maxWalkDistance: 50
+  movementTracker: {fileID: 0}
 --- !u!114 &4033117737563070650
 MonoBehaviour:
   m_ObjectHideFlags: 0

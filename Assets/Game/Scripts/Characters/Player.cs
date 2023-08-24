@@ -2,9 +2,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using Enums;
 using System.Collections;
+using UnityEngine.Events;
 
 public class Player : Characters
 {
+    #region Variables
     private static Player _instance;
 
     private MovementState movementState;
@@ -26,6 +28,7 @@ public class Player : Characters
     private float gravity;
 
     private bool weaponTrown;
+    private EnemyLockOn lockOnSys;
 
     private PlayerInputHandler _input;
 
@@ -33,10 +36,20 @@ public class Player : Characters
 
     Dictionary<Elements, Elements> opposingElements;
 
+    //Unity Events
+    public class ElementChangeEvent : UnityEvent<Elements> { }
+    public class CharacterChangeEvent : UnityEvent<Characters> { }
+
+    public ElementChangeEvent ElementChanged { get; private set; } = new ElementChangeEvent();
+    public CharacterChangeEvent TargetChanged { get; private set; } = new CharacterChangeEvent();
+
+
     [SerializeField] private List<Ability> abilities;
     [SerializeField] private MovementAbility teleportAbility;
     [SerializeField] private float groundCheckDistance;
+    #endregion
 
+    //Instantiates the player singleton
     public static Player Instance
     {
         get
@@ -47,8 +60,11 @@ public class Player : Characters
         }
     }
 
-    public Player()
+
+    private void Awake()
     {
+        _instance = this;
+
         MaxhealthPoints = 100f;
         CurrenthealthPoints = MaxhealthPoints;
         Level = 1;
@@ -67,15 +83,8 @@ public class Player : Characters
         movementSpeed = 2f;
 
         hasEnemyInLineOfSight = false;
-        lineOfSightDistance = 15f;
-        lineOfSightRadius = 15f;
 
         weaponTrown = false;
-    }
-
-    private void Awake()
-    {
-        _instance = this;
     }
 
     private void Start()
@@ -98,8 +107,11 @@ public class Player : Characters
         ResetMoveSpeed();
 
         gravity = GetComponent<StarterAssets.ThirdPersonController>().Gravity;
+        lockOnSys = GetComponent<EnemyLockOn>();
 
         InitializeAbilities();
+
+        ChangeWeaponElement(Elements.Null);
     }
 
     private void Update()
@@ -107,7 +119,7 @@ public class Player : Characters
         //DetectEnemiesInLineOfSight();
     }
 
-
+    //Initialize the player's abilities
     private void InitializeAbilities()
     {
         foreach (Ability ability in abilities)
@@ -130,20 +142,12 @@ public class Player : Characters
 
         //Change animator's element for correct combos
         animator.SetInteger("Element", (int)newElement);
+
+        //Trigger event to alert the listeners
+        ElementChanged.Invoke(newElement);
     }
 
-    private void DetectEnemiesInLineOfSight()
-    {
-        bool detectedSomething = Physics.SphereCast(transform.position, lineOfSightRadius, transform.forward, out raycastHit, lineOfSightDistance);
-        if (detectedSomething)
-        {
-            if (raycastHit.transform.GetType().ToString() == "Enemy")
-            {
-                hasEnemyInLineOfSight = true;
-            }
-        }
-    }
-
+    //Sets a trigget to allow a combo system
     public void NextAction() // called by animation event
     {
         //animator.ResetTrigger("MeleeAttack");
@@ -156,17 +160,7 @@ public class Player : Characters
         animator.ResetTrigger("NextAction");
         animator.ResetTrigger("MeleeAttack");
     }
-
-    public void SetTarget(Characters enemy)
-    {
-        target = enemy;
-
-        //Automaticly deactivate when player has no target
-        gameObject.GetComponent<EnemyLockOn>().ActivateLockonCanvas();
-
-        //TODO : Set special sidestep movement to keep an eye on the target
-    }
-
+    
     public void RangedAbility()
     {
         //TODO : Verify if this is the best way to do it
@@ -187,16 +181,15 @@ public class Player : Characters
             RetrieveWeapon();
         }
     }
-
+    //Triggers the dodge ability
     public void DodgeAbility()
     {
         //TODO : Verify if this is the best way to do it
 
         Ability currAbility = abilities.Find((x) => x.abilityType == TypeOfAbility.Movement);
         currAbility.TriggerAbility();
-
     }
-
+    //Triggers the melee ability or retrieve the weapon if it has been trown
     public void MeleeAbility()
     {
         //TODO : Verify if this is the best way to do it
@@ -215,7 +208,7 @@ public class Player : Characters
             RetrieveWeapon();
         }
     }
-
+    //TODO : Actualy make the teleport animation where this will be called
     //Called in animation
     public void TeleportToTarget()
     {
@@ -224,7 +217,8 @@ public class Player : Characters
         gameObject.transform.position = teleportTarget.transform.position;
         controller.enabled = true;
     }
-
+    //TODO : This probably should be called in an animation
+    //Hides the held weapon
     private void ThrowWeapon()
     {
         weaponTrown = true;
@@ -232,7 +226,8 @@ public class Player : Characters
         foreach (MeleeWeapon weapon in weapons)
             weapon.gameObject.SetActive(false);
     }
-
+    //TODO : This probably should be called in an animation
+    //Re-enable the held weapon and destroys the trown weapon if a teleport was triggered
     private void RetrieveWeapon()
     {
         weaponTrown = false;
@@ -244,25 +239,36 @@ public class Player : Characters
         rAbility.ProjectileDestroyed();
     }
 
-    public void UseTargetting()
+     public void UseTargetting()
     {
         if (target == null)
         {
-            SetTarget(gameObject.GetComponent<EnemyLockOn>().GetTarget());
+            SetTarget(lockOnSys.GetTarget());
         }
         else
         {
             target = null;
-            gameObject.GetComponent<EnemyLockOn>().Unfocus();
+            TargetChanged.Invoke(target);
+            lockOnSys.Unfocus();
         }
+    }
+
+    public void SetTarget(Characters enemy)
+    {
+        target = enemy;
+
+        TargetChanged.Invoke(target);
+
+        //Automaticly deactivate when player has no target
+        lockOnSys.ActivateLockonCanvas();
     }
 
     public void ChangeTarget()
     {
         if (target != null)
-            gameObject.GetComponent<EnemyLockOn>().NextTarget();
+            lockOnSys.NextTarget();
     }
-
+    //Function to rotate smoothly when attacking while targeted
     IEnumerator SmoothRotation(float duration, Transform target)
     {
         float t = 0f;

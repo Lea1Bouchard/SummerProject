@@ -5,12 +5,14 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Abilities/RangedAbility")]
 public class RangedAbility : Ability
 {
+    #region variables
     public float timeToLive = 5f;
     public float targettedSpeed = 1f;
     public float untargettedForce = 1f;
     public GameObject projectile;
     private GameObject projectileClone;
     private Projectile projectileScript;
+    #endregion
 
     public override void Initialize(Characters ini)
     {
@@ -21,6 +23,7 @@ public class RangedAbility : Ability
         abilityCooldownClass = initiator.gameObject.AddComponent<AbilityCooldown>();
     }
 
+    //Ability only instantiate a projectile prefab with data, the projectile contains it's behaviour
     public override void TriggerAbility()
     {
         if (CheckState())
@@ -55,6 +58,5 @@ public class RangedAbility : Ability
         projectileScript.Force = untargettedForce;
         projectileScript.Initiator = Initiator;
         projectileScript.attackElement = attackElement;
-
     }
 }

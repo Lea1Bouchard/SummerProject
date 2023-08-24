@@ -7,6 +7,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerInputHandler : MonoBehaviour
 {
+    #region Variables
     [Header("Character Input Values")]
     public Vector2 move;
     public Vector2 look;
@@ -30,8 +31,13 @@ public class PlayerInputHandler : MonoBehaviour
     private InputAction elementShiftAction;
     private enum DpadDirection { UP, DOWN, LEFT, RIGHT, NONE }
     [SerializeField] private List<Elements> elementList;
+    #endregion
 
 #if ENABLE_INPUT_SYSTEM
+
+    //Most function contains a verification of the gamestate
+    //so new actions aren't triggered when we don't want them to
+
     public void OnMove(InputAction.CallbackContext value)
     {
         Vector2 inputMovement = value.ReadValue<Vector2>();
@@ -127,7 +133,7 @@ public class PlayerInputHandler : MonoBehaviour
             inputDirection = DpadDirection.NONE;
         ChangeElement(false, inputDirection);
     }
-
+    //Selection for the 4 other elements
     public void SelectElementInputShift(InputAction.CallbackContext context)
     {
         Vector2 vector = context.ReadValue<Vector2>();
@@ -144,7 +150,8 @@ public class PlayerInputHandler : MonoBehaviour
             inputDirection = DpadDirection.NONE;
         ChangeElement(true, inputDirection);
     }
-
+    //Do the element change according to the input
+    //got in the previous two function
     private void ChangeElement(bool isShiftPressed, DpadDirection dpadDirection)
     {
         Elements newElement = Elements.Null;

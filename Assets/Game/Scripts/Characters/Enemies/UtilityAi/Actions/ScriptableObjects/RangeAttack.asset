@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2718ca572d758a42b345c40e0898352, type: 3}
   m_Name: RangeAttack
   m_EditorClassIdentifier: 
-  Name: Range Attack
+  Name: RangeAttack
+  Importance: 0
   considerations:
   - {fileID: 11400000, guid: 4e960ccb5ef1d3b478c3c1ff97f8c0c1, type: 2}

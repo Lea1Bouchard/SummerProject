@@ -3,20 +3,21 @@ using UnityEngine;
 
 namespace UtilityAI.Core
 {
+    //Class uses action's consideration to return the best current action to take
     public class AIBrain : MonoBehaviour
     {
         public Action bestAction { get; set; }
         private EnemyController enemy;
         public bool finishedDeciding { get; set; }
+        public bool isBrainStopped { get; set; }
 
         void Start()
         {
             enemy = GetComponent<EnemyController>();
         }
-
         private void Update()
         {
-            if (bestAction is null)
+            if (bestAction is null && !isBrainStopped)
             {
                 DecideBestAction(enemy.normalActionsAvailable);
             }
@@ -38,14 +39,13 @@ namespace UtilityAI.Core
                 }
                 else if (actionScore == highestScore)
                 {
-                    if(actionsAvailable[i].Importance > actionsAvailable[bestActionIndex].Importance)
+                    if (actionsAvailable[i].Importance > actionsAvailable[bestActionIndex].Importance)
                     {
                         bestActionIndex = i;
                         highestScore = actionsAvailable[i].score;
                     }
                 }
             }
-
             bestAction = actionsAvailable[bestActionIndex];
             finishedDeciding = true;
         }
@@ -60,7 +60,6 @@ namespace UtilityAI.Core
             {
                 float considerationScore = action.considerations[i].ScoreConsideration(enemy);
                 score *= considerationScore;
-
                 if (score == 0)
                 {
                     action.score = 0;

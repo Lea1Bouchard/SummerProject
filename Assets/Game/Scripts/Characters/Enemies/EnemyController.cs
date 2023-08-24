@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 using Enums;
@@ -7,6 +8,7 @@ namespace UtilityAI.Core
 {
     public class EnemyController : Characters
     {
+        #region variables
         [Header("Enemy's Stats")]
         public float maxRange;
         public float meleeRange;
@@ -14,6 +16,7 @@ namespace UtilityAI.Core
         [Header("Enemy's States")]
         public EnemyType enemyType;
         public EnemyState enemyState;
+        public int enemyRank;
         [HideInInspector] public bool isInFight;
         private Player player;
 
@@ -23,33 +26,40 @@ namespace UtilityAI.Core
         public List<Ability> meleesAbilities;
         public Ability rangeAbility;
         public Ability spellAbility;
-        public AIBrain aIBrain { get; set; }
-        public AISensor sensor { get; set; }
+        public GameObject midRangeAttack;
+        public float midRangeCooldown;
+        [HideInInspector] public bool isMidRangeAvailable;
+        private bool hasFlameAttack;
+        public AIBrain aiBrain { get; set; }
+        public AISensor aiSensor { get; set; }
 
         [Header("Movement")]
-        public NavMeshAgent navAgent;
+        [HideInInspector] public NavMeshAgent navAgent;
+        private NavMeshHit navHit;       
         private Vector3 currentDestination;
-        private NavMeshHit navHit;
         [SerializeField] private float maxWalkDistance = 10f;
+        #endregion
 
-
-        public EnemyController()
-        {
-            MaxhealthPoints = 100f;
-            CurrenthealthPoints = 100f;
-
-            AffinityResistanceModifier = 0.75f;
-            WeaknessModifier = 1.25f;
-        }
+        [Header("Flying")]
+        public GameObject flightController;
+        public FlyingState flyingState;
+        public float flyingHeight = 5f;
+        public float takeOffSpeed = 1f;
+        [HideInInspector] public float takeOffStartingPosition = -999;
 
         private void Start()
         {
-            aIBrain = GetComponent<AIBrain>();
-            sensor = GetComponent<AISensor>();
-            enemyState = EnemyState.Idle;
-            isInFight = false;
+            MaxhealthPoints = 100f;
+            CurrenthealthPoints = MaxhealthPoints;
 
-            meleeRange = 2f;
+            AffinityResistanceModifier = 0.75f;
+            WeaknessModifier = 1.25f;
+
+            aiBrain = GetComponent<AIBrain>();
+            aiSensor = GetComponent<AISensor>();
+            enemyState = EnemyState.Idle;
+            flyingState = FlyingState.TakingOff;
+            isInFight = false;
 
             player = Player.Instance;
 
@@ -65,32 +75,57 @@ namespace UtilityAI.Core
 
             rangeAbility.Initialize(this);
 
+            isMidRangeAvailable = true;
+            if (enemyRank == 3) //Is a dragon
+                hasFlameAttack = true;
+            else
+                hasFlameAttack = false;
+
+            if(hasFlameAttack)
+                animator.SetBool("CanFlameAttack", true);
+
             //Initialize movement components
             navAgent = GetComponent<NavMeshAgent>();
             if (navAgent != null)
             {
                 SetNewDestination();
             }
-            spellAbility = Instantiate(spellAbility);
 
-            spellAbility.Initialize(this);
-        }
-
-        private void Update()
-        {
-            if (aIBrain.finishedDeciding)
+            if (spellAbility)
             {
-                aIBrain.finishedDeciding = false;
-                aIBrain.bestAction.Execute(this);
+                spellAbility = Instantiate(spellAbility);
+
+                spellAbility.Initialize(this);
+
             }
         }
-
+        //AIbrain executes the action it decided was the best
+        //once it has choosen it
+        private void Update()
+        {
+            if (aiBrain.finishedDeciding)
+            {
+                aiBrain.finishedDeciding = false;
+                aiBrain.bestAction.Execute(this);
+            }
+        }
+        //Sets the enemy's state to fight and gives it a target
         public void TriggerInFight()
         {
             enemyState = EnemyState.Attacking;
             isInFight = true;
+            animator.SetBool("IsInFight", true);
             GameManager.Instance.AddEnemyToFight(this);
             target = Player.Instance;
+        }
+
+public void ExitInFight()
+        {
+            enemyState = EnemyState.Idle;
+            isInFight = false;
+            animator.SetBool("IsInFight", false);
+            GameManager.Instance.RemoveEnemyToFight(this);
+            target = null;
         }
 
         //Called at the end of the animation
@@ -98,13 +133,12 @@ namespace UtilityAI.Core
         {
             if (GameManager.Instance.currentGameState == GameState.InFight && isInFight)
             {
-                aIBrain.DecideBestAction(fightingActionsAvailable);
+                aiBrain.DecideBestAction(fightingActionsAvailable);
             }
             else
             {
-                aIBrain.DecideBestAction(normalActionsAvailable);
+                aiBrain.DecideBestAction(normalActionsAvailable);
             }
-
         }
 
         public float GetDistanceWithPlayer()
@@ -112,7 +146,43 @@ namespace UtilityAI.Core
             return Vector3.Distance(transform.position, player.transform.position);
         }
 
-        public void SetNewDestination()
+        public void StartAttackCooldown()
+        {
+            StartCoroutine(StartCooldown());
+        }
+
+        private IEnumerator StartCooldown()
+        {
+            isMidRangeAvailable = false;
+            if (hasFlameAttack)
+                animator.SetBool("CanFlameAttack", false);
+            yield return new WaitForSeconds(midRangeCooldown);
+            isMidRangeAvailable = true;
+            if (hasFlameAttack)
+                animator.SetBool("CanFlameAttack", true);
+
+        }
+
+        public int GetNavMeshAgentID(string name)
+        {
+            for (int i = 0; i < NavMesh.GetSettingsCount(); i++)
+            {
+                NavMeshBuildSettings settings = NavMesh.GetSettingsByIndex(index: i);
+                if (name == NavMesh.GetSettingsNameFromID(agentTypeID: settings.agentTypeID))
+                    return settings.agentTypeID;
+            }
+            Debug.LogWarning("GetNavMeshAgentID: This name doesn't exist");
+            return -1;
+        }
+
+        private void OnDestroy()
+        {
+            EventManager.Instance.QueueEvent(new KillGameEvent(enemyType));
+            player.GetComponent<EnemyLockOn>().RemoveCloseEnemies(this);
+        }
+
+        #region Movements
+        public void SetNewDestination() //For wandering only
         {
             NavMesh.SamplePosition(((Random.insideUnitSphere * maxWalkDistance) + transform.position), out navHit, maxWalkDistance, -1);
 
@@ -123,7 +193,7 @@ namespace UtilityAI.Core
             }
         }
 
-        public void CheckIfAgentReachedDestination()
+        public void CheckIfAgentReachedDestination() //For wandering only
         {
             if (!navAgent.pathPending)
             {
@@ -161,15 +231,25 @@ namespace UtilityAI.Core
 
         public void StopMovement()
         {
-            navAgent.isStopped = true;
-            Animator.SetBool("Walk", false);
+            if (navAgent != null)
+            {
+                navAgent.isStopped = true;
+                Animator.SetBool("Walk", false);
+            }
+        }
+        #endregion //Movements
+
+        #region Animation Events
+        private void StartFireBreath()
+        {
+            midRangeAttack.SetActive(true);
         }
 
-        private void OnDestroy()
+        private void EndFireBreath()
         {
-            EventManager.Instance.QueueEvent(new KillGameEvent(enemyType));
-            player.GetComponent<EnemyLockOn>().RemoveCloseEnemies(this);
+            midRangeAttack.SetActive(false);
+            StartAttackCooldown();
         }
+        #endregion //Animation Events
     }
 }
-

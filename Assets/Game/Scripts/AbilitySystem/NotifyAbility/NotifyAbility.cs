@@ -5,10 +5,13 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Abilities/NotifyAbility")]
 public class NotifyAbility : Ability
 {
+    #region variables
     [Header("Notification Zone")]
 
     public GameObject NotifyPrefab;
     private GameObject NotifyClone;
+    #endregion
+
     public override void Initialize(Characters ini)
     {
         animator = ini.GetComponent<Animator>();
@@ -21,6 +24,7 @@ public class NotifyAbility : Ability
         if (CheckState())
         {
             isActive = true;
+            //prefab is an empty object with NotifyZone script
             NotifyClone = Instantiate(NotifyPrefab, initiator.transform);
             Animate();
             abilityCooldownClass.Initialize(this);

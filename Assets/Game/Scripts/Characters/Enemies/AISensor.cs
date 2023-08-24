@@ -2,8 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Class is used to find the player for the AI and determine if he is "interactable" with.
+/// </summary>
 public class AISensor : MonoBehaviour
 {
+    #region variables
     public float distance = 10;
     public float angle = 30;
     public float height = 1.0f;
@@ -19,12 +23,13 @@ public class AISensor : MonoBehaviour
     int count;
     float scanInterval;
     float scanTimer;
+    #endregion
 
     void Start()
     {
         scanInterval = 1.0f / scanFrequency;
     }
-
+    //Triggers a scan in interval
     public void ScanForPlayer()
     {
         scanTimer -= Time.deltaTime;
@@ -34,7 +39,7 @@ public class AISensor : MonoBehaviour
             Scan();
         }
     }
-
+    //Fills a list with gameobjects detected by an overlapSphere
     private void Scan()
     {
         count = Physics.OverlapSphereNonAlloc(transform.position, distance, colliders, layer, QueryTriggerInteraction.Collide);
@@ -47,7 +52,8 @@ public class AISensor : MonoBehaviour
                 objects.Add(obj);
         }
     }
-
+    //Verifies if the object is seen by the AI
+    //(checking the height, the FOV, the line of sight)
     public bool IsInSight(GameObject obj)
     {
         Vector3 origin = transform.position;
@@ -59,7 +65,7 @@ public class AISensor : MonoBehaviour
         {
             return false;
         }
-            
+
 
         //Check if is in the angle of FoV
         direction.y = 0;
@@ -76,8 +82,22 @@ public class AISensor : MonoBehaviour
         {
             return false;
         }
-
         return true;
+    }
+
+    public bool IsDirectlyInFront(GameObject obj)
+    {
+        Vector3 origin = transform.position;
+        Vector3 destination = obj.transform.position;
+        Vector3 direction = destination - origin;
+        //Check if is in the angle of FoV
+        direction.y = 0;
+        float deltaAngle = Vector3.Angle(direction, transform.forward);
+
+        if (IsInSight(obj) && deltaAngle <= 7)
+            return true;
+        else
+            return false;
     }
 
     Mesh CreateWedgeMesh()
@@ -150,8 +170,6 @@ public class AISensor : MonoBehaviour
             currentAngle += deltaAngle;
         }
 
-        
-
         for (int i = 0; i < numVertices; ++i)
         {
             triangles[i] = i;
@@ -168,8 +186,8 @@ public class AISensor : MonoBehaviour
     {
         mesh = CreateWedgeMesh();
         scanInterval = 1.0f / scanFrequency;
-
     }
+
     /*
     private void OnDrawGizmos()
     {

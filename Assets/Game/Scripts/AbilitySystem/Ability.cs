@@ -5,7 +5,7 @@ using Enums;
 
 public abstract class Ability : ScriptableObject
 {
-
+    #region variables
     private List<GameState> gameStateBlocked;
     private List<MovementState> movementStateBlocked;
     private List<FightingState> fightingStateBlocked;
@@ -35,10 +35,11 @@ public abstract class Ability : ScriptableObject
     public Characters Initiator { get => initiator; set => initiator = value; }
     public bool IsActive { get => isActive; set => isActive = value; }
 
+    #endregion
+    //Mostly just fills data
     public abstract void Initialize(Characters ini);
     public abstract void TriggerAbility();
-
-    // Start is called before the first frame update
+    //Verify if the ability can be triggered
     protected bool CheckState()
     {
         if (isActive)

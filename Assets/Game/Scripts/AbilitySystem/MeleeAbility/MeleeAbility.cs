@@ -5,8 +5,13 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Abilities/MeleeAbility")]
 public class MeleeAbility : Ability
 {
+    #region variables
     private MeleeWeapon weapon;
     [SerializeField] private int weaponId;
+
+    #endregion
+
+    //Parent abstract class implementation
 
     public override void Initialize(Characters ini)
     {
@@ -28,6 +33,7 @@ public class MeleeAbility : Ability
         }
     }
 
+    //Sets the weapon's stats to the current ability's stats (allows variable damage and element)
     private void LoadWeaponAttribute()
     {
         weapon = initiator.weapons[weaponId];

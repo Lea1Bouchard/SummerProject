@@ -8,9 +8,10 @@ public class MeleeWeapon : MonoBehaviour
     public float damage;
     [SerializeField] private Characters owner;
 
+    //Attack detected with trigger
     private void OnTriggerEnter(Collider other)
     {
-        Characters hit = other.gameObject.GetComponent<Characters>();
+        Characters hit = other.gameObject.GetComponentInParent<Characters>();
         if (hit != owner && hit != null)
         {
             foreach (Elements affinity in owner.Affinities)
@@ -32,6 +33,7 @@ public class MeleeWeapon : MonoBehaviour
         gameObject.GetComponent<Collider>().enabled = false;
     }
 
+    //Used with ranged attack
     public void HideWeapon()
     {
         gameObject.SetActive(false);

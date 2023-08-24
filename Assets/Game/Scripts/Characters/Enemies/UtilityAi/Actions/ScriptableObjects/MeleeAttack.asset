@@ -13,5 +13,7 @@ MonoBehaviour:
   m_Name: MeleeAttack
   m_EditorClassIdentifier: 
   Name: Melee Attack
+  Importance: 0
   considerations:
   - {fileID: 11400000, guid: be5273f71b44b724c9001876113493da, type: 2}
+  - {fileID: 11400000, guid: 119778ab5aee4e34d9e51d0f4202f339, type: 2}

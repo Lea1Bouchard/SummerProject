@@ -5,6 +5,7 @@ using UtilityAI.Core;
 
 public class EnemyLockOn : MonoBehaviour
 {
+    #region variables
     private Animator anim;
     private Player player;
 
@@ -25,6 +26,7 @@ public class EnemyLockOn : MonoBehaviour
 
     [SerializeField] private Cinemachine.CinemachineVirtualCamera lockOnCamera;
     [SerializeField] private Canvas lockOnCanvas;
+    #endregion
 
     void Start()
     {
@@ -33,7 +35,7 @@ public class EnemyLockOn : MonoBehaviour
         lockOnCanvas.gameObject.SetActive(false);
         nearbyEnemies = new List<Characters>();
     }
-
+    //Disables the targetting if the player lost it's target or if it's out of range
     void Update()
     {
         if (player.target != null)
@@ -44,9 +46,8 @@ public class EnemyLockOn : MonoBehaviour
                 player.target = null;
             }
         }
-
     }
-
+    //Casts a sphere and fills a list with the characters in the list if they are targetable
     public Characters GetTarget()
     {
         Collider[] nearbyTargets = Physics.OverlapSphere(player.transform.position, noticeZone, targetLayers);
@@ -57,7 +58,6 @@ public class EnemyLockOn : MonoBehaviour
         {
             return null;
         }
-
 
         foreach (Collider collider in nearbyTargets)
         {
@@ -90,7 +90,7 @@ public class EnemyLockOn : MonoBehaviour
         cinemachineAnimator.SetBool("Targeted", true);
         return currentClosest;
     }
-
+    //Verifies if player has line of sight
     private bool BlockCheck(Transform thingToCheck)
     {
         Debug.DrawLine(player.transform.position + new Vector3(0, 1, 0), thingToCheck.position, Color.red);
@@ -98,7 +98,6 @@ public class EnemyLockOn : MonoBehaviour
         if (Physics.Linecast(player.transform.position + new Vector3(0, 1, 0), thingToCheck.position, ~ignoreLayer))
         {
             return false;
-            Debug.Log("Blocked");
         }
 
         return true;
@@ -126,7 +125,7 @@ public class EnemyLockOn : MonoBehaviour
         lockOnCamera.LookAt = null;
         nearbyEnemies = new List<Characters>();
     }
-
+    //Verify if new enemies are close and cycle trough the target list
     public void NextTarget()
     {
         int currentIndex = 0;
@@ -155,7 +154,7 @@ public class EnemyLockOn : MonoBehaviour
         player.SetTarget(nearbyEnemies[EnemiesInFov(currentIndex)]);
         TargetChanged();
     }
-
+    //Adds new enemies to the list
     private void AddCloseEnemies()
     {
         Collider[] nearbyTargets = Physics.OverlapSphere(player.transform.position, noticeZone, targetLayers);
@@ -168,7 +167,7 @@ public class EnemyLockOn : MonoBehaviour
             }
         }
     }
-
+    //Removes the specified enemy from the list
     public void RemoveCloseEnemies(Characters characterToRemove)
     {
         foreach (Characters enemies in nearbyEnemies)
@@ -189,7 +188,7 @@ public class EnemyLockOn : MonoBehaviour
     {
         lockOnCamera.LookAt = player.target.targetLocation;
     }
-
+    //Verify if the next target in the list is in the field of view
     private int EnemiesInFov(int curIndex)
     {
         int checkIndex = curIndex;

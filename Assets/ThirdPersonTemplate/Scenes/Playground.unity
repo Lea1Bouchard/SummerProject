@@ -2441,6 +2441,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerArmature Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 5890432325753879786, guid: 3cf36580647170d4dbd79afb10ad24a6,
+        type: 3}
+      propertyPath: JumpHeight
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 5890432325753879789, guid: 3cf36580647170d4dbd79afb10ad24a6,
         type: 3}
       propertyPath: m_ActionEvents.Array.size

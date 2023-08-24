@@ -16,6 +16,8 @@ public class MovementAbility : Ability
     private CharacterController controller;
     public bool isTeleport;
     private Vector3 blinkExit;
+
+    [SerializeField] private LayerMask targetLayers;
     #endregion
 
     //TODO : Render player immortal **MIGHT PUT THIS IN PLAYER SCRIPT
@@ -50,6 +52,8 @@ public class MovementAbility : Ability
         //and teleports behind it if there is one
         if (EnemyStep())
         {
+            Debug.Log("EnemyStep");
+
             GoTo();
         }
         else
@@ -91,14 +95,20 @@ public class MovementAbility : Ability
         RaycastHit safeDistance = new RaycastHit();
         bool foundExit = false;
 
+        Debug.DrawRay(initiator.transform.position + new Vector3(0, 0.5f, 0), initiator.transform.forward * 20, Color.cyan, 10f);
+
         //Check if an enemy is in range
-        if (Physics.Raycast(initiator.transform.position, initiator.transform.forward, maxDistance: maxDistance, hitInfo: out solid))
+        if (Physics.Raycast(initiator.transform.position + new Vector3(0, 0.5f, 0), initiator.transform.forward, maxDistance: maxDistance, hitInfo: out solid))
         {
-            Characters hitCharacter = solid.collider.gameObject.GetComponent<Characters>();
+
+            Debug.Log("'Tis an enemy");
+
+            Characters hitCharacter = solid.collider.gameObject.GetComponentInParent<Characters>();
             if (hitCharacter != null)
             {
+
                 //Check the exit point of the previous raycast
-                if (Physics.Raycast(solid.point + initiator.transform.forward * 5, initiator.transform.position - solid.point, hitInfo: out exit))
+                if (Physics.Raycast(solid.point + initiator.transform.forward * 10, (initiator.transform.position + new Vector3(0, 0.5f, 0)) - solid.point, out exit, 20f, targetLayers))
                     for (int x = 0; x <= 5; x++)
                     {
                         //Check if the exitpoint correspond to the character 
@@ -110,7 +120,7 @@ public class MovementAbility : Ability
                                 break;
                             }
                         }
-                        Physics.Raycast(exit.point, solid.point, maxDistance: 20, hitInfo: out exit);
+                        Physics.Raycast(exit.point, solid.point - exit.point, out exit, 20f, targetLayers);
                     }
                 if (!foundExit)
                     return false;

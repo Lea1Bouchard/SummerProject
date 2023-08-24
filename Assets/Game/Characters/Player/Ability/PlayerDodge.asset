@@ -15,7 +15,7 @@ MonoBehaviour:
   abilityName: PlayerDodge
   abilityCost: 0
   abilitySound: {fileID: 0}
-  abilityCooldownTime: 3
+  abilityCooldownTime: 1
   animationStateName: Dodge
   baseDamage: 0
   abilityType: 0
@@ -25,3 +25,6 @@ MonoBehaviour:
   timeImmortal: 0.5
   target: {fileID: 0}
   isTeleport: 0
+  targetLayers:
+    serializedVersion: 2
+    m_Bits: 8

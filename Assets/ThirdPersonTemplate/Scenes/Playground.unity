@@ -2120,7 +2120,7 @@ PrefabInstance:
     - target: {fileID: 4033117738369716264, guid: 5853b18e559fb234b8559603d8a5be28,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 8.479
+      value: 9.488
       objectReference: {fileID: 0}
     - target: {fileID: 4033117738369716264, guid: 5853b18e559fb234b8559603d8a5be28,
         type: 3}
@@ -4628,6 +4628,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Dragon_Red
       objectReference: {fileID: 0}
+    - target: {fileID: 101568, guid: 59c100dd669d88f46b60555886d4dae7, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 454130, guid: 59c100dd669d88f46b60555886d4dae7, type: 3}
       propertyPath: m_RootOrder
       value: 19
@@ -4670,6 +4674,34 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 454130, guid: 59c100dd669d88f46b60555886d4dae7, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 819436032, guid: 59c100dd669d88f46b60555886d4dae7, type: 3}
+      propertyPath: m_Size.x
+      value: 3.808916
+      objectReference: {fileID: 0}
+    - target: {fileID: 819436032, guid: 59c100dd669d88f46b60555886d4dae7, type: 3}
+      propertyPath: m_Size.y
+      value: 3.9630153
+      objectReference: {fileID: 0}
+    - target: {fileID: 819436032, guid: 59c100dd669d88f46b60555886d4dae7, type: 3}
+      propertyPath: m_Size.z
+      value: 5.0414686
+      objectReference: {fileID: 0}
+    - target: {fileID: 819436032, guid: 59c100dd669d88f46b60555886d4dae7, type: 3}
+      propertyPath: m_Center.x
+      value: -0.0063217827
+      objectReference: {fileID: 0}
+    - target: {fileID: 819436032, guid: 59c100dd669d88f46b60555886d4dae7, type: 3}
+      propertyPath: m_Center.y
+      value: 1.8681892
+      objectReference: {fileID: 0}
+    - target: {fileID: 819436032, guid: 59c100dd669d88f46b60555886d4dae7, type: 3}
+      propertyPath: m_Center.z
+      value: -0.959672
+      objectReference: {fileID: 0}
+    - target: {fileID: 819436032, guid: 59c100dd669d88f46b60555886d4dae7, type: 3}
+      propertyPath: m_IsTrigger
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

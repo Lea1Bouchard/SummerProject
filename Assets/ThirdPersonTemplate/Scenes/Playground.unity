@@ -2309,6 +2309,11 @@ PrefabInstance:
       objectReference: {fileID: 9100000, guid: 8e81a945e2433e042ad385279d966c39, type: 2}
     - target: {fileID: 3980718552676170216, guid: 3cf36580647170d4dbd79afb10ad24a6,
         type: 3}
+      propertyPath: noticeZone
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 3980718552676170216, guid: 3cf36580647170d4dbd79afb10ad24a6,
+        type: 3}
       propertyPath: lockOnCamera
       value: 
       objectReference: {fileID: 1275269427}
@@ -4630,6 +4635,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -2608578441121476722, guid: 59c100dd669d88f46b60555886d4dae7,
+        type: 3}
+      propertyPath: turnSpeed
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 101568, guid: 59c100dd669d88f46b60555886d4dae7, type: 3}
       propertyPath: m_Name
       value: Dragon_Red

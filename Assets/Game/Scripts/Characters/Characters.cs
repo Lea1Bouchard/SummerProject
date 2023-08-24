@@ -16,6 +16,7 @@ public class Characters : MonoBehaviour
 
     [SerializeField] protected Animator animator;
     private bool isDead = false;
+    private bool isImmortal = false;
 
     public Characters target;
     public GameObject teleportTarget;
@@ -34,7 +35,7 @@ public class Characters : MonoBehaviour
 
     public void ReceiveDamage(Elements elementHit, float damageReceived)
     {
-        if (!isDead)
+        if (!isDead && !isImmortal)
         {
             float removeHp = DamageTaken(elementHit, damageReceived);
             if (currenthealthPoints - removeHp > 0)
@@ -92,6 +93,20 @@ public class Characters : MonoBehaviour
         teleportTarget = obj;
     }
 
+    public void RenderImmortal(float time)
+    {
+        StartCoroutine(ImmortalTimer(time));
+    }
+
+    IEnumerator ImmortalTimer(float timeImmortal)
+    {
+        isImmortal = true;
+
+        yield return new WaitForSeconds(timeImmortal);
+
+        isImmortal = false;
+    }
+
     /* Getters / Setters */
     #region getter/setter
     public int Level { get => level; set => level = value; }
@@ -102,6 +117,7 @@ public class Characters : MonoBehaviour
     public float MaxhealthPoints { get => maxhealthPoints; set => maxhealthPoints = value; }
     public float CurrenthealthPoints { get => currenthealthPoints; set => currenthealthPoints = value; }
     public Animator Animator { get => animator; set => animator = value; }
+    public bool IsImmortal { get => isImmortal; set => isImmortal = value; }
 
     #endregion
 }

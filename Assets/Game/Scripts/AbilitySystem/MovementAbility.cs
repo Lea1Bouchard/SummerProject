@@ -36,6 +36,7 @@ public class MovementAbility : Ability
                 Teleport();
 
             Animate();
+            initiator.RenderImmortal(timeImmortal);
         }
     }
 

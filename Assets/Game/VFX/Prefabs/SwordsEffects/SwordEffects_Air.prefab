@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 466321401144718443}
   - component: {fileID: 1322494141084074815}
   m_Layer: 0
-  m_Name: SwordEffects_Wind
+  m_Name: SwordEffects_Air
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

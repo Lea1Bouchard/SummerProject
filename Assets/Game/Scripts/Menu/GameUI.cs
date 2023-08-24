@@ -10,6 +10,7 @@ public class GameUI : MonoBehaviour
 {
     private Characters[] characters;
     private Player player;
+    private ElementManager elementManager;
     [SerializeField] private Image playerHealthBar;
     [SerializeField] private GameObject enemyBarHolder;
     [SerializeField] private Image enemyHealthBar;
@@ -25,6 +26,7 @@ public class GameUI : MonoBehaviour
 
         characters = FindObjectsOfType<Characters>();
         player = Player.Instance;
+        elementManager = ElementManager.Instance;
 
         for (int i = 0; i < characters.Length; i++)
         {
@@ -95,7 +97,7 @@ public class GameUI : MonoBehaviour
     {
         foreach (Elements element in elements)
         {
-            Sprite sprite = ConvertElementToImage(element);
+            Sprite sprite = elementManager.ConvertElementToImage(element);
             GameObject image = new GameObject();
             image.AddComponent<Image>().sprite = sprite;
             image.transform.SetParent(parent);
@@ -108,36 +110,8 @@ public class GameUI : MonoBehaviour
         if (!currentElementImage.gameObject.activeSelf && element != Elements.Null)
             currentElementImage.gameObject.SetActive(true);
 
-        currentElementImage.sprite = ConvertElementToImage(element);
+        currentElementImage.sprite = elementManager.ConvertElementToImage(element);
     }
 
-    private Sprite ConvertElementToImage(Elements element)
-    {
-        Sprite[] elementImages = ElementManager.Instance.elementImages;
-        switch (element)
-        {
-            case Elements.Fire:
-                return elementImages[0];
-            case Elements.Water:
-                return elementImages[1];
-            case Elements.Air:
-                return elementImages[2];
-            case Elements.Earth:
-                return elementImages[3];
-            case Elements.Lightning:
-                return elementImages[4];
-            case Elements.Ice:
-                return elementImages[5];
-            case Elements.Light:
-                return elementImages[6];
-            case Elements.Darkness:
-                return elementImages[7];
-            case Elements.Null:
-                currentElementImage.gameObject.SetActive(false);
-                break;
-            default:
-                return null;
-        }
-        return null;
-    }
+    
 }

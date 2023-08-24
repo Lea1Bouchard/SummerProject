@@ -3231,7 +3231,15 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 86f34f5e87872744793390088330b677, type: 3}
   - {fileID: 21300000, guid: 4252eb054839d1b419d6277a9f823fd2, type: 3}
   - {fileID: 21300000, guid: 0c81a2de136434d4c862e32879dd3003, type: 3}
-  swordElementVFX: []
+  swordElementVFX:
+  - {fileID: 7247254195851337565, guid: d51cab2c092e32d48b2e8636d2c5ca16, type: 3}
+  - {fileID: 8522244959437925180, guid: f3849832c9120a24faecb1a73ef2b1bc, type: 3}
+  - {fileID: 6746546356626759374, guid: 6ea6488b3d43c3b47b489c61dc90d924, type: 3}
+  - {fileID: 1529684119781483628, guid: 1f5f2d5ddd365024e91b45be5c1798a4, type: 3}
+  - {fileID: 6490510787847956003, guid: c19506a5983979940a1453c4046f5f0d, type: 3}
+  - {fileID: 2845109784046489851, guid: 9a7e01bffe5ca654a8b8e2c5675b1b3a, type: 3}
+  - {fileID: 3914539736184765451, guid: 51968031bdfb94a4e95ef97d2d0ad4dd, type: 3}
+  - {fileID: 7825474669571826676, guid: 70224ed177f1f634dab9a5bcf0165dd7, type: 3}
 --- !u!114 &851658697 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1312048331557896056, guid: 0e9faa66ed01d1345830fe6f4e4c2a41,

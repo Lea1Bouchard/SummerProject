@@ -138,10 +138,17 @@ namespace UtilityAI.Actions
             {
                 enemy.UseAbility(clawAbility);
                 if (enemy.Animator.GetCurrentAnimatorClipInfo(0)[0].clip.name == clawAbility.animationStateName)
-                    enemy.transform.LookAt(enemy.target.transform);
+                {
+                    var targetRotation = Quaternion.LookRotation(enemy.target.transform.position - enemy.transform.position);
+                    enemy.transform.rotation = Quaternion.Slerp(enemy.transform.rotation, targetRotation, 5 * Time.deltaTime);
+                }
             }
             else
-                enemy.transform.LookAt(enemy.target.transform);
+            {
+                var targetRotation = Quaternion.LookRotation(enemy.target.transform.position - enemy.transform.position);
+                enemy.transform.rotation = Quaternion.Slerp(enemy.transform.rotation, targetRotation, 5 * Time.deltaTime);
+
+            }
         }
 
         private void DragonLongAttacks(EnemyController enemy)

@@ -48,7 +48,14 @@ public class MovementAbility : Ability
         }
         else
         {
-            controller.Move(initiator.transform.forward * speed / 2);
+            if(initiator.Animator.GetBool("FreeFall"))
+            {
+                controller.Move(initiator.transform.forward * speed / 10);
+            }
+            else
+            { 
+                controller.Move(initiator.transform.forward * speed / 2);
+            }
         }
 
         abilityCooldownClass.Initialize(this);
@@ -175,8 +182,6 @@ public class MovementAbility : Ability
                 return blinkExit;
             }
         }
-
-
         //This part won't be reached if the backside exit point works
         return FrontSafeDistanceCheck(solid.point, direction);
     }

@@ -80,6 +80,7 @@ GameObject:
   - component: {fileID: 1208655110286547402}
   - component: {fileID: -2608578441121476722}
   - component: {fileID: 6385742951629129284}
+  - component: {fileID: 819436032}
   m_Layer: 3
   m_Name: Dragon_Red
   m_TagString: Enemy
@@ -238,6 +239,19 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   objects: []
+--- !u!65 &819436032
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 101568}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 2, z: 0}
 --- !u!1 &101846
 GameObject:
   m_ObjectHideFlags: 0
@@ -3280,7 +3294,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 2.5
-  owner: {fileID: 0}
+  owner: {fileID: -2608578441121476722}
 --- !u!1 &6269289744419153658
 GameObject:
   m_ObjectHideFlags: 0
@@ -3430,7 +3444,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 2.5
-  owner: {fileID: 0}
+  owner: {fileID: -2608578441121476722}
 --- !u!1 &8799065996459511541
 GameObject:
   m_ObjectHideFlags: 0

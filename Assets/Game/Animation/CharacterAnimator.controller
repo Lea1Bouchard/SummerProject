@@ -309,7 +309,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df5120c1a5f24e84fa45c0c02cc427c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponDamage: 0
+  weaponDamage: 2
   allowedMoveSpeed: 0
   disableRoot: 1
 --- !u!1102 &-8689985442822292448
@@ -560,7 +560,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df5120c1a5f24e84fa45c0c02cc427c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponDamage: 0
+  weaponDamage: 3.5
   allowedMoveSpeed: 0
   disableRoot: 0
 --- !u!1101 &-8364841417793191776
@@ -930,7 +930,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df5120c1a5f24e84fa45c0c02cc427c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponDamage: 0
+  weaponDamage: 2
   allowedMoveSpeed: 0
   disableRoot: 0
 --- !u!1107 &-7580785179011256451
@@ -973,7 +973,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df5120c1a5f24e84fa45c0c02cc427c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponDamage: 0
+  weaponDamage: 2
   allowedMoveSpeed: 0
   disableRoot: 0
 --- !u!114 &-7426743010651448322
@@ -988,7 +988,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df5120c1a5f24e84fa45c0c02cc427c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponDamage: 0
+  weaponDamage: 2.5
   allowedMoveSpeed: 0
   disableRoot: 0
 --- !u!114 &-7417085605593297426
@@ -1003,7 +1003,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df5120c1a5f24e84fa45c0c02cc427c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponDamage: 1
+  weaponDamage: 2
   allowedMoveSpeed: 0
   disableRoot: 0
 --- !u!1101 &-7415753489917313949
@@ -1189,7 +1189,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df5120c1a5f24e84fa45c0c02cc427c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponDamage: 0
+  weaponDamage: 1.5
   allowedMoveSpeed: 0
   disableRoot: 0
 --- !u!1101 &-7002435999300512334
@@ -1329,7 +1329,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df5120c1a5f24e84fa45c0c02cc427c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponDamage: 0
+  weaponDamage: 3
   allowedMoveSpeed: 0
   disableRoot: 0
 --- !u!114 &-6671666841056641594
@@ -1344,7 +1344,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df5120c1a5f24e84fa45c0c02cc427c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponDamage: 2
+  weaponDamage: 4
   allowedMoveSpeed: 0
   disableRoot: 0
 --- !u!1102 &-6655303529677305569
@@ -1729,7 +1729,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df5120c1a5f24e84fa45c0c02cc427c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponDamage: 0
+  weaponDamage: 2
   allowedMoveSpeed: 0
   disableRoot: 1
 --- !u!1101 &-6059000512021622527
@@ -2026,7 +2026,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df5120c1a5f24e84fa45c0c02cc427c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponDamage: 1
+  weaponDamage: 4
   allowedMoveSpeed: 0
   disableRoot: 0
 --- !u!1102 &-5644767152018053382
@@ -2069,7 +2069,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df5120c1a5f24e84fa45c0c02cc427c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponDamage: 0
+  weaponDamage: 3
   allowedMoveSpeed: 0
   disableRoot: 1
 --- !u!1107 &-5602963042399094863
@@ -2320,7 +2320,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df5120c1a5f24e84fa45c0c02cc427c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponDamage: 0
+  weaponDamage: 4
   allowedMoveSpeed: 0
   disableRoot: 1
 --- !u!114 &-5465802371124761096
@@ -2335,7 +2335,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df5120c1a5f24e84fa45c0c02cc427c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponDamage: 0
+  weaponDamage: 3
   allowedMoveSpeed: 0
   disableRoot: 1
 --- !u!1101 &-5437187991801569638
@@ -2431,7 +2431,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df5120c1a5f24e84fa45c0c02cc427c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponDamage: 1
+  weaponDamage: 6
   allowedMoveSpeed: 0
   disableRoot: 0
 --- !u!1102 &-5304328514929856948
@@ -2476,7 +2476,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df5120c1a5f24e84fa45c0c02cc427c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponDamage: 70
+  weaponDamage: 2
   allowedMoveSpeed: 0
   disableRoot: 0
 --- !u!114 &-5168100376212301131
@@ -2491,7 +2491,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df5120c1a5f24e84fa45c0c02cc427c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponDamage: 2
+  weaponDamage: 4
   allowedMoveSpeed: 0
   disableRoot: 0
 --- !u!114 &-5128325901450271364
@@ -2506,7 +2506,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df5120c1a5f24e84fa45c0c02cc427c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponDamage: 0
+  weaponDamage: 1
   allowedMoveSpeed: 0
   disableRoot: 0
 --- !u!1101 &-5109538018550478843
@@ -2974,7 +2974,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df5120c1a5f24e84fa45c0c02cc427c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponDamage: 1
+  weaponDamage: 4
   allowedMoveSpeed: 0
   disableRoot: 0
 --- !u!1109 &-4717473699890633130
@@ -3009,7 +3009,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df5120c1a5f24e84fa45c0c02cc427c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponDamage: 0
+  weaponDamage: 2.5
   allowedMoveSpeed: 0
   disableRoot: 0
 --- !u!1101 &-4711376686869498153
@@ -3074,7 +3074,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df5120c1a5f24e84fa45c0c02cc427c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponDamage: 0
+  weaponDamage: 3
   allowedMoveSpeed: 0
   disableRoot: 1
 --- !u!1101 &-4651843046005509899
@@ -3172,7 +3172,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df5120c1a5f24e84fa45c0c02cc427c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponDamage: 0
+  weaponDamage: 5
   allowedMoveSpeed: 0
   disableRoot: 0
 --- !u!1101 &-4605029914802193956
@@ -3234,7 +3234,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df5120c1a5f24e84fa45c0c02cc427c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponDamage: 0
+  weaponDamage: 6
   allowedMoveSpeed: 0
   disableRoot: 1
 --- !u!1101 &-4452645490600195260
@@ -3469,7 +3469,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df5120c1a5f24e84fa45c0c02cc427c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponDamage: 0
+  weaponDamage: 2
   allowedMoveSpeed: 0
   disableRoot: 0
 --- !u!114 &-3884253582755032149
@@ -3772,7 +3772,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df5120c1a5f24e84fa45c0c02cc427c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponDamage: 0
+  weaponDamage: 1
   allowedMoveSpeed: 0
   disableRoot: 0
 --- !u!114 &-3479705722059434208
@@ -3787,7 +3787,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df5120c1a5f24e84fa45c0c02cc427c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponDamage: 0
+  weaponDamage: 3
   allowedMoveSpeed: 0
   disableRoot: 0
 --- !u!1102 &-3433781829414921244
@@ -3928,7 +3928,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df5120c1a5f24e84fa45c0c02cc427c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponDamage: 0
+  weaponDamage: 3
   allowedMoveSpeed: 0
   disableRoot: 0
 --- !u!1101 &-3084017511431404366
@@ -4039,7 +4039,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df5120c1a5f24e84fa45c0c02cc427c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponDamage: 0
+  weaponDamage: 1
   allowedMoveSpeed: 0
   disableRoot: 0
 --- !u!1102 &-2985031097616699548
@@ -4204,7 +4204,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df5120c1a5f24e84fa45c0c02cc427c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponDamage: 0
+  weaponDamage: 2
   allowedMoveSpeed: 0
   disableRoot: 0
 --- !u!1101 &-2594511515862288727
@@ -4348,7 +4348,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df5120c1a5f24e84fa45c0c02cc427c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponDamage: 0
+  weaponDamage: 2
   allowedMoveSpeed: 0
   disableRoot: 0
 --- !u!1109 &-2334454259631381783
@@ -4455,7 +4455,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df5120c1a5f24e84fa45c0c02cc427c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponDamage: 0
+  weaponDamage: 2
   allowedMoveSpeed: 0
   disableRoot: 0
 --- !u!1101 &-1875051673813446605
@@ -4624,7 +4624,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df5120c1a5f24e84fa45c0c02cc427c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponDamage: 0
+  weaponDamage: 1
   allowedMoveSpeed: 0
   disableRoot: 1
 --- !u!1101 &-1649258653184589718
@@ -4717,7 +4717,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df5120c1a5f24e84fa45c0c02cc427c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponDamage: 0
+  weaponDamage: 4
   allowedMoveSpeed: 0
   disableRoot: 0
 --- !u!1102 &-1474671489292703998
@@ -5027,7 +5027,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df5120c1a5f24e84fa45c0c02cc427c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponDamage: 0
+  weaponDamage: 1
   allowedMoveSpeed: 0
   disableRoot: 1
 --- !u!114 &-621041915268605290
@@ -5042,7 +5042,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df5120c1a5f24e84fa45c0c02cc427c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponDamage: 0
+  weaponDamage: 2
   allowedMoveSpeed: 0
   disableRoot: 0
 --- !u!1101 &-583495540383628938
@@ -5295,7 +5295,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df5120c1a5f24e84fa45c0c02cc427c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponDamage: 0
+  weaponDamage: 4
   allowedMoveSpeed: 0
   disableRoot: 0
 --- !u!114 &-169514591317086670
@@ -5310,7 +5310,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df5120c1a5f24e84fa45c0c02cc427c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponDamage: 0
+  weaponDamage: 2
   allowedMoveSpeed: 0
   disableRoot: 0
 --- !u!1101 &-163018917075055697
@@ -5372,7 +5372,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df5120c1a5f24e84fa45c0c02cc427c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponDamage: 1
+  weaponDamage: 2
   allowedMoveSpeed: 0
   disableRoot: 0
 --- !u!1101 &-25778823418176308
@@ -5549,7 +5549,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df5120c1a5f24e84fa45c0c02cc427c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponDamage: 0
+  weaponDamage: 1
   allowedMoveSpeed: 0
   disableRoot: 1
 --- !u!1101 &493929202380743006
@@ -6080,7 +6080,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df5120c1a5f24e84fa45c0c02cc427c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponDamage: 0
+  weaponDamage: 3
   allowedMoveSpeed: 0
   disableRoot: 0
 --- !u!1109 &1456257100062713753
@@ -6452,7 +6452,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df5120c1a5f24e84fa45c0c02cc427c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponDamage: 0
+  weaponDamage: 1.5
   allowedMoveSpeed: 0
   disableRoot: 0
 --- !u!1102 &2212078621368805489
@@ -6627,7 +6627,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df5120c1a5f24e84fa45c0c02cc427c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponDamage: 0
+  weaponDamage: 1
   allowedMoveSpeed: 0
   disableRoot: 1
 --- !u!1101 &2503242350282362649
@@ -6692,7 +6692,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df5120c1a5f24e84fa45c0c02cc427c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponDamage: 0
+  weaponDamage: 3
   allowedMoveSpeed: 0
   disableRoot: 1
 --- !u!1107 &2679781636708208244
@@ -6712,25 +6712,25 @@ AnimatorStateMachine:
     m_Position: {x: 20, y: -210, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -7288106888651806878}
-    m_Position: {x: 20, y: -150, z: 0}
+    m_Position: {x: 20, y: -100, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -3924441178200676441}
-    m_Position: {x: 20, y: -30, z: 0}
+    m_Position: {x: 20, y: 20, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -5755388748985351915}
-    m_Position: {x: 20, y: -90, z: 0}
+    m_Position: {x: 20, y: -40, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -8278835490886969391}
-    m_Position: {x: 20, y: 30, z: 0}
+    m_Position: {x: 20, y: 80, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 3247154396173498807}
-    m_Position: {x: 20, y: 90, z: 0}
+    m_Position: {x: 20, y: 140, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -4810475119435766907}
-    m_Position: {x: 20, y: 150, z: 0}
+    m_Position: {x: 20, y: 200, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 7462846118879166501}
-    m_Position: {x: 250, y: -220, z: 0}
+    m_Position: {x: 190, y: -160, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions: []
   m_EntryTransitions: []
@@ -6778,7 +6778,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df5120c1a5f24e84fa45c0c02cc427c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponDamage: 0
+  weaponDamage: 2
   allowedMoveSpeed: 0
   disableRoot: 0
 --- !u!1101 &2765058781855377643
@@ -6982,7 +6982,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df5120c1a5f24e84fa45c0c02cc427c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponDamage: 0
+  weaponDamage: 1
   allowedMoveSpeed: 0
   disableRoot: 0
 --- !u!1101 &3243144239953283573
@@ -7405,7 +7405,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df5120c1a5f24e84fa45c0c02cc427c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponDamage: 0
+  weaponDamage: 3
   allowedMoveSpeed: 0
   disableRoot: 0
 --- !u!114 &4156567021233907948
@@ -7420,7 +7420,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df5120c1a5f24e84fa45c0c02cc427c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponDamage: 0
+  weaponDamage: 4
   allowedMoveSpeed: 0
   disableRoot: 1
 --- !u!114 &4450961073748787918
@@ -7435,7 +7435,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df5120c1a5f24e84fa45c0c02cc427c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponDamage: 2
+  weaponDamage: 1
   allowedMoveSpeed: 0
   disableRoot: 0
 --- !u!1102 &4536961511976088555
@@ -7566,7 +7566,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df5120c1a5f24e84fa45c0c02cc427c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponDamage: 0
+  weaponDamage: 3
   allowedMoveSpeed: 0
   disableRoot: 0
 --- !u!1101 &4838317615051243670
@@ -7686,7 +7686,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df5120c1a5f24e84fa45c0c02cc427c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponDamage: 0
+  weaponDamage: 2
   allowedMoveSpeed: 0
   disableRoot: 1
 --- !u!1109 &5048345291845478109
@@ -7839,7 +7839,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df5120c1a5f24e84fa45c0c02cc427c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponDamage: 0
+  weaponDamage: 2.5
   allowedMoveSpeed: 0
   disableRoot: 0
 --- !u!114 &5249609161846518873
@@ -7854,7 +7854,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df5120c1a5f24e84fa45c0c02cc427c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponDamage: 0
+  weaponDamage: 2
   allowedMoveSpeed: 0
   disableRoot: 0
 --- !u!1101 &5263563689774376347
@@ -8182,7 +8182,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df5120c1a5f24e84fa45c0c02cc427c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponDamage: 0
+  weaponDamage: 2.5
   allowedMoveSpeed: 0
   disableRoot: 0
 --- !u!1102 &5740697984292221996
@@ -8744,7 +8744,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df5120c1a5f24e84fa45c0c02cc427c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponDamage: 2
+  weaponDamage: 6
   allowedMoveSpeed: 0
   disableRoot: 1
 --- !u!114 &7114339538717468954
@@ -8759,7 +8759,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df5120c1a5f24e84fa45c0c02cc427c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponDamage: 0
+  weaponDamage: 3
   allowedMoveSpeed: 0
   disableRoot: 1
 --- !u!1101 &7182950709845805387
@@ -8802,7 +8802,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df5120c1a5f24e84fa45c0c02cc427c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponDamage: 0
+  weaponDamage: 3
   allowedMoveSpeed: 0
   disableRoot: 1
 --- !u!1101 &7237268102016308892
@@ -8942,7 +8942,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df5120c1a5f24e84fa45c0c02cc427c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponDamage: 0
+  weaponDamage: 2
   allowedMoveSpeed: 0
   disableRoot: 1
 --- !u!1109 &7424748261716844573
@@ -9105,7 +9105,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df5120c1a5f24e84fa45c0c02cc427c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponDamage: 0
+  weaponDamage: 2.5
   allowedMoveSpeed: 0
   disableRoot: 1
 --- !u!1101 &7533133917195905058
@@ -9344,7 +9344,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df5120c1a5f24e84fa45c0c02cc427c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponDamage: 0
+  weaponDamage: 4
   allowedMoveSpeed: 0
   disableRoot: 0
 --- !u!1101 &8058932739392612590
@@ -9423,7 +9423,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df5120c1a5f24e84fa45c0c02cc427c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponDamage: 0
+  weaponDamage: 1.5
   allowedMoveSpeed: 0
   disableRoot: 0
 --- !u!1101 &8308480711204209675
@@ -9563,7 +9563,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df5120c1a5f24e84fa45c0c02cc427c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponDamage: 0
+  weaponDamage: 2.5
   allowedMoveSpeed: 0
   disableRoot: 1
 --- !u!1101 &8525146891861013401
@@ -9823,7 +9823,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df5120c1a5f24e84fa45c0c02cc427c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponDamage: 0
+  weaponDamage: 5
   allowedMoveSpeed: 0
   disableRoot: 1
 --- !u!1101 &9057613668834723629

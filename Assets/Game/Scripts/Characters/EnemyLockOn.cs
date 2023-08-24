@@ -141,8 +141,6 @@ public class EnemyLockOn : MonoBehaviour
 
         currentIndex++;
 
-        print(nearbyEnemies.Count);
-
         if (nearbyEnemies.Count == 0)
         {
             Unfocus();

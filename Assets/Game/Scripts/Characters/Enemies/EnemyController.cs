@@ -49,7 +49,6 @@ namespace UtilityAI.Core
 
         private void Start()
         {
-            MaxhealthPoints = 100f;
             CurrenthealthPoints = MaxhealthPoints;
 
             AffinityResistanceModifier = 0.75f;
@@ -119,7 +118,7 @@ namespace UtilityAI.Core
             target = Player.Instance;
         }
 
-public void ExitInFight()
+        public void ExitInFight()
         {
             enemyState = EnemyState.Idle;
             isInFight = false;
@@ -177,6 +176,7 @@ public void ExitInFight()
 
         private void OnDestroy()
         {
+            GameManager.Instance.RemoveEnemyToFight(this);
             EventManager.Instance.QueueEvent(new KillGameEvent(enemyType));
             player.GetComponent<EnemyLockOn>().RemoveCloseEnemies(this);
         }

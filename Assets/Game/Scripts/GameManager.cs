@@ -49,7 +49,8 @@ public class GameManager : MonoBehaviour
     //and puts the game in fight mode if it wasn't
     public void AddEnemyToFight(EnemyController enemy)
     {
-        enemiesInFight.Add(enemy);
+        if (!enemiesInFight.Contains(enemy))
+            enemiesInFight.Add(enemy);
         if (enemiesInFight.Count > 0)
             UpdateGameState(GameState.InFight);
     }
